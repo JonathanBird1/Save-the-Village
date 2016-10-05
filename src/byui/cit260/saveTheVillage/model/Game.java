@@ -62,14 +62,14 @@ public class Game implements Serializable {
     }
 
     public Game() {
-        elapsedTime = 0;
-        timeLimit = 48*60;
-        defeatedBoss = false;
-        fileName = "noName.stv";
-        cluesObtained = new String[10];
-        for (int i = 0; i < cluesObtained.length; i++)
+        this.elapsedTime = 0;
+        this.timeLimit = 48*60;
+        this.defeatedBoss = false;
+        this.fileName = "noName.stv";
+        this.cluesObtained = new String[10];
+        for (int i = 0; i < this.cluesObtained.length; i++)
         {
-            cluesObtained[i] = "Clue " + i + " Not Obtained\n";
+            this.cluesObtained[i] = "Clue " + i + " Not Obtained\n";
         }
     }
 

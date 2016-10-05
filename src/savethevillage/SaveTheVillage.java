@@ -14,6 +14,7 @@ import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Location;
+import byui.cit260.saveTheVillage.model.NPC;
 
 public class SaveTheVillage {
 
@@ -54,12 +55,19 @@ public class SaveTheVillage {
         newLocation.setScene("Forest");
         newLocation.setVisited(false);
         
+        //NPC
+        NPC newNPC = new NPC();
+        newNPC.setClue("No Clue Associated");
+        newNPC.setReward("No Reward Yet");
+        newNPC.setCaptured(false);
+        
         
         //Display Output
         System.out.println(newGame.toString());
         System.out.println(newMap.toString());
         System.out.println(newPlayer.toString());
         System.out.println(newLocation.toString());
+        System.out.println(newNPC.toString());
     }
     
 }

@@ -19,10 +19,10 @@ public class Location implements Serializable {
     private boolean visited;
 
     public Location() {
-        row = 0;
-        column = 0;
-        scene = "No Scene";
-        visited = false;
+        this.row = 0;
+        this.column = 0;
+        this.scene = "No Scene";
+        this.visited = false;
     }
 
     public int getRow() {
