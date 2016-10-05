@@ -10,6 +10,7 @@ package savethevillage;
  *
  * @author micha
  */
+import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Player;
@@ -61,6 +62,12 @@ public class SaveTheVillage {
         newNPC.setReward("No Reward Yet");
         newNPC.setCaptured(false);
         
+        //Actor
+        Actor newActor = new Actor();
+        newActor.setName("No Name");
+        newActor.setType("No Type");
+        
+        newActor.setGold(0);
         
         //Display Output
         System.out.println(newGame.toString());
@@ -68,6 +75,7 @@ public class SaveTheVillage {
         System.out.println(newPlayer.toString());
         System.out.println(newLocation.toString());
         System.out.println(newNPC.toString());
+        System.out.println(newActor.toString());
     }
     
 }
