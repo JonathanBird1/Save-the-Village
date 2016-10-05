@@ -98,14 +98,6 @@ public class Player implements Serializable {
     }
 
     public Player() {
-        name="player";
-        age=21;
-        race="human";
-        playerWeapon="wooden sword";
-        currentRow=1;
-        cuttentColumn=2;
-        currentHealth=25;
-        currentMana=0;
     }
 
     @Override
@@ -164,19 +156,11 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", age=" + age + ", race=" + race + ", playerItems=" + Arrays.toString(playerItems) + ", playerWeapon=" + playerWeapon + ", currentRow=" + currentRow + ", cuttentColumn=" + cuttentColumn + ", currentHealth=" + currentHealth + ", currentMana=" + currentMana + '}';
-    }
-
-    public void setCurrentColumn(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setWeapon(String bokken) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setItems(String healing_Potion, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Player{" + "name=" + name + ", age=" + age + ", race=" + race + 
+            ", playerItems=" + Arrays.toString(playerItems) + ", playerWeapon=" 
+                + playerWeapon + ", currentRow=" + currentRow + ", cuttentColumn=" 
+                + cuttentColumn + ", currentHealth=" + currentHealth + 
+                ", currentMana=" + currentMana + '}';
     }
    
 }
