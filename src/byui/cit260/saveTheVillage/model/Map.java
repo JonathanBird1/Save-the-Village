@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author Master Brickbuilder
  */
-public class Map {
+public class Map implements Serializable {
     
     private String mapName;
     private int totalRows;
