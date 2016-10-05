@@ -12,6 +12,9 @@ package savethevillage;
  */
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Map;
+import byui.cit260.saveTheVillage.model.Player;
+import byui.cit260.saveTheVillage.model.Races;
+import byui.cit260.saveTheVillage.model.Spell;
 public class SaveTheVillage {
 
     /**
@@ -19,9 +22,15 @@ public class SaveTheVillage {
      */
     public static void main(String[] args) {
         Game newGame = new Game();
+        Player newPlayer = new Player();
+        Races newRace = new Races();
         Map newMap = new Map();
+        Spell newSpell = new Spell();
         
         System.out.println(newGame.toString());
+        System.out.println(newPlayer.toString());
+        System.out.println(newRace.toString());
+        System.out.println(newSpell.toString());
         System.out.println(newMap.toString());
     }
     
