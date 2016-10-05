@@ -11,6 +11,7 @@ package savethevillage;
  * @author micha
  */
 import byui.cit260.saveTheVillage.model.Game;
+import byui.cit260.saveTheVillage.model.Map;
 public class SaveTheVillage {
 
     /**
@@ -18,9 +19,10 @@ public class SaveTheVillage {
      */
     public static void main(String[] args) {
         Game newGame = new Game();
+        Map newMap = new Map();
         
         System.out.println(newGame.toString());
-
+        System.out.println(newMap.toString());
     }
     
 }
