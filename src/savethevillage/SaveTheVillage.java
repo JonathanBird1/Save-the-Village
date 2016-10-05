@@ -19,7 +19,16 @@ public class SaveTheVillage {
      */
     public static void main(String[] args) {
         Game newGame = new Game();
+        newGame.setElapsedTime(0);
+        newGame.setTimeLimit(60*48);
+        newGame.setDefeatedBoss(false);
+        newGame.setFileName("noFile");
+        newGame.setCluesObtained("No Clues Obtained\n", 0);
+        
         Map newMap = new Map();
+        newMap.setMapName("townAndForest");
+        newMap.setTotalRows(6);
+        newMap.setTotalColumns(6);
         
         System.out.println(newGame.toString());
         System.out.println(newMap.toString());

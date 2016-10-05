@@ -19,7 +19,7 @@ public class Game implements Serializable {
     private int timeLimit;
     private boolean defeatedBoss;
     private String fileName;
-    private String clueObtained[];
+    private String cluesObtained[];
 
     public int getElapsedTime() {
         return elapsedTime;
@@ -53,19 +53,24 @@ public class Game implements Serializable {
         this.fileName = fileName;
     }
 
-    public String[] getClueObtained() {
-        return clueObtained;
+    public String[] getCluesObtained() {
+        return cluesObtained;
     }
 
-    public void setClueObtained(String[] clueObtained) {
-        this.clueObtained = clueObtained;
+    public void setCluesObtained(String clueObtained, int clueNumber) {
+        this.cluesObtained[clueNumber] = clueObtained;
     }
 
     public Game() {
-    elapsedTime = 0;
-    timeLimit = 48*60;
-    defeatedBoss = false;
-    fileName = "noName.stv";
+        elapsedTime = 0;
+        timeLimit = 48*60;
+        defeatedBoss = false;
+        fileName = "noName.stv";
+        cluesObtained = new String[10];
+        for (int i = 0; i < cluesObtained.length; i++)
+        {
+            cluesObtained[i] = "Clue " + i + " Not Obtained\n";
+        }
     }
 
     @Override
@@ -75,7 +80,7 @@ public class Game implements Serializable {
         hash = 89 * hash + this.timeLimit;
         hash = 89 * hash + (this.defeatedBoss ? 1 : 0);
         hash = 89 * hash + Objects.hashCode(this.fileName);
-        hash = 89 * hash + Arrays.deepHashCode(this.clueObtained);
+        hash = 89 * hash + Arrays.deepHashCode(this.cluesObtained);
         return hash;
     }
 
@@ -103,7 +108,7 @@ public class Game implements Serializable {
         if (!Objects.equals(this.fileName, other.fileName)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.clueObtained, other.clueObtained)) {
+        if (!Arrays.deepEquals(this.cluesObtained, other.cluesObtained)) {
             return false;
         }
         return true;
@@ -111,9 +116,18 @@ public class Game implements Serializable {
 
     @Override
     public String toString() {
-        return "Game{" + "elapsedTime=" + elapsedTime + ", timeLimit=" + 
-                timeLimit + ", defeatedBoss=" + defeatedBoss + ", fileName=" + 
-                fileName + ", clueObtained=" + clueObtained + '}';
+        String returnString = "Game{" + "elapsedTime=" + elapsedTime + 
+                ", timeLimit=" + timeLimit + ", defeatedBoss=" + 
+                defeatedBoss + ", fileName=" + fileName + ", cluesObtained=";
+        
+        for (int i = 0; i < cluesObtained.length; i++)
+        {
+            returnString += cluesObtained[i];
+        }
+        
+        returnString += '}';
+
+        return returnString;
     }
 
     
