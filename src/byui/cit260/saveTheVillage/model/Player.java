@@ -159,15 +159,24 @@ public class Player implements Serializable {
         if (!Objects.equals(this.playerWeapon, other.playerWeapon)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.playerItems, other.playerItems)) {
-            return false;
-        }
-        return true;
+        return Arrays.deepEquals(this.playerItems, other.playerItems);
     }
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", age=" + age + ", race=" + race + ", playerItems=" + playerItems + ", playerWeapon=" + playerWeapon + ", currentRow=" + currentRow + ", cuttentColumn=" + cuttentColumn + ", currentHealth=" + currentHealth + ", currentMana=" + currentMana + '}';
+        return "Player{" + "name=" + name + ", age=" + age + ", race=" + race + ", playerItems=" + Arrays.toString(playerItems) + ", playerWeapon=" + playerWeapon + ", currentRow=" + currentRow + ", cuttentColumn=" + cuttentColumn + ", currentHealth=" + currentHealth + ", currentMana=" + currentMana + '}';
+    }
+
+    public void setCurrentColumn(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setWeapon(String bokken) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setItems(String healing_Potion, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
 }
