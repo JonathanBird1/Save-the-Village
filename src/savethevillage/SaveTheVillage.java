@@ -13,6 +13,7 @@ package savethevillage;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Player;
+import byui.cit260.saveTheVillage.model.Location;
 
 public class SaveTheVillage {
 
@@ -20,6 +21,7 @@ public class SaveTheVillage {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //Game
         Game newGame = new Game();
         newGame.setElapsedTime(0);
         newGame.setTimeLimit(60*48);
@@ -27,11 +29,13 @@ public class SaveTheVillage {
         newGame.setFileName("noFile");
         newGame.setCluesObtained("No Clues Obtained\n", 0);
         
+        //Map
         Map newMap = new Map();
         newMap.setMapName("townAndForest");
         newMap.setTotalRows(6);
         newMap.setTotalColumns(6);
         
+        //Player
         Player newPlayer = new Player();
         newPlayer.setName("Default Name");
         newPlayer.setAge(20);
@@ -43,10 +47,19 @@ public class SaveTheVillage {
         newPlayer.setCurrentHealth(100);
         newPlayer.setCurrentMana(100);
         
+        //Location
+        Location newLocation = new Location();
+        newLocation.setRow(1);
+        newLocation.setColumn(1);
+        newLocation.setScene("Forest");
+        newLocation.setVisited(false);
         
+        
+        //Display Output
         System.out.println(newGame.toString());
         System.out.println(newMap.toString());
         System.out.println(newPlayer.toString());
+        System.out.println(newLocation.toString());
     }
     
 }
