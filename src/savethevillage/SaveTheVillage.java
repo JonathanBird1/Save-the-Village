@@ -12,6 +12,7 @@ package savethevillage;
  */
 import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Game;
+import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Location;
@@ -94,6 +95,18 @@ public class SaveTheVillage {
         newScene.setClosed(true);
         newScene.setClue("noClue");
         
+        //Item
+        Item newItem = new Item();
+        newItem.setName("noName");
+        newItem.setType ("No Type");
+        newItem.setBuyPrice(0);
+        newItem.setNoBuy(false);
+        newItem.setNoSell(false);
+        newItem.setAssociation("None");
+        newItem.setWeaponDamage(0);
+        newItem.setHealingAmount(0);
+        newItem.setManaRestored(0);
+        
         //Display Output
         System.out.println(newGame.toString());
         System.out.println(newMap.toString());
@@ -103,6 +116,7 @@ public class SaveTheVillage {
         System.out.println(newActor.toString());
         System.out.println(newStats.toString());
         System.out.println(newScene.toString());
+        System.out.println(newItem.toString());
     }
     
 }
