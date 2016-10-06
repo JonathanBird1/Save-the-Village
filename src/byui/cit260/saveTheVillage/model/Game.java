@@ -108,10 +108,7 @@ public class Game implements Serializable {
         if (!Objects.equals(this.fileName, other.fileName)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.cluesObtained, other.cluesObtained)) {
-            return false;
-        }
-        return true;
+        return Arrays.deepEquals(this.cluesObtained, other.cluesObtained);
     }
 
     @Override
@@ -129,6 +126,5 @@ public class Game implements Serializable {
 
         return returnString;
     }
-
-    
+  
 }
