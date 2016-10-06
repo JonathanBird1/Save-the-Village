@@ -16,6 +16,7 @@ import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Location;
 import byui.cit260.saveTheVillage.model.NPC;
+import byui.cit260.saveTheVillage.model.Stats;
 
 public class SaveTheVillage {
 
@@ -69,6 +70,20 @@ public class SaveTheVillage {
         
         newActor.setGold(0);
         
+        //Stats
+        Stats newStats = new Stats();
+        newStats.setHealth(0);
+        newStats.setMana(0);
+        newStats.setStrength(0);
+        newStats.setHitRate(0);
+        newStats.setMagic(0);
+        newStats.setMagicSuccessRate(0);
+        newStats.setDodgeRate(0);
+        newStats.setDefense(0);
+        newStats.setMagicDefense(0);
+        newStats.setSpeed(0);
+        newStats.setIntelligence(0);
+        
         //Display Output
         System.out.println(newGame.toString());
         System.out.println(newMap.toString());
@@ -76,6 +91,7 @@ public class SaveTheVillage {
         System.out.println(newLocation.toString());
         System.out.println(newNPC.toString());
         System.out.println(newActor.toString());
+        System.out.println(newStats.toString());
     }
     
 }
