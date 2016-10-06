@@ -16,6 +16,7 @@ import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Location;
 import byui.cit260.saveTheVillage.model.NPC;
+import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.model.Stats;
 
 public class SaveTheVillage {
@@ -67,7 +68,7 @@ public class SaveTheVillage {
         Actor newActor = new Actor();
         newActor.setName("No Name");
         newActor.setType("No Type");
-        
+        newActor.setItems(null);
         newActor.setGold(0);
         
         //Stats
@@ -84,6 +85,15 @@ public class SaveTheVillage {
         newStats.setSpeed(0);
         newStats.setIntelligence(0);
         
+        //Scene
+        Scene newScene = new Scene();
+        newScene.setName("noName");
+        newScene.setType("noType");
+        newScene.setActor("noActor");
+        newScene.setNpc(null);
+        newScene.setClosed(true);
+        newScene.setClue("noClue");
+        
         //Display Output
         System.out.println(newGame.toString());
         System.out.println(newMap.toString());
@@ -92,6 +102,7 @@ public class SaveTheVillage {
         System.out.println(newNPC.toString());
         System.out.println(newActor.toString());
         System.out.println(newStats.toString());
+        System.out.println(newScene.toString());
     }
     
 }

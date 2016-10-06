@@ -93,6 +93,7 @@ public class Actor implements Serializable{
     public String toString() {
         return "Actor{" + "name=" + name + ", type=" + type + ", items=" + items + ", gold=" + gold + '}';
     }
+
     
     
     
