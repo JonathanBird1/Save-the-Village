@@ -19,6 +19,8 @@ import byui.cit260.saveTheVillage.model.Location;
 import byui.cit260.saveTheVillage.model.NPC;
 import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.model.Stats;
+import byui.cit260.saveTheVillage.model.Races;
+import byui.cit260.saveTheVillage.model.Spell;
 
 public class SaveTheVillage {
 
@@ -107,6 +109,18 @@ public class SaveTheVillage {
         newItem.setHealingAmount(0);
         newItem.setManaRestored(0);
         
+        //Races
+        Races newRace = new Races();
+        newRace.setRaceName("No Race");
+        
+        //Spell
+        Spell newSpell = new Spell();
+        newSpell.setSpellName("No Name");
+        newSpell.setDamageDealt(0);
+        newSpell.setAmountHealed(0);
+        newSpell.setAttributeBoosted("No Boost");
+        newSpell.setAttributeBoostAmount(0);
+        
         //Display Output
         System.out.println(newGame.toString());
         System.out.println(newMap.toString());
@@ -117,6 +131,8 @@ public class SaveTheVillage {
         System.out.println(newStats.toString());
         System.out.println(newScene.toString());
         System.out.println(newItem.toString());
+        System.out.println(newRace.toString());
+        System.out.println(newSpell.toString());
     }
     
 }
