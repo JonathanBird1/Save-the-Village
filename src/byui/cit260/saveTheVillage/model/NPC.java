@@ -16,11 +16,13 @@ public class NPC implements Serializable {
     private String clue;
     private String reward;
     private boolean captured;
+    private boolean hasReward;
 
     public NPC() {
         this.clue = "No Clue";
         this.reward = "No Reward";
         this.captured = false;
+        this.hasReward = false;
     }
 
     public String getClue() {
@@ -39,20 +41,31 @@ public class NPC implements Serializable {
         this.reward = reward;
     }
 
-    public boolean isCaptured() {
+    public boolean getCaptured() {
         return captured;
     }
 
     public void setCaptured(boolean captured) {
         this.captured = captured;
     }
+    
+    public boolean getHasReward()
+    {
+        return hasReward;
+    }
 
+    public void setHasReward(boolean reward)
+    {
+        this.hasReward = reward;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 83 * hash + Objects.hashCode(this.clue);
         hash = 83 * hash + Objects.hashCode(this.reward);
         hash = 83 * hash + (this.captured ? 1 : 0);
+        hash = 83 * hash + (this.hasReward ? 1 : 0);
         return hash;
     }
 
@@ -77,13 +90,17 @@ public class NPC implements Serializable {
         if (!Objects.equals(this.reward, other.reward)) {
             return false;
         }
+        if (this.hasReward != other.hasReward) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
         return "NPC{" + "clue=" + clue + ", reward=" + reward + 
-                ", captured=" + captured + '}';
+                ", captured=" + captured + ", hasReward=" +
+                hasReward + '}';
     }
     
     

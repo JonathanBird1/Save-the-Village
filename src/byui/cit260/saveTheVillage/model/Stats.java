@@ -18,12 +18,10 @@ public class Stats implements Serializable{
     private int strength;
     private int hitRate;
     private int magic;
-    private double magicSuccessRate;
     private double dodgeRate;
     private int defense;
     private int magicDefense;
     private int speed;
-    private int intelligence;
     
     public Stats() {
     }
@@ -68,14 +66,6 @@ public class Stats implements Serializable{
         this.magic = magic;
     }
 
-    public double getMagicSuccessRate() {
-        return magicSuccessRate;
-    }
-
-    public void setMagicSuccessRate(double magicSuccessRate) {
-        this.magicSuccessRate = magicSuccessRate;
-    }
-
     public double getDodgeRate() {
         return dodgeRate;
     }
@@ -108,14 +98,6 @@ public class Stats implements Serializable{
         this.speed = speed;
     }
 
-    public int getIntelligence() {
-        return intelligence;
-    }
-
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -123,12 +105,10 @@ public class Stats implements Serializable{
         hash = 29 * hash + this.strength;
         hash = 29 * hash + this.hitRate;
         hash = 29 * hash + this.magic;
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.magicSuccessRate) ^ (Double.doubleToLongBits(this.magicSuccessRate) >>> 32));
         hash = 29 * hash + (int) (Double.doubleToLongBits(this.dodgeRate) ^ (Double.doubleToLongBits(this.dodgeRate) >>> 32));
         hash = 29 * hash + this.defense;
         hash = 29 * hash + this.magicDefense;
         hash = 29 * hash + this.speed;
-        hash = 29 * hash + this.intelligence;
         return hash;
     }
 
@@ -156,9 +136,6 @@ public class Stats implements Serializable{
         if (this.magic != other.magic) {
             return false;
         }
-        if (Double.doubleToLongBits(this.magicSuccessRate) != Double.doubleToLongBits(other.magicSuccessRate)) {
-            return false;
-        }
         if (Double.doubleToLongBits(this.dodgeRate) != Double.doubleToLongBits(other.dodgeRate)) {
             return false;
         }
@@ -171,15 +148,16 @@ public class Stats implements Serializable{
         if (this.speed != other.speed) {
             return false;
         }
-        if (this.intelligence != other.intelligence) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Stats{" + "health=" + health + ", mana=" + mana + ", strength=" + strength + ", hitRate=" + hitRate + ", magic=" + magic + ", magicSuccessRate=" + magicSuccessRate + ", dodgeRate=" + dodgeRate + ", defense=" + defense + ", magicDefense=" + magicDefense + ", speed=" + speed + ", intelligence=" + intelligence + '}';
+        return "Stats{" + "health=" + health + ", mana=" + mana + 
+                ", strength=" + strength + ", hitRate=" + hitRate + 
+                ", magic=" + magic + ", dodgeRate=" + dodgeRate + 
+                ", defense=" + defense + ", magicDefense=" + magicDefense + 
+                ", speed=" + speed + '}';
     }
 
 

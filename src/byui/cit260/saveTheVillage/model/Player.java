@@ -24,6 +24,8 @@ public class Player implements Serializable {
     private int currentColumn;
     private int currentHealth;
     private int currentMana;
+    private String depositedItems[];
+    private int depositedMoney;
 
     public Player() {
         this.name = "No Name";
@@ -39,6 +41,12 @@ public class Player implements Serializable {
         this.currentColumn = 0;
         this.currentHealth = 0;
         this.currentMana = 0;
+        depositedItems = new String[60];
+        for (int i = 0; i < depositedItems.length; i++)
+        {
+            this.depositedItems[i] = "No Item\n";
+        }
+        this.depositedMoney = 0;
     }
 
     @Override
@@ -54,6 +62,8 @@ public class Player implements Serializable {
         hash = 89 * hash + this.currentColumn;
         hash = 89 * hash + this.currentHealth;
         hash = 89 * hash + this.currentMana;
+        hash = 89 * hash + Arrays.deepHashCode(this.depositedItems);
+        hash = 89 * hash + this.depositedMoney;
         return hash;
     }
 
@@ -97,6 +107,12 @@ public class Player implements Serializable {
             return false;
         }
         if (!Arrays.deepEquals(this.items, other.items)) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.depositedItems, other.depositedItems)) {
+            return false;
+        }
+        if (this.depositedMoney != other.depositedMoney){
             return false;
         }
         return true;
@@ -182,7 +198,23 @@ public class Player implements Serializable {
         this.currentMana = currentMana;
     }
 
-    @Override
+     public String[] getDepositedItems() {
+        return depositedItems;
+    }
+
+    public void setDepositedItems(String item, int itemNumber) {
+        this.depositedItems[itemNumber] = item;
+    }
+
+    public int getDepositedMoney() {
+        return depositedMoney;
+    }
+
+    public void setDepositedMoney(int money) {
+        this.depositedMoney = money;
+    }
+
+   @Override
     public String toString() {
         String returnString =  "Player{" + "name=" + name + ", age=" + age + 
                 ", race=" + race + ", items=";
@@ -195,10 +227,15 @@ public class Player implements Serializable {
         returnString += ", money=" + money + ", weapon=" + weapon + 
                 ", currentRow=" + currentRow + ", currentColumn=" + 
                 currentColumn + ", currentHealth=" + currentHealth + 
-                ", currentMana=" + currentMana + '}';
+                ", currentMana=" + currentMana + ", ";
+        
+        for (int i = 0; i < depositedItems.length; i++)
+        {
+            returnString += depositedItems[i];
+        }
+        
+        returnString += ", " + depositedMoney + '}';
         
         return returnString;
     }
-    
-    
 }
