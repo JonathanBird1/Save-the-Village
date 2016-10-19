@@ -26,6 +26,7 @@ public class BattleControl {
         double enemyDodgeRate = enemy.getEnemyStats().getHitRate();
         int playerSpeed = gamePlayer.getPlayerStats().getSpeed();
         int enemySpeed = enemy.getEnemyStats().getSpeed();
+        int playerSpeedPenalty = gamePlayer.getPlayerStats().getSpeedPenalty();
         
         switch(action){
             case "attack":
@@ -49,11 +50,13 @@ public class BattleControl {
                     }
             case "run":
                 if (playerSpeed < 1 || playerSpeed > 100 || 
-                        enemySpeed < 1 || enemySpeed > 100){
+                        enemySpeed < 1 || enemySpeed > 100 || playerSpeedPenalty < 0
+                        || playerSpeedPenalty > 100){
                     return -1;
                 }
                 else{
-                    return playerSpeed - enemySpeed + (Math.random() * 100);
+                    return playerSpeed - enemySpeed - playerSpeedPenalty
+                           + (Math.random() * 100);
                 }
             default:
                 return -1;
