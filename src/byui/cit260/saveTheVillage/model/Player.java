@@ -58,6 +58,7 @@ public class Player implements Serializable {
         playerStats.setDefense(0);
         playerStats.setMagicDefense(0);
         playerStats.setSpeed(0);
+        playerStats.setSpeedPenalty(0);
     }
 
     @Override
@@ -237,7 +238,7 @@ public class Player implements Serializable {
     
     public void setPlayerStats(int health, int mana, int strength,
     double hitRate, int magic, double dodgeRate, int defense,
-    int magicDefense, int speed)
+    int magicDefense, int speed, int speedPenalty)
     {
         playerStats.setHealth(health);
         playerStats.setMana(mana);
@@ -248,6 +249,7 @@ public class Player implements Serializable {
         playerStats.setDefense(defense);
         playerStats.setMagicDefense(magicDefense);
         playerStats.setSpeed(speed);
+        playerStats.setSpeedPenalty(speedPenalty);
     }
 
    @Override
