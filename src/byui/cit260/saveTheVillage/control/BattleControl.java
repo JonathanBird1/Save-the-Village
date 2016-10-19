@@ -25,7 +25,7 @@ public class BattleControl {
         double playerDodgeRate = gamePlayer.getPlayerStats().getDodgeRate();
         double enemyDodgeRate = enemy.getEnemyStats().getHitRate();
         int playerSpeed = gamePlayer.getPlayerStats().getSpeed();
-        int enemySpeed = enemy.getEnemyStats().getHitRate();
+        int enemySpeed = enemy.getEnemyStats().getSpeed();
         
         switch(action){
             case "attack":
@@ -58,8 +58,7 @@ public class BattleControl {
             default:
                 return -1;
         }
-	}
-}
+    }
         
     public double calcTotalDamage(double base, double stat, double defense,
             double special){
