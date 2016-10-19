@@ -15,13 +15,27 @@ import java.util.Objects;
 public class Actor implements Serializable{
     private String name;
     private String type;
-    private String items[];
+    private String item;
     private int gold;
+    private Stats enemyStats;
 
-    public Actor() {
+    public Actor()
+    {
+        name = "No Name";
+        type = "No Type";
+        item = "No Item";
+        gold = 0;
+        enemyStats = new Stats();
+        enemyStats.setHealth(0);
+        enemyStats.setMana(0);
+        enemyStats.setStrength(0);
+        enemyStats.setHitRate(0);
+        enemyStats.setMagic(0);
+        enemyStats.setDodgeRate(0);
+        enemyStats.setDefense(0);
+        enemyStats.setMagicDefense(0);
+        enemyStats.setSpeed(0);
     }
-
-    
     
     public String getName() {
         return name;
@@ -39,12 +53,12 @@ public class Actor implements Serializable{
         this.type = type;
     }
 
-    public String[] getItems() {
-        return items;
+    public String getItem() {
+        return item;
     }
 
-    public void setItems(String[] items) {
-        this.items = items;
+    public void setItem(String item) {
+        this.item = item;
     }
 
     public int getGold() {
@@ -54,14 +68,36 @@ public class Actor implements Serializable{
     public void setGold(int gold) {
         this.gold = gold;
     }
+    
+    public Stats getEnemyStats()
+    {
+        return enemyStats;
+    }
+    
+    public void setEnemyStats(int health, int mana, int strength,
+    double hitRate, int magic, double dodgeRate, int defense,
+    int magicDefense, int speed)
+    {
+        enemyStats.setHealth(health);
+        enemyStats.setMana(mana);
+        enemyStats.setStrength(strength);
+        enemyStats.setHitRate(hitRate);
+        enemyStats.setMagic(magic);
+        enemyStats.setDodgeRate(dodgeRate);
+        enemyStats.setDefense(defense);
+        enemyStats.setMagicDefense(magicDefense);
+        enemyStats.setSpeed(speed);
+    }
+
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 53 * hash + Objects.hashCode(this.name);
         hash = 53 * hash + Objects.hashCode(this.type);
-        hash = 53 * hash + Arrays.deepHashCode(this.items);
+        hash = 53 * hash + Arrays.deepHashCode(this.item);
         hash = 53 * hash + this.gold;
+        hash = 89 * hash + Objects.hashCode(this.enemyStats);
         return hash;
     }
 
@@ -80,10 +116,14 @@ public class Actor implements Serializable{
         if (!Objects.equals(this.type, other.type)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.items, other.items)) {
+        if (!Arrays.deepEquals(this.item, other.item)) {
             return false;
         }
         if (this.gold != other.gold) {
+            return false;
+        }
+        if (this.enemyStats != other.enemyStats)
+        {
             return false;
         }
         return true;
@@ -91,7 +131,14 @@ public class Actor implements Serializable{
 
     @Override
     public String toString() {
-        return "Actor{" + "name=" + name + ", type=" + type + ", items=" + items + ", gold=" + gold + '}';
+        String returnString =  "Actor{" + "name=" + name + ", type=" + 
+                type + ", item=" + item + ", gold=" + gold;
+        
+        returnString += enemyStats.toString();
+        
+        returnString += '}';
+        
+        return returnString;
     }
 
     
