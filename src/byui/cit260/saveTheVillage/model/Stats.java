@@ -22,6 +22,8 @@ public class Stats implements Serializable{
     private int defense;
     private int magicDefense;
     private int speed;
+    private double magicSuccessRate;
+    private int  intelligence;
     
     public Stats() {
     }
@@ -64,6 +66,22 @@ public class Stats implements Serializable{
 
     public void setMagic(int magic) {
         this.magic = magic;
+    }
+    
+    public double getMagicSuccessRate(){
+        return magicSuccessRate;
+    }
+    
+    public void setMagicSuccessRate(double magicSuccessRate){
+        this.magicSuccessRate = magicSuccessRate;
+    }
+    
+    public int getInelligence(){
+        return intelligence;
+    }
+    
+    public void setIntelligence(int intelligence){
+        this.intelligence = intelligence;
     }
 
     public double getDodgeRate() {
@@ -109,6 +127,8 @@ public class Stats implements Serializable{
         hash = 29 * hash + this.defense;
         hash = 29 * hash + this.magicDefense;
         hash = 29 * hash + this.speed;
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.magicSuccessRate) ^ (Double.doubleToLongBits(this.magicSuccessRate) >>> 32));
+        hash = 29 * hash + this.intelligence;
         return hash;
     }
 
@@ -122,6 +142,12 @@ public class Stats implements Serializable{
         }
         final Stats other = (Stats) obj;
         if (this.health != other.health) {
+            return false;
+        }
+        if (this.intelligence != other.intelligence){
+            return false;
+        }
+        if (this.magicSuccessRate != other.magicSuccessRate){
             return false;
         }
         if (this.mana != other.mana) {
@@ -157,7 +183,8 @@ public class Stats implements Serializable{
                 ", strength=" + strength + ", hitRate=" + hitRate + 
                 ", magic=" + magic + ", dodgeRate=" + dodgeRate + 
                 ", defense=" + defense + ", magicDefense=" + magicDefense + 
-                ", speed=" + speed + '}';
+                ", speed=" + speed + ", magicSuccessRate=" + magicSuccessRate +
+                ", intelligence=" + intelligence + '}';
     }
 
 
