@@ -71,7 +71,7 @@ public class SaveTheVillage {
         Actor newActor = new Actor();
         newActor.setName("No Name");
         newActor.setType("No Type");
-        newActor.setItems(null);
+        newActor.setItem("No Item");
         newActor.setGold(0);
         
         //Stats
