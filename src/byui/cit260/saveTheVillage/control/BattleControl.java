@@ -20,33 +20,40 @@ public class BattleControl {
             return -1;
         }
         
+        double playerHitRate = gamePlayer.getPlayerStats().getHitRate();
+        double enemyHitRate = enemy.getEnemyStats().getHitRate();
+        double playerDodgeRate = gamePlayer.getPlayerStats().getDodgeRate();
+        double enemyDodgeRate = enemy.getEnemyStats().getHitRate();
+        int playerSpeed = gamePlayer.getPlayerStats().getSpeed();
+        int enemySpeed = enemy.getEnemyStats().getHitRate();
+        
         switch(action){
             case "attack":
             case "magic":
             case "item":
                 if (isPlayersTurn){
-                    if(gamePlayer.hitRate < 1 || gamePlayer.hitRate > 100 ||
-                            enemy.dodgeRate < 1 || enemy.dodgeRate > 100){
+                    if(playerHitRate < 1 || playerHitRate > 100 ||
+                            enemyDodgeRate < 1 || enemyDodgeRate > 100){
                         return -1;
                     }
-                    else if(enemy.hitRate < 1 || enemy.hitRate > 100 || 
-                            gamePlayer.dodgeRate < 1 || gamePlayer.dodgeRate > 100){
+                    else if(enemyHitRate < 1 || enemyHitRate > 100 || 
+                            playerDodgeRate < 1 || playerDodgeRate > 100){
                         return -1; 
                     }
                     else{
-                        return (gamePlayer.hitRate - enemy.dodgeRate + Math.random());
+                        return (playerHitRate - enemyDodgeRate + (Math.random() * 100));
                     }
                 }
                 else{
-                        return (enemy.hitRate - gamePlayer.dodgeRate + Math.random());
+                        return (enemyHitRate - playerDodgeRate + (Math.random() * 100));
                     }
             case "run":
-                if (gamePlayer.speed < 1 || gamePlayer.speed > 100 || 
-                        enemy.speed < 1 || enemy.speed > 100){
+                if (playerSpeed < 1 || playerSpeed > 100 || 
+                        enemySpeed < 1 || enemySpeed > 100){
                     return -1;
                 }
                 else{
-                    return gamePlayer.speed - enemy.speed + Math.random();
+                    return playerSpeed - enemySpeed + (Math.random() * 100);
                 }
             default:
                 return -1;
