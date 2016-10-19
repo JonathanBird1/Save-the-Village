@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package byui.cit260.saveTheVillage.control;
+import byui.cit260.saveTheVillage.model.Player;
+import byui.cit260.saveTheVillage.model.Actor;
 
 /**
  *
@@ -11,10 +13,46 @@ package byui.cit260.saveTheVillage.control;
  */
 public class BattleControl {
     
-    public double calcSuccessRate(){
-	
-        return successRate;
-    }
+    public double calcSuccessRate(String action, boolean isPlayersTurn, Player gamePlayer,
+            Actor enemy){
+        
+        if(action ==""){
+            return -1;
+        }
+        
+        switch(action){
+            case "attack":
+            case "magic":
+            case "item":
+                if (isPlayersTurn){
+                    if(gamePlayer.hitRate < 1 || gamePlayer.hitRate > 100 ||
+                            enemy.dodgeRate < 1 || enemy.dodgeRate > 100){
+                        return -1;
+                    }
+                    else if(enemy.hitRate < 1 || enemy.hitRate > 100 || 
+                            gamePlayer.dodgeRate < 1 || gamePlayer.dodgeRate > 100){
+                        return -1; 
+                    }
+                    else{
+                        return (gamePlayer.hitRate - enemy.dodgeRate + Math.random());
+                    }
+                }
+                else{
+                        return (enemy.hitRate - gamePlayer.dodgeRate + Math.random());
+                    }
+            case "run":
+                if (gamePlayer.speed < 1 || gamePlayer.speed > 100 || 
+                        enemy.speed < 1 || enemy.speed > 100){
+                    return -1;
+                }
+                else{
+                    return gamePlayer.speed - enemy.speed + Math.random();
+                }
+            default:
+                return -1;
+        }
+	}
+}
         
     public double calcTotalDamage(double base, double stat, double defense,
             double special){
