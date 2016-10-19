@@ -26,6 +26,7 @@ public class Player implements Serializable {
     private int currentMana;
     private String depositedItems[];
     private int depositedMoney;
+    private Stats playerStats;
 
     public Player() {
         this.name = "No Name";
@@ -47,6 +48,16 @@ public class Player implements Serializable {
             this.depositedItems[i] = "No Item\n";
         }
         this.depositedMoney = 0;
+        playerStats = new Stats();
+        playerStats.setHealth(0);
+        playerStats.setMana(0);
+        playerStats.setStrength(0);
+        playerStats.setHitRate(0);
+        playerStats.setMagic(0);
+        playerStats.setDodgeRate(0);
+        playerStats.setDefense(0);
+        playerStats.setMagicDefense(0);
+        playerStats.setSpeed(0);
     }
 
     @Override
@@ -64,6 +75,7 @@ public class Player implements Serializable {
         hash = 89 * hash + this.currentMana;
         hash = 89 * hash + Arrays.deepHashCode(this.depositedItems);
         hash = 89 * hash + this.depositedMoney;
+        hash = 89 * hash + Objects.hashCode(this.playerStats);
         return hash;
     }
 
@@ -113,6 +125,10 @@ public class Player implements Serializable {
             return false;
         }
         if (this.depositedMoney != other.depositedMoney){
+            return false;
+        }
+        if (this.playerStats != other.playerStats)
+        {
             return false;
         }
         return true;
@@ -213,6 +229,26 @@ public class Player implements Serializable {
     public void setDepositedMoney(int money) {
         this.depositedMoney = money;
     }
+    
+    public Stats getPlayerStats()
+    {
+        return playerStats;
+    }
+    
+    public void setPlayerStats(int health, int mana, int strength,
+    double hitRate, int magic, double dodgeRate, int defense,
+    int magicDefense, int speed)
+    {
+        playerStats.setHealth(health);
+        playerStats.setMana(mana);
+        playerStats.setStrength(strength);
+        playerStats.setHitRate(hitRate);
+        playerStats.setMagic(magic);
+        playerStats.setDodgeRate(dodgeRate);
+        playerStats.setDefense(defense);
+        playerStats.setMagicDefense(magicDefense);
+        playerStats.setSpeed(speed);
+    }
 
    @Override
     public String toString() {
@@ -234,7 +270,11 @@ public class Player implements Serializable {
             returnString += depositedItems[i];
         }
         
-        returnString += ", " + depositedMoney + '}';
+        returnString += ", " + depositedMoney;
+        
+        returnString += "\n" + playerStats.toString();
+        
+        returnString += '}';
         
         return returnString;
     }

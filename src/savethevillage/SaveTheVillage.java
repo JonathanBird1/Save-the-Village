@@ -81,12 +81,10 @@ public class SaveTheVillage {
         newStats.setStrength(0);
         newStats.setHitRate(0);
         newStats.setMagic(0);
-        newStats.setMagicSuccessRate(0);
         newStats.setDodgeRate(0);
         newStats.setDefense(0);
         newStats.setMagicDefense(0);
         newStats.setSpeed(0);
-        newStats.setIntelligence(0);
         
         //Scene
         Scene newScene = new Scene();

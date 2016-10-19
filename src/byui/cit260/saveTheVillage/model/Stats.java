@@ -16,14 +16,12 @@ public class Stats implements Serializable{
     private int health;
     private int mana;
     private int strength;
-    private int hitRate;
+    private double hitRate;
     private int magic;
     private double dodgeRate;
     private int defense;
     private int magicDefense;
     private int speed;
-    private double magicSuccessRate;
-    private int  intelligence;
     
     public Stats() {
     }
@@ -52,11 +50,11 @@ public class Stats implements Serializable{
         this.strength = strength;
     }
 
-    public int getHitRate() {
+    public double getHitRate() {
         return hitRate;
     }
 
-    public void setHitRate(int hitRate) {
+    public void setHitRate(double hitRate) {
         this.hitRate = hitRate;
     }
 
@@ -68,22 +66,6 @@ public class Stats implements Serializable{
         this.magic = magic;
     }
     
-    public double getMagicSuccessRate(){
-        return magicSuccessRate;
-    }
-    
-    public void setMagicSuccessRate(double magicSuccessRate){
-        this.magicSuccessRate = magicSuccessRate;
-    }
-    
-    public int getInelligence(){
-        return intelligence;
-    }
-    
-    public void setIntelligence(int intelligence){
-        this.intelligence = intelligence;
-    }
-
     public double getDodgeRate() {
         return dodgeRate;
     }
@@ -121,14 +103,12 @@ public class Stats implements Serializable{
         int hash = 3;
         hash = 29 * hash + this.health;
         hash = 29 * hash + this.strength;
-        hash = 29 * hash + this.hitRate;
+        hash = 29 * hash + (int)this.hitRate;
         hash = 29 * hash + this.magic;
         hash = 29 * hash + (int) (Double.doubleToLongBits(this.dodgeRate) ^ (Double.doubleToLongBits(this.dodgeRate) >>> 32));
         hash = 29 * hash + this.defense;
         hash = 29 * hash + this.magicDefense;
         hash = 29 * hash + this.speed;
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.magicSuccessRate) ^ (Double.doubleToLongBits(this.magicSuccessRate) >>> 32));
-        hash = 29 * hash + this.intelligence;
         return hash;
     }
 
@@ -142,12 +122,6 @@ public class Stats implements Serializable{
         }
         final Stats other = (Stats) obj;
         if (this.health != other.health) {
-            return false;
-        }
-        if (this.intelligence != other.intelligence){
-            return false;
-        }
-        if (this.magicSuccessRate != other.magicSuccessRate){
             return false;
         }
         if (this.mana != other.mana) {
@@ -183,11 +157,6 @@ public class Stats implements Serializable{
                 ", strength=" + strength + ", hitRate=" + hitRate + 
                 ", magic=" + magic + ", dodgeRate=" + dodgeRate + 
                 ", defense=" + defense + ", magicDefense=" + magicDefense + 
-                ", speed=" + speed + ", magicSuccessRate=" + magicSuccessRate +
-                ", intelligence=" + intelligence + '}';
+                ", speed=" + speed + '}';
     }
-
-
-    
-    
 }
