@@ -22,8 +22,19 @@ public class Stats implements Serializable{
     private int defense;
     private int magicDefense;
     private int speed;
+    private int speedPenalty;
     
     public Stats() {
+        health = 0;
+        mana = 0;
+        strength = 0;
+        hitRate = 0;
+        magic = 0;
+        dodgeRate = 0;
+        defense = 0;
+        magicDefense = 0;
+        speed = 0;
+        speedPenalty = 0;
     }
 
     public int getHealth() {
@@ -97,6 +108,16 @@ public class Stats implements Serializable{
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+    
+    public int getSpeedPenalty()
+    {
+        return speedPenalty;
+    }
+    
+    public void setSpeedPenalty(int speedPenalty)
+    {
+        this.speedPenalty = speedPenalty;
+    }
 
     @Override
     public int hashCode() {
@@ -109,6 +130,7 @@ public class Stats implements Serializable{
         hash = 29 * hash + this.defense;
         hash = 29 * hash + this.magicDefense;
         hash = 29 * hash + this.speed;
+        hash = 29 * hash + this.speedPenalty;
         return hash;
     }
 
@@ -148,6 +170,10 @@ public class Stats implements Serializable{
         if (this.speed != other.speed) {
             return false;
         }
+        if (this.speedPenalty != other.speedPenalty)
+        {
+            return false;
+        }
         return true;
     }
 
@@ -157,6 +183,6 @@ public class Stats implements Serializable{
                 ", strength=" + strength + ", hitRate=" + hitRate + 
                 ", magic=" + magic + ", dodgeRate=" + dodgeRate + 
                 ", defense=" + defense + ", magicDefense=" + magicDefense + 
-                ", speed=" + speed + '}';
+                ", speed=" + speed + ", speedPenalty=" + speedPenalty +'}';
     }
 }

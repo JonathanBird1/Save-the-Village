@@ -35,6 +35,7 @@ public class Actor implements Serializable{
         enemyStats.setDefense(0);
         enemyStats.setMagicDefense(0);
         enemyStats.setSpeed(0);
+        enemyStats.setSpeedPenalty(0);
     }
     
     public String getName() {
@@ -76,7 +77,7 @@ public class Actor implements Serializable{
     
     public void setEnemyStats(int health, int mana, int strength,
     double hitRate, int magic, double dodgeRate, int defense,
-    int magicDefense, int speed)
+    int magicDefense, int speed, int speedPenalty)
     {
         enemyStats.setHealth(health);
         enemyStats.setMana(mana);
@@ -87,6 +88,7 @@ public class Actor implements Serializable{
         enemyStats.setDefense(defense);
         enemyStats.setMagicDefense(magicDefense);
         enemyStats.setSpeed(speed);
+        enemyStats.setSpeedPenalty(speedPenalty);
     }
 
 
@@ -95,7 +97,7 @@ public class Actor implements Serializable{
         int hash = 7;
         hash = 53 * hash + Objects.hashCode(this.name);
         hash = 53 * hash + Objects.hashCode(this.type);
-        hash = 53 * hash + Arrays.deepHashCode(this.item);
+        hash = 53 * hash + Objects.hashCode(this.item);
         hash = 53 * hash + this.gold;
         hash = 89 * hash + Objects.hashCode(this.enemyStats);
         return hash;
@@ -116,7 +118,7 @@ public class Actor implements Serializable{
         if (!Objects.equals(this.type, other.type)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.item, other.item)) {
+        if (!Objects.equals(this.item, other.item)) {
             return false;
         }
         if (this.gold != other.gold) {
