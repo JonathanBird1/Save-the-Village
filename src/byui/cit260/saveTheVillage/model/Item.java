@@ -22,6 +22,7 @@ public class Item implements Serializable {
     private int weaponDamage;
     private int healingAmount;
     private int manaRestored;
+    private int weight;
 
 public Item() {
     this.name = "No Name";
@@ -33,6 +34,7 @@ public Item() {
     this.weaponDamage = 0;
     this.healingAmount = 0;
     this.manaRestored = 0;
+    this.weight = 0;
     }
     
     public String getName() {
@@ -59,7 +61,7 @@ public Item() {
         this.buyPrice = buyPrice;
     }
 
-    public boolean isNoBuy() {
+    public boolean getNoBuy() {
         return noBuy;
     }
 
@@ -67,7 +69,7 @@ public Item() {
         this.noBuy = noBuy;
     }
 
-    public boolean isNoSell() {
+    public boolean getNoSell() {
         return noSell;
     }
 
@@ -106,6 +108,16 @@ public Item() {
     public void setManaRestored(int manaRestored) {
         this.manaRestored = manaRestored;
     }
+    
+    public int getWeight()
+    {
+        return this.weight;
+    }
+    
+    public void setWeight(int weight)
+    {
+        this.weight = weight;
+    }
 
     @Override
     public int hashCode() {
@@ -119,6 +131,7 @@ public Item() {
         hash = 67 * hash + this.weaponDamage;
         hash = 67 * hash + this.healingAmount;
         hash = 67 * hash + this.manaRestored;
+        hash = 67 * hash + this.weight;
         return hash;
     }
 
@@ -161,13 +174,19 @@ public Item() {
         if (!Objects.equals(this.association, other.association)) {
             return false;
         }
+        if (this.weight != other.weight)
+        {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Item{" + "name=" + name + ", type=" + type + ", buyPrice=" + buyPrice + ", noBuy=" + noBuy + ", noSell=" + noSell + ", association=" + association + ", weaponDamage=" + weaponDamage + ", healingAmount=" + healingAmount + ", manaRestored=" + manaRestored + '}';
+        return "Item{" + "name=" + name + ", type=" + type + ", buyPrice=" +
+                buyPrice + ", noBuy=" + noBuy + ", noSell=" + noSell + 
+                ", association=" + association + ", weaponDamage=" + 
+                weaponDamage + ", healingAmount=" + healingAmount + 
+                ", manaRestored=" + manaRestored + ", weight=" + weight + '}';
     }
-    
-    
 }

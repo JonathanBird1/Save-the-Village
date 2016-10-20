@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Actor implements Serializable{
     private String name;
     private String type;
-    private String item;
+    private Item item;
     private int gold;
     private Stats enemyStats;
 
@@ -23,19 +23,9 @@ public class Actor implements Serializable{
     {
         name = "No Name";
         type = "No Type";
-        item = "No Item";
+        item = new Item();
         gold = 0;
         enemyStats = new Stats();
-        enemyStats.setHealth(0);
-        enemyStats.setMana(0);
-        enemyStats.setStrength(0);
-        enemyStats.setHitRate(0);
-        enemyStats.setMagic(0);
-        enemyStats.setDodgeRate(0);
-        enemyStats.setDefense(0);
-        enemyStats.setMagicDefense(0);
-        enemyStats.setSpeed(0);
-        enemyStats.setSpeedPenalty(0);
     }
     
     public String getName() {
@@ -54,12 +44,24 @@ public class Actor implements Serializable{
         this.type = type;
     }
 
-    public String getItem() {
+    public Item getItem() {
         return item;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setItem(int itemNumber, String name, String type,
+            int buyPrice, boolean noBuy, boolean noSell, String association,
+            int weaponDamage, int healingAmount, int manaRestored,
+            int weight) {
+        this.item.setName(name);
+        this.item.setType(type);
+        this.item.setBuyPrice(buyPrice);
+        this.item.setNoBuy(noBuy);
+        this.item.setNoSell(noSell);
+        this.item.setAssociation(association);
+        this.item.setWeaponDamage(weaponDamage);
+        this.item.setHealingAmount(healingAmount);
+        this.item.setManaRestored(manaRestored);
+        this.item.setWeight(weight);
     }
 
     public int getGold() {
@@ -134,7 +136,7 @@ public class Actor implements Serializable{
     @Override
     public String toString() {
         String returnString =  "Actor{" + "name=" + name + ", type=" + 
-                type + ", item=" + item + ", gold=" + gold;
+                type + ", item=" + item.toString() + ", gold=" + gold;
         
         returnString += enemyStats.toString();
         

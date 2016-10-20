@@ -17,14 +17,14 @@ public class Player implements Serializable {
     private String name;
     private int age;
     private String race;
-    private String items[];
+    private Item items[];
     private int money;
     private String weapon;
     private int currentRow;
     private int currentColumn;
     private int currentHealth;
     private int currentMana;
-    private String depositedItems[];
+    private Item depositedItems[];
     private int depositedMoney;
     private Stats playerStats;
 
@@ -32,33 +32,15 @@ public class Player implements Serializable {
         this.name = "No Name";
         this.age = 0;
         this.race = "No Race";
-        items = new String[60];
-        for (int i = 0; i < items.length; i++)
-        {
-            this.items[i] = "No Item\n";
-        }
+        items = new Item[60];
         this.weapon = "No Weapon";
         this.currentRow = 0;
         this.currentColumn = 0;
         this.currentHealth = 0;
         this.currentMana = 0;
-        depositedItems = new String[60];
-        for (int i = 0; i < depositedItems.length; i++)
-        {
-            this.depositedItems[i] = "No Item\n";
-        }
+        depositedItems = new Item[60];
         this.depositedMoney = 0;
         playerStats = new Stats();
-        playerStats.setHealth(0);
-        playerStats.setMana(0);
-        playerStats.setStrength(0);
-        playerStats.setHitRate(0);
-        playerStats.setMagic(0);
-        playerStats.setDodgeRate(0);
-        playerStats.setDefense(0);
-        playerStats.setMagicDefense(0);
-        playerStats.setSpeed(0);
-        playerStats.setSpeedPenalty(0);
     }
 
     @Override
@@ -159,12 +141,24 @@ public class Player implements Serializable {
         this.race = race;
     }
 
-    public String[] getItems() {
+    public Item[] getItems() {
         return items;
     }
 
-    public void setItems(String item, int itemNumber) {
-        this.items[itemNumber] = item;
+    public void setItems(int itemNumber, String name, String type,
+            int buyPrice, boolean noBuy, boolean noSell, String association,
+            int weaponDamage, int healingAmount, int manaRestored,
+            int weight) {
+        this.items[itemNumber].setName(name);
+        this.items[itemNumber].setType(type);
+        this.items[itemNumber].setBuyPrice(buyPrice);
+        this.items[itemNumber].setNoBuy(noBuy);
+        this.items[itemNumber].setNoSell(noSell);
+        this.items[itemNumber].setAssociation(association);
+        this.items[itemNumber].setWeaponDamage(weaponDamage);
+        this.items[itemNumber].setHealingAmount(healingAmount);
+        this.items[itemNumber].setManaRestored(manaRestored);
+        this.items[itemNumber].setWeight(weight);
     }
 
     public int getMoney() {
@@ -215,12 +209,24 @@ public class Player implements Serializable {
         this.currentMana = currentMana;
     }
 
-     public String[] getDepositedItems() {
+     public Item[] getDepositedItems() {
         return depositedItems;
     }
 
-    public void setDepositedItems(String item, int itemNumber) {
-        this.depositedItems[itemNumber] = item;
+    public void setDepositedItems(int itemNumber, String name, String type,
+            int buyPrice, boolean noBuy, boolean noSell, String association,
+            int weaponDamage, int healingAmount, int manaRestored,
+            int weight) {
+        this.depositedItems[itemNumber].setName(name);
+        this.depositedItems[itemNumber].setType(type);
+        this.depositedItems[itemNumber].setBuyPrice(buyPrice);
+        this.depositedItems[itemNumber].setNoBuy(noBuy);
+        this.depositedItems[itemNumber].setNoSell(noSell);
+        this.depositedItems[itemNumber].setAssociation(association);
+        this.depositedItems[itemNumber].setWeaponDamage(weaponDamage);
+        this.depositedItems[itemNumber].setHealingAmount(healingAmount);
+        this.depositedItems[itemNumber].setManaRestored(manaRestored);
+        this.depositedItems[itemNumber].setWeight(weight);
     }
 
     public int getDepositedMoney() {
@@ -259,7 +265,7 @@ public class Player implements Serializable {
         
         for (int i = 0; i < items.length; i++)
         {
-            returnString += items[i];
+            returnString += items[i].toString();
         }
         
         returnString += ", money=" + money + ", weapon=" + weapon + 
@@ -269,7 +275,7 @@ public class Player implements Serializable {
         
         for (int i = 0; i < depositedItems.length; i++)
         {
-            returnString += depositedItems[i];
+            returnString += depositedItems[i].toString();
         }
         
         returnString += ", " + depositedMoney;
