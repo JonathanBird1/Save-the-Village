@@ -49,7 +49,8 @@ public class SaveTheVillage {
         newPlayer.setRace("Human");
         newPlayer.setItems(0, "Healing Potion\n", "Potion", 100, false,
                 false, "No Association", 0, 25, 0, 1);
-        newPlayer.setWeapon("Bokken");
+        newPlayer.setWeapon("Wooden Sword", "Weapon", 0, true, 
+                false, "None", 1, 5);
         newPlayer.setCurrentRow(3);
         newPlayer.setCurrentColumn(3);
         newPlayer.setCurrentHealth(100);

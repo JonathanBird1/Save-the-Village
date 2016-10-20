@@ -13,8 +13,8 @@ import byui.cit260.saveTheVillage.model.Actor;
  */
 public class BattleControl {
     
-    public double calcSuccessRate(String action, boolean isPlayersTurn, Player gamePlayer,
-            Actor enemy){
+    public double calcSuccessRate(String action, boolean isPlayersTurn, 
+            Player gamePlayer, Actor enemy){
         
         if(action ==""){
             return -1;
@@ -66,8 +66,11 @@ public class BattleControl {
     public double calcTotalDamage(double base, double stat, double defense,
             double special){
         
+    public double calcSuccessRate(String action, boolean isPlayersTurn, 
+            Player gamePlayer, Actor enemy){
         double successRate = calcSuccessRate();
         
+        //Error Checking
         if (base < 75 || base > 150){ //base damage is between 75-150
             return -1;
         }

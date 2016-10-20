@@ -48,8 +48,8 @@ public class Actor implements Serializable{
         return item;
     }
 
-    public void setItem(int itemNumber, String name, String type,
-            int buyPrice, boolean noBuy, boolean noSell, String association,
+    public void setItem(String name, String type, int buyPrice, 
+            boolean noBuy, boolean noSell, String association,
             int weaponDamage, int healingAmount, int manaRestored,
             int weight) {
         this.item.setName(name);

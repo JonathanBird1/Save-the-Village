@@ -19,7 +19,7 @@ public class Player implements Serializable {
     private String race;
     private Item items[];
     private int money;
-    private String weapon;
+    private Item weapon;
     private int currentRow;
     private int currentColumn;
     private int currentHealth;
@@ -33,7 +33,7 @@ public class Player implements Serializable {
         this.age = 0;
         this.race = "No Race";
         items = new Item[60];
-        this.weapon = "No Weapon";
+        this.weapon = new Item();
         this.currentRow = 0;
         this.currentColumn = 0;
         this.currentHealth = 0;
@@ -169,12 +169,23 @@ public class Player implements Serializable {
         this.money = money;
     }
 
-    public String getWeapon() {
+    public Item getWeapon() {
         return weapon;
     }
 
-    public void setWeapon(String weapon) {
-        this.weapon = weapon;
+    public void setWeapon(String name, String type, int buyPrice,
+            boolean noBuy, boolean noSell, String association,
+            int weaponDamage, int weight) {
+        this.weapon.setName(name);
+        this.weapon.setType(type);
+        this.weapon.setBuyPrice(buyPrice);
+        this.weapon.setNoBuy(noBuy);
+        this.weapon.setNoSell(noSell);
+        this.weapon.setAssociation(association);
+        this.weapon.setWeaponDamage(weaponDamage);
+        this.weapon.setHealingAmount(0);
+        this.weapon.setManaRestored(0);
+        this.weapon.setWeight(weight);
     }
 
     public int getCurrentRow() {
@@ -268,7 +279,7 @@ public class Player implements Serializable {
             returnString += items[i].toString();
         }
         
-        returnString += ", money=" + money + ", weapon=" + weapon + 
+        returnString += ", money=" + money + ", weapon=" + weapon.toString() + 
                 ", currentRow=" + currentRow + ", currentColumn=" + 
                 currentColumn + ", currentHealth=" + currentHealth + 
                 ", currentMana=" + currentMana + ", ";
