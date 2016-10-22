@@ -20,6 +20,14 @@ public class Spell implements Serializable {
     private String attributeBoosted;
     private int attributeBoostAmount;
 
+    public Spell() {
+        spellName="Fireburst";
+        damageDealt = 45;
+        amountHealed = 0;
+        attributeBoosted = "None";
+        attributeBoostAmount = 0;
+    }
+
     public String getSpellName() {
         return spellName;
     }
@@ -58,11 +66,6 @@ public class Spell implements Serializable {
 
     public void setAttributeBoostAmount(int attributeBoostAmount) {
         this.attributeBoostAmount = attributeBoostAmount;
-    }
-
-    public Spell() {
-        spellName="Fireburst";
-        damageDealt=45;
     }
 
     @Override
@@ -108,7 +111,10 @@ public class Spell implements Serializable {
 
     @Override
     public String toString() {
-        return "Spell{" + "spellName=" + spellName + ", damageDealt=" + damageDealt + ", amountHealed=" + amountHealed + ", attributeBoosted=" + attributeBoosted + ", attributeBoostAmount=" + attributeBoostAmount + '}';
+        return "Spell{" + "spellName=" + spellName + ", damageDealt=" + 
+                damageDealt + ", amountHealed=" + amountHealed + 
+                ", attributeBoosted=" + attributeBoosted + 
+                ", attributeBoostAmount=" + attributeBoostAmount + '}';
     }
     
 }

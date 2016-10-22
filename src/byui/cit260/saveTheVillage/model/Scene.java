@@ -17,16 +17,20 @@ public class Scene implements Serializable{
     //class instance variables
     private String name;
     private String type;
-    private String actor;
-    private String npc[];
+    private Actor actor;
+    private NPC npc[];
     private boolean closed;
     private String clue;
 
     public Scene() {
+        this.name = "No Name";
+        this.type = "No Type";
+        this.actor = new Actor();
+        this.npc = new NPC[5];
+        this.closed = false;
+        this.clue = "No Clue";
     }
 
-    
-    
     public String getName() {
         return name;
     }
@@ -43,20 +47,20 @@ public class Scene implements Serializable{
         this.type = type;
     }
 
-    public String getActor() {
+    public Actor getActor() {
         return actor;
     }
 
-    public void setActor(String actor) {
+    public void setActor(Actor actor) {
         this.actor = actor;
     }
 
-    public String[] getNpc() {
+    public NPC[] getNPC() {
         return npc;
     }
 
-    public void setNpc(String[] npc) {
-        this.npc = npc;
+    public void setNPC(NPC npc, int position) {
+        this.npc[position] = npc;
     }
 
     public boolean isClosed() {
@@ -119,12 +123,16 @@ public class Scene implements Serializable{
 
     @Override
     public String toString() {
-        return "Scene{" + "name=" + name + ", type=" + type + ", actor=" + actor + ", npc=" + npc + ", closed=" + closed + ", clue=" + clue + '}';
+        String returnString = "Scene{" + "name=" + name + ", type=" + type + 
+                ", actor=" + actor + ", npc=";
+        
+        for (int i = 0; i < npc.length; i++)
+        {
+            returnString += npc[i].toString();
+        }
+        
+        returnString += ", closed=" + closed + ", clue=" + clue + '}';
+        
+        return returnString;
     }
-
-    public void setNpc(String noNPC, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
 }
