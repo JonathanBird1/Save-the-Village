@@ -27,6 +27,10 @@ public class Scene implements Serializable{
         this.type = "No Type";
         this.actor = new Actor();
         this.npc = new NPC[5];
+        for (int i = 0; i < npc.length; i++)
+        {
+            npc[i] = new NPC();
+        }
         this.closed = false;
         this.clue = "No Clue";
     }
