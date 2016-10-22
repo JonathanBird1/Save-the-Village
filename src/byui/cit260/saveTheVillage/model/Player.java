@@ -28,29 +28,208 @@ public class Player implements Serializable {
     private int depositedMoney;
     private Stats playerStats;
 
-    public Player() {
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Player()
+    {
         this.name = "No Name";
-        this.age = 0;
         this.race = "No Race";
-        items = new Item[60];
-        for (int i = 0; i < items.length; i++)
+        this.age = 0;
+        this.items = new Item[60];
+        for (int i = 0; i < this.items.length; i++)
         {
-            items[i] = new Item();
+            this.items[i] = new Item();
         }
+        this.money = 0;
         this.weapon = new Item();
         this.currentRow = 0;
         this.currentColumn = 0;
         this.currentHealth = 0;
         this.currentMana = 0;
-        depositedItems = new Item[60];
-        for (int i = 0; i < depositedItems.length; i++)
+        this.depositedItems = new Item[60];
+        for (int i = 0; i < this.depositedItems.length; i++)
         {
-            depositedItems[i] = new Item();
+            this.depositedItems[i] = new Item();
         }
         this.depositedMoney = 0;
-        playerStats = new Stats();
+        this.playerStats = new Stats();
     }
 
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Player(String name, String race, int age, Item[] items, Item weapon,
+            int currentRow, int currentColumn, int currentHealth,
+            int currentMana, Item[] depositedItems, int depositedMoney,
+            Stats playerStats)
+    {
+        this.name = name;
+        this.race = race;
+        this.age = age;
+        this.items = new Item[items.length];
+        for (int i = 0; i < this.items.length; i++)
+        {
+            this.items[i] = items[i];
+        }
+        this.money = money;
+        this.weapon = weapon;
+        this.currentRow = currentRow;
+        this.currentColumn = currentColumn;
+        this.currentHealth = currentHealth;
+        this.currentMana = currentMana;
+        this.depositedItems = new Item[depositedItems.length];
+        for (int i = 0; i < this.depositedItems.length; i++)
+        {
+            this.depositedItems[i] = depositedItems[i];
+        }
+        this.depositedMoney = depositedMoney;
+        this.playerStats = playerStats;
+    }
+
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Player(Player otherPlayer)
+    {
+        this.name = otherPlayer.name;
+        this.race = otherPlayer.race;
+        this.age = otherPlayer.age;
+        this.items = new Item[otherPlayer.items.length];
+        for (int i = 0; i < this.items.length; i++)
+        {
+            this.items[i] = otherPlayer.items[i];
+        }
+        this.money = otherPlayer.money;
+        this.weapon = otherPlayer.weapon;
+        this.currentRow = otherPlayer.currentRow;
+        this.currentColumn = otherPlayer.currentColumn;
+        this.currentHealth = otherPlayer.currentHealth;
+        this.currentMana = otherPlayer.currentMana;
+        this.depositedItems = new Item[otherPlayer.depositedItems.length];
+        for (int i = 0; i < this.depositedItems.length; i++)
+        {
+            this.depositedItems[i] = otherPlayer.depositedItems[i];
+        }
+        this.depositedMoney = otherPlayer.depositedMoney;
+        this.playerStats = otherPlayer.playerStats;
+    }
+
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public void setRace(String race) {
+        this.race = race;
+    }
+
+    public Item[] getItems() {
+        return items;
+    }
+
+    public void setItems(int itemNumber, Item item)
+    {
+        this.items[itemNumber] = item;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public Item getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Item weapon)
+    {
+        this.weapon = weapon;
+    }
+
+    public int getCurrentRow() {
+        return currentRow;
+    }
+
+    public void setCurrentRow(int currentRow) {
+        this.currentRow = currentRow;
+    }
+
+    public int getCurrentColumn() {
+        return currentColumn;
+    }
+
+    public void setCurrentColumn(int currentColumn) {
+        this.currentColumn = currentColumn;
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
+    public int getCurrentMana() {
+        return currentMana;
+    }
+
+    public void setCurrentMana(int currentMana) {
+        this.currentMana = currentMana;
+    }
+
+     public Item[] getDepositedItems() {
+        return depositedItems;
+    }
+
+    public void setDepositedItems(int itemNumber, Item item)
+    {
+        this.depositedItems[itemNumber] = item;
+    }
+
+    public int getDepositedMoney() {
+        return depositedMoney;
+    }
+
+    public void setDepositedMoney(int money) {
+        this.depositedMoney = money;
+    }
+    
+    public Stats getPlayerStats()
+    {
+        return playerStats;
+    }
+    
+    public void setPlayerStats(Stats playerStats)
+    {
+        this.playerStats = playerStats;
+    }
+
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -123,158 +302,6 @@ public class Player implements Serializable {
             return false;
         }
         return true;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getRace() {
-        return race;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
-    }
-
-    public Item[] getItems() {
-        return items;
-    }
-
-    public void setItems(int itemNumber, String name, String type,
-            int buyPrice, boolean noBuy, boolean noSell, String association,
-            int weaponDamage, int healingAmount, int manaRestored,
-            int weight) {
-        this.items[itemNumber].setName(name);
-        this.items[itemNumber].setType(type);
-        this.items[itemNumber].setBuyPrice(buyPrice);
-        this.items[itemNumber].setNoBuy(noBuy);
-        this.items[itemNumber].setNoSell(noSell);
-        this.items[itemNumber].setAssociation(association);
-        this.items[itemNumber].setWeaponDamage(weaponDamage);
-        this.items[itemNumber].setHealingAmount(healingAmount);
-        this.items[itemNumber].setManaRestored(manaRestored);
-        this.items[itemNumber].setWeight(weight);
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
-    public Item getWeapon() {
-        return weapon;
-    }
-
-    public void setWeapon(String name, String type, int buyPrice,
-            boolean noBuy, boolean noSell, String association,
-            int weaponDamage, int weight) {
-        this.weapon.setName(name);
-        this.weapon.setType(type);
-        this.weapon.setBuyPrice(buyPrice);
-        this.weapon.setNoBuy(noBuy);
-        this.weapon.setNoSell(noSell);
-        this.weapon.setAssociation(association);
-        this.weapon.setWeaponDamage(weaponDamage);
-        this.weapon.setHealingAmount(0);  //Weapons don't heal
-        this.weapon.setManaRestored(0);
-        this.weapon.setWeight(weight);
-    }
-
-    public int getCurrentRow() {
-        return currentRow;
-    }
-
-    public void setCurrentRow(int currentRow) {
-        this.currentRow = currentRow;
-    }
-
-    public int getCurrentColumn() {
-        return currentColumn;
-    }
-
-    public void setCurrentColumn(int currentColumn) {
-        this.currentColumn = currentColumn;
-    }
-
-    public int getCurrentHealth() {
-        return currentHealth;
-    }
-
-    public void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
-    }
-
-    public int getCurrentMana() {
-        return currentMana;
-    }
-
-    public void setCurrentMana(int currentMana) {
-        this.currentMana = currentMana;
-    }
-
-     public Item[] getDepositedItems() {
-        return depositedItems;
-    }
-
-    public void setDepositedItems(int itemNumber, String name, String type,
-            int buyPrice, boolean noBuy, boolean noSell, String association,
-            int weaponDamage, int healingAmount, int manaRestored,
-            int weight) {
-        this.depositedItems[itemNumber].setName(name);
-        this.depositedItems[itemNumber].setType(type);
-        this.depositedItems[itemNumber].setBuyPrice(buyPrice);
-        this.depositedItems[itemNumber].setNoBuy(noBuy);
-        this.depositedItems[itemNumber].setNoSell(noSell);
-        this.depositedItems[itemNumber].setAssociation(association);
-        this.depositedItems[itemNumber].setWeaponDamage(weaponDamage);
-        this.depositedItems[itemNumber].setHealingAmount(healingAmount);
-        this.depositedItems[itemNumber].setManaRestored(manaRestored);
-        this.depositedItems[itemNumber].setWeight(weight);
-    }
-
-    public int getDepositedMoney() {
-        return depositedMoney;
-    }
-
-    public void setDepositedMoney(int money) {
-        this.depositedMoney = money;
-    }
-    
-    public Stats getPlayerStats()
-    {
-        return playerStats;
-    }
-    
-    public void setPlayerStats(int health, int mana, int strength,
-    double hitRate, int magic, double dodgeRate, int defense,
-    int magicDefense, int speed, int speedPenalty)
-    {
-        playerStats.setHealth(health);
-        playerStats.setMana(mana);
-        playerStats.setStrength(strength);
-        playerStats.setHitRate(hitRate);
-        playerStats.setMagic(magic);
-        playerStats.setDodgeRate(dodgeRate);
-        playerStats.setDefense(defense);
-        playerStats.setMagicDefense(magicDefense);
-        playerStats.setSpeed(speed);
-        playerStats.setSpeedPenalty(speedPenalty);
     }
 
    @Override

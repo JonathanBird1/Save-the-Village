@@ -18,6 +18,40 @@ public class Map implements Serializable {
     private int totalRows;
     private int totalColumns;
     
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Map()
+    {
+        this.mapName = "townAndForest";
+        this.totalRows = 6;
+        this.totalColumns = 6;   
+    }
+
+   /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Map(String mapName, int totalRows, int totalColumns)
+    {
+        this.mapName = mapName;
+        this.totalRows = totalRows;
+        this.totalColumns = totalColumns;   
+    }
+
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Map(Map otherMap)
+    {
+        this.mapName = otherMap.mapName;
+        this.totalRows = otherMap.totalRows;
+        this.totalColumns = otherMap.totalColumns;   
+    }
+
+
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
     public String getMapName() {
         return mapName;
     }
@@ -42,13 +76,9 @@ public class Map implements Serializable {
         this.totalColumns = totalColumns;
     }
     
-    public Map() {
-        this.mapName = "town";
-        this.totalRows = 6;
-        this.totalColumns = 6;
-        
-    }
-
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 7;

@@ -20,14 +20,46 @@ public class Spell implements Serializable {
     private String attributeBoosted;
     private int attributeBoostAmount;
 
-    public Spell() {
-        spellName="Fireburst";
-        damageDealt = 45;
-        amountHealed = 0;
-        attributeBoosted = "None";
-        attributeBoostAmount = 0;
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Spell()
+    {
+        this.spellName = "No Spell";
+        this.damageDealt = 0;
+        this.amountHealed = 0;
+        this.attributeBoosted = "None";
+        this.attributeBoostAmount = 0;
     }
 
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Spell(String spellName, int damageDealt, int amountHealed,
+            String attributeBoosted, int attributeBoostAmount)
+    {
+        this.spellName = spellName;
+        this.damageDealt = damageDealt;
+        this.amountHealed = amountHealed;
+        this.attributeBoosted = attributeBoosted;
+        this.attributeBoostAmount = attributeBoostAmount;
+    }
+
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Spell(Spell otherSpell)
+    {
+        this.spellName = otherSpell.spellName;
+        this.damageDealt = otherSpell.damageDealt;
+        this.amountHealed = otherSpell.amountHealed;
+        this.attributeBoosted = otherSpell.attributeBoosted;
+        this.attributeBoostAmount = otherSpell.attributeBoostAmount;
+    }
+
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
     public String getSpellName() {
         return spellName;
     }
@@ -68,6 +100,9 @@ public class Spell implements Serializable {
         this.attributeBoostAmount = attributeBoostAmount;
     }
 
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 7;

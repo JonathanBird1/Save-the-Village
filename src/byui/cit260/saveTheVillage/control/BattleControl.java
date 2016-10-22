@@ -13,19 +13,20 @@ import byui.cit260.saveTheVillage.model.Actor;
  */
 public class BattleControl {
     
-    public double determineSuccessRate(String action)
+    public Actor generateEnemy(String mapName)
     {
+        Actor newEnemy = new Actor();
         
+        if (mapName.equals("Forest"))  //Forest Enemies
+        {
+            
+        }
+        else  //Dungeon Enemies
+        {
+            
+        }
     }
-    public double offensiveSuccessRate(double hitRate, double dodgeRate)
-    {
-        
-    }
-    public double runSuccessRate(int playerSpeed, int playerSpeedPenalty,
-            int enemySpeed)
-    {
-        
-    }
+    
     public double calcSuccessRate(String action, boolean isPlayersTurn, 
             Player gamePlayer, Actor enemy){
         
@@ -76,7 +77,7 @@ public class BattleControl {
         }
     }
         
-    public double calcTotalDamage(double base, double stat, double defense,
+/*    public double calcTotalDamage(double base, double stat, double defense,
             double special){
         
         double successRate = calcSuccessRate();
@@ -105,5 +106,5 @@ public class BattleControl {
                 * special);
         
         return totalDamage;
-    }
+    }*/
 }

@@ -16,6 +16,33 @@ public class Races implements Serializable {
     
     private String raceName;
 
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Races()
+    {
+        this.raceName="human";
+    }
+
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Races(String raceName)
+    {
+        this.raceName = raceName;
+    }
+
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Races(Races otherRace)
+    {
+        this.raceName = otherRace.raceName;
+    }
+
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
     public String getRaceName() {
         return raceName;
     }
@@ -24,10 +51,9 @@ public class Races implements Serializable {
         this.raceName = raceName;
     }
 
-    public Races() {
-        raceName="human";
-    }
-
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 5;
