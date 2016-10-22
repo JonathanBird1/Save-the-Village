@@ -13,6 +13,19 @@ import byui.cit260.saveTheVillage.model.Actor;
  */
 public class BattleControl {
     
+    public double determineSuccessRate(String action)
+    {
+        
+    }
+    public double offensiveSuccessRate(double hitRate, double dodgeRate)
+    {
+        
+    }
+    public double runSuccessRate(int playerSpeed, int playerSpeedPenalty,
+            int enemySpeed)
+    {
+        
+    }
     public double calcSuccessRate(String action, boolean isPlayersTurn, 
             Player gamePlayer, Actor enemy){
         
@@ -66,8 +79,6 @@ public class BattleControl {
     public double calcTotalDamage(double base, double stat, double defense,
             double special){
         
-    public double calcSuccessRate(String action, boolean isPlayersTurn, 
-            Player gamePlayer, Actor enemy){
         double successRate = calcSuccessRate();
         
         //Error Checking

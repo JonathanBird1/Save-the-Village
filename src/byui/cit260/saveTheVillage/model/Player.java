@@ -118,7 +118,7 @@ public class Player implements Serializable {
         if (this.depositedMoney != other.depositedMoney){
             return false;
         }
-        if (this.playerStats != other.playerStats)
+        if (!Objects.equals(this.playerStats, other.playerStats))
         {
             return false;
         }
@@ -191,7 +191,7 @@ public class Player implements Serializable {
         this.weapon.setNoSell(noSell);
         this.weapon.setAssociation(association);
         this.weapon.setWeaponDamage(weaponDamage);
-        this.weapon.setHealingAmount(0);
+        this.weapon.setHealingAmount(0);  //Weapons don't heal
         this.weapon.setManaRestored(0);
         this.weapon.setWeight(weight);
     }
