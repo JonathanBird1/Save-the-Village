@@ -5,6 +5,8 @@
  */
 package byui.cit260.saveTheVillage.control;
 
+import byui.cit260.saveTheVillage.model.Actor;
+import byui.cit260.saveTheVillage.model.Player;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,6 +21,42 @@ public class BattleControlTest {
 
     @Test
     public void testSomeMethod() {
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of calcSuccessRate method, of class BattleControl.
+     */
+    @Test
+    public void testCalcSuccessRate() {
+        System.out.println("calcSuccessRate");
+        String action = "";
+        boolean isPlayersTurn = false;
+        Player gamePlayer = null;
+        Actor enemy = null;
+        BattleControl instance = new BattleControl();
+        double expResult = 0.0;
+        double result = instance.calcSuccessRate(action, isPlayersTurn, gamePlayer, enemy);
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of calcTotalDamage method, of class BattleControl.
+     */
+    @Test
+    public void testCalcTotalDamage() {
+        System.out.println("calcTotalDamage");
+        double base = 0.0;
+        double stat = 0.0;
+        double defense = 0.0;
+        double special = 0.0;
+        BattleControl instance = new BattleControl();
+        double expResult = 0.0;
+        double result = instance.calcTotalDamage(base, stat, defense, special);
+        assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

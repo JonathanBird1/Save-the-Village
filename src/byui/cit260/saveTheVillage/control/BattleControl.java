@@ -6,6 +6,8 @@
 package byui.cit260.saveTheVillage.control;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Actor;
+import byui.cit260.saveTheVillage.model.Item;
+import byui.cit260.saveTheVillage.model.Spell;
 
 /**
  *
@@ -13,8 +15,8 @@ import byui.cit260.saveTheVillage.model.Actor;
  */
 public class BattleControl {
     
-    public double calcSuccessRate(String action, boolean isPlayersTurn, Player gamePlayer,
-            Actor enemy){
+    public double calcSuccessRate(String action, boolean isPlayersTurn, Player 
+            gamePlayer, Actor enemy){
         
         if(action ==""){
             return -1;
@@ -63,33 +65,84 @@ public class BattleControl {
         }
     }
         
-    public double calcTotalDamage(double base, double stat, double defense,
-            double special){
+    public double calcTotalDamage(Item weapon, Player gamePlayer, Actor enemy,
+            double special, boolean isWeapon, boolean isMagic, String action, 
+            Spell magic){
         
-        double successRate = calcSuccessRate();
-        
-        if (base < 75 || base > 150){ //base damage is between 75-150
+        if(action==""){
             return -1;
         }
-        if (stat < 1 || stat > 100){ //strength or magic
-            return -1;
-        }
-        if (defense <1 || defense > 100){
-            return -1;
-        }
-        double rand = Math.random();
-        if (rand <= 25){
-            special = 0.5;
-        }
-        if (rand <=75 || rand > 25){
-            special = 1;
-        }
-        if (rand <= 100 || rand > 75){
-            special = 1.5;
-        }
-        double totalDamage = (Math.round((base + stat) * successRate - defense)
-                * special);
         
-        return totalDamage;
+        BattleControl mySuccessRate = new BattleControl();
+        
+        double weaponBaseDamage = weapon.getWeaponDamage();
+        double magicBaseDamage = magic.getDamageDealt();
+        int playerStrength = gamePlayer.getPlayerStats().getStrength();
+        int playerMagic = gamePlayer.getPlayerStats().getMagic();
+        int playerMagicDefense = gamePlayer.getPlayerStats().getMagicDefense();
+        int playerDefense = gamePlayer.getPlayerStats().getDefense();
+        int enemyStrength = enemy.getEnemyStats().getStrength();
+        int enemyMagic = enemy.getEnemyStats().getMagic();
+        int enemyMagicDefense = enemy.getEnemyStats().getMagicDefense();
+        int enemyDefense = enemy.getEnemyStats().getDefense();
+        
+        double rand = Math.random() * 100;
+            if (rand <= 25){
+                special = Math.sqrt(0.1);
+            }
+            if (rand <=75 || rand > 25){
+                special = 1;
+            }
+            if (rand <= 100 || rand > 75){
+                special = Math.PI;
+            }
+        switch("action"){
+            case "attack":
+                if (isWeapon){
+                    if (weaponBaseDamage < 1 || weaponBaseDamage > 100){
+                        return -1;
+                    }
+                    else if (playerStrength < 1 || playerStrength > 100 || 
+                            enemyDefense < 1 || enemyDefense > 100){
+                        return -1;
+                    }
+                    else if (playerDefense < 1 || playerDefense > 100 || 
+                            enemyStrength < 1 || enemyStrength > 100){
+                        return -1;
+                    }
+                    else {
+                        return (Math.round((weaponBaseDamage + playerStrength) * 
+                            mySuccessRate - enemyDefense) * special);
+                    }
+                }
+                else {
+                    return ((Math.round((weaponBaseDamage + enemyStrength) *
+                        mySuccessRate - playerDefense) * special));
+                    }
+            case "magic":
+                if (isMagic){
+                    if (magicBaseDamage < 1 || magicBaseDamage > 100){
+                        return -1;
+                    }
+                    else if (playerMagic < 1 || playerMagic > 100 || enemyMagicDefense 
+                            < 1 || enemyMagicDefense > 100){
+                        return -1;
+                    }
+                    else if (playerMagicDefense < 1 || playerMagicDefense > 100 ||
+                            enemyMagic < 1 || enemyMagic > 100){
+                        return -1;
+                    }
+                    else{
+                        return (Math.round((magicBaseDamage + playerMagic) * 
+                                mySuccessRate - enemyMagicDefense) * special);
+                    }
+                }
+                else {
+                    return (Math.round((magicBaseDamage + enemyMagic) * mySuccessRate
+                            - playerMagicDefense) * special);
+                }
+            default:
+                return -1;
+            }
     }
 }
