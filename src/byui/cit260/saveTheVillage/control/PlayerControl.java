@@ -15,17 +15,18 @@ import java.util.Set;
  * @author micha
  */
 public class PlayerControl {
+    /* ********************************************************
+    INITIALIZE NEW PLAYER
+    ********************************************************* */
     public Player initializeNewPlayer(String username, String race, int age)
     {        
-        //Key Variables
-        Player newPlayer = new Player();
-    
         //Error Trapping
         if (!race.equals("Human") && !race.equals("Elf") && 
                 !race.equals("Dwarf"))
         {
             System.out.println("ERROR:  Invalid Race - Race must be Human, "
                     + "Elf, or Dwarf");
+            Player newPlayer = new Player();
             newPlayer.setName("Invalid");
             return newPlayer;
         }
@@ -33,6 +34,7 @@ public class PlayerControl {
         {
             System.out.println("ERROR:  Invalid Age - Age must be between"
                     + "25 and 75");
+            Player newPlayer = new Player();    
             newPlayer.setName("Invalid");
             return newPlayer;
         }
@@ -40,20 +42,60 @@ public class PlayerControl {
         {
             System.out.println("ERROR:  Invalid Name = 'Invalid' is a reserved"
                     + "keyword");
+            Player newPlayer = new Player();    
             newPlayer.setName("Invalid");
             return newPlayer;
         }
+        
+        //Attributes
+        Item defaultItem = new Item();
+        Item defaultItems[] = new Item[60];
+        for (int i = 0; i < defaultItems.length; i++)
+        {
+            defaultItems[i] = defaultItem;
+        }
+        
+        int defaultMoney = 100;
 
-        //Set Passed Values
-        newPlayer.setName(username);
-        newPlayer.setAge(age);
-        newPlayer.setRace(race);
+        Item defaultWeapon = new Item("Wooden Sword", "Weapon", 0, true, 
+                false, "None", 1, 0, 0, 5);
         
-        //No Items(default), Wooden Sword, 100 Gold
-        newPlayer.setWeapon("Wooden Sword", "Weapon", 0, true, 
-                false, "None", 1, 5);
-        newPlayer.setMoney(100);
+        int defaultRow = 3;
+        int defaultColumn = 3;
+
+        Item defaultDepositedItems[] = new Item[60];
+        for (int i = 0; i < defaultDepositedItems.length; i++)
+        {
+            defaultDepositedItems[i] = defaultItem;
+        }
+        int defaultDepositedMoney = 0;
         
+        
+        //Player Stats, Health, and Mana
+        Stats playerStats = initializeNewPlayerStats(race, age);
+        int currentHealth = playerStats.getHealth();
+        int currentMana = playerStats.getMana();
+                
+        //Apply Speed Penalty
+        int currentWeight = determineWeight(defaultItems, defaultWeapon, 
+                defaultMoney);
+        playerStats.setSpeedPenalty(
+        determineSpeedPenalty(playerStats.getSpeed(), playerStats.getStrength(),
+                currentWeight));
+    
+        //Initialize New Player & Return
+        Player newPlayer = new Player(username, race, age, defaultItems,
+        defaultMoney, defaultWeapon, defaultRow, defaultColumn, currentHealth,
+        currentMana, defaultDepositedItems, defaultDepositedMoney, playerStats);
+        
+        return newPlayer;
+    }
+    
+    /* ********************************************************
+    INITIALIZE NEW PLAYER STATS
+    ********************************************************* */
+    private Stats initializeNewPlayerStats (String race, int age)
+    {
         //Calculate Player Stats
         //HEALTH
         int health = (int)(Math.random() * 300);
@@ -122,20 +164,60 @@ public class PlayerControl {
         if (speed > 100)
             speed = 100;
         
-        //***CALCULATE SPEED PENALTY  ***********************************
+        //***CALCULATE SPEED PENALTY SEPARATELY
         int speedPenalty = 0;
         
-        newPlayer.setPlayerStats(health, mana, strength, hitRate, magic, 
+        Stats playerStats = new Stats(health, mana, strength, hitRate, magic, 
                 dodgeRate, defense, magicDefense, speed, speedPenalty);
         
-        //Items, deposited items, and deposited money remain default
+        return playerStats;
+    }
+    
+    /* ********************************************************
+    DETERMINE SPEED PENALTY
+    ********************************************************* */
+    int determineSpeedPenalty(int speed, int strength, int weight)
+    {
+        if(speed < 0)
+            return -1;
         
-        //Set current row, column, health, and mana
-        newPlayer.setCurrentHealth(health);
-        newPlayer.setCurrentMana(mana);
-        newPlayer.setCurrentRow(3);
-        newPlayer.setCurrentColumn(3);
+        if(strength < 1)
+            return -2;
 
-        return newPlayer;
+        int weightMinusStrength = weight - strength;
+        //otherwise there is a penalty for any weight, this way speed is only 
+        //penalized if weight is more than strength if(weightMinusStrengh < 0)
+        if (weightMinusStrength < 0)
+            return 0; 
+        
+        int penalty = (int) (speed * Math.pow(((weight - strength) / 
+                (strength * strength)),2));
+        
+        if(penalty < 0)
+            return 0;
+
+        if(penalty > speed)
+            return speed;
+
+        return penalty;
+    }
+    
+    /* ********************************************************
+    DETERMINE WEIGHT
+    ********************************************************* */
+    int determineWeight (Item[] currentItems, Item currentWeapon, int money)
+    {
+        int weight = 0;
+        
+        for (int i = 0; i < currentItems.length; i++)
+        {
+            weight += currentItems[i].getWeight();
+        }
+        
+        weight += currentWeapon.getWeight();
+        
+        weight += money / 1000;  //Loss of precision from int is OK
+        
+        return weight;
     }
 }

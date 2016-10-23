@@ -59,8 +59,8 @@ public class Player implements Serializable {
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
-    public Player(String name, String race, int age, Item[] items, Item weapon,
-            int currentRow, int currentColumn, int currentHealth,
+    public Player(String name, String race, int age, Item[] items, int money,
+            Item weapon, int currentRow, int currentColumn, int currentHealth,
             int currentMana, Item[] depositedItems, int depositedMoney,
             Stats playerStats)
     {
