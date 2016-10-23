@@ -244,14 +244,13 @@ public class PlayerControlTest {
         assert (result.getCurrentColumn() == 3);
         assert (result.getCurrentRow() == 3);
 
-    }    
-        
-        
-     /**
-     * Test of determineSpeedPenalty method, of class PlayerControl.
-     */
-    @Test
-    public void testDetermineSpeedPenalty() {
+    }
+    
+    /* ********************************************************
+    TEST DETERMINE SPEED PENALTY
+    ********************************************************* */
+    public void testDetermineSpeedPenalty()
+    {
         System.out.println("determineSpeedPenalty Test #1");
         int speed = 50;
         int strength = 50;
@@ -262,8 +261,6 @@ public class PlayerControlTest {
         System.out.println(result);
         assertEquals(expResult, result);
         
-        
-        
         System.out.println("determineSpeedPenalty Test #2");
         speed = -1;
         strength = 50;
@@ -272,8 +269,6 @@ public class PlayerControlTest {
         result = instance.determineSpeedPenalty(speed, strength, weight);
         System.out.println(result);
         assertEquals(expResult, result);
-        
-        
         
         System.out.println("determineSpeedPenalty Test #3");
         speed = 50;
@@ -284,8 +279,6 @@ public class PlayerControlTest {
         System.out.println(result);
         assertEquals(expResult, result);
        
-        
-        
         System.out.println("determineSpeedPenalty Test #4");
         speed = 0;
         strength = 50;
@@ -294,8 +287,6 @@ public class PlayerControlTest {
         result = instance.determineSpeedPenalty(speed, strength, weight);
         System.out.println(result);
         assertEquals(expResult, result);
-        
-        
         
         System.out.println("determineSpeedPenalty Test #5");
         speed = 50;
@@ -306,7 +297,6 @@ public class PlayerControlTest {
         System.out.println(result);
         assertEquals(expResult, result);
         
-        
         System.out.println("determineSpeedPenalty Test #6");
         speed = 100;
         strength = 100;
@@ -315,7 +305,6 @@ public class PlayerControlTest {
         result = instance.determineSpeedPenalty(speed, strength, weight);
         System.out.println(result);
         assertEquals(expResult, result);
-        
         
         System.out.println("determineSpeedPenalty Test #7");
         speed = 100;
@@ -326,73 +315,21 @@ public class PlayerControlTest {
         System.out.println(result);
         assertEquals(expResult, result);
     }
-    
-    /* ********************************************************
-    TEST DETERMINE SPEED PENALTY
-    ********************************************************* */
-    public void testDetermineSpeedPenalty() {
-        System.out.println("determineSpeedPenalty Test #1");
-        int speed = 50;
-        int strength = 50;
-        int weight = 50;
-        int expResult = 0;
+
+    /**
+     * Test of determineWeight method, of class PlayerControl.
+     */
+    @Test
+    public void testDetermineWeight() {
+        System.out.println("determineWeight");
+        Item[] currentItems = null;
+        Item currentWeapon = null;
+        int money = 0;
         PlayerControl instance = new PlayerControl();
-        int result = instance.determineSpeedPenalty(speed, strength, weight);
-        System.out.println(result);
+        int expResult = 0;
+        int result = instance.determineWeight(currentItems, currentWeapon, money);
         assertEquals(expResult, result);
-        
-        System.out.println("determineSpeedPenalty Test #2");
-        speed = -1;
-        strength = 50;
-        weight = 50;
-        expResult = -1;
-        result = instance.determineSpeedPenalty(speed, strength, weight);
-        System.out.println(result);
-        assertEquals(expResult, result);
-        
-        System.out.println("determineSpeedPenalty Test #3");
-        speed = 50;
-        strength = 0;
-        weight = 50;
-        expResult = -2;
-        result = instance.determineSpeedPenalty(speed, strength, weight);
-        System.out.println(result);
-        assertEquals(expResult, result);
-       
-        System.out.println("determineSpeedPenalty Test #4");
-        speed = 0;
-        strength = 50;
-        weight = 150;
-        expResult = 0;
-        result = instance.determineSpeedPenalty(speed, strength, weight);
-        System.out.println(result);
-        assertEquals(expResult, result);
-        
-        System.out.println("determineSpeedPenalty Test #5");
-        speed = 50;
-        strength = 1;
-        weight = 150;
-        expResult = 50;
-        result = instance.determineSpeedPenalty(speed, strength, weight);
-        System.out.println(result);
-        assertEquals(expResult, result);
-        
-        System.out.println("determineSpeedPenalty Test #6");
-        speed = 100;
-        strength = 100;
-        weight = 0;
-        expResult = 0;
-        result = instance.determineSpeedPenalty(speed, strength, weight);
-        System.out.println(result);
-        assertEquals(expResult, result);
-        
-        System.out.println("determineSpeedPenalty Test #7");
-        speed = 100;
-        strength = 100;
-        weight = 100;
-        expResult = 0;
-        result = instance.determineSpeedPenalty(speed, strength, weight);
-        System.out.println(result);
-        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }
