@@ -47,8 +47,10 @@ public class SaveTheVillage {
         newPlayer.setName("Default Name");
         newPlayer.setAge(20);
         newPlayer.setRace("Human");
-        newPlayer.setItems("Healing Potion\n", 0);
-        newPlayer.setWeapon("Bokken");
+        newPlayer.setItems(0, "Healing Potion\n", "Potion", 100, false,
+                false, "No Association", 0, 25, 0, 1);
+        newPlayer.setWeapon("Wooden Sword", "Weapon", 0, true, 
+                false, "None", 1, 5);
         newPlayer.setCurrentRow(3);
         newPlayer.setCurrentColumn(3);
         newPlayer.setCurrentHealth(100);
@@ -71,8 +73,9 @@ public class SaveTheVillage {
         Actor newActor = new Actor();
         newActor.setName("No Name");
         newActor.setType("No Type");
-        newActor.setItem("No Item");
-        newActor.setGold(0);
+        newActor.setItem("Healing Potion\n", "Potion", 100, false,
+                false, "No Association", 0, 25, 0, 1);
+       newActor.setGold(0);
         
         //Stats
         Stats newStats = new Stats();

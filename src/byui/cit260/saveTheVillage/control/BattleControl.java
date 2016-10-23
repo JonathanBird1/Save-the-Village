@@ -67,13 +67,13 @@ public class BattleControl {
         
     public double calcTotalDamage(Item weapon, Player gamePlayer, Actor enemy,
             double special, boolean isWeapon, boolean isMagic, String action, 
-            Spell magic){
+            Spell magic, BattleControl success){
         
         if(action==""){
             return -1;
         }
         
-        BattleControl mySuccessRate = new BattleControl();
+        double successRate = success.getCalcSuccessRate();
         
         double weaponBaseDamage = weapon.getWeaponDamage();
         double magicBaseDamage = magic.getDamageDealt();
@@ -112,12 +112,12 @@ public class BattleControl {
                     }
                     else {
                         return (Math.round((weaponBaseDamage + playerStrength) * 
-                            mySuccessRate - enemyDefense) * special);
+                            successRate - enemyDefense) * special);
                     }
                 }
                 else {
                     return ((Math.round((weaponBaseDamage + enemyStrength) *
-                        mySuccessRate - playerDefense) * special));
+                        successRate - playerDefense) * special));
                     }
             case "magic":
                 if (isMagic){
@@ -134,11 +134,11 @@ public class BattleControl {
                     }
                     else{
                         return (Math.round((magicBaseDamage + playerMagic) * 
-                                mySuccessRate - enemyMagicDefense) * special);
+                                successRate - enemyMagicDefense) * special);
                     }
                 }
                 else {
-                    return (Math.round((magicBaseDamage + enemyMagic) * mySuccessRate
+                    return (Math.round((magicBaseDamage + enemyMagic) * successRate
                             - playerMagicDefense) * special);
                 }
             default:
