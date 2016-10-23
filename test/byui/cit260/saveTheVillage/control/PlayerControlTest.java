@@ -246,6 +246,10 @@ public class PlayerControlTest {
 
     }
     
+    /**
+     * Test of determineSpeedPenalty method, of class PlayerControl.
+     */
+    @Test
     /* ********************************************************
     TEST DETERMINE SPEED PENALTY
     ********************************************************* */
@@ -314,22 +318,5 @@ public class PlayerControlTest {
         result = instance.determineSpeedPenalty(speed, strength, weight);
         System.out.println(result);
         assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of determineWeight method, of class PlayerControl.
-     */
-    @Test
-    public void testDetermineWeight() {
-        System.out.println("determineWeight");
-        Item[] currentItems = null;
-        Item currentWeapon = null;
-        int money = 0;
-        PlayerControl instance = new PlayerControl();
-        int expResult = 0;
-        int result = instance.determineWeight(currentItems, currentWeapon, money);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

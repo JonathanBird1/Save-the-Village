@@ -26,6 +26,8 @@ public class BattleControl {
                 enemyAttribute > 100 || enemyAttribute < 0)
             return -1;
         
+        double successRate;
+        
         //Determine Action
         switch(action)
         {
@@ -36,10 +38,25 @@ public class BattleControl {
                 if (playerAttribute > 1 || enemyAttribute > 1)
                     return -1;
                 else
-                    return (playerAttribute - enemyAttribute + 
-                    (Math.random() * 100));
+                {
+                    successRate = playerAttribute - enemyAttribute + 
+                    Math.random();
+                    if (successRate < 0)
+                        return 0;
+                    else if (successRate > 1)
+                        return 1;
+                    else
+                        return successRate;
+                }
             case "run":
-                return playerAttribute - enemyAttribute + (Math.random() * 100);
+                successRate = (playerAttribute - enemyAttribute + 
+                        (Math.random() * 100)) / 100;
+                if (successRate < 0)
+                    return 0;
+                else if (successRate > 1)
+                    return 1;
+                else
+                    return successRate;
             default:  //Invalid Action
                 return -1;
         }
@@ -48,21 +65,31 @@ public class BattleControl {
     /* ********************************************************
     CALCULATE TOTAL DAMAGE
     ********************************************************* */
-    public int calcTotalDamage(int baseDamage, int offensiveAttribute,
-            double successRate, int defensiveAttribute)
+    public int calcTotalDamage(int baseDamage, int offensiveAttribute, 
+            int defensiveAttribute, double successRate)
     {
+        //Error Handling
+        if (baseDamage < 0 || offensiveAttribute < 0 || 
+                offensiveAttribute > 100 || defensiveAttribute < 0 ||
+                defensiveAttribute > 100 || successRate < 0 || 
+                successRate > 1)
+            return -1;
+        
         int calculatedDamage = (int)((baseDamage + offensiveAttribute) *
                 successRate - defensiveAttribute);
         int specialMultiplier;
         int randomNumber = (int)(Math.random() * 100);
         if (randomNumber <= 25)
         {
-            return (int)(Math.pow(calculatedDamage, 0.1));
+            calculatedDamage = (int)(Math.pow(calculatedDamage, 0.1));
         }
         else if (randomNumber > 75)
         {
-            return (int)(calculatedDamage * Math.PI);
+            calculatedDamage = (int)(calculatedDamage * Math.PI);
         }
+        
+        if (calculatedDamage < 0)
+            return 0;
         
         return calculatedDamage;
     }
