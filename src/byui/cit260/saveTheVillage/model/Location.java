@@ -15,16 +15,45 @@ import java.util.Objects;
 public class Location implements Serializable {
     private int row;
     private int column;
-    private String scene;
+    private Scene scene;
     private boolean visited;
 
-    public Location() {
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Location()
+    {
         this.row = 0;
         this.column = 0;
-        this.scene = "No Scene";
+        this.scene = new Scene();
         this.visited = false;
     }
 
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Location(int row, int column, Scene scene, boolean visited)
+    {
+        this.row = row;
+        this.column = column;
+        this.scene = scene;
+        this.visited = visited;
+    }
+
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Location(Location otherLocation)
+    {
+        this.row = otherLocation.row;
+        this.column = otherLocation.column;
+        this.scene = otherLocation.scene;
+        this.visited = otherLocation.visited;
+    }
+
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
     public int getRow() {
         return row;
     }
@@ -41,11 +70,11 @@ public class Location implements Serializable {
         this.column = column;
     }
 
-    public String getScene() {
+    public Scene getScene() {
         return scene;
     }
 
-    public void setScene(String scene) {
+    public void setScene(Scene scene) {
         this.scene = scene;
     }
 
@@ -57,6 +86,9 @@ public class Location implements Serializable {
         this.visited = visited;
     }
 
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -97,7 +129,7 @@ public class Location implements Serializable {
     @Override
     public String toString() {
         return "Location{" + "row=" + row + ", column=" + column + 
-                ", scene=" + scene + ", visited=" + visited + '}';
+                ", scene=" + scene.toString() + ", visited=" + visited + '}';
     }
     
 }

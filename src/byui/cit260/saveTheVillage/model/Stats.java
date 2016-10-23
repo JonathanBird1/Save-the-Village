@@ -24,6 +24,9 @@ public class Stats implements Serializable{
     private int speed;
     private int speedPenalty;
     
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
     public Stats() {
         health = 0;
         mana = 0;
@@ -36,7 +39,46 @@ public class Stats implements Serializable{
         speed = 0;
         speedPenalty = 0;
     }
+    
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Stats(int health, int mana, int strength, double hitRate,
+            int magic, double dodgeRate, int defense, int magicDefense,
+            int speed, int speedPenalty)
+    {
+        this.health = health;
+        this.mana = mana;
+        this.strength = strength;
+        this.hitRate = hitRate;
+        this.magic = magic;
+        this.dodgeRate = dodgeRate;
+        this.defense = defense;
+        this.magicDefense = magicDefense;
+        this.speed = speed;
+        this.speedPenalty = speedPenalty;
+    }
 
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Stats(Stats otherStats)
+    {
+        this.health = otherStats.health;
+        this.mana = otherStats.mana;
+        this.strength = otherStats.strength;
+        this.hitRate = otherStats.hitRate;
+        this.magic = otherStats.magic;
+        this.dodgeRate = otherStats.dodgeRate;
+        this.defense = otherStats.defense;
+        this.magicDefense = otherStats.magicDefense;
+        this.speed = otherStats.speed;
+        this.speedPenalty = otherStats.speedPenalty;
+    }
+
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
     public int getHealth() {
         return health;
     }
@@ -119,6 +161,9 @@ public class Stats implements Serializable{
         this.speedPenalty = speedPenalty;
     }
 
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 3;

@@ -24,19 +24,63 @@ public class Item implements Serializable {
     private int manaRestored;
     private int weight;
 
-public Item() {
-    this.name = "No Name";
-    this.type = "No Type";
-    this.buyPrice = 0;
-    this.noBuy = false;
-    this.noSell = false;
-    this.association = "None";
-    this.weaponDamage = 0;
-    this.healingAmount = 0;
-    this.manaRestored = 0;
-    this.weight = 0;
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Item()
+    {
+        this.name = "No Name";
+        this.type = "No Type";
+        this.buyPrice = 0;
+        this.noBuy = false;
+        this.noSell = false;
+        this.association = "None";
+        this.weaponDamage = 0;
+        this.healingAmount = 0;
+        this.manaRestored = 0;
+        this.weight = 0;
     }
     
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Item(String name, String type, int buyPrice, boolean noBuy,
+            boolean noSell, String association, int weaponDamage,
+            int healingAmount, int manaRestored, int weight)
+    {
+        this.name = name;
+        this.type = type;
+        this.buyPrice = buyPrice;
+        this.noBuy = noBuy;
+        this.noSell = noSell;
+        this.association = association;
+        this.weaponDamage = weaponDamage;
+        this.healingAmount = healingAmount;
+        this.manaRestored = manaRestored;
+        this.weight = weight;
+    }
+    
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Item(Item otherItem)
+    {
+        this.name = otherItem.name;
+        this.type = otherItem.type;
+        this.buyPrice = otherItem.buyPrice;
+        this.noBuy = otherItem.noBuy;
+        this.noSell = otherItem.noSell;
+        this.association = otherItem.association;
+        this.weaponDamage = otherItem.weaponDamage;
+        this.healingAmount = otherItem.healingAmount;
+        this.manaRestored = otherItem.manaRestored;
+        this.weight = otherItem.weight;
+    }
+    
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
+
     public String getName() {
         return name;
     }
@@ -119,6 +163,9 @@ public Item() {
         this.weight = weight;
     }
 
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 7;

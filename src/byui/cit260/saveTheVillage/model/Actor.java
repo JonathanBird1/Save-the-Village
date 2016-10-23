@@ -14,11 +14,14 @@ import java.util.Objects;
  */
 public class Actor implements Serializable{
     private String name;
-    private String type;
+    private String type;  //Regular, Miniboss, or Boss
     private Item item;
     private int gold;
     private Stats enemyStats;
 
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
     public Actor()
     {
         name = "No Name";
@@ -28,6 +31,34 @@ public class Actor implements Serializable{
         enemyStats = new Stats();
     }
     
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Actor(String name, String type, Item item, int gold,
+            Stats enemyStats)
+    {
+        this.name = name;
+        this.type = type;
+        this.item = item;
+        this.gold = gold;
+        this.enemyStats = enemyStats;
+    }
+    
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Actor(Actor otherActor)
+    {
+        this.name = otherActor.name;
+        this.type = otherActor.type;
+        this.item = otherActor.item;
+        this.gold = otherActor.gold;
+        this.enemyStats = otherActor.enemyStats;
+    }
+    
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
     public String getName() {
         return name;
     }
@@ -94,6 +125,9 @@ public class Actor implements Serializable{
     }
 
 
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -144,8 +178,4 @@ public class Actor implements Serializable{
         
         return returnString;
     }
-
-    
-    
-    
 }

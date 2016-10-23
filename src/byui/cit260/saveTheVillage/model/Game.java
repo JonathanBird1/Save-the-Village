@@ -21,6 +21,45 @@ public class Game implements Serializable {
     private String fileName;
     private String cluesObtained[];
 
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Game()
+    {
+        this.elapsedTime = 0;
+        this.timeLimit = 48*60;
+        this.defeatedBoss = false;
+        this.fileName = "noName.stv";
+        this.cluesObtained = new String[10];
+        for (int i = 0; i < this.cluesObtained.length; i++)
+        {
+            this.cluesObtained[i] = "Clue " + i + " Not Obtained\n";
+        }
+    }
+    
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Game(int elapsedTime, int timeLimit, boolean defeatedBoss,
+            String fileName)
+    {
+        this.elapsedTime = elapsedTime;
+        this.timeLimit = timeLimit;
+        this.defeatedBoss = defeatedBoss;
+        this.fileName = fileName;
+        
+        //No clues have been found yet in a new game
+        this.cluesObtained = new String[10];
+        for (int i = 0; i < this.cluesObtained.length; i++)
+        {
+            this.cluesObtained[i] = "Clue " + i + " Not Obtained\n";
+        }
+    }
+    
+    
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
     public int getElapsedTime() {
         return elapsedTime;
     }
@@ -61,18 +100,9 @@ public class Game implements Serializable {
         this.cluesObtained[clueNumber] = clueObtained;
     }
 
-    public Game() {
-        this.elapsedTime = 0;
-        this.timeLimit = 48*60;
-        this.defeatedBoss = false;
-        this.fileName = "noName.stv";
-        this.cluesObtained = new String[10];
-        for (int i = 0; i < this.cluesObtained.length; i++)
-        {
-            this.cluesObtained[i] = "Clue " + i + " Not Obtained\n";
-        }
-    }
-
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 7;

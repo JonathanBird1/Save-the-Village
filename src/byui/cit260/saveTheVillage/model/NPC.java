@@ -14,17 +14,47 @@ import java.util.Objects;
  */
 public class NPC implements Serializable {
     private String clue;
-    private String reward;
+    private Item reward;
     private boolean captured;
     private boolean hasReward;
 
-    public NPC() {
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public NPC()
+    {
         this.clue = "No Clue";
-        this.reward = "No Reward";
+        this.reward = new Item();
         this.captured = false;
         this.hasReward = false;
     }
 
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public NPC(String clue, Item reward, boolean captured,
+            boolean hasReward)
+    {
+        this.clue = clue;
+        this.reward = reward;
+        this.captured = captured;
+        this.hasReward = hasReward;
+    }
+
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public NPC(NPC otherNPC)
+    {
+        this.clue = otherNPC.clue;
+        this.reward = otherNPC.reward;
+        this.captured = otherNPC.captured;
+        this.hasReward = otherNPC.hasReward;
+    }
+
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
     public String getClue() {
         return clue;
     }
@@ -33,11 +63,11 @@ public class NPC implements Serializable {
         this.clue = clue;
     }
 
-    public String getReward() {
+    public Item getReward() {
         return reward;
     }
 
-    public void setReward(String reward) {
+    public void setReward(Item reward) {
         this.reward = reward;
     }
 
@@ -59,6 +89,9 @@ public class NPC implements Serializable {
         this.hasReward = reward;
     }
     
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -98,10 +131,8 @@ public class NPC implements Serializable {
 
     @Override
     public String toString() {
-        return "NPC{" + "clue=" + clue + ", reward=" + reward + 
+        return "NPC{" + "clue=" + clue + ", reward=" + reward.toString() + 
                 ", captured=" + captured + ", hasReward=" +
                 hasReward + '}';
     }
-    
-    
 }

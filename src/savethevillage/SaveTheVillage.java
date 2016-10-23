@@ -47,10 +47,9 @@ public class SaveTheVillage {
         newPlayer.setName("Default Name");
         newPlayer.setAge(20);
         newPlayer.setRace("Human");
-        newPlayer.setItems(0, "Healing Potion\n", "Potion", 100, false,
-                false, "No Association", 0, 25, 0, 1);
-        newPlayer.setWeapon("Wooden Sword", "Weapon", 0, true, 
-                false, "None", 1, 5);
+        Item playerItem = new Item();
+        newPlayer.setItems(0, playerItem);
+        newPlayer.setWeapon(playerItem);
         newPlayer.setCurrentRow(3);
         newPlayer.setCurrentColumn(3);
         newPlayer.setCurrentHealth(100);
@@ -60,13 +59,14 @@ public class SaveTheVillage {
         Location newLocation = new Location();
         newLocation.setRow(1);
         newLocation.setColumn(1);
-        newLocation.setScene("Forest");
+        Scene locationScene = new Scene();
+        newLocation.setScene(locationScene);
         newLocation.setVisited(false);
         
         //NPC
         NPC newNPC = new NPC();
         newNPC.setClue("No Clue Associated");
-        newNPC.setReward("No Reward Yet");
+        newNPC.setReward(playerItem);
         newNPC.setCaptured(false);
         
         //Actor
@@ -93,8 +93,7 @@ public class SaveTheVillage {
         Scene newScene = new Scene();
         newScene.setName("noName");
         newScene.setType("noType");
-        newScene.setActor("noActor");
-        newScene.setNpc(null);
+        //Actor and NPC are set by default constructor
         newScene.setClosed(true);
         newScene.setClue("noClue");
         

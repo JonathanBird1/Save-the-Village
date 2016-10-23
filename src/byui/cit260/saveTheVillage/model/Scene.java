@@ -15,48 +15,98 @@ import java.util.Objects;
  */
 public class Scene implements Serializable{
     //class instance variables
-    private String name;
-    private String type;
-    private String actor;
-    private String npc[];
+    private String sceneName;
+    private String sceneType;
+    private Actor enemy;
+    private NPC npcs[];
     private boolean closed;
     private String clue;
 
-    public Scene() {
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Scene()
+    {
+        this.sceneName = "No Name";
+        this.sceneType = "No Type";
+        this.enemy = new Actor();
+        this.npcs = new NPC[5];
+        for (int i = 0; i < this.npcs.length; i++)
+        {
+            this.npcs[i] = new NPC();
+        }
+        this.closed = false;
+        this.clue = "No Clue";
     }
 
-    
-    
+    /* ********************************************************
+    NON-DEFAULT CONSTRUCTOR
+    ********************************************************* */
+    public Scene(String sceneName, String sceneType, Actor enemy,
+            NPC[] npcs, boolean closed, String clue)
+    {
+        this.sceneName = sceneName;
+        this.sceneType = sceneType;
+        this.enemy = enemy;
+        this.npcs = new NPC[npcs.length];
+        for (int i = 0; i < this.npcs.length; i++)
+        {
+            this.npcs[i] = npcs[i];
+        }
+        this.closed = closed;
+        this.clue = clue;
+    }
+
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Scene(Scene otherScene)
+    {
+        this.sceneName = otherScene.sceneName;
+        this.sceneType = otherScene.sceneType;
+        this.enemy = otherScene.enemy;
+        this.npcs = new NPC[otherScene.npcs.length];
+        for (int i = 0; i < this.npcs.length; i++)
+        {
+            this.npcs[i] = otherScene.npcs[i];
+        }
+        this.closed = otherScene.closed;
+        this.clue = otherScene.clue;
+    }
+
+    /* ********************************************************
+    ACCESSORS & MUTATORS
+    ********************************************************* */
     public String getName() {
-        return name;
+        return sceneName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String sceneName) {
+        this.sceneName = sceneName;
     }
 
     public String getType() {
-        return type;
+        return sceneType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(String sceneType) {
+        this.sceneType = sceneType;
     }
 
-    public String getActor() {
-        return actor;
+    public Actor getActor() {
+        return enemy;
     }
 
-    public void setActor(String actor) {
-        this.actor = actor;
+    public void setActor(Actor enemy) {
+        this.enemy = enemy;
     }
 
-    public String[] getNpc() {
-        return npc;
+    public NPC[] getNPC() {
+        return npcs;
     }
 
-    public void setNpc(String[] npc) {
-        this.npc = npc;
+    public void setNPC(NPC npcs, int position) {
+        this.npcs[position] = npcs;
     }
 
     public boolean isClosed() {
@@ -75,13 +125,16 @@ public class Scene implements Serializable{
         this.clue = clue;
     }
 
+    /* ********************************************************
+    OTHER
+    ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.name);
-        hash = 31 * hash + Objects.hashCode(this.type);
-        hash = 31 * hash + Objects.hashCode(this.actor);
-        hash = 31 * hash + Arrays.deepHashCode(this.npc);
+        hash = 31 * hash + Objects.hashCode(this.sceneName);
+        hash = 31 * hash + Objects.hashCode(this.sceneType);
+        hash = 31 * hash + Objects.hashCode(this.enemy);
+        hash = 31 * hash + Arrays.deepHashCode(this.npcs);
         hash = 31 * hash + (this.closed ? 1 : 0);
         hash = 31 * hash + Objects.hashCode(this.clue);
         return hash;
@@ -96,16 +149,16 @@ public class Scene implements Serializable{
             return false;
         }
         final Scene other = (Scene) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.sceneName, other.sceneName)) {
             return false;
         }
-        if (!Objects.equals(this.type, other.type)) {
+        if (!Objects.equals(this.sceneType, other.sceneType)) {
             return false;
         }
-        if (!Objects.equals(this.actor, other.actor)) {
+        if (!Objects.equals(this.enemy, other.enemy)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.npc, other.npc)) {
+        if (!Arrays.deepEquals(this.npcs, other.npcs)) {
             return false;
         }
         if (this.closed != other.closed) {
@@ -119,12 +172,16 @@ public class Scene implements Serializable{
 
     @Override
     public String toString() {
-        return "Scene{" + "name=" + name + ", type=" + type + ", actor=" + actor + ", npc=" + npc + ", closed=" + closed + ", clue=" + clue + '}';
+        String returnString = "Scene{" + "sceneName=" + sceneName + ", sceneType=" + sceneType + 
+                ", enemy=" + enemy + ", npcs=";
+        
+        for (int i = 0; i < npcs.length; i++)
+        {
+            returnString += npcs[i].toString();
+        }
+        
+        returnString += ", closed=" + closed + ", clue=" + clue + '}';
+        
+        return returnString;
     }
-
-    public void setNpc(String noNPC, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
 }
