@@ -138,4 +138,33 @@ public class PlayerControl {
 
         return newPlayer;
     }
+
+    /**
+    *
+    * @author Yoda
+    */
+    int determineSpeedPenalty(int speed, int strength, int weight){
+        
+        if(speed < 0){
+            return -1;
+        }
+        
+        if(strength < 1){
+            return -2;
+        }
+        int weightMinusStrengh = weight - strength;
+        if(weightMinusStrengh < 0){
+            return 0; //otherwise there is a penalty for any weight, this way speed is only penalized if weight is more than strength
+        }
+        int penalty = (int) (speed * Math.pow(((weight - strength) / (strength * strength)),2));
+        
+        if(penalty < 0){
+            return 0;
+        }
+        if(penalty > speed){
+            return speed;
+        }
+    return penalty;
+        
+    }
 }
