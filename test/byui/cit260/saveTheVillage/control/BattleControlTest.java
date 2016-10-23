@@ -42,5 +42,23 @@ public class BattleControlTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of calcTotalDamage method, of class BattleControl.
+     */
+    @Test
+    public void testCalcTotalDamage() {
+        System.out.println("calcTotalDamage");
+        double base = 0.0;
+        double stat = 0.0;
+        double defense = 0.0;
+        double special = 0.0;
+        BattleControl instance = new BattleControl();
+        double expResult = 0.0;
+        double result = instance.calcTotalDamage(base, stat, defense, special);
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
