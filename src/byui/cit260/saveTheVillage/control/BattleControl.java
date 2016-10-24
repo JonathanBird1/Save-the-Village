@@ -15,71 +15,81 @@ import byui.cit260.saveTheVillage.model.Spell;
  */
 public class BattleControl {
     
-    public double calcSuccessRate(String action, boolean isPlayersTurn, Player 
-            gamePlayer, Actor enemy){
-        
-        if(action ==""){
+    /* ********************************************************
+    CALCULATE SUCCESS RATE
+    ********************************************************* */
+    public double calcSuccessRate(String action, double playerAttribute,
+            double enemyAttribute)
+    {
+        //Error Trapping - All attributes are between 0 and 100
+        if (action == "" || playerAttribute > 100 || playerAttribute < 0 ||
+                enemyAttribute > 100 || enemyAttribute < 0)
             return -1;
-        }
         
-        double playerHitRate = gamePlayer.getPlayerStats().getHitRate();
-        double enemyHitRate = enemy.getEnemyStats().getHitRate();
-        double playerDodgeRate = gamePlayer.getPlayerStats().getDodgeRate();
-        double enemyDodgeRate = enemy.getEnemyStats().getHitRate();
-        int playerSpeed = gamePlayer.getPlayerStats().getSpeed();
-        int enemySpeed = enemy.getEnemyStats().getSpeed();
-        int playerSpeedPenalty = gamePlayer.getPlayerStats().getSpeedPenalty();
+        double successRate;
         
-        switch(action){
+        //Determine Action
+        switch(action)
+        {
             case "attack":
             case "magic":
             case "item":
-                if (isPlayersTurn){
-                    if(playerHitRate < 1 || playerHitRate > 100 ||
-                            enemyDodgeRate < 1 || enemyDodgeRate > 100){
-                        return -1;
-                    }
-                    else if(enemyHitRate < 1 || enemyHitRate > 100 || 
-                            playerDodgeRate < 1 || playerDodgeRate > 100){
-                        return -1; 
-                    }
-                    else{
-                        return (playerHitRate - enemyDodgeRate + (Math.random() * 100));
-                    }
-                }
-                else{
-                        return (enemyHitRate - playerDodgeRate + (Math.random() * 100));
-                    }
-            case "run":
-                if (playerSpeed < 1 || playerSpeed > 100 || 
-                        enemySpeed < 1 || enemySpeed > 100 || playerSpeedPenalty < 0
-                        || playerSpeedPenalty > 100){
+                //Error Trapping (Percentages no greater than 1)
+                if (playerAttribute > 1 || enemyAttribute > 1)
                     return -1;
+                else
+                {
+                    successRate = playerAttribute - enemyAttribute + 
+                    Math.random();
+                    if (successRate < 0)
+                        return 0;
+                    else if (successRate > 1)
+                        return 1;
+                    else
+                        return successRate;
                 }
-                else{
-                    return playerSpeed - enemySpeed - playerSpeedPenalty
-                           + (Math.random() * 100);
-                }
-            default:
+            case "run":
+                successRate = (playerAttribute - enemyAttribute + 
+                        (Math.random() * 100)) / 100;
+                if (successRate < 0)
+                    return 0;
+                else if (successRate > 1)
+                    return 1;
+                else
+                    return successRate;
+            default:  //Invalid Action
                 return -1;
         }
     }
-    
-       public int calcTotalDamage(int baseDamage, int offensiveAttribute,
-            double successRate, int defensiveAttribute)
+        
+    /* ********************************************************
+    CALCULATE TOTAL DAMAGE
+    ********************************************************* */
+    public int calcTotalDamage(int baseDamage, int offensiveAttribute, 
+            int defensiveAttribute, double successRate)
     {
+        //Error Handling
+        if (baseDamage < 0 || offensiveAttribute < 0 || 
+                offensiveAttribute > 100 || defensiveAttribute < 0 ||
+                defensiveAttribute > 100 || successRate < 0 || 
+                successRate > 1)
+            return -1;
+        
         int calculatedDamage = (int)((baseDamage + offensiveAttribute) *
                 successRate - defensiveAttribute);
         int specialMultiplier;
         int randomNumber = (int)(Math.random() * 100);
         if (randomNumber <= 25)
         {
-            return (int)(Math.pow(calculatedDamage, 0.1));
+            calculatedDamage = (int)(Math.pow(calculatedDamage, 0.1));
         }
         else if (randomNumber > 75)
         {
-            return (int)(calculatedDamage * Math.PI);
+            calculatedDamage = (int)(calculatedDamage * Math.PI);
         }
+        
+        if (calculatedDamage < 0)
+            return 0;
         
         return calculatedDamage;
     }
