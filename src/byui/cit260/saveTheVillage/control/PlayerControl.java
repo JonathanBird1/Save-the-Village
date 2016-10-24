@@ -82,11 +82,12 @@ public class PlayerControl {
         playerStats.setSpeedPenalty(
         determineSpeedPenalty(playerStats.getSpeed(), playerStats.getStrength(),
                 currentWeight));
-    
+        
         //Initialize New Player & Return
         Player newPlayer = new Player(username, race, age, defaultItems,
         defaultMoney, defaultWeapon, defaultRow, defaultColumn, currentHealth,
-        currentMana, defaultDepositedItems, defaultDepositedMoney, playerStats);
+        currentMana, defaultDepositedItems, defaultDepositedMoney, playerStats,
+        currentWeight);
         
         return newPlayer;
     }
@@ -219,5 +220,15 @@ public class PlayerControl {
         weight += money / 100;  //Loss of precision from int is OK
         
         return weight;
+    }
+    
+    /* ********************************************************
+    DETERMINE WEIGHT LIMIT
+    ********************************************************* */
+    int determineWeightLimit(int strength)
+    {
+        //Used for determining whether you can acquire new items or pick up
+        //more money
+        return strength * 3;
     }
 }

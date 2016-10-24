@@ -27,6 +27,7 @@ public class Player implements Serializable {
     private Item depositedItems[];
     private int depositedMoney;
     private Stats playerStats;
+    private int playerWeight;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
@@ -54,6 +55,7 @@ public class Player implements Serializable {
         }
         this.depositedMoney = 0;
         this.playerStats = new Stats();
+        this.playerWeight = 0;
     }
 
     /* ********************************************************
@@ -62,7 +64,7 @@ public class Player implements Serializable {
     public Player(String name, String race, int age, Item[] items, int money,
             Item weapon, int currentRow, int currentColumn, int currentHealth,
             int currentMana, Item[] depositedItems, int depositedMoney,
-            Stats playerStats)
+            Stats playerStats, int playerWeight)
     {
         this.name = name;
         this.race = race;
@@ -85,6 +87,7 @@ public class Player implements Serializable {
         }
         this.depositedMoney = depositedMoney;
         this.playerStats = playerStats;
+        this.playerWeight = playerWeight;
     }
 
     /* ********************************************************
@@ -113,6 +116,7 @@ public class Player implements Serializable {
         }
         this.depositedMoney = otherPlayer.depositedMoney;
         this.playerStats = otherPlayer.playerStats;
+        this.playerWeight = otherPlayer.playerWeight;
     }
 
     /* ********************************************************
@@ -226,6 +230,16 @@ public class Player implements Serializable {
     {
         this.playerStats = playerStats;
     }
+    
+    public int getPlayerWeight()
+    {
+        return this.playerWeight;
+    }
+    
+    public void setPlayerWeight(int playerWeight)
+    {
+        this.playerWeight = playerWeight;
+    }
 
     /* ********************************************************
     OTHER
@@ -246,6 +260,7 @@ public class Player implements Serializable {
         hash = 89 * hash + Arrays.deepHashCode(this.depositedItems);
         hash = 89 * hash + this.depositedMoney;
         hash = 89 * hash + Objects.hashCode(this.playerStats);
+        hash = 89 * hash + this.playerWeight;
         return hash;
     }
 
@@ -301,6 +316,10 @@ public class Player implements Serializable {
         {
             return false;
         }
+        if (this.playerWeight != other.playerWeight)
+        {
+            return false;
+        }
         return true;
     }
 
@@ -324,11 +343,11 @@ public class Player implements Serializable {
             returnString += depositedItems[i].toString();
         }
         
-        returnString += ", " + depositedMoney;
+        returnString += ", depositedMoney=" + depositedMoney;
         
         returnString += "\n" + playerStats.toString();
         
-        returnString += '}';
+        returnString += ", playerWeight=" + playerWeight + '}';
         
         return returnString;
     }
