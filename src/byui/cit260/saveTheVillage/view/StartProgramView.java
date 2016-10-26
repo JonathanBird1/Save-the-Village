@@ -92,7 +92,7 @@ public class StartProgramView {
         boolean valid = false;
         
         while(!valid){
-            System.out.println("\n" + this.promptMessage);
+            //System.out.println("\n" + this.promptMessage);
             value = keyboard.nextLine(); //get the next lined entered from keyboard
             value = value.trim();
             
