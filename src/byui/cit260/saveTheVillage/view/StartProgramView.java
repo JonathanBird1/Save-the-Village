@@ -61,55 +61,20 @@ public class StartProgramView {
     }
 
     public void displayStartProgramView() {
-        /*
-            prompt for and get player choice:
-            'N','n' - New game
-            'L','l' - Load saved game
-            'I','i' - Display basic game instructions
-            'Q','q' - Quit
-            do requested action and display next view
-        */
-        boolean done = false; //set flag to not done
-        do{
-            //prompt for and get player's choice
-            String playerChoice = this.getPlayerChoice();
-            if(playerChoice.toUpperCase().equals("N"))
-                return /*newGame*/;
-            else if(playerChoice.toUpperCase().equals("L"))
-                return /*loadSavedGame*/;
-            else if(playerChoice.toUpperCase().equals("I"))
-                return /*instructions*/;
-            else if(playerChoice.toUpperCase().equals("Q"))
-                return; //Exit game
-            done = this.doAction(playerChoice);
-        } while (!done);
+        displayNextView();
     }
-
-    private String getPlayerChoice() {
+    
+    private void displayNextView(){
         
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
-        boolean valid = false;
+        //Create MainMenuView object
+        MainMenuView mainMenuView = new MainMenuView();
         
-        while(!valid){
-            System.out.println("\n" + this.promptMessage);
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
-            value = value.trim();
-            
-            if(value.length() < 1){
-                System.out.println("\nInvalid input");
-                continue;
-            }
-            break;
-        }
-        return value; //return the value entered
+        //Display the main menu view
+        mainMenuView.displayMainMenuView();
     }
+    
+    
 
-    private boolean doAction(String playerChoice) {
-        System.out.print("***doAction called***");
-        return true;
-    }
-
-    private String promptMessage;
+    
     
 }
