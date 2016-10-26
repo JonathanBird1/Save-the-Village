@@ -21,118 +21,13 @@ import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.model.Stats;
 import byui.cit260.saveTheVillage.model.Races;
 import byui.cit260.saveTheVillage.model.Spell;
+import byui.cit260.saveTheVillage.view.StartProgramView;
 
 public class SaveTheVillage {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        //Game
-        Game newGame = new Game();
-        newGame.setElapsedTime(0);
-        newGame.setTimeLimit(60*48);
-        newGame.setDefeatedBoss(false);
-        newGame.setFileName("noFile");
-        newGame.setCluesObtained("No Clues Obtained\n", 0);
-        
-        //Map
-        Map newMap = new Map();
-        newMap.setMapName("townAndForest");
-        newMap.setTotalRows(6);
-        newMap.setTotalColumns(6);
-        
-        //Player
-        Player newPlayer = new Player();
-        newPlayer.setName("Default Name");
-        newPlayer.setAge(20);
-        newPlayer.setRace("Human");
-        Item playerItem = new Item();
-        newPlayer.setItems(0, playerItem);
-        newPlayer.setWeapon(playerItem);
-        newPlayer.setCurrentRow(3);
-        newPlayer.setCurrentColumn(3);
-        newPlayer.setCurrentHealth(100);
-        newPlayer.setCurrentMana(100);
-        
-        //Location
-        Location newLocation = new Location();
-        newLocation.setRow(1);
-        newLocation.setColumn(1);
-        Scene locationScene = new Scene();
-        newLocation.setScene(locationScene);
-        newLocation.setVisited(false);
-        
-        //NPC
-        NPC newNPC = new NPC();
-        newNPC.setClue("No Clue Associated");
-        newNPC.setReward(playerItem);
-        newNPC.setCaptured(false);
-        
-        //Actor
-        Actor newActor = new Actor();
-        newActor.setName("No Name");
-        newActor.setType("No Type");
-        newActor.setItem("Healing Potion\n", "Potion", 100, false,
-                false, "No Association", 0, 25, 0, 1);
-       newActor.setGold(0);
-        
-        //Stats
-        Stats newStats = new Stats();
-        newStats.setHealth(0);
-        newStats.setMana(0);
-        newStats.setStrength(0);
-        newStats.setHitRate(0);
-        newStats.setMagic(0);
-        newStats.setDodgeRate(0);
-        newStats.setDefense(0);
-        newStats.setMagicDefense(0);
-        newStats.setSpeed(0);
-        
-        //Scene
-        Scene newScene = new Scene();
-        newScene.setName("noName");
-        newScene.setType("noType");
-        //Actor and NPC are set by default constructor
-        newScene.setClosed(true);
-        newScene.setClue("noClue");
-        
-        //Item
-        Item newItem = new Item();
-        newItem.setName("noName");
-        newItem.setType ("No Type");
-        newItem.setBuyPrice(0);
-        newItem.setNoBuy(false);
-        newItem.setNoSell(false);
-        newItem.setAssociation("None");
-        newItem.setWeaponDamage(0);
-        newItem.setHealingAmount(0);
-        newItem.setManaRestored(0);
-        
-        //Races
-        Races newRace = new Races();
-        newRace.setRaceName("No Race");
-        
-        //Spell
-        Spell newSpell = new Spell();
-        newSpell.setSpellName("No Name");
-        newSpell.setDamageDealt(0);
-        newSpell.setAmountHealed(0);
-        newSpell.setAttributeBoosted("No Boost");
-        newSpell.setAttributeBoostAmount(0);
-        
-        //Display Output
-        System.out.println(newGame.toString());
-        System.out.println(newMap.toString());
-        System.out.println(newPlayer.toString());
-        System.out.println(newLocation.toString());
-        System.out.println(newNPC.toString());
-        System.out.println(newActor.toString());
-        System.out.println(newStats.toString());
-        System.out.println(newScene.toString());
-        System.out.println(newItem.toString());
-        System.out.println(newRace.toString());
-        System.out.println(newSpell.toString());
-    }
     
+    public static void main(String args[]){
+    //Create Start Program and display the program view
+    StartProgramView startProgramView = new StartProgramView();
+    startProgramView.displayStartProgramView();
+    }
 }
