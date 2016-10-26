@@ -103,7 +103,7 @@ public class MainMenuView {
             }
             if(value.length() < 2){
                 System.out.println("An intriguing name, but that isn't going "
-                        + "to work to well here. Try something a little longer.");
+                        + "to work too well here. Try something a little longer.");
             }
             break;
         }
