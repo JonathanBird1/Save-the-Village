@@ -105,19 +105,15 @@ public class MainMenuView {
                 System.out.println("An intriguing name, but that isn't going "
                         + "to work too well here. Try something a little longer.");
             }
-            break;
-        }
-        return "Hello " + value + " welcome to the game."; //return the value entered
-    }
-    
-    private boolean doNewName(String playerName) {
-        if(playerName.length() > 10){
+            if(value.length() > 10){
             System.out.println("That is quite the long name. I don't think I can"
                     + " handle that.");
         }
-        return false;
+            break;
+        }
+        return value; //return the value entered
     }
-
+    
     private void startLoadGame() {
         System.out.println("Load game selected");
     }
