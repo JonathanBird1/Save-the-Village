@@ -15,6 +15,12 @@ import java.util.Set;
  * @author micha
  */
 public class PlayerControl {
+    
+    public PlayerControl()
+    {
+        //No Functions or Attributes
+    }
+    
     /* ********************************************************
     INITIALIZE NEW PLAYER
     ********************************************************* */
