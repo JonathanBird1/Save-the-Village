@@ -81,7 +81,7 @@ public class MainMenuView {
             //prompt for and get player's choice
             String playerName = this.getPlayerName();
             if(playerName.toUpperCase().equals("Q"))
-                return; 
+                return;
         } while (!done);
     }
         
@@ -91,26 +91,33 @@ public class MainMenuView {
         String value = "";
         boolean valid = false;
         
-        while(!valid){
+        while(!valid)
+        {
             System.out.println("\nOkay, so what is your name?");
             value = keyboard.nextLine(); //get the next lined entered from keyboard
             value = value.trim();
             
-            if(value.length() < 1){
+            if(value.length() < 1)
+            {
                 System.out.println("Am I to call you nothing? I don't think so, "
                         + "try again.");
                 continue;
             }
-            if(value.length() < 2){
+            else if(value.length() < 2)
+            {
                 System.out.println("An intriguing name, but that isn't going "
                         + "to work too well here. Try something a little longer.");
+                continue;
             }
-            if(value.length() > 10){
+            else if(value.length() > 10)
+            {
             System.out.println("That is quite the long name. I don't think I can"
                     + " handle that.");
+                continue;
+            }
+            valid = true;
         }
-            break;
-        }
+        
         return value; //return the value entered
     }
     
