@@ -21,12 +21,12 @@ public class MainMenuView {
     public MainMenuView()
     {
         this.menu = "\n"
-            + "\n     -----MAIN--MENU-----"
-            + "\n     | N – New Game     |"
-            + "\n     | L – Load Game    |"
-            + "\n     | I – Instructions |"
-            + "\n     | Q – Quit Game    |"
-            + "\n     --------------------"
+            + "\n\t-----MAIN--MENU-----"
+            + "\n\t| N – New Game     |"
+            + "\n\t| L – Load Game    |"
+            + "\n\t| I – Instructions |"
+            + "\n\t| Q – Quit Game    |"
+            + "\n\t--------------------"
             + "\n\n"
             + "Please make a selection:";
     }
@@ -102,7 +102,8 @@ public class MainMenuView {
             }
             else
             {
-                System.out.println("You Created a Valid Player");
+                System.out.println("Welcome, " + playerName + ", you have been "
+                        + "born!");
             }
         } while (!done);
     }
@@ -151,23 +152,26 @@ public class MainMenuView {
         
         while(!valid)
         {
-            System.out.println("\nPlease enter a race from the following\n"
-                    + "\n\tH - Human"
-                    + "\n\tE - Elf"
-                    + "\n\tD - Dwarf");
+            System.out.println("\nWhich race do you relate with?\n"
+                    + "\n\t----RACES----"
+                    + "\n\t| D – Dwarf |"
+                    + "\n\t| E – Elf   |"
+                    + "\n\t| H – Human |"
+                    + "\n\t-------------");
             value = keyboard.nextLine(); //get the next lined entered from keyboard
+            value = value.toUpperCase();
             value = value.trim();
             
             if(value.length() < 1)
             {
-                System.out.println("Sorry, you can't be a nobody.");
+                System.out.println("Sorry, you can't be a bodiless enitity.");
                 continue;
             }
-            else if(value.length() > 1 || (!value.equals("H") && 
+            if(/*value.length() > 1 || */(!value.equals("H") && 
                     !value.equals("E") && !value.equals("D")))
             {
             System.out.println("Sorry, looks like you are an alien - Please"
-                    + "select a valid race");
+                    + " select a valid race");
                 continue;
             }
             valid = true;
@@ -188,28 +192,31 @@ public class MainMenuView {
             keyboardValue = keyboard.nextLine(); //get the next lined entered from keyboard
             keyboardValue = keyboardValue.trim();
 
-            System.out.println("\nHow old is your character (Hint - it must be"
-                    + "between 25 and 75): ");
-            if (keyboardValue.matches("^\\d+$"))
+            System.out.println("\nHow old is your character?"
+                    + "\n(Hint - it must be between 25 and 75) ");
+            /*if (keyboardValue.matches("^\\d+$"))
             {
                 value = Integer.parseInt(keyboardValue);
             }
             else
             {
-                System.out.println("Sorry, letters & characters are not "
-                        + "numbers.");
+                
                 continue;
+            }*/
+            if(keyboardValue.matches("^\\d+$"))
+            {
+                System.out.println("Sorry, letters and characters are not "
+                        + "numbers.");
             }
-
             if(value < 25)
             {
-                System.out.println("Sorry, you are too young to die.");
+                System.out.println("Unfortunately, you are too young to die.");
                 continue;
             }
             else if(value > 75)
             {
                 System.out.println("Sorry, you might as well retire and enjoy"
-                        + "your last bit of life.");
+                        + " your last bit of life.");
                 continue;
             }
 
@@ -226,6 +233,5 @@ public class MainMenuView {
     private void displayInstructions() {
         System.out.println("Instructions selected");
     }
-
 
 }

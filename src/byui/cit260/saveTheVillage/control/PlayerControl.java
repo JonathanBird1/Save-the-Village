@@ -27,8 +27,8 @@ public class PlayerControl {
     public Player initializeNewPlayer(String username, String race, int age)
     {        
         //Error Trapping
-        if (!race.equals("Human") && !race.equals("Elf") && 
-                !race.equals("Dwarf"))
+        if (!race.equals("H") && !race.equals("E") && 
+                !race.equals("D"))
         {
             System.out.println("ERROR:  Invalid Race - Race must be Human, "
                     + "Elf, or Dwarf");
