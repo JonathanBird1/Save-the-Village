@@ -17,7 +17,6 @@ import java.util.Scanner;
 public class MainMenuView {
     
     private String menu;
-    private String help;
     
     public MainMenuView()
     {
@@ -30,16 +29,10 @@ public class MainMenuView {
             + "\n\t--------------------"
             + "\n\n"
             + "Please make a selection:";
-        this.help = "\n"
-            + "\n\t------HELP--MENU------"
-            + "\n\t| C – Basic Commands |"
-            + "\n\t| G – Game Menu      |"
-            + "\n\t| B – Battle         |"
-            + "\n\t| E – Exit Menu      |"
-            + "\n\t----------------------";
     }
     
-    public void displayMainMenuView(){
+    public void displayMainMenuView()
+    {
         boolean done = false;
         do{
             String menuOption = this.getMenuOption();
@@ -48,7 +41,6 @@ public class MainMenuView {
             done = this.doAction(menuOption);
             
         }while(!done);
-
     }
     private String getMenuOption() {
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
@@ -82,7 +74,7 @@ public class MainMenuView {
                 this.startLoadGame();
                 break;
             case "H": // display help
-                this.displayInstructions();
+                this.gotoHelpMenuView();
                 break;
             default:
                 System.out.println("\nYeah, that didn't work. Try again.");
@@ -239,104 +231,13 @@ public class MainMenuView {
     private void startLoadGame() {
         System.out.println("Load game selected");
     }
-
-    /* ********************************************************
-    HELP MENU
-    ********************************************************* */
-
-    private void displayInstructions() {
-        boolean done = false;
-        do{
-            String helpOption = this.getHelpMenu();
-            if(helpOption.toUpperCase().equals("E"))
-                return; //Exit game
-            done = this.doHelpAction(helpOption);
-            
-        }while(!done);
-
-    }
     
-    private String getHelpMenu() {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
-        boolean valid = false;
+    private void gotoHelpMenuView()
+    {
+        //Create New Help Menu
+        HelpMenuView helpMenu = new HelpMenuView();
         
-        while(!valid){
-            System.out.println("\n" + this.help);
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
-            value = value.trim();
-            value = value.toUpperCase();
-            
-            if(value.length() < 1){
-                System.out.println("\nSorry? What was that?");
-                continue;
-            }
-            break;
-        }
-        return value;
+        //Display Help Menu
+        helpMenu.displayHelpMenuView();
     }
-    
-    private boolean doHelpAction(String choice) {
-        
-        choice = choice.toUpperCase();
-        
-        switch(choice){
-            case "C": // display 'basic commands menu'
-                this.displayBasicMenu();
-                break;
-            case "G": // display 'game menu'
-                this.displayGameMenu();
-                break;
-            case "B": // display 'battle menu'
-                this.displayBattleMenu();
-                break;
-            default:
-                System.out.println("\nYeah, that didn't work. Try again.");
-        }
-        return false;
-    }
-
-    private void displayBasicMenu() {
-        
-        System.out.println("\n"
-                + "\n\t----BASIC--COMMANDS----"
-                + "\n\t| W – Move North      |"
-                + "\n\t| S – Move South      |"
-                + "\n\t| D – Move East       |"
-                + "\n\t| A – Move West       |"
-                + "\n\t| X – Search          |"
-                + "\n\t| Z – Analyze         |"
-                + "\n\t| P – Pick up an item |"
-                + "\n\t| U – Use an item     |"
-                + "\n\t| C – Conversations   |"
-                + "\n\t| G – Game Menu       |"
-                + "\n\t-----------------------");
-        }
-
-    private void displayGameMenu() {
-        System.out.println("\n"
-                + "\n\t------GAME---MENU------"
-                + "\n\t| X - Statistics      |"
-                + "\n\t| I - Inventory       |"
-                + "\n\t| D - Quest Details   |"
-                + "\n\t| M - Map             |"
-                + "\n\t| H - Help Menu       |"
-                + "\n\t| S - Save Game       |"
-                + "\n\t| L - Load Game       |"
-                + "\n\t| E - Exit Menu       |"
-                + "\n\t| Q - Quit Game       |"
-                + "\n\t-----------------------");
-    }
-
-    private void displayBattleMenu() {
-        System.out.println("\n"
-                + "\n\t---BATTLE--COMMANDS---"
-                + "\n\t| A - Attack         |"
-                + "\n\t| M - Use Magic      |"
-                + "\n\t| I - Use Item       |"
-                + "\n\t| R - Run Away       |"
-                + "\n\t| E - Exit Menu      |"
-                + "\n\t----------------------");
-    }
-
 }
