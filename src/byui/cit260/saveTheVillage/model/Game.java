@@ -20,6 +20,9 @@ public class Game implements Serializable {
     private boolean defeatedBoss;
     private String fileName;
     private String cluesObtained[];
+    private Map forestMap;
+    private Map dungeonMap;
+    private Player player;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
@@ -35,13 +38,16 @@ public class Game implements Serializable {
         {
             this.cluesObtained[i] = "Clue " + i + " Not Obtained\n";
         }
+        this.forestMap = new Map();
+        this.dungeonMap = new Map();
+        this.player = new Player();
     }
     
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
     public Game(int elapsedTime, int timeLimit, boolean defeatedBoss,
-            String fileName)
+            String fileName, Map forestMap, Map dungeonMap, Player player)
     {
         this.elapsedTime = elapsedTime;
         this.timeLimit = timeLimit;
@@ -54,8 +60,31 @@ public class Game implements Serializable {
         {
             this.cluesObtained[i] = "Clue " + i + " Not Obtained\n";
         }
+        this.forestMap = forestMap;
+        this.dungeonMap = dungeonMap;
+        this.player = player;
     }
     
+    /* ********************************************************
+    COPY CONSTRUCTOR
+    ********************************************************* */
+    public Game(Game otherGame)
+    {
+        this.elapsedTime = otherGame.elapsedTime;
+        this.timeLimit = otherGame.timeLimit;
+        this.defeatedBoss = otherGame.defeatedBoss;
+        this.fileName = otherGame.fileName;
+        
+        //No clues have been found yet in a new game
+        this.cluesObtained = new String[10];
+        for (int i = 0; i < this.cluesObtained.length; i++)
+        {
+            this.cluesObtained[i] = otherGame.cluesObtained[i];
+        }
+        this.forestMap = otherGame.forestMap;
+        this.dungeonMap = otherGame.dungeonMap;
+        this.player = otherGame.player;
+    }    
     
     /* ********************************************************
     ACCESSORS & MUTATORS
@@ -99,6 +128,36 @@ public class Game implements Serializable {
     public void setCluesObtained(String clueObtained, int clueNumber) {
         this.cluesObtained[clueNumber] = clueObtained;
     }
+    
+    public void setForestMap(Map forestMap)
+    {
+        this.forestMap = forestMap;
+    }
+    
+    public Map getForestMap()
+    {
+        return forestMap;
+    }
+    
+    public void setDungeonMap(Map dungeonMap)
+    {
+        this.dungeonMap = dungeonMap;
+    }
+    
+    public Map getDungeonMap()
+    {
+        return dungeonMap;
+    }
+    
+    public void setPlayer(Player player)
+    {
+        this.player = player;
+    }
+    
+    public Player getPlayer()
+    {
+        return player;
+    }
 
     /* ********************************************************
     OTHER
@@ -111,6 +170,9 @@ public class Game implements Serializable {
         hash = 89 * hash + (this.defeatedBoss ? 1 : 0);
         hash = 89 * hash + Objects.hashCode(this.fileName);
         hash = 89 * hash + Arrays.deepHashCode(this.cluesObtained);
+        hash = 89 * hash + Objects.hashCode(this.forestMap);
+        hash = 89 * hash + Objects.hashCode(this.dungeonMap);
+        hash = 89 * hash + Objects.hashCode(this.player);
         return hash;
     }
 
@@ -138,6 +200,18 @@ public class Game implements Serializable {
         if (!Objects.equals(this.fileName, other.fileName)) {
             return false;
         }
+        if (!Objects.equals(this.forestMap, other.forestMap))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.dungeonMap, other.dungeonMap))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.player, other.player))
+        {
+            return false;
+        }
         return Arrays.deepEquals(this.cluesObtained, other.cluesObtained);
     }
 
@@ -151,6 +225,9 @@ public class Game implements Serializable {
         {
             returnString += cluesObtained[i];
         }
+        
+        returnString += "forestMap= " + forestMap.toString() + "dungeonMap= " +
+                dungeonMap.toString() + "player= " + player.toString();
         
         returnString += '}';
 

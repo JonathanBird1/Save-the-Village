@@ -5,10 +5,30 @@
  */
 package byui.cit260.saveTheVillage.control;
 
+import byui.cit260.saveTheVillage.model.Map;
 /**
  *
  * @author Master Brickbuilder
  */
-public class MapControl {
+public class MapControl
+{
+    public void initializeMap()
+    {
+        
+    }
     
+    public void movePlayer()
+    {
+        
+    }
+    
+    public boolean validateMove()
+    {
+        
+    }
+    
+    public boolean encounterEnemy()
+    {
+        
+    }
 }

@@ -23,9 +23,9 @@ public class Map implements Serializable {
     ********************************************************* */
     public Map()
     {
-        this.mapName = "townAndForest";
-        this.totalRows = 6;
-        this.totalColumns = 6;   
+        this.mapName = "No Map";
+        this.totalRows = 0;
+        this.totalColumns = 0;   
     }
 
    /* ********************************************************
