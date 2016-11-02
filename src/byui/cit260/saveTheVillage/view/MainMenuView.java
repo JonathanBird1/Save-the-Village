@@ -107,7 +107,7 @@ public class MainMenuView {
             }
         } while (!done);
         GameMenuView gameMenuView = new GameMenuView();
-        gameMenuView.displayMenu();
+        gameMenuView.displayGameMenuView();
     }
         
     private String getPlayerName() {

@@ -15,6 +15,7 @@ import java.util.Scanner;
     HELP MENU
     ********************************************************* */
 public class HelpMenuView {
+    
     private String helpMenu;
     
     public HelpMenuView()
@@ -72,7 +73,7 @@ public class HelpMenuView {
                 this.displayBasicMenu();
                 break;
             case "G": // display 'game menu'
-                this.displayGameMenu();
+                this.gotoGameMenuView();
                 break;
             case "B": // display 'battle menu'
                 this.displayBattleMenu();
@@ -100,21 +101,6 @@ public class HelpMenuView {
                 + "\n\t-----------------------");
         }
 
-    private void displayGameMenu() {
-        System.out.println("\n"
-                + "\n\t------GAME---MENU------"
-                + "\n\t| X - Statistics      |"
-                + "\n\t| I - Inventory       |"
-                + "\n\t| D - Quest Details   |"
-                + "\n\t| M - Map             |"
-                + "\n\t| H - Help Menu       |"
-                + "\n\t| S - Save Game       |"
-                + "\n\t| L - Load Game       |"
-                + "\n\t| E - Exit Menu       |"
-                + "\n\t| Q - Quit Game       |"
-                + "\n\t-----------------------");
-    }
-
     private void displayBattleMenu() {
         System.out.println("\n"
                 + "\n\t---BATTLE--COMMANDS---"
@@ -124,5 +110,15 @@ public class HelpMenuView {
                 + "\n\t| R - Run Away       |"
                 + "\n\t| E - Exit Menu      |"
                 + "\n\t----------------------");
+    }
+
+    private void gotoGameMenuView() {
+    {
+        //Create New Game Menu
+        GameMenuView gameMenu = new GameMenuView();
+        
+        //Display Game Menu
+        gameMenu.displayGameMenuView();
+    }
     }
 }
