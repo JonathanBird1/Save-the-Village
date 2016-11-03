@@ -24,11 +24,11 @@ public class MapControl
     
     public boolean validateMove()
     {
-        
+        return false;
     }
     
     public boolean encounterEnemy()
     {
-        
+        return false;
     }
 }

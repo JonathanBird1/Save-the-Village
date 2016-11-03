@@ -35,7 +35,6 @@ class GameMenuView {
 
     public void displayGameMenuView()
     {
-        System.out.println(this.gameMenu);
         boolean done = false;
         do{
             String gameMenuOption = this.getGameMenuOption();
@@ -76,6 +75,7 @@ class GameMenuView {
                 break;
             case "I": //display inventory
                 this.goToInventory();
+                break;
             case "D":
                 this.displayQuestDetails();
                 break;
@@ -117,13 +117,14 @@ class GameMenuView {
     }
 
     private void startLoadGame() {
-        System.out.print("Load chosen");
+        System.out.print("Load game chosen");
     }
 
     private void quitGame() {
         System.out.print("You have chosen to quit the game. "
                 + "Congratulations, the entire village has been "
-                + "devoured by the Beast.");
+                + "devoured by the Beast. I hope you can sleep "
+                + "well tonight.");
         System.exit(0);
     }
 }
