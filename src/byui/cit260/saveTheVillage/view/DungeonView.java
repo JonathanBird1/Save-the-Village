@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.saveTheVillage.view;
+import byui.cit260.saveTheVillage.control.MapControl;
 
 import java.util.Scanner;
 
@@ -28,6 +29,7 @@ public class DungeonView {
                 #
                 ####E
         */
+        
         System.out.println("\n"
             + "You hear the whistling of the wind as you venture deeper "
             + "into the dungeon. Each of your steps echoes ominously through "
