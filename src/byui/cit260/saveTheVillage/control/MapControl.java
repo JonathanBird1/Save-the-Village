@@ -36,11 +36,14 @@ public class MapControl
         
         double rand = (Math.random() * 100);
         
-        if(rand < 50 || rand > 1)
-            System.out.println("\n"
-            + "You hear the whistling of the wind as you venture deeper "
-            + "into the dungeon. Each of your steps echoes ominously through "
-            + "the vast, emptiness ahead and behind you.");
+        if(rand > 100 || rand < 1) //Error trapping, random must be between 1 and 100
+            System.out.println("\nInvalid number.");
+        
+            else if(rand < 50)
+                System.out.println("\n"
+                + "You hear the whistling of the wind as you venture deeper "
+                + "into the dungeon. Each of your steps echoes ominously through "
+                + "the vast, emptiness ahead and behind you.");
         
             else if(rand > 50 || rand < 63)
                 System.out.println("\n"
@@ -73,7 +76,5 @@ public class MapControl
                 + "take in the human body. The minotaur roars at your intrusion "
                 + "and the battle is on.");
                 
-            else if(rand > 100 || rand < 1)
-                System.out.println("\nInvalid number.");
         }
 }
