@@ -34,6 +34,9 @@ public class DungeonView {
             + "You hear the whistling of the wind as you venture deeper "
             + "into the dungeon. Each of your steps echoes ominously through "
             + "the vast, emptiness ahead and behind you.");
+        
+        // Need to pull dungeonEncounter
+        
         boolean done = false;
         do{
             String dungeonView = this.getDungeonView();
