@@ -37,7 +37,7 @@ public class InnView {
         
         if(choice > 0 || choice < 9 ){
             SceneControl newSceneControl = new SceneControl();
-            newSceneControl.restAtInn(Player, choice);
+        //    newSceneControl.restAtInn(Player, choice);
         }
             else{
                 System.out.println("\nYeah, that didn't work. Try again.");
