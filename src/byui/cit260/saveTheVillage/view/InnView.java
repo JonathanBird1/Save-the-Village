@@ -15,8 +15,15 @@ import byui.cit260.saveTheVillage.control.SceneControl;
  */
 public class InnView {
     
+    private String innMessage;
+            
+    public InnView()  //Display message
+    {
+        this.innMessage = "\n How long would you like to rest?";
+    }
+    
     private int getInput() {
-        System.out.println("How long would you like to rest?");
+        
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         int value = 0;
         boolean valid = false;
@@ -38,9 +45,10 @@ public class InnView {
         if(choice > 0 || choice < 9 ){
             SceneControl newSceneControl = new SceneControl();
         //    newSceneControl.restAtInn(Player, choice);
+        //  Call restAtInn from SceneControl
         }
             else{
-                System.out.println("\nYeah, that didn't work. Try again.");
+                System.out.println("\nChoose between 0 and 8. Try again.");
         }
         return false;
     }

@@ -18,11 +18,11 @@ import java.util.Scanner;
  */
 public class StoreView {
     
-    private String menu;
+    private String storeMenu;
     
     public StoreView()
     {
-        this.menu = "\n"
+        this.storeMenu = "\n"
             + "\n\t----STORE--MENU-----"
             + "\n\t| B – Buy Items     |"
             + "\n\t| S – Sell Items    |"
@@ -32,7 +32,7 @@ public class StoreView {
             + "Please make a selection:";
     }
     
-    public void displayStoreView()
+    public void displayStoreMenuView()
     {
         boolean done = false;
         do{
@@ -49,7 +49,7 @@ public class StoreView {
         boolean valid = false;
         
         while(!valid){
-            System.out.println("\n" + this.menu);
+            System.out.println("\n" + this.storeMenu);
             value = keyboard.nextLine(); //get the next lined entered from keyboard
             value = value.trim();
             value = value.toUpperCase();
