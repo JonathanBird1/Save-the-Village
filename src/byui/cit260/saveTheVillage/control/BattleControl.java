@@ -77,7 +77,7 @@ public class BattleControl {
         
         int calculatedDamage = (int)((baseDamage + offensiveAttribute) *
                 successRate - defensiveAttribute);
-        int specialMultiplier;
+        
         int randomNumber = (int)(Math.random() * 100);
         if (randomNumber <= 25)
         {
