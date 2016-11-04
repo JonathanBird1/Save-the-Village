@@ -6,6 +6,7 @@
 package byui.cit260.saveTheVillage.control;
 
 import byui.cit260.saveTheVillage.model.Player;
+import byui.cit260.saveTheVillage.model.Item;
 
 /**
  *
@@ -36,6 +37,11 @@ public class SceneControl {
         {
             player.setCurrentHealth(player.getPlayerStats().getHealth());
         }
+    }
+    
+    // Buy item from store
+    private void buyItem(Player player, String itemNum){
+    
     }
     
 }

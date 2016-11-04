@@ -31,7 +31,6 @@ public class HelpMenuView {
     
     public void displayHelpMenuView()
     {
-        System.out.println(this.helpMenu);
         boolean done = false;
         do{
             String helpMenuOption = this.getHelpMenuOption();
@@ -47,7 +46,6 @@ public class HelpMenuView {
         String value = "";
         boolean valid = false;
         
-        System.out.println(helpMenu);
         while(!valid)
         {
             System.out.println("\n" + this.helpMenu);
@@ -88,10 +86,10 @@ public class HelpMenuView {
         
         System.out.println("\n"
                 + "\n\t----BASIC--COMMANDS----"
-                + "\n\t| W – Move North      |"
+                + "\n\t| N – Move North      |"
                 + "\n\t| S – Move South      |"
-                + "\n\t| D – Move East       |"
-                + "\n\t| A – Move West       |"
+                + "\n\t| E – Move East       |"
+                + "\n\t| W – Move West       |"
                 + "\n\t| X – Search          |"
                 + "\n\t| Z – Analyze         |"
                 + "\n\t| P – Pick up an item |"

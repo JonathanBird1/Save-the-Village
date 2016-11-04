@@ -26,6 +26,9 @@ public class MainMenuView {
             + "\n\t| L – Load Game    |"
             + "\n\t| H – Help Menu    |"
             + "\n\t| Q – Quit Game    |"
+            + "\n\t|---Quick-Access---|"
+            + "\n\t| G - Game Menu    |"
+            + "\n\t| D - Dungeon View |"
             + "\n\t--------------------"
             + "\n\n"
             + "Please make a selection:";
@@ -76,6 +79,15 @@ public class MainMenuView {
             case "H": // display help
                 this.gotoHelpMenuView();
                 break;
+            
+            // These are to be deleted prior to implementing final game
+            
+            case "G":
+                this.gotoGameMenuView();
+                break;
+            case "D":
+                this.gotoDungeonView();
+                break;
             default:
                 System.out.println("\nYeah, that didn't work. Try again.");
         }
@@ -106,8 +118,6 @@ public class MainMenuView {
                         + "born!");
             }
         } while (!done);
-        GameMenuView gameMenuView = new GameMenuView();
-        gameMenuView.displayGameMenuView();
     }
         
     private String getPlayerName() {
@@ -196,7 +206,7 @@ public class MainMenuView {
 
             System.out.println("\nHow old is your character?"
                     + "\n(Hint - it must be between 25 and 75) ");
-            /*if (keyboardValue.matches("^\\d+$"))
+            if (keyboardValue.matches("^\\d+$"))
             {
                 value = Integer.parseInt(keyboardValue);
             }
@@ -204,12 +214,12 @@ public class MainMenuView {
             {
                 
                 continue;
-            }*/
-            if(keyboardValue.matches("^\\d+$"))
+            }
+            /*if(keyboardValue.matches("^\\d+$"))
             {
                 System.out.println("Sorry, letters and characters are not "
                         + "numbers.");
-            }
+            }*/
             if(value < 25)
             {
                 System.out.println("Unfortunately, you are too young to die.");
@@ -239,5 +249,20 @@ public class MainMenuView {
         
         //Display Help Menu
         helpMenu.displayHelpMenuView();
+    }
+    
+    /* *****************************************
+        MAKE SURE TO DELETE:
+        gotoGameMenuView()
+    */
+    
+    private void gotoGameMenuView() {
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayGameMenuView();
+    }
+
+    private void gotoDungeonView() {
+        DungeonView dungeon = new DungeonView();
+        dungeon.displayDungeonView();
     }
 }
