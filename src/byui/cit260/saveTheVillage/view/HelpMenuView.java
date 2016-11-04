@@ -108,7 +108,6 @@ public class HelpMenuView {
                 + "\n\t| M - Use Magic      |"
                 + "\n\t| I - Use Item       |"
                 + "\n\t| R - Run Away       |"
-                + "\n\t| E - Exit Menu      |"
                 + "\n\t----------------------");
     }
 

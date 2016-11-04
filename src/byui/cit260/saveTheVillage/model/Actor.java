@@ -18,30 +18,34 @@ public class Actor implements Serializable{
     private Item item;
     private int gold;
     private Stats enemyStats;
+    private int currentHealth;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
     ********************************************************* */
     public Actor()
     {
-        name = "No Name";
-        type = "No Type";
-        item = new Item();
-        gold = 0;
-        enemyStats = new Stats();
+        this.name = "No Name";
+        this.type = "No Type";
+        this.item = new Item();
+        this.gold = 0;
+        this.enemyStats = new Stats();
+        this.currentHealth = 0;
     }
     
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
     public Actor(String name, String type, Item item, int gold,
-            Stats enemyStats)
+            Stats enemyStats, int currentHealth)
     {
         this.name = name;
         this.type = type;
         this.item = item;
         this.gold = gold;
         this.enemyStats = enemyStats;
+        this.currentHealth = currentHealth;
+        
     }
     
     /* ********************************************************
@@ -54,6 +58,7 @@ public class Actor implements Serializable{
         this.item = otherActor.item;
         this.gold = otherActor.gold;
         this.enemyStats = otherActor.enemyStats;
+        this.currentHealth = otherActor.currentHealth;
     }
     
     /* ********************************************************
@@ -123,6 +128,16 @@ public class Actor implements Serializable{
         enemyStats.setSpeed(speed);
         enemyStats.setSpeedPenalty(speedPenalty);
     }
+    
+    public int getCurrentHealth()
+    {
+        return this.currentHealth;
+    }
+    
+    public void setCurrentHealth(int currentHealth)
+    {
+        this.currentHealth = currentHealth;
+    }
 
 
     /* ********************************************************
@@ -135,7 +150,8 @@ public class Actor implements Serializable{
         hash = 53 * hash + Objects.hashCode(this.type);
         hash = 53 * hash + Objects.hashCode(this.item);
         hash = 53 * hash + this.gold;
-        hash = 89 * hash + Objects.hashCode(this.enemyStats);
+        hash = 53 * hash + Objects.hashCode(this.enemyStats);
+        hash = 53 * hash + this.currentHealth;
         return hash;
     }
 
@@ -164,6 +180,10 @@ public class Actor implements Serializable{
         {
             return false;
         }
+        if (this.currentHealth != other.currentHealth)
+        {
+            return false;
+        }
         return true;
     }
 
@@ -172,7 +192,8 @@ public class Actor implements Serializable{
         String returnString =  "Actor{" + "name=" + name + ", type=" + 
                 type + ", item=" + item.toString() + ", gold=" + gold;
         
-        returnString += enemyStats.toString();
+        returnString += enemyStats.toString() + ", currentHealth= " + 
+                currentHealth;
         
         returnString += '}';
         

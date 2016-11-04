@@ -183,7 +183,7 @@ public class PlayerControl {
     /* ********************************************************
     DETERMINE SPEED PENALTY
     ********************************************************* */
-    int determineSpeedPenalty(int speed, int strength, int weight)
+    public int determineSpeedPenalty(int speed, int strength, int weight)
     {
         if(speed < 0)
             return -1;
@@ -212,7 +212,7 @@ public class PlayerControl {
     /* ********************************************************
     DETERMINE WEIGHT
     ********************************************************* */
-    int determineWeight (Item[] currentItems, Item currentWeapon, int money)
+    public int determineWeight (Item[] currentItems, Item currentWeapon, int money)
     {
         int weight = 0;
         
@@ -231,7 +231,7 @@ public class PlayerControl {
     /* ********************************************************
     DETERMINE WEIGHT LIMIT
     ********************************************************* */
-    int determineWeightLimit(int strength)
+    public int determineWeightLimit(int strength)
     {
         //Used for determining whether you can acquire new items or pick up
         //more money
