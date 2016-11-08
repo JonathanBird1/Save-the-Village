@@ -16,54 +16,22 @@ import java.util.Scanner;
  *
  * @author Yoda
  */
-public class StoreView {
-    
-    private String storeMenu;
+public class StoreView extends View{
     
     public StoreView()
     {
-        this.storeMenu = "\n"
-            + "\n\t----STORE--MENU-----"
+        super("\n"
+            + "\n\t----STORE---MENU-----"
             + "\n\t| B – Buy Items     |"
             + "\n\t| S – Sell Items    |"
             + "\n\t| L – Leave Store   |"
-            + "\n\t--------------------"
+            + "\n\t---------------------"
             + "\n\n"
-            + "Please make a selection:";
+            + "Please make a selection:");
     }
     
-    public void displayStoreMenuView()
-    {
-        boolean done = false;
-        do{
-            String menuOption = this.getMenuOption();
-            if(menuOption.toUpperCase().equals("L"))
-                return; //Exit store
-            done = this.doAction(menuOption);
-            
-        }while(!done);
-    }
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
-        boolean valid = false;
-        
-        while(!valid){
-            System.out.println("\n" + this.storeMenu);
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
-            value = value.trim();
-            value = value.toUpperCase();
-            
-            if(value.length() < 1){
-                System.out.println("\nSorry? What was that?");
-                continue;
-            }
-            break;
-        }
-        return value;
-    }
-    
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
         
@@ -178,7 +146,5 @@ public class StoreView {
         return; 
         
     }
-
-    
     
 }

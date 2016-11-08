@@ -14,13 +14,11 @@ import java.util.Scanner;
     /* ********************************************************
     GAME MENU
     ********************************************************* */
-class GameMenuView {
-    
-    private String gameMenu;
+public class GameMenuView extends View{
     
     public GameMenuView()
     {
-        this.gameMenu = "\n"
+        super("\n"
             + "\n\t------GAME---MENU------"
             + "\n\t| X - Statistics      |"
             + "\n\t| I - Inventory       |"
@@ -30,42 +28,11 @@ class GameMenuView {
             + "\n\t| L - Load Game       |"
             + "\n\t| E - Exit Menu       |"
             + "\n\t| Q - Quit Game       |"
-            + "\n\t-----------------------";
+            + "\n\t-----------------------");
     }
-
-    public void displayGameMenuView()
-    {
-        boolean done = false;
-        do{
-            String gameMenuOption = this.getGameMenuOption();
-            if(gameMenuOption.toUpperCase().equals("E"))
-                return; // back to help menu
-            done = this.doGameMenuAction(gameMenuOption);
-        }while(!done);
-    }
-
-    private String getGameMenuOption() {
-        Scanner keyboard = new Scanner (System.in);
-        String value = "";
-        boolean valid = false;
-        
-        System.out.println(gameMenu);
-        while(!valid)
-        {
-            value = keyboard.nextLine();
-            value = value.trim();
-            value = value.toUpperCase();
-            
-            if(value.length() < 1){
-                System.out.println("\nNo entiendo, try again.");
-                continue;
-            }
-            break;
-        }
-        return value;
-    }
-
-    private boolean doGameMenuAction(String choice) {
+    
+    @Override
+    public boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
         

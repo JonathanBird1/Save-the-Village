@@ -14,58 +14,25 @@ import java.util.Scanner;
  *
  * @author Yoda
  */
-public class MainMenuView {
-    
-    private String menu;
-    
-    public MainMenuView()
-    {
-        this.menu = "\n"
+public class MainMenuView extends View{
+ 
+    public MainMenuView(){
+        super("\n"
             + "\n\t-----MAIN--MENU-----"
             + "\n\t| N – New Game     |"
             + "\n\t| L – Load Game    |"
             + "\n\t| H – Help Menu    |"
-            + "\n\t| Q – Quit Game    |"
+            + "\n\t| E – Exit Game    |"
             + "\n\t|---Quick-Access---|"
             + "\n\t| G - Game Menu    |"
             + "\n\t| D - Dungeon View |"
             + "\n\t--------------------"
             + "\n\n"
-            + "Please make a selection:";
+            + "Please make a selection:");
     }
     
-    public void displayMainMenuView()
-    {
-        boolean done = false;
-        do{
-            String menuOption = this.getMenuOption();
-            if(menuOption.toUpperCase().equals("Q"))
-                return; //Exit game
-            done = this.doAction(menuOption);
-            
-        }while(!done);
-    }
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
-        boolean valid = false;
-        
-        while(!valid){
-            System.out.println("\n" + this.menu);
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
-            value = value.trim();
-            value = value.toUpperCase();
-            
-            if(value.length() < 1){
-                System.out.println("\nSorry? What was that?");
-                continue;
-            }
-            break;
-        }
-        return value;
-    }
-    
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
         
@@ -248,7 +215,7 @@ public class MainMenuView {
         HelpMenuView helpMenu = new HelpMenuView();
         
         //Display Help Menu
-        helpMenu.displayHelpMenuView();
+        helpMenu.display();
     }
     
     /* *****************************************
@@ -258,7 +225,7 @@ public class MainMenuView {
     
     private void gotoGameMenuView() {
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayGameMenuView();
+        gameMenu.display();
     }
 
     private void gotoDungeonView() {

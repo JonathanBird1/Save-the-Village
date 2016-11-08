@@ -13,7 +13,7 @@ import byui.cit260.saveTheVillage.control.SceneControl;
  *
  * @author Yoda
  */
-public class InnView {
+public class InnView{
     
     private String innMessage;
             

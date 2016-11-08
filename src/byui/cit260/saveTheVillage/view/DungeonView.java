@@ -51,7 +51,7 @@ public class DungeonView {
         String value = "";
         boolean valid = false;
         
-        System.out.println("What do you choose to do?");
+        System.out.println("\nWhat do you choose to do?");
         while(!valid){
             value = keyboard.nextLine(); //get the next lined entered from keyboard
             value = value.trim();

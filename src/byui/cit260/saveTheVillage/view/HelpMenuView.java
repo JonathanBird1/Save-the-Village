@@ -14,55 +14,21 @@ import java.util.Scanner;
     /* ********************************************************
     HELP MENU
     ********************************************************* */
-public class HelpMenuView {
-    
-    private String helpMenu;
-    
+public class HelpMenuView extends View{
+
     public HelpMenuView()
     {
-        this.helpMenu = "\n"
+        super("\n"
             + "\n\t------HELP--MENU------"
             + "\n\t| C – Basic Commands |"
             + "\n\t| G – Game Menu      |"
             + "\n\t| B – Battle         |"
             + "\n\t| E – Exit Menu      |"
-            + "\n\t----------------------";
+            + "\n\t----------------------");
     }
     
-    public void displayHelpMenuView()
-    {
-        boolean done = false;
-        do{
-            String helpMenuOption = this.getHelpMenuOption();
-            if(helpMenuOption.toUpperCase().equals("E"))
-                return; //Back to Main Menu
-            done = this.doHelpAction(helpMenuOption);
-            
-        }while(!done);
-    }
-    
-    private String getHelpMenuOption() {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
-        boolean valid = false;
-        
-        while(!valid)
-        {
-            System.out.println("\n" + this.helpMenu);
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
-            value = value.trim();
-            value = value.toUpperCase();
-            
-            if(value.length() < 1){
-                System.out.println("\nSorry? What was that?");
-                continue;
-            }
-            break;
-        }
-        return value;
-    }
-    
-    private boolean doHelpAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
         
@@ -111,11 +77,12 @@ public class HelpMenuView {
 
     private void gotoGameMenuView() {
     {
-        //Create New Game Menu
+        //Create new 'Game Menu'
         GameMenuView gameMenu = new GameMenuView();
         
-        //Display Game Menu
-        gameMenu.displayGameMenuView();
+        //Display 'Game Menu'
+        gameMenu.display();
     }
     }
+
 }

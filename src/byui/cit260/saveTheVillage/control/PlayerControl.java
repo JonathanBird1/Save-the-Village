@@ -38,7 +38,7 @@ public class PlayerControl {
         }
         if (age < 25 || age > 75)
         {
-            System.out.println("ERROR:  Invalid Age - Age must be between"
+            System.out.println("ERROR:  Invalid Age - Age must be between "
                     + "25 and 75");
             Player newPlayer = new Player();    
             newPlayer.setName("Invalid");
@@ -46,7 +46,7 @@ public class PlayerControl {
         }
         if (username.equals("Invalid"))
         {
-            System.out.println("ERROR:  Invalid Name = 'Invalid' is a reserved"
+            System.out.println("ERROR:  Invalid Name = 'Invalid' is a reserved "
                     + "keyword");
             Player newPlayer = new Player();    
             newPlayer.setName("Invalid");
