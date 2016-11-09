@@ -230,6 +230,6 @@ public class MainMenuView extends View{
 
     private void gotoDungeonView() {
         DungeonView dungeon = new DungeonView();
-        dungeon.displayDungeonView();
+        dungeon.display();
     }
 }
