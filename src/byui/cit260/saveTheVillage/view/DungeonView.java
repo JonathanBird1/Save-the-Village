@@ -21,18 +21,6 @@ public class DungeonView extends View{
             + "into the dungeon. Each of your steps echoes ominously through "
             + "the vast, emptiness ahead and behind you."
             + "\nWhat do you choose to do?");
-        
-        /* Dungeon Map
-                ####A
-                #
-                ####B
-                #
-            ########C
-                #
-                ####D
-                #
-                ####E
-        */
         // Need to pull dungeonEncounter
     }
     

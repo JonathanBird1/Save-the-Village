@@ -24,8 +24,8 @@ public class MainMenuView extends View{
             + "\n\t| H – Help Menu    |"
             + "\n\t| E – Exit Game    |"
             + "\n\t|---Quick-Access---|"
-            + "\n\t| G - Game Menu    |"
-            + "\n\t| D - Dungeon View |"
+            + "\n\t| M - Map View     |"
+            + "\n\t|                  |"
             + "\n\t--------------------"
             + "\n\n"
             + "Please make a selection:");
@@ -43,18 +43,21 @@ public class MainMenuView extends View{
             case "L": // load an existing game
                 this.startLoadGame();
                 break;
-            case "H": // display help
+            case "H": // display help menu
                 this.gotoHelpMenuView();
                 break;
             
             // These are to be deleted prior to implementing final game
             
-            case "G":
-                this.gotoGameMenuView();
+            case "M":
+                this.gotoMapView();
                 break;
             case "D":
                 this.gotoDungeonView();
                 break;
+                
+            //
+                
             default:
                 System.out.println("\nYeah, that didn't work. Try again.");
         }
@@ -223,9 +226,9 @@ public class MainMenuView extends View{
         gotoGameMenuView()
     */
     
-    private void gotoGameMenuView() {
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
+    private void gotoMapView() {
+        MapView mapView = new MapView();
+        mapView.display();
     }
 
     private void gotoDungeonView() {

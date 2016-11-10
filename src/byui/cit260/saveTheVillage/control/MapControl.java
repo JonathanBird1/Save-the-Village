@@ -16,9 +16,41 @@ public class MapControl
     {
         //Construct Forest Map
         
+        System.out.println("\n"
+                    + "\n\t -- -- -- -- -- -- "
+                    + "\n\t| F| F| F| F| F| F|"
+                    + "\n\t -- -- -- -- -- -- "
+                    + "\n\t| F| F| F| F| F| F|"
+                    + "\n\t -- -- -- -- -- -- "
+                    + "\n\t| F| F| T| F| F| F|"
+                    + "\n\t -- -- -- -- -- -- "
+                    + "\n\t| F| F| F| F| F| F|"
+                    + "\n\t -- -- -- -- -- -- "
+                    + "\n\t| F| F| F| F| F| F|"
+                    + "\n\t -- -- -- -- -- -- ");
             
-        
         //Construct Dungeon Map
+        
+        System.out.println("\n"
+                    + "\n\t             --"
+                    + "\n\t            |  |"
+                    + "\n\t             --"
+                    + "\n\t            |  |"
+                    + "\n\t             --"
+                    + "\n\t            |  |"
+                    + "\n\t             --"
+                    + "\n\t            |  |"
+                    + "\n\t -- -- -- -- -- -- -- -- --"
+                    + "\n\t|DE|  |  |  |  |  |  |  |  |"
+                    + "\n\t -- -- -- -- -- -- -- -- --"
+                    + "\n\t            |  |"
+                    + "\n\t             --"
+                    + "\n\t            |  |"
+                    + "\n\t             --"
+                    + "\n\t            |  |"
+                    + "\n\t             --"
+                    + "\n\t            |  |"
+                    + "\n\t             --");
         
     }
     
