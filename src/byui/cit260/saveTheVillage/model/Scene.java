@@ -13,7 +13,8 @@ import java.util.Objects;
  *
  * @author Yoda
  */
-public class Scene implements Serializable{
+public class Scene extends Location
+{
     //class instance variables
     private String sceneName;
     private String sceneType;
@@ -27,6 +28,7 @@ public class Scene implements Serializable{
     ********************************************************* */
     public Scene()
     {
+        super();  //Call superclass Location constructor
         this.sceneName = "No Name";
         this.sceneType = "No Type";
         this.enemy = new Actor();
@@ -42,9 +44,11 @@ public class Scene implements Serializable{
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
-    public Scene(String sceneName, String sceneType, Actor enemy,
-            NPC[] npcs, boolean closed, String clue)
+    public Scene(int row, int column, boolean visited, String sceneName, 
+            String sceneType, Actor enemy, NPC[] npcs, boolean closed, 
+            String clue)
     {
+        super(row, column, visited);  //Calls Location default constructor
         this.sceneName = sceneName;
         this.sceneType = sceneType;
         this.enemy = enemy;
@@ -62,6 +66,7 @@ public class Scene implements Serializable{
     ********************************************************* */
     public Scene(Scene otherScene)
     {
+        super(otherScene);
         this.sceneName = otherScene.sceneName;
         this.sceneType = otherScene.sceneType;
         this.enemy = otherScene.enemy;
@@ -172,7 +177,9 @@ public class Scene implements Serializable{
 
     @Override
     public String toString() {
-        String returnString = "Scene{" + "sceneName=" + sceneName + ", sceneType=" + sceneType + 
+        String returnString = "Scene{" + "row=" + super.getRow() + " column=" +
+                super.getColumn() + " visited=" + super.getVisited() +
+                "sceneName=" + sceneName + ", sceneType=" + sceneType + 
                 ", enemy=" + enemy + ", npcs=";
         
         for (int i = 0; i < npcs.length; i++)

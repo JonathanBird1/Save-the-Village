@@ -12,8 +12,13 @@ import byui.cit260.saveTheVillage.model.Map;
  */
 public class MapControl
 {
-    public void initializeMap()
+    public void initializeMap(Map forestMap, Map dungeonMap)
     {
+        //Construct Forest Map
+        
+            
+        
+        //Construct Dungeon Map
         
     }
     
