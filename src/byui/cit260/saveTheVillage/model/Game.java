@@ -38,8 +38,8 @@ public class Game implements Serializable {
         {
             this.cluesObtained[i] = "Clue " + i + " Not Obtained\n";
         }
-        this.forestMap = new Map();
-        this.dungeonMap = new Map();
+        this.forestMap = new Map("Forest");
+        this.dungeonMap = new Map("Dungeon");
         this.player = new Player();
     }
     

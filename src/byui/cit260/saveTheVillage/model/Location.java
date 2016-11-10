@@ -15,7 +15,6 @@ import java.util.Objects;
 public class Location implements Serializable {
     private int row;
     private int column;
-    private Scene scene;
     private boolean visited;
 
     /* ********************************************************
@@ -25,18 +24,16 @@ public class Location implements Serializable {
     {
         this.row = 0;
         this.column = 0;
-        this.scene = new Scene();
         this.visited = false;
     }
 
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
-    public Location(int row, int column, Scene scene, boolean visited)
+    public Location(int row, int column, boolean visited)
     {
         this.row = row;
         this.column = column;
-        this.scene = scene;
         this.visited = visited;
     }
 
@@ -47,7 +44,6 @@ public class Location implements Serializable {
     {
         this.row = otherLocation.row;
         this.column = otherLocation.column;
-        this.scene = otherLocation.scene;
         this.visited = otherLocation.visited;
     }
 
@@ -70,15 +66,7 @@ public class Location implements Serializable {
         this.column = column;
     }
 
-    public Scene getScene() {
-        return scene;
-    }
-
-    public void setScene(Scene scene) {
-        this.scene = scene;
-    }
-
-    public boolean isVisited() {
+    public boolean getVisited() {
         return visited;
     }
 
@@ -94,7 +82,6 @@ public class Location implements Serializable {
         int hash = 7;
         hash = 89 * hash + this.row;
         hash = 89 * hash + this.column;
-        hash = 89 * hash + Objects.hashCode(this.scene);
         hash = 89 * hash + (this.visited ? 1 : 0);
         return hash;
     }
@@ -120,16 +107,12 @@ public class Location implements Serializable {
         if (this.visited != other.visited) {
             return false;
         }
-        if (!Objects.equals(this.scene, other.scene)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
         return "Location{" + "row=" + row + ", column=" + column + 
-                ", scene=" + scene.toString() + ", visited=" + visited + '}';
+                ", visited=" + visited + '}';
     }
-    
 }

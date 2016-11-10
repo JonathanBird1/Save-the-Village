@@ -35,7 +35,7 @@ public class PlayerControlTest {
         
         //Variables
         String username = "Name";
-        String race = "Human";
+        String race = "H";
         int age = 35;
         
         //Create an instance
@@ -112,7 +112,7 @@ public class PlayerControlTest {
         
         //Variables
         username = "None";
-        race = "Human";
+        race = "H";
         age = 24;
         
         //Create an instance
@@ -135,7 +135,7 @@ public class PlayerControlTest {
         
         //Variables
         username = "None";
-        race = "Human";
+        race = "H";
         age = 76;
         
         //Create an instance
@@ -159,7 +159,7 @@ public class PlayerControlTest {
         
         //Variables
         username = "None";
-        race = "Human";
+        race = "H";
         age = 25;
         
         //Create an instance
@@ -204,7 +204,7 @@ public class PlayerControlTest {
         
         //Variables
         username = "None";
-        race = "Human";
+        race = "H";
         age = 75;
         
         //Create an instance
@@ -243,7 +243,6 @@ public class PlayerControlTest {
         assert (result.getCurrentMana() == resultStats.getMana());
         assert (result.getCurrentColumn() == 3);
         assert (result.getCurrentRow() == 3);
-
     }
     
     /**
