@@ -97,7 +97,7 @@ public class BattleView {
                         done = true;
                         defeated = true;
                         System.out.println("Doesn't look like it's your day"
-                                + " - You have been defeated");
+                                + " - You have been defeated.");
                     }
                 }
                 
