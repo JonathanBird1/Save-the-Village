@@ -233,6 +233,8 @@ public class BattleView {
     public void doMagic()
     {
         //STUB FUNCTION - TO BE COMPLETED*******************************
+        System.out.println("Sorry - You do not currently have access" +
+                " to magic");
     }
     
     /* ********************************************************
@@ -241,6 +243,8 @@ public class BattleView {
     public void doItem()
     {
         //STUB FUNCTION - TO BE COMPLETED*******************************
+        System.out.println("Sorry - You do not currently have access" +
+                " to items");
     }
     
     /* ********************************************************
