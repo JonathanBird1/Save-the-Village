@@ -17,11 +17,11 @@ public class Scene extends Location
 {
     //class instance variables
     private String sceneName;
-    private String sceneType;
-    private Actor enemy;
+    private String sceneDescription;
+    private String clue;
     private NPC npcs[];
     private boolean closed;
-    private String clue;
+    private boolean clueFound;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
@@ -30,35 +30,51 @@ public class Scene extends Location
     {
         super();  //Call superclass Location constructor
         this.sceneName = "No Name";
-        this.sceneType = "No Type";
-        this.enemy = new Actor();
-        this.npcs = new NPC[5];
+        this.sceneDescription = "No Description";
+        this.clue = "No Clue";
+        this.npcs = new NPC[1];
         for (int i = 0; i < this.npcs.length; i++)
         {
             this.npcs[i] = new NPC();
         }
         this.closed = false;
-        this.clue = "No Clue";
+        this.clueFound = true;  //True when clue is found or no clue exists
     }
 
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
     public Scene(int row, int column, boolean visited, String sceneName, 
-            String sceneType, Actor enemy, NPC[] npcs, boolean closed, 
-            String clue)
+            String sceneDescription, String clue, NPC[] npcs, boolean closed, 
+            boolean clueFound)
     {
-        super(row, column, visited);  //Calls Location default constructor
+        super(row, column, visited);  //Call Location non-default constructor
         this.sceneName = sceneName;
-        this.sceneType = sceneType;
-        this.enemy = enemy;
+        this.sceneDescription = sceneDescription;
+        this.clue = clue;
         this.npcs = new NPC[npcs.length];
         for (int i = 0; i < this.npcs.length; i++)
         {
             this.npcs[i] = npcs[i];
         }
         this.closed = closed;
+        this.clueFound = clueFound;  //True when clue is found or no clue exists
+    }
+
+    public Scene(String sceneName, String sceneDescription, String clue, 
+            NPC[] npcs, boolean closed, boolean clueFound)
+    {
+        super();  //Call Location non-default constructor
+        this.sceneName = sceneName;
+        this.sceneDescription = sceneDescription;
         this.clue = clue;
+        this.npcs = new NPC[npcs.length];
+        for (int i = 0; i < this.npcs.length; i++)
+        {
+            this.npcs[i] = npcs[i];
+        }
+        this.closed = closed;
+        this.clueFound = clueFound;  //True when clue is found or no clue exists
     }
 
     /* ********************************************************
@@ -68,15 +84,15 @@ public class Scene extends Location
     {
         super(otherScene);
         this.sceneName = otherScene.sceneName;
-        this.sceneType = otherScene.sceneType;
-        this.enemy = otherScene.enemy;
+        this.sceneDescription = otherScene.sceneDescription;
+        this.clue = otherScene.clue;
         this.npcs = new NPC[otherScene.npcs.length];
         for (int i = 0; i < this.npcs.length; i++)
         {
             this.npcs[i] = otherScene.npcs[i];
         }
         this.closed = otherScene.closed;
-        this.clue = otherScene.clue;
+        this.clueFound = otherScene.clueFound;
     }
 
     /* ********************************************************
@@ -90,20 +106,20 @@ public class Scene extends Location
         this.sceneName = sceneName;
     }
 
-    public String getType() {
-        return sceneType;
+    public String getDescription() {
+        return sceneDescription;
     }
 
-    public void setType(String sceneType) {
-        this.sceneType = sceneType;
+    public void setDescription(String sceneDescription) {
+        this.sceneDescription = sceneDescription;
     }
 
-    public Actor getActor() {
-        return enemy;
+    public String getClue() {
+        return clue;
     }
 
-    public void setActor(Actor enemy) {
-        this.enemy = enemy;
+    public void setClue(String clue) {
+        this.clue = clue;
     }
 
     public NPC[] getNPC() {
@@ -122,14 +138,6 @@ public class Scene extends Location
         this.closed = closed;
     }
 
-    public String getClue() {
-        return clue;
-    }
-
-    public void setClue(String clue) {
-        this.clue = clue;
-    }
-
     /* ********************************************************
     OTHER
     ********************************************************* */
@@ -137,11 +145,11 @@ public class Scene extends Location
     public int hashCode() {
         int hash = 5;
         hash = 31 * hash + Objects.hashCode(this.sceneName);
-        hash = 31 * hash + Objects.hashCode(this.sceneType);
-        hash = 31 * hash + Objects.hashCode(this.enemy);
+        hash = 31 * hash + Objects.hashCode(this.sceneDescription);
+        hash = 31 * hash + Objects.hashCode(this.clue);
         hash = 31 * hash + Arrays.deepHashCode(this.npcs);
         hash = 31 * hash + (this.closed ? 1 : 0);
-        hash = 31 * hash + Objects.hashCode(this.clue);
+        hash = 31 * hash + (this.clueFound ? 1 : 0);
         return hash;
     }
 
@@ -157,10 +165,7 @@ public class Scene extends Location
         if (!Objects.equals(this.sceneName, other.sceneName)) {
             return false;
         }
-        if (!Objects.equals(this.sceneType, other.sceneType)) {
-            return false;
-        }
-        if (!Objects.equals(this.enemy, other.enemy)) {
+        if (!Objects.equals(this.sceneDescription, other.sceneDescription)) {
             return false;
         }
         if (!Arrays.deepEquals(this.npcs, other.npcs)) {
@@ -179,15 +184,16 @@ public class Scene extends Location
     public String toString() {
         String returnString = "Scene{" + "row=" + super.getRow() + " column=" +
                 super.getColumn() + " visited=" + super.getVisited() +
-                "sceneName=" + sceneName + ", sceneType=" + sceneType + 
-                ", enemy=" + enemy + ", npcs=";
+                "sceneName=" + sceneName + ", sceneDescription=" +
+                sceneDescription + ", clue=" + clue + ", npcs=";
         
         for (int i = 0; i < npcs.length; i++)
         {
             returnString += npcs[i].toString();
         }
         
-        returnString += ", closed=" + closed + ", clue=" + clue + '}';
+        returnString += ", closed=" + closed + ", clueFound=" + 
+                clueFound + '}';
         
         return returnString;
     }

@@ -125,6 +125,16 @@ public class Map implements Serializable {
         this.sceneArray = sceneArray;
     }
     
+    public Scene getScene(int row, int column)
+    {
+        return this.sceneArray[row][column];
+    }
+    
+    public void setScene(Scene scene, int row, int column)
+    {
+        this.sceneArray[row][column] = scene;
+    }
+    
     /* ********************************************************
     OTHER
     ********************************************************* */

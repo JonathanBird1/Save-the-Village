@@ -12,33 +12,37 @@ import java.util.Objects;
  *
  * @author micha
  */
-public class NPC implements Serializable {
+public class NPC implements Serializable
+{
+    private String npcName;
     private String clue;
     private Item reward;
     private boolean captured;
-    private boolean hasReward;
+    private boolean completedQuest;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
     ********************************************************* */
     public NPC()
     {
+        this.npcName = "None";
         this.clue = "No Clue";
         this.reward = new Item();
         this.captured = false;
-        this.hasReward = false;
+        this.completedQuest = false;
     }
 
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
-    public NPC(String clue, Item reward, boolean captured,
-            boolean hasReward)
+    public NPC(String npcName, String clue, Item reward, boolean captured,
+            boolean completedQuest)
     {
+        this.npcName = npcName;
         this.clue = clue;
         this.reward = reward;
         this.captured = captured;
-        this.hasReward = hasReward;
+        this.completedQuest = completedQuest;
     }
 
     /* ********************************************************
@@ -46,17 +50,28 @@ public class NPC implements Serializable {
     ********************************************************* */
     public NPC(NPC otherNPC)
     {
+        this.npcName = otherNPC.npcName;
         this.clue = otherNPC.clue;
         this.reward = otherNPC.reward;
         this.captured = otherNPC.captured;
-        this.hasReward = otherNPC.hasReward;
+        this.completedQuest = otherNPC.completedQuest;
     }
 
     /* ********************************************************
     ACCESSORS & MUTATORS
     ********************************************************* */
+    public String getNPCName()
+    {
+        return this.npcName;
+    }
+    
+    public void setNPCName(String npcName)
+    {
+        this.npcName = npcName;
+    }
+    
     public String getClue() {
-        return clue;
+        return this.clue;
     }
 
     public void setClue(String clue) {
@@ -79,14 +94,14 @@ public class NPC implements Serializable {
         this.captured = captured;
     }
     
-    public boolean getHasReward()
+    public boolean getCompletedQuest()
     {
-        return hasReward;
+        return completedQuest;
     }
 
-    public void setHasReward(boolean reward)
+    public void setCompletedQuest(boolean reward)
     {
-        this.hasReward = reward;
+        this.completedQuest = reward;
     }
     
     /* ********************************************************
@@ -98,7 +113,7 @@ public class NPC implements Serializable {
         hash = 83 * hash + Objects.hashCode(this.clue);
         hash = 83 * hash + Objects.hashCode(this.reward);
         hash = 83 * hash + (this.captured ? 1 : 0);
-        hash = 83 * hash + (this.hasReward ? 1 : 0);
+        hash = 83 * hash + (this.completedQuest ? 1 : 0);
         return hash;
     }
 
@@ -123,7 +138,7 @@ public class NPC implements Serializable {
         if (!Objects.equals(this.reward, other.reward)) {
             return false;
         }
-        if (this.hasReward != other.hasReward) {
+        if (this.completedQuest != other.completedQuest) {
             return false;
         }
         return true;
@@ -132,7 +147,7 @@ public class NPC implements Serializable {
     @Override
     public String toString() {
         return "NPC{" + "clue=" + clue + ", reward=" + reward.toString() + 
-                ", captured=" + captured + ", hasReward=" +
-                hasReward + '}';
+                ", captured=" + captured + ", completedQuest=" +
+                completedQuest + '}';
     }
 }
