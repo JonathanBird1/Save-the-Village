@@ -12,62 +12,45 @@ import java.util.Scanner;
  * @author Master Brickbuilder
  */
 
-public class DungeonView {
-
-    private boolean doAction;
+public class DungeonView extends View{
     
-    public void displayDungeonView(){
+    public DungeonView(){
         
-        /* Dungeon Map
-                ####A
-                #
-                ####B
-                #
-            ########C
-                #
-                ####D
-                #
-                ####E
-        */
-        
-        System.out.println("\n"
+        super("\n"
             + "You hear the whistling of the wind as you venture deeper "
             + "into the dungeon. Each of your steps echoes ominously through "
-            + "the vast, emptiness ahead and behind you.");
-        
+            + "the vast, emptiness ahead and behind you."
+            + "\nWhat do you choose to do?");
         // Need to pull dungeonEncounter
-        
-        boolean done = false;
-        do{
-            String dungeonView = this.getDungeonView();
-            if(dungeonView.toUpperCase().equals("Q"))
-                return;
-            done = this.doAction;
-        }while(!done);
     }
     
-    private String getDungeonView(){
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
-        boolean valid = false;
+    @Override
+    public boolean doAction(String choice){
         
-        System.out.println("\nWhat do you choose to do?");
-        while(!valid){
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
-            value = value.trim();
-            value = value.toUpperCase();
-            
-            if(value.length() < 1){
-                System.out.println("\nAlas, your command is not to be."
-                    + "\n What do you choose to do?");
-                continue;
-            }
-            else{ //Need to change output
-                System.out.println("Well chosen."
-                    + "\nNow enter 'q' to return to the main menu.");
-            }
-            break;
+        choice = choice.toUpperCase();
+        
+        switch(choice){
+            case "X":
+                this.explore();
+                break;
+            case "M":
+                this.move();
+                break;
+            case "Q":
+                this.quit();
         }
-        return value;
+        return false;
+    }
+
+    private void explore() {
+        System.out.println("You search");
+    }
+
+    private void move() {
+        System.out.println("You move");
+    }
+
+    private void quit() {
+        System.exit(0);
     }
 }
