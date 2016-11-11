@@ -23,7 +23,7 @@ public class MapControl
             NPC defaultNPC = new NPC();
             NPC defaultNPCs[] = new NPC[1];
             defaultNPCs[0] = defaultNPC;
-            
+
             //Construct Forest Map Scenes
             //Town
             Scene inn = new Scene("Inn", "Inn Description Here", "", 
@@ -136,7 +136,7 @@ public class MapControl
         int randomNumber = (int)(Math.random() * 100 % 4);
         map.setScene(sceneGroup[randomNumber], 2, 2);
         placed[randomNumber] = true;
-        
+
         //Place town scenes
         for (int i = 1; i < 4; i++)
         {
@@ -581,16 +581,6 @@ public class MapControl
     public boolean encounterEnemy()
     {
         return false;
-    }
-    
-    public void displayForestMap()
-    {
-        
-    }
-    
-    public void displayDungeonMap()
-    {
-        
     }
     
     public void dungeonEncounter(){
