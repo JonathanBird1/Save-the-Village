@@ -583,7 +583,17 @@ public class MapControl
         return false;
     }
     
-    private void dungeonEncounter(){
+    public void displayForestMap()
+    {
+        
+    }
+    
+    public void displayDungeonMap()
+    {
+        
+    }
+    
+    public void dungeonEncounter(){
         
         double rand = (Math.random() * 100);
         
@@ -599,7 +609,7 @@ public class MapControl
             else if(rand > 50 || rand < 63)
                 System.out.println("\n"
                 + "You hear moaning and the sound of dragging feet. As the "
-                + "gutteral moans draw near, the stench of decay wafts across "
+                    + "gutteral moans draw near, the stench of decay wafts across "
                 + "your nose. Then from out of the darkness the form of a "
                 + "desicated zombie launches itself at you. Battle ensues.");
             
@@ -620,12 +630,11 @@ public class MapControl
                 + "The troll is not happy to have you interrupt its dinner, "
                 + "as a reward it attacks you.");
         
-            else if(rand > 88 || rand < 100)
+            else
                 System.out.println("\n"
                 + "Out of the darkness you see a massive bovine head, its horns "
                 + "nearly scratching the ceiling. Your eyes slide down and "
                 + "take in the human body. The minotaur roars at your intrusion "
-                + "and the battle is on.");
-                
+                + "and the battle is on.");    
         }
 }
