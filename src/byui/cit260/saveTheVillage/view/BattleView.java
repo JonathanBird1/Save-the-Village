@@ -28,9 +28,6 @@ public class BattleView {
     ********************************************************* */
     public BattleView()
     {
-        System.out.println("While traveling through this area, you have "
-                + "encountered an enemy " + enemy.getName() +
-                ".  Prepare for battle...");
         this.battleMenu = "\n"
                 + "\n\t---BATTLE--COMMANDS---"
                 + "\n\t| A - Attack         |"
@@ -55,10 +52,24 @@ public class BattleView {
     ********************************************************* */
     public boolean displayBattleView(String scene, Player player)
     {
+        //Error Trapping
+        if (scene.equals("Invalid"))
+        {
+            validView = false;
+        }
+        else
+        {
+            validView = true;
+        }
+        
         //Create a new enemy
         newBattleControl = new BattleControl();
         enemy = newBattleControl.initializeEnemy(scene);
         //This view will only display if the non-default constructor was used
+
+        System.out.println("While traveling through this area, you have "
+                + "encountered an enemy " + enemy.getName() +
+                ".  Prepare for battle...");
 
         if (validView)
         {
@@ -70,6 +81,10 @@ public class BattleView {
             {
                 if (playerTurn)
                 {
+                    System.out.println("Current Health:  " + 
+                            player.getCurrentHealth());
+                    System.out.println("Current Mana:  " + 
+                            player.getCurrentMana());
                     String menuOption = this.getPlayerAction();
                     if(menuOption.toUpperCase().equals("R"))
                     {
@@ -187,6 +202,9 @@ public class BattleView {
                     - damage) < 0 ? 0 : enemy.getCurrentHealth() - 
                     damage);
             }
+            
+            System.out.println("Attack Damage Dealt: " + 
+                damage);
         }
         else  //Enemy Attack
         {
@@ -203,6 +221,9 @@ public class BattleView {
                     - damage) < 0 ? 0 : player.getCurrentHealth() - 
                     damage);
             }
+
+            System.out.println("Attack Damage Received: " + 
+                damage);
         }
     }
     

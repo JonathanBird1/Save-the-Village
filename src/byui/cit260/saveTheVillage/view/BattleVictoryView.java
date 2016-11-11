@@ -114,16 +114,19 @@ public class BattleVictoryView
                         player.getMoney());
                 
                 //Add Item if space in inventory
-                int itemSlot = -1;
+                int itemSlot = 0;
                 boolean space = false;
                 
                 while (itemSlot < 60 && space == false)
                 {
-                    itemSlot++;
                     if ((player.getItems()[itemSlot].getName()).equals("No "
-                        + "Item"))
+                        + "Name"))
                     {
                         space = true;
+                    }
+                    else
+                    {
+                        itemSlot++;
                     }
                 }
                 

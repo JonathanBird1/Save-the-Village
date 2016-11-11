@@ -25,7 +25,8 @@ public class MainMenuView extends View{
             + "\n\t| E – Exit Game    |"
             + "\n\t|---Quick-Access---|"
             + "\n\t| M - Map View     |"
-            + "\n\t|                  |"
+            + "\n\t| D - Dungeon View |"
+            + "\n\t| B - Battle View  |"
             + "\n\t--------------------"
             + "\n\n"
             + "Please make a selection:");
@@ -54,6 +55,9 @@ public class MainMenuView extends View{
                 break;
             case "D":
                 this.gotoDungeonView();
+                break;
+            case "B":
+                this.gotoBattleView();
                 break;
                 
             //
@@ -234,5 +238,16 @@ public class MainMenuView extends View{
     private void gotoDungeonView() {
         DungeonView dungeon = new DungeonView();
         dungeon.display();
+    }
+    
+    private void gotoBattleView()
+    {
+        //Create Player for Battle
+        PlayerControl newPlayerControl = new PlayerControl();
+        Player testPlayer = newPlayerControl.initializeNewPlayer("Test", "H", 30);
+
+        //Test Battle View
+        BattleView battle = new BattleView();
+        battle.displayBattleView("Forest", testPlayer);
     }
 }
