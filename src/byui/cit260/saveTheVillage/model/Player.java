@@ -20,8 +20,6 @@ public class Player implements Serializable {
     private Item items[];
     private int money;
     private Item weapon;
-    private int currentRow;
-    private int currentColumn;
     private int currentHealth;
     private int currentMana;
     private Item depositedItems[];
@@ -44,8 +42,6 @@ public class Player implements Serializable {
         }
         this.money = 0;
         this.weapon = new Item();
-        this.currentRow = 0;
-        this.currentColumn = 0;
         this.currentHealth = 0;
         this.currentMana = 0;
         this.depositedItems = new Item[60];
@@ -62,9 +58,8 @@ public class Player implements Serializable {
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
     public Player(String name, String race, int age, Item[] items, int money,
-            Item weapon, int currentRow, int currentColumn, int currentHealth,
-            int currentMana, Item[] depositedItems, int depositedMoney,
-            Stats playerStats, int playerWeight)
+        Item weapon, int currentHealth,int currentMana, Item[] depositedItems, 
+        int depositedMoney,Stats playerStats, int playerWeight)
     {
         this.name = name;
         this.race = race;
@@ -76,8 +71,6 @@ public class Player implements Serializable {
         }
         this.money = money;
         this.weapon = weapon;
-        this.currentRow = currentRow;
-        this.currentColumn = currentColumn;
         this.currentHealth = currentHealth;
         this.currentMana = currentMana;
         this.depositedItems = new Item[depositedItems.length];
@@ -105,8 +98,6 @@ public class Player implements Serializable {
         }
         this.money = otherPlayer.money;
         this.weapon = otherPlayer.weapon;
-        this.currentRow = otherPlayer.currentRow;
-        this.currentColumn = otherPlayer.currentColumn;
         this.currentHealth = otherPlayer.currentHealth;
         this.currentMana = otherPlayer.currentMana;
         this.depositedItems = new Item[otherPlayer.depositedItems.length];
@@ -170,22 +161,6 @@ public class Player implements Serializable {
     public void setWeapon(Item weapon)
     {
         this.weapon = weapon;
-    }
-
-    public int getCurrentRow() {
-        return currentRow;
-    }
-
-    public void setCurrentRow(int currentRow) {
-        this.currentRow = currentRow;
-    }
-
-    public int getCurrentColumn() {
-        return currentColumn;
-    }
-
-    public void setCurrentColumn(int currentColumn) {
-        this.currentColumn = currentColumn;
     }
 
     public int getCurrentHealth() {
@@ -253,8 +228,6 @@ public class Player implements Serializable {
         hash = 89 * hash + Arrays.deepHashCode(this.items);
         hash = 89 * hash + this.money;
         hash = 89 * hash + Objects.hashCode(this.weapon);
-        hash = 89 * hash + this.currentRow;
-        hash = 89 * hash + this.currentColumn;
         hash = 89 * hash + this.currentHealth;
         hash = 89 * hash + this.currentMana;
         hash = 89 * hash + Arrays.deepHashCode(this.depositedItems);
@@ -280,12 +253,6 @@ public class Player implements Serializable {
             return false;
         }
         if (this.money != other.money) {
-            return false;
-        }
-        if (this.currentRow != other.currentRow) {
-            return false;
-        }
-        if (this.currentColumn != other.currentColumn) {
             return false;
         }
         if (this.currentHealth != other.currentHealth) {
@@ -334,9 +301,8 @@ public class Player implements Serializable {
         }
         
         returnString += ", money=" + money + ", weapon=" + weapon.toString() + 
-                ", currentRow=" + currentRow + ", currentColumn=" + 
-                currentColumn + ", currentHealth=" + currentHealth + 
-                ", currentMana=" + currentMana + ", ";
+            ", currentHealth=" + currentHealth + ", currentMana=" + 
+            currentMana + ", ";
         
         for (int i = 0; i < depositedItems.length; i++)
         {

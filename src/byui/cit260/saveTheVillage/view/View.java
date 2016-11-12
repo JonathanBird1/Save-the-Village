@@ -11,15 +11,17 @@ import java.util.Scanner;
  *
  * @author Master Brickbuilder
  */
-public abstract class View implements ViewInterface{
-    
+public abstract class View implements ViewInterface
+{    
     protected String displayMessage;
     
-    public View(){
+    public View()
+    {
         
     }
     
-    public View(String message){
+    public View(String message)
+    {
         this.displayMessage = message;
     }
     
@@ -27,12 +29,12 @@ public abstract class View implements ViewInterface{
     public void display(){
     
          boolean done = false;
-        do{
+        do
+        {
             String value = this.getInput();
             if(value.toUpperCase().equals("E"))
                 return; //return to previous menu
             done = this.doAction(value);
-            
         }while(!done);
     }
     

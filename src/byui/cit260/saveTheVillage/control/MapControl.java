@@ -43,13 +43,13 @@ public class MapControl
                 + " Here", "", defaultNPCs, false, true);
             Scene dungeonKey = new Scene("Key", "Dungeon Key Description Here", 
                 "Description of Finding Key", defaultNPCs, false, false);
-            Scene tracks1 = new Scene("Tracks", "Tracks Description Here", 
+            Scene tracks1 = new Scene("Tracks1", "Tracks Description Here", 
                 "Description of tracks pointing to dungeon entrance here", 
                 defaultNPCs, false, false);
-            Scene tracks2 = new Scene("Tracks", "Tracks Description Here", 
+            Scene tracks2 = new Scene("Tracks2", "Tracks Description Here", 
                 "Description of tracks pointing to dungeon entrance here", 
                 defaultNPCs, false, false);
-            Scene tracks3 = new Scene("Tracks", "Tracks Description Here", 
+            Scene tracks3 = new Scene("Tracks3", "Tracks Description Here", 
                 "Description of tracks pointing to dungeon entrance here", 
                 defaultNPCs, false, false);
             Scene defensiveCharm = new Scene("Defensive", "Defensive Charm "
@@ -125,19 +125,19 @@ public class MapControl
             //Construct Dungeon Map
             //Construct Dungeon Scenes
             
-            Scene noPath = new Scene("Dungeon", "No Path", "", defaultNPCs, 
+            Scene noPath = new Scene("NoPath", "No Path", "", defaultNPCs, 
                 false, true);
-            Scene dungeonPath = new Scene ("Dungeon", "Dungeon Path "
+            Scene dungeonPath = new Scene ("DungeonPath", "Dungeon Path "
                 + "Description Here", "No Clue Description", defaultNPCs,
                 false, true);
-            Scene dungeonBranch = new Scene ("Dungeon", "Dungeon Branch "
+            Scene branch = new Scene ("Branch", "Dungeon Branch "
                 + "Route Description Here", "No Clue Description", defaultNPCs, 
                 false, true);
-            Scene miniboss1 = new Scene ("Dungeon", "Miniboss 1 Description "
+            Scene miniboss1 = new Scene ("Miniboss1", "Miniboss 1 Description "
                 + "Here", "No Clue Description", defaultNPCs, false, true);
-            Scene miniboss2 = new Scene ("Dungeon", "Miniboss 2 Description "
+            Scene miniboss2 = new Scene ("Miniboss2", "Miniboss 2 Description "
                 + "Here", "No Clue Description", defaultNPCs, false, true);
-            Scene boss = new Scene ("Dungeon", "Boss Description "
+            Scene boss = new Scene ("Boss", "Boss Description "
                 + "Here", "No Clue Description", defaultNPCs, false, true);
             
             //Set each scene originally as noPath
@@ -154,7 +154,7 @@ public class MapControl
             map.setScene(dungeonPath, 4, 1);
             map.setScene(dungeonPath, 4, 2);
             map.setScene(dungeonPath, 4, 3);
-            map.setScene(dungeonBranch, 4, 4);
+            map.setScene(branch, 4, 4);
             map.setScene(dungeonPath, 3, 4);
             map.setScene(dungeonPath, 2, 4);
             map.setScene(dungeonPath, 1, 4);
