@@ -17,12 +17,15 @@ public class Game implements Serializable {
     
     private int elapsedTime;
     private int timeLimit;
-    private boolean defeatedBoss;
+    private boolean gameFinished;
     private String fileName;
     private String cluesObtained[];
     private Map forestMap;
     private Map dungeonMap;
     private Player player;
+    private int currentRow;
+    private int currentColumn;
+    private boolean isInDungeon;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
@@ -31,7 +34,7 @@ public class Game implements Serializable {
     {
         this.elapsedTime = 0;
         this.timeLimit = 48*60;
-        this.defeatedBoss = false;
+        this.gameFinished = false;
         this.fileName = "noName.stv";
         this.cluesObtained = new String[10];
         for (int i = 0; i < this.cluesObtained.length; i++)
@@ -41,28 +44,31 @@ public class Game implements Serializable {
         this.forestMap = new Map("Forest");
         this.dungeonMap = new Map("Dungeon");
         this.player = new Player();
+        this.currentRow = 2;
+        this.currentColumn = 2;
+        this.isInDungeon = false;
     }
     
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
-    public Game(int elapsedTime, int timeLimit, boolean defeatedBoss,
-            String fileName, Map forestMap, Map dungeonMap, Player player)
+    public Game(int elapsedTime, int timeLimit, boolean gameFinished,
+            String fileName, String clues[], Map forestMap, Map dungeonMap, 
+            Player player)
     {
         this.elapsedTime = elapsedTime;
         this.timeLimit = timeLimit;
-        this.defeatedBoss = defeatedBoss;
+        this.gameFinished = gameFinished;
         this.fileName = fileName;
-        
-        //No clues have been found yet in a new game
-        this.cluesObtained = new String[10];
-        for (int i = 0; i < this.cluesObtained.length; i++)
-        {
-            this.cluesObtained[i] = "Clue " + i + " Not Obtained\n";
-        }
+        this.cluesObtained = clues;
         this.forestMap = forestMap;
         this.dungeonMap = dungeonMap;
         this.player = player;
+        
+        //Default starting position
+        this.currentRow = 2;
+        this.currentColumn = 2;
+        this.isInDungeon = false;
     }
     
     /* ********************************************************
@@ -72,7 +78,7 @@ public class Game implements Serializable {
     {
         this.elapsedTime = otherGame.elapsedTime;
         this.timeLimit = otherGame.timeLimit;
-        this.defeatedBoss = otherGame.defeatedBoss;
+        this.gameFinished = otherGame.gameFinished;
         this.fileName = otherGame.fileName;
         
         //No clues have been found yet in a new game
@@ -84,6 +90,9 @@ public class Game implements Serializable {
         this.forestMap = otherGame.forestMap;
         this.dungeonMap = otherGame.dungeonMap;
         this.player = otherGame.player;
+        this.currentRow = otherGame.currentRow;
+        this.currentColumn = otherGame.currentColumn;
+        this.isInDungeon = otherGame.isInDungeon;
     }    
     
     /* ********************************************************
@@ -105,12 +114,12 @@ public class Game implements Serializable {
         this.timeLimit = timeLimit;
     }
 
-    public boolean isDefeatedBoss() {
-        return defeatedBoss;
+    public boolean getGameFinished() {
+        return gameFinished;
     }
 
-    public void setDefeatedBoss(boolean defeatedBoss) {
-        this.defeatedBoss = defeatedBoss;
+    public void setGameFinished(boolean gameFinished) {
+        this.gameFinished = gameFinished;
     }
 
     public String getFileName() {
@@ -159,6 +168,32 @@ public class Game implements Serializable {
         return player;
     }
 
+    public int getCurrentRow() {
+        return currentRow;
+    }
+
+    public void setCurrentRow(int currentRow) {
+        this.currentRow = currentRow;
+    }
+
+    public int getCurrentColumn() {
+        return currentColumn;
+    }
+
+    public void setCurrentColumn(int currentColumn) {
+        this.currentColumn = currentColumn;
+    }
+    
+    public boolean getIsInDungeon()
+    {
+        return isInDungeon;
+    }
+    
+    public void setIsInDungeon(boolean isInDungeon)
+    {
+        this.isInDungeon = isInDungeon;
+    }
+
     /* ********************************************************
     OTHER
     ********************************************************* */
@@ -167,12 +202,15 @@ public class Game implements Serializable {
         int hash = 7;
         hash = 89 * hash + this.elapsedTime;
         hash = 89 * hash + this.timeLimit;
-        hash = 89 * hash + (this.defeatedBoss ? 1 : 0);
+        hash = 89 * hash + (this.gameFinished ? 1 : 0);
         hash = 89 * hash + Objects.hashCode(this.fileName);
         hash = 89 * hash + Arrays.deepHashCode(this.cluesObtained);
         hash = 89 * hash + Objects.hashCode(this.forestMap);
         hash = 89 * hash + Objects.hashCode(this.dungeonMap);
         hash = 89 * hash + Objects.hashCode(this.player);
+        hash = 89 * hash + this.currentRow;
+        hash = 89 * hash + this.currentColumn;
+        hash = 89 * hash + (this.isInDungeon ? 1 : 0);
         return hash;
     }
 
@@ -194,7 +232,7 @@ public class Game implements Serializable {
         if (this.timeLimit != other.timeLimit) {
             return false;
         }
-        if (this.defeatedBoss != other.defeatedBoss) {
+        if (this.gameFinished != other.gameFinished) {
             return false;
         }
         if (!Objects.equals(this.fileName, other.fileName)) {
@@ -212,14 +250,25 @@ public class Game implements Serializable {
         {
             return false;
         }
+        if (this.currentRow != other.currentRow) {
+            return false;
+        }
+        if (this.currentColumn != other.currentColumn) {
+            return false;
+        }
+        if (this.isInDungeon != other.isInDungeon)
+        {
+            return false;
+        }
         return Arrays.deepEquals(this.cluesObtained, other.cluesObtained);
+        
     }
 
     @Override
     public String toString() {
         String returnString = "Game{" + "elapsedTime=" + elapsedTime + 
-                ", timeLimit=" + timeLimit + ", defeatedBoss=" + 
-                defeatedBoss + ", fileName=" + fileName + ", cluesObtained=";
+                ", timeLimit=" + timeLimit + ", gameFinished=" + 
+                gameFinished + ", fileName=" + fileName + ", cluesObtained=";
         
         for (int i = 0; i < cluesObtained.length; i++)
         {
@@ -229,7 +278,8 @@ public class Game implements Serializable {
         returnString += "forestMap= " + forestMap.toString() + "dungeonMap= " +
                 dungeonMap.toString() + "player= " + player.toString();
         
-        returnString += '}';
+        returnString += " currentRow=" + currentRow + " currentColumn=" +
+            currentColumn + " isInDungeon=" + isInDungeon + '}';
 
         return returnString;
     }

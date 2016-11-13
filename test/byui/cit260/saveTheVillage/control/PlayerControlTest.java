@@ -72,8 +72,6 @@ public class PlayerControlTest {
         //Test weapon after inserting equivalence operator overloading for Item
         assert (result.getCurrentHealth() == resultStats.getHealth());
         assert (result.getCurrentMana() == resultStats.getMana());
-        assert (result.getCurrentColumn() == 3);
-        assert (result.getCurrentRow() == 3);
 
         // **** TEST CASE 2 ****
         System.out.println("Test Case 2");
@@ -196,8 +194,6 @@ public class PlayerControlTest {
         //Test weapon after inserting equivalence operator overloading for Item
         assert (result.getCurrentHealth() == resultStats.getHealth());
         assert (result.getCurrentMana() == resultStats.getMana());
-        assert (result.getCurrentColumn() == 3);
-        assert (result.getCurrentRow() == 3);
 
         // **** TEST CASE 7 ****
         System.out.println("Test Case 7");
@@ -241,8 +237,6 @@ public class PlayerControlTest {
         //Test weapon after inserting equivalence operator overloading for Item
         assert (result.getCurrentHealth() == resultStats.getHealth());
         assert (result.getCurrentMana() == resultStats.getMana());
-        assert (result.getCurrentColumn() == 3);
-        assert (result.getCurrentRow() == 3);
     }
     
     /**

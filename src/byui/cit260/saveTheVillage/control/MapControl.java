@@ -15,6 +15,9 @@ import byui.cit260.saveTheVillage.model.NPC;
  */
 public class MapControl
 {
+    /* ********************************************************
+    INITIALIZE MAP
+    ********************************************************* */
     public void initializeMap(Map map)
     {
         if (map.getMapName().equals("Forest"))
@@ -36,7 +39,7 @@ public class MapControl
             Scene bank = new Scene("Bank", "The building you see is rather "
                 + "nondescript, simple rock walls and a solid oak door. You enter "
                 + "and a dwarf with a hawkish nose looks at you from over a counter. "
-                + "The interior is like the outside, Spartan in looks but has a "
+                + "The interior is like the outside, spartan in looks but has a "
                 + "strong and serviceable atmosphere. The dwarf clears his throat "
                 + "and asks, “How might I, Thomas the Banker, help you today?”", "", 
                 defaultNPCs, false, true);
@@ -241,15 +244,100 @@ public class MapControl
         }
         else if (map.getMapName().equals("Dungeon"))
         {
+            //Default NPC Construct
+            NPC defaultNPC = new NPC();
+            NPC defaultNPCs[] = new NPC[1];
+            defaultNPCs[0] = defaultNPC;
+
             //Construct Dungeon Map
+            //Construct Dungeon Scenes
             
+            Scene noPath = new Scene("NoPath", "No Path", "", defaultNPCs, 
+                false, true);
+            Scene dungeonPath = new Scene ("DungeonPath", "You hear the whistling "
+                + "of the wind as you venture deeper into the dungeon. Each of "
+                + "your steps echoes ominously through the vast, emptiness ahead "
+                + "and behind you.",
+                  "No Clue Description", defaultNPCs,
+                false, true);
+            Scene branch = new Scene ("Branch", "You come upon the first deviation "
+                + "in this dungeon. There are now three directions for you to "
+                + "choose from. You can either continue going straight or you can "
+                + "now go down a passage to the left or one to the right.",
+                  "No Clue Description", defaultNPCs, 
+                false, true);
+            Scene miniboss1 = new Scene ("Miniboss1", "Ahead of you, you can hear "
+                + "a deep voice muttering. Since there is only the one voice to "
+                + "be heard you assume that the being is alone. You approach and "
+                + "see a small minotaur that can only be described as 'feminine.' "
+                + "The female minotaur notices you and snorts throught its bovine "
+                + "nose. She stands up and with a flick of her head asks, “So are "
+                + "you here to fight me then?”",
+                  "No Clue Description", defaultNPCs, false, true);
+            Scene miniboss2 = new Scene ("Miniboss2", "A massive black furred minotaur "
+                + "stomps toward you. He glares at you menacingly while one of his "
+                + "cloven feet paws the ground restlessly. “Ha, puny man-thing, "
+                + "you have come to fight the mighty Reaver? Well come on then!”",
+                  "No Clue Description", defaultNPCs, false, true);
+            Scene boss = new Scene ("Boss", "A minotaur in a shabby robe is sitting "
+                + "cross legged in front of a fire. He glances up at you as you "
+                + "walk in. “Welcome friend to my humble abode. I see that you have "
+                + "come through quite a bit. Please have a seat and some tea.” He "
+                + "motions toward the broken stump of a stalagmite.\n"
+                + "“Do not worry, I don’t bite.” He pauses for a moment, then shrugs, "
+                + "“Well, I suppose I actually do bite, but that is only those poor "
+                + "souls who annoy my hospitality.” He stands up to his full height "
+                + "and bellows, “SO SIT OR BECOME MY NEXT MEAL!” You decide that the "
+                + "fractured stalagmite would not be overly comfortable so you "
+                + "remain standing.\n"
+                + "He roars his displeasure and throws off his robe revealing "
+                + "ornate leather armour beneath. You have a moment to decide "
+                + "on what you do.",
+                  "No Clue Description", defaultNPCs, false, true);
+            
+            //Set each scene originally as noPath
+            for (int i = 0; i < map.getTotalRows(); i++)
+            {
+                for (int j = 0; j < map.getTotalColumns(); j++)
+                {
+                    map.setScene(noPath, i, j);
+                }
+            }
+
+            //Place the dungeon path and branch
+            map.setScene(dungeonPath, 4, 0);
+            map.setScene(dungeonPath, 4, 1);
+            map.setScene(dungeonPath, 4, 2);
+            map.setScene(dungeonPath, 4, 3);
+            map.setScene(branch, 4, 4);
+            map.setScene(dungeonPath, 3, 4);
+            map.setScene(dungeonPath, 2, 4);
+            map.setScene(dungeonPath, 1, 4);
+            map.setScene(dungeonPath, 5, 4);
+            map.setScene(dungeonPath, 6, 4);
+            map.setScene(dungeonPath, 7, 4);
+            map.setScene(dungeonPath, 4, 5);
+            map.setScene(dungeonPath, 4, 6);
+            map.setScene(dungeonPath, 4, 7);
+            
+            //Randomize Boss & Miniboss Locations
+            Scene sceneGroup[] = new Scene[3];
+            sceneGroup[0] = boss;
+            sceneGroup[1] = miniboss1;
+            sceneGroup[2] = miniboss2;
+            randomizeDungeon(map, sceneGroup);
+
         }
         else  //Invalid Map
         {
             map.setMapName("Invalid");
+            System.out.println("ERROR:  Attempted to initialize invalid map");
         }
     }
     
+    /* ********************************************************
+    RANDOMIZE TOWN
+    ********************************************************* */
     public void randomizeTown(Map map, Scene sceneGroup[])
     {
         //Tracking what is placed with an array of booleans
@@ -260,7 +348,9 @@ public class MapControl
         }
         
         //Place first town scene
-        int randomNumber = (int)(Math.random() * 100 % 4);
+        int randomNumber = (int)(Math.random() * 100) % 4;
+        sceneGroup[randomNumber].setRow(2);
+        sceneGroup[randomNumber].setColumn(2);
         map.setScene(sceneGroup[randomNumber], 2, 2);
         placed[randomNumber] = true;
 
@@ -268,7 +358,7 @@ public class MapControl
         for (int i = 1; i < 4; i++)
         {
             //Determine random town scene to place
-            randomNumber = (int)(Math.random() * 100 % 4);
+            randomNumber = (int)(Math.random() * 100) % 4;
             while (placed[randomNumber])  //If already taken
             {
                 if (randomNumber == 0)
@@ -291,19 +381,25 @@ public class MapControl
                 case 1:
                     sceneGroup[randomNumber].setRow(2);
                     sceneGroup[randomNumber].setColumn(3);
+                    map.setScene(sceneGroup[randomNumber], 2, 3);
                     break;
                 case 2:
                     sceneGroup[randomNumber].setRow(3);
                     sceneGroup[randomNumber].setColumn(2);
+                    map.setScene(sceneGroup[randomNumber], 3, 2);
                     break;
                 case 3:
                     sceneGroup[randomNumber].setRow(3);
                     sceneGroup[randomNumber].setColumn(3);
+                    map.setScene(sceneGroup[randomNumber], 3, 3);
                     break;
             }
         }
     }
     
+    /* ********************************************************
+    RANDOMIZE FOREST
+    ********************************************************* */
     public void randomizeForest(Map map, Scene[] sceneGroup)
     {
         //Tracking what is placed with an array of booleans
@@ -317,7 +413,7 @@ public class MapControl
         for (int i = 0; i < sceneGroup.length; i++)
         {
             //Generate a random number for all corresponding scenes
-            int randomNumber = (int)(Math.random() * 3200 % 32);
+            int randomNumber = (int)(Math.random() * 3200) % 32;
             while (placed[randomNumber])  //If already taken
             {
                 if (randomNumber == 0)
@@ -341,135 +437,225 @@ public class MapControl
                 case 0:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(0);
+                    map.setScene(sceneGroup[randomNumber], 0, 0);
                     break;
                 case 1:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(1);
+                    map.setScene(sceneGroup[randomNumber], 0, 1);
                     break;
                 case 2:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(2);
+                    map.setScene(sceneGroup[randomNumber], 0, 2);
                     break;
                 case 3:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(3);
+                    map.setScene(sceneGroup[randomNumber], 0, 3);
                     break;
                 case 4:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(4);
+                    map.setScene(sceneGroup[randomNumber], 0, 4);
                     break;
                 case 5:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(5);
+                    map.setScene(sceneGroup[randomNumber], 0, 5);
                     break;
                 case 6:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(0);
+                    map.setScene(sceneGroup[randomNumber], 1, 0);
                     break;
                 case 7:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(1);
+                    map.setScene(sceneGroup[randomNumber], 1, 1);
                     break;
                 case 8:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(2);
+                    map.setScene(sceneGroup[randomNumber], 1, 2);
                     break;
                 case 9:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(3);
+                    map.setScene(sceneGroup[randomNumber], 1, 3);
                     break;
                 case 10:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(4);
+                    map.setScene(sceneGroup[randomNumber], 1, 4);
                     break;
                 case 11:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(5);
+                    map.setScene(sceneGroup[randomNumber], 1, 5);
                     break;
                 case 12:
                     sceneGroup[i].setRow(2);
                     sceneGroup[i].setColumn(0);
+                    map.setScene(sceneGroup[randomNumber], 2, 0);
                     break;
                 case 13:
                     sceneGroup[i].setRow(2);
                     sceneGroup[i].setColumn(1);
+                    map.setScene(sceneGroup[randomNumber], 2, 1);
                     break;
                 case 14:
                     sceneGroup[i].setRow(2);
                     sceneGroup[i].setColumn(4);
+                    map.setScene(sceneGroup[randomNumber], 2, 4);
                     break;
                 case 15:
                     sceneGroup[i].setRow(2);
                     sceneGroup[i].setColumn(5);
+                    map.setScene(sceneGroup[randomNumber], 2, 5);
                     break;
                 case 16:
                     sceneGroup[i].setRow(3);
                     sceneGroup[i].setColumn(0);
+                    map.setScene(sceneGroup[randomNumber], 3, 0);
                     break;
                 case 17:
                     sceneGroup[i].setRow(3);
                     sceneGroup[i].setColumn(1);
+                    map.setScene(sceneGroup[randomNumber], 3, 1);
                     break;
                 case 18:
                     sceneGroup[i].setRow(3);
                     sceneGroup[i].setColumn(4);
+                    map.setScene(sceneGroup[randomNumber], 3, 4);
                     break;
                 case 19:
                     sceneGroup[i].setRow(3);
                     sceneGroup[i].setColumn(5);
+                    map.setScene(sceneGroup[randomNumber], 3, 5);
                     break;
                 case 20:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(0);
+                    map.setScene(sceneGroup[randomNumber], 4, 0);
                     break;
                 case 21:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(1);
+                    map.setScene(sceneGroup[randomNumber], 4, 1);
                     break;
                 case 22:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(2);
+                    map.setScene(sceneGroup[randomNumber], 4, 2);
                     break;
                 case 23:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(3);
+                    map.setScene(sceneGroup[randomNumber], 4, 3);
                     break;
                 case 24:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(4);
+                    map.setScene(sceneGroup[randomNumber], 4, 4);
                     break;
                 case 25:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(5);
+                    map.setScene(sceneGroup[randomNumber], 4, 5);
                     break;
                 case 26:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(0);
+                    map.setScene(sceneGroup[randomNumber], 5, 0);
                     break;
                 case 27:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(1);
+                    map.setScene(sceneGroup[randomNumber], 5, 1);
                     break;
                 case 28:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(2);
+                    map.setScene(sceneGroup[randomNumber], 5, 2);
                     break;
                 case 29:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(3);
+                    map.setScene(sceneGroup[randomNumber], 5, 3);
                     break;
                 case 30:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(4);
+                    map.setScene(sceneGroup[randomNumber], 5, 4);
                     break;
                 case 31:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(5);
+                    map.setScene(sceneGroup[randomNumber], 5, 5);
                     break;
             }
         }
     }
     
+    /* ********************************************************
+    RANDOMIZE DUNGEON
+    ********************************************************* */
+    public void randomizeDungeon(Map map, Scene sceneGroup[])
+    {
+        //Tracking what is placed with an array of booleans
+        boolean placed[] = new boolean[3];
+        for (int i = 0; i < placed.length; i++)
+        {
+            placed[i] = false;
+        }
+        
+        //Place all the scenes on the map
+        for (int i = 0; i < sceneGroup.length; i++)
+        {
+            //Generate a random number for all corresponding scenes
+            int randomNumber = (int)(Math.random() * 300) % 3;
+            while (placed[randomNumber])  //If already taken
+            {
+                if (randomNumber == 0)
+                {
+                    randomNumber = 2;
+                }
+                else
+                {
+                    randomNumber--;
+                }
+            }
+
+            //Deactivate the location to be placed to prevent overwriting
+            //another place on top
+            placed[randomNumber] = true;
+            
+            //Place the appropriate scene
+            switch (randomNumber)
+            {
+                case 1:
+                    sceneGroup[i].setRow(0);
+                    sceneGroup[i].setColumn(4);
+                    map.setScene(sceneGroup[randomNumber], 0, 4);
+                    break;
+                case 2:
+                    sceneGroup[i].setRow(8);
+                    sceneGroup[i].setColumn(4);
+                    map.setScene(sceneGroup[randomNumber], 8, 4);
+                    break;
+                case 3:
+                    sceneGroup[i].setRow(4);
+                    sceneGroup[i].setColumn(8);
+                    map.setScene(sceneGroup[randomNumber], 4, 8);
+                    break;
+            }
+        }
+    }
+    
+    /* ********************************************************
+    GET QUADRANT
+    ********************************************************* */
     public String getQuadrant(Scene scene)
     {
         String direction = "";
@@ -535,6 +721,9 @@ public class MapControl
         return direction;
     }
     
+    /* ********************************************************
+    GET QUADRANT
+    ********************************************************* */
     public String getQuadrant(int row, int column)
     {
         String direction = "";
@@ -600,6 +789,9 @@ public class MapControl
         return direction;
     }
     
+    /* ********************************************************
+    PLACE NPC'S
+    ********************************************************* */
     public void placeNPCs (Map map, Scene[] sceneGroup)
     {
         InventoryControl inventoryControl = new InventoryControl();

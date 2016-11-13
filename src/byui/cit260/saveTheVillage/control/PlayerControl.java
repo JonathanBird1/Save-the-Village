@@ -66,9 +66,6 @@ public class PlayerControl {
         Item defaultWeapon = new Item("Wooden Sword", "Weapon", 0, true, 
                 false, "None", 1, 0, 0, 5);
         
-        int defaultRow = 3;
-        int defaultColumn = 3;
-
         Item defaultDepositedItems[] = new Item[60];
         for (int i = 0; i < defaultDepositedItems.length; i++)
         {
@@ -91,9 +88,9 @@ public class PlayerControl {
         
         //Initialize New Player & Return
         Player newPlayer = new Player(username, race, age, defaultItems,
-        defaultMoney, defaultWeapon, defaultRow, defaultColumn, currentHealth,
-        currentMana, defaultDepositedItems, defaultDepositedMoney, playerStats,
-        currentWeight);
+            defaultMoney, defaultWeapon, currentHealth, currentMana, 
+            defaultDepositedItems, defaultDepositedMoney, playerStats,
+            currentWeight);
         
         return newPlayer;
     }

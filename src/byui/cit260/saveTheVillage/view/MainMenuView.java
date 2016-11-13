@@ -6,6 +6,8 @@
 package byui.cit260.saveTheVillage.view;
 
 import byui.cit260.saveTheVillage.control.PlayerControl;
+import byui.cit260.saveTheVillage.control.GameControl;
+import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Player;
 
 import java.util.Scanner;
@@ -16,6 +18,9 @@ import java.util.Scanner;
  */
 public class MainMenuView extends View{
  
+    /* ********************************************************
+    DEFAULT CONSTRUCTOR
+    ********************************************************* */
     public MainMenuView(){
         super("\n"
             + "\n\t-----MAIN--MENU-----"
@@ -32,9 +37,12 @@ public class MainMenuView extends View{
             + "Please make a selection:");
     }
     
+    /* ********************************************************
+    DO ACTION - OVERRIDE
+    ********************************************************* */
     @Override
-    public boolean doAction(String choice) {
-        
+    public boolean doAction(String choice)
+    {
         choice = choice.toUpperCase();
         
         switch(choice){
@@ -42,7 +50,7 @@ public class MainMenuView extends View{
                 this.startNewGame();
                 break;
             case "L": // load an existing game
-                this.startLoadGame();
+                this.loadGame();
                 break;
             case "H": // display help menu
                 this.gotoHelpMenuView();
@@ -59,18 +67,21 @@ public class MainMenuView extends View{
             case "B":
                 this.gotoBattleView();
                 break;
-                
             //
-                
             default:
                 System.out.println("\nYeah, that didn't work. Try again.");
         }
         return false;
     }
     
-    private void startNewGame() {
+    /* ********************************************************
+    START NEW GAME
+    ********************************************************* */
+    private void startNewGame()
+    {
+        Player newPlayer;
         
-        boolean done = false; //set flag to not done
+        boolean playerCreated = false; //set flag to not done
         do
         {
             //prompt for and get player's choice
@@ -80,7 +91,7 @@ public class MainMenuView extends View{
             
             //Create a new player
             PlayerControl newPlayerControl = new PlayerControl();
-            Player newPlayer = newPlayerControl.initializeNewPlayer(playerName,
+            newPlayer = newPlayerControl.initializeNewPlayer(playerName,
                     playerRace, playerAge);   
             if (newPlayer.getName().equals("Invalid"))
             {
@@ -91,9 +102,24 @@ public class MainMenuView extends View{
                 System.out.println("Welcome, " + playerName + ", you have been "
                         + "born!");
             }
-        } while (!done);
+        } while (!playerCreated);
+        
+        //Create New Game with Player
+        boolean finished = false;
+        //Create New Game
+        GameControl newGameControl = new GameControl();
+        Game newGame = newGameControl.initializeNewGame(newPlayer);
+            
+        //Begin New Game
+        GameStartView startNewGame = new GameStartView(newGame);
+        startNewGame.display();
+        
+        finished = true;
     }
         
+    /* ********************************************************
+    GET PLAYER NAME
+    ********************************************************* */
     private String getPlayerName() {
         
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
@@ -130,6 +156,9 @@ public class MainMenuView extends View{
         return value; //return the value entered
     }
     
+    /* ********************************************************
+    GET PLAYER RACE
+    ********************************************************* */
     private String getPlayerRace() {
         
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
@@ -166,6 +195,9 @@ public class MainMenuView extends View{
         return value; //return the value entered
     }
     
+    /* ********************************************************
+    GET PLAYER AGE
+    ********************************************************* */
     private int getPlayerAge() {
         
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
@@ -184,17 +216,7 @@ public class MainMenuView extends View{
             {
                 value = Integer.parseInt(keyboardValue);
             }
-            else
-            {
-                
-                continue;
-            }
-            /*if(keyboardValue.matches("^\\d+$"))
-            {
-                System.out.println("Sorry, letters and characters are not "
-                        + "numbers.");
-            }*/
-            if(value < 25)
+            else if(value < 25)
             {
                 System.out.println("Unfortunately, you are too young to die.");
                 continue;
@@ -212,10 +234,17 @@ public class MainMenuView extends View{
         return value; //return the value entered
     }
     
-    private void startLoadGame() {
+    /* ********************************************************
+    LOAD GAME
+    ********************************************************* */
+    private void loadGame()
+    {
         System.out.println("Load game selected");
     }
     
+    /* ********************************************************
+    GO TO HELP MENU
+    ********************************************************* */
     private void gotoHelpMenuView()
     {
         //Create New Help Menu
@@ -225,6 +254,9 @@ public class MainMenuView extends View{
         helpMenu.display();
     }
     
+    /* ********************************************************
+    *********** FUNCTIONS TO DELETE ***************************
+    ********************************************************* */
     /* *****************************************
         MAKE SURE TO DELETE:
         gotoGameMenuView()
