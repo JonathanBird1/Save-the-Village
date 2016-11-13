@@ -32,6 +32,8 @@ public class MainMenuView extends View{
             + "\n\t| M - Map View     |"
             + "\n\t| D - Dungeon View |"
             + "\n\t| B - Battle View  |"
+            + "\n\t| W - WeaponSView  |"  //Test call of WeaponsStoreView to be removed later  
+            + "\n\t| K - Bank         |"  //Test call of BankView to be removed later 
             + "\n\t--------------------"
             + "\n\n"
             + "Please make a selection:");
@@ -66,6 +68,12 @@ public class MainMenuView extends View{
                 break;
             case "B":
                 this.gotoBattleView();
+                break;
+            case "W":  //To be removed later
+                this.gotoWeaponShopView();
+                break;
+            case "K":  //To be removed later
+                this.gotoBankView();
                 break;
             //
             default:
@@ -102,6 +110,7 @@ public class MainMenuView extends View{
                 System.out.println("Welcome, " + playerName + ", you have been "
                         + "born!");
             }
+           // playerCreated = true;
         } while (!playerCreated);
         
         //Create New Game with Player
@@ -207,11 +216,13 @@ public class MainMenuView extends View{
         
         while(!valid)
         {
+            System.out.println("\nHow old is your character?"
+            + "\n(Hint - it must be between 25 and 75) ");
+            
             keyboardValue = keyboard.nextLine(); //get the next lined entered from keyboard
             keyboardValue = keyboardValue.trim();
 
-            System.out.println("\nHow old is your character?"
-                    + "\n(Hint - it must be between 25 and 75) ");
+
             if (keyboardValue.matches("^\\d+$"))
             {
                 value = Integer.parseInt(keyboardValue);
@@ -281,5 +292,15 @@ public class MainMenuView extends View{
         //Test Battle View
         BattleView battle = new BattleView();
         battle.displayBattleView("Forest", testPlayer);
+    }
+    // Call WeaponStoreView   for testing remove later
+    private void gotoWeaponShopView() {
+        WeaponShopView weaponShop = new WeaponShopView();
+        weaponShop.display();
+    }
+    // Call BankView   for testing remove later
+    private void gotoBankView() {
+        BankView bank = new BankView();
+        bank.display();
     }
 }
