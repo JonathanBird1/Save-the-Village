@@ -27,10 +27,9 @@ public class MainMenuView extends View{
             + "\n\t| N – New Game     |"
             + "\n\t| L – Load Game    |"
             + "\n\t| H – Help Menu    |"
-            + "\n\t| E – Exit Game    |"
+            + "\n\t| Q – Quit Game    |"
             + "\n\t|---Quick-Access---|"
             + "\n\t| M - Map View     |"
-            + "\n\t| D - Dungeon View |"
             + "\n\t| B - Battle View  |"
             + "\n\t--------------------"
             + "\n\n"
@@ -55,14 +54,14 @@ public class MainMenuView extends View{
             case "H": // display help menu
                 this.gotoHelpMenuView();
                 break;
+            case "Q": // quit the game
+                this.quitGame();
+                break;
             
             // These are to be deleted prior to implementing final game
             
             case "M":
                 this.gotoMapView();
-                break;
-            case "D":
-                this.gotoDungeonView();
                 break;
             case "B":
                 this.gotoBattleView();
@@ -253,6 +252,10 @@ public class MainMenuView extends View{
         //Display Help Menu
         helpMenu.display();
     }
+
+    private void quitGame() {
+        System.exit(0);
+    }
     
     /* ********************************************************
     *********** FUNCTIONS TO DELETE ***************************
@@ -265,11 +268,6 @@ public class MainMenuView extends View{
     private void gotoMapView() {
         MapView mapView = new MapView();
         mapView.display();
-    }
-
-    private void gotoDungeonView() {
-        DungeonView dungeon = new DungeonView();
-        dungeon.display();
     }
     
     private void gotoBattleView()
