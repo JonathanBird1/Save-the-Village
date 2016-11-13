@@ -43,7 +43,7 @@ public class StoreView extends View{
                 this.sellItems();
                 break;
             case "L": // Leave store
-                break;
+                return true;
             default:
                 System.out.println("\nYeah, that didn't work. Try again.");
         }
@@ -52,8 +52,8 @@ public class StoreView extends View{
     
     private void buyItems() {
         
- //list store inventory 0 to quit       
-  
+        //list store inventory 0 to quit       
+        System.out.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to buy
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String keyboardValue;
@@ -71,7 +71,9 @@ public class StoreView extends View{
             if(keyboardValue.matches("^\\d+$"))
             {
                 System.out.println("Invalid item");
+                break;
             }
+            else value = Integer.parseInt(keyboardValue);
             if(value < 0)
             {
                 System.out.println("Invalid item");
@@ -100,7 +102,7 @@ public class StoreView extends View{
         
     private void sellItems() {
         //list store inventory 0 to quit       
-  
+        System.out.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to buy
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String keyboardValue;
@@ -118,7 +120,9 @@ public class StoreView extends View{
             if(keyboardValue.matches("^\\d+$"))
             {
                 System.out.println("Invalid item");
+                break;
             }
+            else value = Integer.parseInt(keyboardValue);
             if(value < 0)
             {
                 System.out.println("Invalid item");
