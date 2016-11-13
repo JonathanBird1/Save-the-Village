@@ -35,7 +35,7 @@ public class MapControl
                 defaultNPCs, false, true);
             Scene store = new Scene("Store", "Store Description Here", "", 
                 defaultNPCs, false, true);
-            Scene weaponShop = new Scene("Weapon Shop", "Weapon Shop "
+            Scene weaponShop = new Scene("Weapons", "Weapon Shop "
                     + "Description Here", "", defaultNPCs, false, true);
             
             //Forest Key Places
