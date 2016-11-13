@@ -992,7 +992,7 @@ public class MapControl
     
     public void movePlayer()
     {
-        
+        //****INCLUDE TESTING FOR PLAYER ENCOUNTERS
     }
     
     public boolean validateMove()
