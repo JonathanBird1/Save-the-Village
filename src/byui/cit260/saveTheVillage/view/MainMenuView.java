@@ -108,8 +108,8 @@ public class MainMenuView extends View{
             {
                 System.out.println("Welcome, " + playerName + ", you have been "
                         + "born!");
+                playerCreated = true;
             }
-           // playerCreated = true;
         } while (!playerCreated);
         
         //Create New Game with Player
