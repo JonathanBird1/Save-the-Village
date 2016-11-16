@@ -5,6 +5,7 @@
  */
 package byui.cit260.saveTheVillage.view;
 
+import byui.cit260.saveTheVillage.model.Game;
 import java.util.Scanner;
 
 /**
@@ -37,13 +38,13 @@ public class GameMenuView extends View{
         choice = choice.toUpperCase();
         
         switch(choice){
-            case "X": //display statistics
+            case "X": // display statistics
                 this.displayStatistics();
                 break;
-            case "I": //display inventory
+            case "I": // display inventory
                 this.goToInventory();
                 break;
-            case "D":
+            case "D": // display the clues received
                 this.displayQuestDetails();
                 break;
             case "M":
@@ -68,7 +69,26 @@ public class GameMenuView extends View{
     }
 
     private void goToInventory() {
-        System.out.print("Inventory chosen");
+        System.out.println("Inventory chosen");
+        /*StringBuilder line;
+        
+        Game game = SaveTheVillage.getCurrentGame();
+        InventoryItem[] inventory = game.getInventory();
+        
+        System.out.println("\n INVENTORY ITEMS");
+        line = new StringBuilder(
+            line.insert(0, "Description");
+            line.insert(20, "Required");
+            line.insert(30, "Number in Inventory");
+            System.out.println(line.toString());
+            
+            for (InventoryItem item : inventory){
+                line = new StringBuilder(
+                line.insert(0, item.getDescription());
+                line.insert(23, item.getRequiredAmount());
+                line.insert(33, item.getNumberInInventory());
+                System.out.println(line.toString());
+            }*/
     }
 
     private void displayQuestDetails() {
