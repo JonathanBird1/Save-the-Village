@@ -24,8 +24,11 @@ public class MapControl
         {
             //Default NPC Construct
             NPC defaultNPC = new NPC();
-            NPC defaultNPCs[] = new NPC[1];
-            defaultNPCs[0] = defaultNPC;
+            NPC defaultNPCs[] = new NPC[3];
+            for (int i = 0; i < defaultNPCs.length; i++)
+            {
+                defaultNPCs[i] = defaultNPC;
+            }
 
             //Construct Forest Map Scenes
             //Town
@@ -413,7 +416,7 @@ public class MapControl
         for (int i = 0; i < sceneGroup.length; i++)
         {
             //Generate a random number for all corresponding scenes
-            int randomNumber = (int)(Math.random() * 3200) % 32;
+            int randomNumber = (int)(Math.random() * 32000) % 32;
             while (placed[randomNumber])  //If already taken
             {
                 if (randomNumber == 0)
@@ -437,162 +440,162 @@ public class MapControl
                 case 0:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(0);
-                    map.setScene(sceneGroup[randomNumber], 0, 0);
+                    map.setScene(sceneGroup[i], 0, 0);
                     break;
                 case 1:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(1);
-                    map.setScene(sceneGroup[randomNumber], 0, 1);
+                    map.setScene(sceneGroup[i], 0, 1);
                     break;
                 case 2:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(2);
-                    map.setScene(sceneGroup[randomNumber], 0, 2);
+                    map.setScene(sceneGroup[i], 0, 2);
                     break;
                 case 3:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(3);
-                    map.setScene(sceneGroup[randomNumber], 0, 3);
+                    map.setScene(sceneGroup[i], 0, 3);
                     break;
                 case 4:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(4);
-                    map.setScene(sceneGroup[randomNumber], 0, 4);
+                    map.setScene(sceneGroup[i], 0, 4);
                     break;
                 case 5:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(5);
-                    map.setScene(sceneGroup[randomNumber], 0, 5);
+                    map.setScene(sceneGroup[i], 0, 5);
                     break;
                 case 6:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(0);
-                    map.setScene(sceneGroup[randomNumber], 1, 0);
+                    map.setScene(sceneGroup[i], 1, 0);
                     break;
                 case 7:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(1);
-                    map.setScene(sceneGroup[randomNumber], 1, 1);
+                    map.setScene(sceneGroup[i], 1, 1);
                     break;
                 case 8:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(2);
-                    map.setScene(sceneGroup[randomNumber], 1, 2);
+                    map.setScene(sceneGroup[i], 1, 2);
                     break;
                 case 9:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(3);
-                    map.setScene(sceneGroup[randomNumber], 1, 3);
+                    map.setScene(sceneGroup[i], 1, 3);
                     break;
                 case 10:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(4);
-                    map.setScene(sceneGroup[randomNumber], 1, 4);
+                    map.setScene(sceneGroup[i], 1, 4);
                     break;
                 case 11:
                     sceneGroup[i].setRow(1);
                     sceneGroup[i].setColumn(5);
-                    map.setScene(sceneGroup[randomNumber], 1, 5);
+                    map.setScene(sceneGroup[i], 1, 5);
                     break;
                 case 12:
                     sceneGroup[i].setRow(2);
                     sceneGroup[i].setColumn(0);
-                    map.setScene(sceneGroup[randomNumber], 2, 0);
+                    map.setScene(sceneGroup[i], 2, 0);
                     break;
                 case 13:
                     sceneGroup[i].setRow(2);
                     sceneGroup[i].setColumn(1);
-                    map.setScene(sceneGroup[randomNumber], 2, 1);
+                    map.setScene(sceneGroup[i], 2, 1);
                     break;
                 case 14:
                     sceneGroup[i].setRow(2);
                     sceneGroup[i].setColumn(4);
-                    map.setScene(sceneGroup[randomNumber], 2, 4);
+                    map.setScene(sceneGroup[i], 2, 4);
                     break;
                 case 15:
                     sceneGroup[i].setRow(2);
                     sceneGroup[i].setColumn(5);
-                    map.setScene(sceneGroup[randomNumber], 2, 5);
+                    map.setScene(sceneGroup[i], 2, 5);
                     break;
                 case 16:
                     sceneGroup[i].setRow(3);
                     sceneGroup[i].setColumn(0);
-                    map.setScene(sceneGroup[randomNumber], 3, 0);
+                    map.setScene(sceneGroup[i], 3, 0);
                     break;
                 case 17:
                     sceneGroup[i].setRow(3);
                     sceneGroup[i].setColumn(1);
-                    map.setScene(sceneGroup[randomNumber], 3, 1);
+                    map.setScene(sceneGroup[i], 3, 1);
                     break;
                 case 18:
                     sceneGroup[i].setRow(3);
                     sceneGroup[i].setColumn(4);
-                    map.setScene(sceneGroup[randomNumber], 3, 4);
+                    map.setScene(sceneGroup[i], 3, 4);
                     break;
                 case 19:
                     sceneGroup[i].setRow(3);
                     sceneGroup[i].setColumn(5);
-                    map.setScene(sceneGroup[randomNumber], 3, 5);
+                    map.setScene(sceneGroup[i], 3, 5);
                     break;
                 case 20:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(0);
-                    map.setScene(sceneGroup[randomNumber], 4, 0);
+                    map.setScene(sceneGroup[i], 4, 0);
                     break;
                 case 21:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(1);
-                    map.setScene(sceneGroup[randomNumber], 4, 1);
+                    map.setScene(sceneGroup[i], 4, 1);
                     break;
                 case 22:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(2);
-                    map.setScene(sceneGroup[randomNumber], 4, 2);
+                    map.setScene(sceneGroup[i], 4, 2);
                     break;
                 case 23:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(3);
-                    map.setScene(sceneGroup[randomNumber], 4, 3);
+                    map.setScene(sceneGroup[i], 4, 3);
                     break;
                 case 24:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(4);
-                    map.setScene(sceneGroup[randomNumber], 4, 4);
+                    map.setScene(sceneGroup[i], 4, 4);
                     break;
                 case 25:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(5);
-                    map.setScene(sceneGroup[randomNumber], 4, 5);
+                    map.setScene(sceneGroup[i], 4, 5);
                     break;
                 case 26:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(0);
-                    map.setScene(sceneGroup[randomNumber], 5, 0);
+                    map.setScene(sceneGroup[i], 5, 0);
                     break;
                 case 27:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(1);
-                    map.setScene(sceneGroup[randomNumber], 5, 1);
+                    map.setScene(sceneGroup[i], 5, 1);
                     break;
                 case 28:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(2);
-                    map.setScene(sceneGroup[randomNumber], 5, 2);
+                    map.setScene(sceneGroup[i], 5, 2);
                     break;
                 case 29:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(3);
-                    map.setScene(sceneGroup[randomNumber], 5, 3);
+                    map.setScene(sceneGroup[i], 5, 3);
                     break;
                 case 30:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(4);
-                    map.setScene(sceneGroup[randomNumber], 5, 4);
+                    map.setScene(sceneGroup[i], 5, 4);
                     break;
                 case 31:
                     sceneGroup[i].setRow(5);
                     sceneGroup[i].setColumn(5);
-                    map.setScene(sceneGroup[randomNumber], 5, 5);
+                    map.setScene(sceneGroup[i], 5, 5);
                     break;
             }
         }
@@ -614,7 +617,7 @@ public class MapControl
         for (int i = 0; i < sceneGroup.length; i++)
         {
             //Generate a random number for all corresponding scenes
-            int randomNumber = (int)(Math.random() * 300) % 3;
+            int randomNumber = (int)(Math.random() * 100) % 3;
             while (placed[randomNumber])  //If already taken
             {
                 if (randomNumber == 0)
@@ -992,7 +995,7 @@ public class MapControl
     
     public void movePlayer()
     {
-        
+        //****INCLUDE TESTING FOR PLAYER ENCOUNTERS
     }
     
     public boolean validateMove()

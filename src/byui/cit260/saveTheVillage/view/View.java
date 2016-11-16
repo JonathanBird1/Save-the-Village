@@ -5,6 +5,8 @@
  */
 package byui.cit260.saveTheVillage.view;
 
+import byui.cit260.saveTheVillage.model.Game;
+
 import java.util.Scanner;
 
 /**
@@ -26,14 +28,14 @@ public abstract class View implements ViewInterface
     }
     
     @Override
-    public void display(){
-    
-         boolean done = false;
+    public void display()
+    {
+        boolean done = false;
         do
         {
             String value = this.getInput();
-            if(value.toUpperCase().equals("E"))
-                return; //return to previous menu
+            //if(value.toUpperCase().equals("E"))
+                //return; //return to previous menu
             done = this.doAction(value);
         }while(!done);
     }
@@ -60,4 +62,19 @@ public abstract class View implements ViewInterface
         return value;
     }
     
+    public void display(Game game)
+    {
+        boolean done = false;
+        do
+        {
+            String value = this.getInput();
+            done = this.doAction(value, game);
+        } while(!done);
+    }
+    
+    public boolean doAction(String choice, Game game)
+    {
+        //To be overridden by sub-class functions
+        return false;
+    }
 }

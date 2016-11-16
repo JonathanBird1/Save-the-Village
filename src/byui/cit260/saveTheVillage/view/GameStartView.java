@@ -43,7 +43,10 @@ public class GameStartView extends View
         //Loop displaying scenes until the game has finished
         do
         {
-            Scene currentScene = new Scene();
+            //Display Scene Menu
+            SceneView newSceneView = new SceneView(currentGame);
+            newSceneView.display();
+            
         }while (!currentGame.getGameFinished());
         return true;
     }

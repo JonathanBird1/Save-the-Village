@@ -51,18 +51,19 @@ public class HelpMenuView extends View{
     private void displayBasicMenu() {
         
         System.out.println("\n"
-                + "\n\t----BASIC--COMMANDS----"
-                + "\n\t| N – Move North      |"
-                + "\n\t| S – Move South      |"
-                + "\n\t| E – Move East       |"
-                + "\n\t| W – Move West       |"
-                + "\n\t| X – Search          |"
-                + "\n\t| Z – Analyze         |"
-                + "\n\t| P – Pick up an item |"
-                + "\n\t| U – Use an item     |"
-                + "\n\t| C – Conversations   |"
-                + "\n\t| G – Game Menu       |"
-                + "\n\t-----------------------");
+                + "\n\t-----BASIC--COMMANDS-----"
+                + "\n\t| B - Enter (Building)  |"
+                + "\n\t| N – Move North        |"
+                + "\n\t| S – Move South        |"
+                + "\n\t| E – Move East         |"
+                + "\n\t| W – Move West         |"
+                + "\n\t| D - Enter/Exit Dungeon|"
+                + "\n\t| X – Search            |"
+                + "\n\t| P – Pick up an item   |"
+                + "\n\t| U – Use an item       |"
+                + "\n\t| C – Converse          |"
+                + "\n\t| G – Game Menu         |"
+                + "\n\t-------------------------");
         }
 
     private void displayBattleMenu() {
