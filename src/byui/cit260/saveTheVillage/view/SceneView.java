@@ -280,27 +280,29 @@ public class SceneView extends View
                 //Dungeon Entrance
                 if (isInDungeon && currentRow == 4 && currentColumn == 0)
                 {
-                    int i = 0;
-                    int j = 0;
                     boolean found = false;
                     int dungeonEntranceRow = 0;
                     int dungeonEntranceColumn = 0;
-                    //Search Forest map for dungeon entrance
-                    while (i < 8 && found == false)
+                    //Search Forest map for dungeon entrance  //WEEK 10 INDIVIDUAL ASSIGNMENT
+                    for (Scene[] sceneRow : game.getForestMap().getSceneArray())
                     {
-                        while (j < 8 && found == false)
+                        for (Scene scene : sceneRow)
                         {
-                            //Find the dungeon entrance
-                            if (game.getForestMap().getSceneArray()[i][j].
-                                getName().equals("Entrance"))
+                            if (scene.getName().equals("Entrance"))
                             {
+                                //When located, record data and break the loop
                                 found = true;
-                                dungeonEntranceRow = i;
-                                dungeonEntranceColumn = j;
+                                dungeonEntranceRow = scene.getRow();
+                                dungeonEntranceColumn = scene.getColumn();
+                                break;
                             }
-                            j++;
                         }
-                        i++;
+                        
+                        if (found)
+                        {
+                            //Break out if the scene and information has been found
+                            break;
+                        }
                     }
                     
                     //Move the player out of the dungeon
