@@ -829,7 +829,7 @@ public class MapControl
             defaultItem, false, false);
         NPC vixen = new NPC("Vixen", "“As I was out hanging up my wash the other "
             + "week, I noticed a strange looking shadow staring toward town. It "
-            + "was over there,” Vixen points toward " + getQuadrant(sceneGroup[3]) + ""
+            + "was over there,” Vixen points toward " + getQuadrant(sceneGroup[3])
             + "and then continues, “It was a big shape and had, now don’t think "
             + "that I’m telling tales now, but it looked like it had some huge "
             + "horns. Do you think it may have been a demon sent to punish me "
