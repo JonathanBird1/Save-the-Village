@@ -18,7 +18,7 @@ public class BankView extends View{
     public BankView()
     {
         super("\n"
-            + "\n\t----BANK---MENU-----"
+            + "\n\t-----BANK---MENU-----"
             + "\n\t| D – Make Deposit  |"
             + "\n\t| W – Make Withdraw |"
             + "\n\t| L – Leave Bank    |"

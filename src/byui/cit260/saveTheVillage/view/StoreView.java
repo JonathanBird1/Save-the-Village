@@ -21,11 +21,11 @@ public class StoreView extends View{
     public StoreView()
     {
         super("\n"
-            + "\n\t----STORE---MENU-----"
-            + "\n\t| B – Buy Items     |"
-            + "\n\t| S – Sell Items    |"
-            + "\n\t| L – Leave Store   |"
-            + "\n\t---------------------"
+            + "\n\t----STORE---MENU----"
+            + "\n\t| B – Buy Items    |"
+            + "\n\t| S – Sell Items   |"
+            + "\n\t| L – Leave Store  |"
+            + "\n\t--------------------"
             + "\n\n"
             + "Please make a selection:");
     }

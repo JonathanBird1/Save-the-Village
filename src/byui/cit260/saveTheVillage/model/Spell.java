@@ -45,31 +45,7 @@ public enum Spell implements Serializable {
         this.attributeBoosted = "None";
         this.attributeBoostAmount = 0;
     }
-
-    /* ********************************************************
-    NON-DEFAULT CONSTRUCTOR
-    *********************************************************
-    public Spell(String spellName, int damageDealt, int amountHealed,
-            String attributeBoosted, int attributeBoostAmount)
-    {
-        this.damageDealt = damageDealt;
-        this.amountHealed = amountHealed;
-        this.attributeBoosted = attributeBoosted;
-        this.attributeBoostAmount = attributeBoostAmount;
-    }
-
-    /* ********************************************************
-    COPY CONSTRUCTOR
-    *********************************************************
-    public Spell(Spell otherSpell)
-    {
-        this.spellName = otherSpell.spellName;
-        this.damageDealt = otherSpell.damageDealt;
-        this.amountHealed = otherSpell.amountHealed;
-        this.attributeBoosted = otherSpell.attributeBoosted;
-        this.attributeBoostAmount = otherSpell.attributeBoostAmount;
-    }
-
+    
     /* ********************************************************
     ACCESSORS & MUTATORS
     ********************************************************* */
