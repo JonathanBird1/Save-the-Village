@@ -63,7 +63,7 @@ public class BankView extends View{
         while(!valid)
         {
             int max = currentMoney; //get number of items available
-            System.out.println("\nYou have $" + currentMoney + " how much would you"
+            System.out.println("\nYou have $" + currentMoney + ", how much would you "
                 + "like to deposit?"
                 + "\nEnter 0 to exit");
             
@@ -88,7 +88,8 @@ public class BankView extends View{
             }
             else if(value > max)  //need to get the highest item number
             {
-                System.out.println("You don't have that much");
+                System.out.println("Sorry friend, but it would seem that you have "
+                + "insufficient funds to comply with that request.");
                 continue;
             }
 
@@ -117,9 +118,8 @@ public class BankView extends View{
         while(!valid)
         {
             int max = currentMoney; //get number of items available
-            System.out.println("\nYou have $" + currentMoney + " in the bank,"
-                + "how much would you"
-                + "like to deposit?"
+            System.out.println("\nYou have $" + currentMoney + " in the bank, "
+                + "how much would you like to withdraw?"
                 + "\nEnter 0 to exit");
             
             keyboardValue = keyboard.nextLine(); //get the next lined entered from keyboard
@@ -142,7 +142,9 @@ public class BankView extends View{
             }
             else if(value > max)  //need to get the highest item number
             {
-                System.out.println("The bank doesn't have that much");
+                System.out.println("It appears that your account has recently "
+                + "been emptied, either that or you don't have that much in "
+                + "deposited in your savings.");
                 continue;
             }
 

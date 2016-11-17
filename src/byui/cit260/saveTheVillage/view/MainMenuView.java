@@ -9,6 +9,7 @@ import byui.cit260.saveTheVillage.control.PlayerControl;
 import byui.cit260.saveTheVillage.control.GameControl;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Player;
+import byui.cit260.saveTheVillage.model.Spell;
 
 import java.util.Scanner;
 
@@ -29,9 +30,9 @@ public class MainMenuView extends View{
             + "\n\t| H – Help Menu    |"
             + "\n\t| Q – Quit Game    |"
             + "\n\t|---Quick-Access---|"
-            + "\n\t| M - Map View     |"
+            + "\n\t| S - Spell List   |"  //View Spell[] class
             + "\n\t| B - Battle View  |"
-            + "\n\t| W - WeaponSView  |"  //Test call of WeaponsStoreView to be removed later  
+            + "\n\t| W - Weapon View  |"  //Test call of WeaponsStoreView to be removed later  
             + "\n\t| K - Bank         |"  //Test call of BankView to be removed later 
             + "\n\t--------------------"
             + "\n\n"
@@ -62,7 +63,7 @@ public class MainMenuView extends View{
             
             // These are to be deleted prior to implementing final game
             
-            case "M":
+            case "S":
                 this.gotoMapView();
                 break;
             case "B":
@@ -276,9 +277,10 @@ public class MainMenuView extends View{
         gotoGameMenuView()
     */
     
-    private void gotoMapView() {
-        MapView mapView = new MapView();
-        mapView.display();
+    private void gotoMapView() {Spell[] spellList = Spell.values();
+       for (Spell spell : spellList){
+           System.out.println("\n" + spell);
+       }
     }
     
     private void gotoBattleView()
