@@ -12,38 +12,59 @@ import java.util.Objects;
  *
  * @author Master Brickbuilder
  */
-public class Item implements Serializable {
-    private String name;
-    private String type;
-    private int buyPrice;
-    private boolean noBuy;
-    private boolean noSell;
-    private String association;
-    private int weaponDamage;
-    private int healingAmount;
-    private int manaRestored;
-    private int weight;
+public enum Item implements Serializable {
+  WoodenSword("weapon", 0, 0, true, false, "Starting Equipment",
+    1, 0, 0, 5),
+  BambooSword("weapon", 100, 50, false, false, "Weapons Shop",
+    2, 0, 0, 3),
+  Sabre("weapon", 0, 0, false, false, "Weapons Shop",
+    5, 0, 0, 5),
+  Scimitar("weapon", 0, 0, false, false, "Weapons Shop",
+    1, 0, 0, 5),
+  Broadsword("weapon", 0, 0, false, false, "Weapons Shop",
+    1, 0, 0, 5),
+  Katana("weapon", 0, 0, false, false, "Weapons Shop",
+    1, 0, 0, 5),
+  HeavensSword("weapon", 0, 0, true, false, "Dungeon",
+    1, 0, 0, 5),
+  SmallHealth("potion", 0, 0, true, false, "Item Shop",
+    1, 0, 0, 5),
+  MediumHealth("potion", 0, 0, true, false, "Item Shop",
+    1, 0, 0, 5),
+  ;
+    private final String type;
+    private final int buyPrice;
+    private final int sellPrice;
+    private final boolean noBuy;
+    private final boolean noSell;
+    private final String association;
+    private final int weaponDamage;
+    private final int healingAmount;
+    private final int manaRestored;
+    private final int weight;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
     ********************************************************* */
-    public Item()
+    Item(String type,int buyPrice,int sellPrice,boolean noBuy,boolean noSell,
+            String association,int weaponDamage,int healingAmount,
+            int manaRestored,int weight)
     {
-        this.name = "No Name";
-        this.type = "No Type";
-        this.buyPrice = 0;
-        this.noBuy = false;
-        this.noSell = false;
-        this.association = "None";
-        this.weaponDamage = 0;
-        this.healingAmount = 0;
-        this.manaRestored = 0;
-        this.weight = 0;
+        this.type = type;
+        this.buyPrice = buyPrice;
+        this.sellPrice = sellPrice;
+        this.noBuy = noBuy;
+        this.noSell = noSell;
+        this.association = association;
+        this.weaponDamage = weaponDamage;
+        this.healingAmount = healingAmount;
+        this.manaRestored = manaRestored;
+        this.weight = weight;
     }
     
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
-    ********************************************************* */
+    ********************************************************* 
     public Item(String name, String type, int buyPrice, boolean noBuy,
             boolean noSell, String association, int weaponDamage,
             int healingAmount, int manaRestored, int weight)
@@ -62,7 +83,7 @@ public class Item implements Serializable {
     
     /* ********************************************************
     COPY CONSTRUCTOR
-    ********************************************************* */
+    ********************************************************* 
     public Item(Item otherItem)
     {
         this.name = otherItem.name;
@@ -81,153 +102,69 @@ public class Item implements Serializable {
     ACCESSORS & MUTATORS
     ********************************************************* */
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+    
 
     public int getBuyPrice() {
         return buyPrice;
     }
-
-    public void setBuyPrice(int buyPrice) {
-        this.buyPrice = buyPrice;
+    
+    public int getSellPrice() {
+        return buyPrice;
     }
+    
 
     public boolean getNoBuy() {
         return noBuy;
     }
 
-    public void setNoBuy(boolean noBuy) {
-        this.noBuy = noBuy;
-    }
+    
 
     public boolean getNoSell() {
         return noSell;
     }
 
-    public void setNoSell(boolean noSell) {
-        this.noSell = noSell;
-    }
+   
 
     public String getAssociation() {
         return association;
     }
 
-    public void setAssociation(String association) {
-        this.association = association;
-    }
+    
 
     public int getWeaponDamage() {
         return weaponDamage;
     }
 
-    public void setWeaponDamage(int weaponDamage) {
-        this.weaponDamage = weaponDamage;
-    }
+   
 
     public int getHealingAmount() {
         return healingAmount;
     }
 
-    public void setHealingAmount(int healingAmount) {
-        this.healingAmount = healingAmount;
-    }
+    
 
     public int getManaRestored() {
         return manaRestored;
     }
 
-    public void setManaRestored(int manaRestored) {
-        this.manaRestored = manaRestored;
-    }
+    
     
     public int getWeight()
     {
         return this.weight;
     }
+}
     
-    public void setWeight(int weight)
-    {
-        this.weight = weight;
-    }
 
     /* ********************************************************
     OTHER
     ********************************************************* */
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.name);
-        hash = 67 * hash + Objects.hashCode(this.type);
-        hash = 67 * hash + this.buyPrice;
-        hash = 67 * hash + (this.noBuy ? 1 : 0);
-        hash = 67 * hash + (this.noSell ? 1 : 0);
-        hash = 67 * hash + Objects.hashCode(this.association);
-        hash = 67 * hash + this.weaponDamage;
-        hash = 67 * hash + this.healingAmount;
-        hash = 67 * hash + this.manaRestored;
-        hash = 67 * hash + this.weight;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Item other = (Item) obj;
-        if (this.buyPrice != other.buyPrice) {
-            return false;
-        }
-        if (this.noBuy != other.noBuy) {
-            return false;
-        }
-        if (this.noSell != other.noSell) {
-            return false;
-        }
-        if (this.weaponDamage != other.weaponDamage) {
-            return false;
-        }
-        if (this.healingAmount != other.healingAmount) {
-            return false;
-        }
-        if (this.manaRestored != other.manaRestored) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.type, other.type)) {
-            return false;
-        }
-        if (!Objects.equals(this.association, other.association)) {
-            return false;
-        }
-        if (this.weight != other.weight)
-        {
-            return false;
-        }
-        return true;
-    }
-
+  
+/*
     @Override
     public String toString() {
         return "Item{" + "name=" + name + ", type=" + type + ", buyPrice=" +
@@ -236,4 +173,4 @@ public class Item implements Serializable {
                 weaponDamage + ", healingAmount=" + healingAmount + 
                 ", manaRestored=" + manaRestored + ", weight=" + weight + '}';
     }
-}
+}*/
