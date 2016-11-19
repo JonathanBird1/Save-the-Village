@@ -279,7 +279,9 @@ public class MainMenuView extends View{
     
     private void gotoMapView() {Spell[] spellList = Spell.values();
        for (Spell spell : spellList){
-           System.out.println("\n" + spell);
+            System.out.println("\n" + spell.getSpellDescription() + "\n\t"
+            + spell.getDamageDealt() + ", " + spell.getAmountHealed() + ", "
+            + spell.getAttributeBoosted() + ", " + spell.getAttributeBoostAmount());
        }
     }
     

@@ -15,23 +15,32 @@ import java.util.Objects;
 public enum Spell implements Serializable {
 
     //Human racial spells are Healing Wind, Fireburst, and Steel Blade
-    HealingWind("Heals the player for a meduim amount of health."),
+    HealingWind("Healing Wind: Heals the player for a meduim amount of health.", 
+            0, 50, "", 0),
     Fireburst("Creates a burst of fire dealing high fire damage to "
-        + "the enemey."),
-    SteelBlade("Increases the base damage of weapon for the next 5 turns."), //increase base damage
+            + "the enemey.", 75, 0, "", 0),
+    SteelBlade("Steel Blade: Increases the base damage of weapon for the next 5 "
+            + "turns.", 0, 0, "Damage", 35), //increase base damage
     //Elf racial spells are Swift Wind, Blinding Light, and Ice Blade
-    SwiftWind("Increases the player's agility for the next 2 turns"), //increase agility
-    BlindingLight("Produces a flash of light, reducing enemy accuracy by 50% for "
-        + "the next turn and 25% for the turn after that."),
-    IceBlade("Deals medium amount of ice damage to enemy with a 25% chance of "
-        + "freezing the enemy for the next turn."),
+    SwiftWind("Swift Wind: Increases the player's agility for the next 2 turns",
+            0, 0, "Agility", 50), //increase agility
+    BlindingLight("Blinding Light: Produces a flash of light, reducing enemy "
+            + "accuracy by 50% for the next turn and 25% for the turn after that.",
+            0, 0, "enemy accuracy", -25),
+    IceBlade("Ice Blade: Deals medium amount of ice damage to enemy with a 25% "
+            + "chance of freezing the enemy for the next turn.", 50, 0, "speed",
+            -100),
     //Dwarf racial spells are Earthquake, Iron Body, and Decimating Blow
-    Earthquake("Sacrifice 50 health points to deal  high levels of earth damage "
-        + "with a 90% chance of hitting."), //negative 50 health
-    IronBody("Increases the player's defense by 50% for the next 2 turns."), //defense increase 50%
-    DecimatingBlow("Decease player defense by 25% in order to increase attack "
-        + "damage 25 %for the next 5 turns.");//defense by 25%, attack damage 25%
+    Earthquake("Earthquake: Sacrifice 50 health points to deal  high levels of "
+            + "earth damage with a 90% chance of hitting.", 75, -50, "Accuracy",
+            90), //negative 50 health
+    IronBody("Iron Bodey: Increases the player's defense by 50% for the next 2 "
+            + "turns.", 0, 0, "Defense", 50), //defense increase 50%
+    DecimatingBlow("Decimating Blow: Decrease player defense by 25% in order to "
+            + "increase attack damage 25 %for the next 5 turns.", 0, 0, "Attack",
+            25);//defense by 25%, attack damage 25%
     
+   private final String spellDescription;
     private final int damageDealt;
     private final int amountHealed;
     private final String attributeBoosted;
@@ -40,17 +49,22 @@ public enum Spell implements Serializable {
     /* ********************************************************
     DEFAULT CONSTRUCTOR
     ********************************************************* */
-    Spell(String description) {
-        this.damageDealt = 0;
-        this.amountHealed = 0;
-        this.attributeBoosted = "None";
-        this.attributeBoostAmount = 0;
+    Spell(String description, int damageDealt, int healed, String attBoost, int attBoostAmnt) {
+        this.spellDescription = description;
+        this.damageDealt = damageDealt;
+        this.amountHealed = healed;
+        this.attributeBoosted = attBoost;
+        this.attributeBoostAmount = attBoostAmnt;
     }
     
     /* ********************************************************
     ACCESSORS & MUTATORS
     ********************************************************* */
 
+    public String getSpellDescription(){
+        return spellDescription;
+    }
+    
     public int getDamageDealt() {
         return damageDealt;
     }
