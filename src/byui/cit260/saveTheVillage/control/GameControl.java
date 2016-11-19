@@ -41,5 +41,28 @@ public class GameControl {
 
         return newGame;
     }
+
+/*  public static void initializeNewGame(Player player){
     
+        Game game = new Game();
+        SaveTheVillage.setCurrentGame(game);
+    
+        game.setPlayer(player);
+    
+        InventoryItem[] inventoryList = GameControl.createInventoryList();
+        game.setInventory(inventoryList    
+    }
+    
+    public static Item[] createInventoryList(){
+        
+        Item[] inventory = new Item[14];
+    
+        Item smallHealth = new Item();
+            smallHealth.setDescription("Small Health Potion");
+            smallHealth.amountHealed(0);
+            inventory[Item.smallHealth.oridnal()] = smallHealth;
+    
+        return inventory;
+    }
+*/
 }

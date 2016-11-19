@@ -8,7 +8,9 @@ package byui.cit260.saveTheVillage.control;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.util.Set;
+import static oracle.jrockit.jfr.events.Bits.intValue;
 
 /**
  *
@@ -213,12 +215,12 @@ public class PlayerControl {
     {
         int weight = 0;
         
-        for (int i = 0; i < currentItems.length; i++)
+        for (Item items : currentItems)
         {
-            weight += currentItems[i].getWeight();
+            weight += intValue(currentItems);
         }
         
-        weight += currentWeapon.getWeight();
+        weight += intValue(currentWeapon);
         
         weight += money / 100;  //Loss of precision from int is OK
         

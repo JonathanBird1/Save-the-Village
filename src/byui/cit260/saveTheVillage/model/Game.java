@@ -27,6 +27,7 @@ public class Game implements Serializable {
     private int currentRow;
     private int currentColumn;
     private boolean isInDungeon;
+    private Item[] inventory;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
@@ -193,6 +194,14 @@ public class Game implements Serializable {
     public void setIsInDungeon(boolean isInDungeon)
     {
         this.isInDungeon = isInDungeon;
+    }
+    
+    public Item[] getInventory(){
+        return inventory;
+    }
+    
+    public void setInventory(Item[] inventory){
+        this.inventory = inventory;
     }
 
     /* ********************************************************
