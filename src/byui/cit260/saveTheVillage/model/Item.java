@@ -106,8 +106,6 @@ public enum Item implements Serializable {
         return type;
     }
 
-    
-
     public int getBuyPrice() {
         return buyPrice;
     }
@@ -116,61 +114,32 @@ public enum Item implements Serializable {
         return buyPrice;
     }
     
-
     public boolean getNoBuy() {
         return noBuy;
     }
-
-    
 
     public boolean getNoSell() {
         return noSell;
     }
 
-   
-
     public String getAssociation() {
         return association;
     }
-
-    
 
     public int getWeaponDamage() {
         return weaponDamage;
     }
 
-   
-
     public int getHealingAmount() {
         return healingAmount;
     }
-
-    
 
     public int getManaRestored() {
         return manaRestored;
     }
 
-    
-    
     public int getWeight()
     {
         return this.weight;
     }
 }
-    
-
-    /* ********************************************************
-    OTHER
-    ********************************************************* */
-  
-/*
-    @Override
-    public String toString() {
-        return "Item{" + "name=" + name + ", type=" + type + ", buyPrice=" +
-                buyPrice + ", noBuy=" + noBuy + ", noSell=" + noSell + 
-                ", association=" + association + ", weaponDamage=" + 
-                weaponDamage + ", healingAmount=" + healingAmount + 
-                ", manaRestored=" + manaRestored + ", weight=" + weight + '}';
-    }
-}*/
