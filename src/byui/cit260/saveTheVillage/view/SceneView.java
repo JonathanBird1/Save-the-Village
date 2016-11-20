@@ -178,6 +178,7 @@ public class SceneView extends View
         
         switch(choice)
         {
+            //Enter a building
             case "B":
                 if (isInDungeon || !((currentColumn == 2 && currentRow 
                     == 2) || (currentColumn == 2 && currentRow == 3) || 
@@ -223,6 +224,7 @@ public class SceneView extends View
                     }
                 }
                 break;
+            //Head North
             case "N":
                 if (currentRow <= 0 || (isInDungeon && (currentColumn < 4 || 
                     currentColumn > 4))) //Northern points on the maps
@@ -236,6 +238,7 @@ public class SceneView extends View
                     controlMap.movePlayer();  //STUB FUNCTION ********************
                 }
                 break;
+            //Head South
             case "S":
                 if (currentRow >= 7 || (isInDungeon && (currentColumn < 4 || 
                     currentColumn > 4))) //Southern points on the maps
@@ -249,6 +252,7 @@ public class SceneView extends View
                     controlMap.movePlayer();  //STUB FUNCTION ********************
                 }
                 break;
+            //Head East
             case "E":
                 if (currentColumn <= 7 || (isInDungeon && (currentRow < 4 || 
                     currentRow > 4))) //Eastern points on the maps
@@ -262,6 +266,7 @@ public class SceneView extends View
                     controlMap.movePlayer();  //STUB FUNCTION ********************
                 }
                 break;
+            //Head West
             case "W":
                 if (currentColumn <= 0 || (isInDungeon && (currentRow < 4 || 
                     currentRow > 4))) //Western points on the maps
@@ -275,6 +280,7 @@ public class SceneView extends View
                     controlMap.movePlayer();  //STUB FUNCTION ********************
                 }
                 break;
+            //Enter/Exit Dungeon (If on Dungeon Entrance
             case "D":
                 //Locate the player and determine if they are located at the
                 //Dungeon Entrance
@@ -318,6 +324,7 @@ public class SceneView extends View
                     game.setIsInDungeon(true);
                 }
                 break;
+            //Search Scene
             case "X":
                 if (isInDungeon || game.getForestMap().getSceneArray()
                     [currentRow][currentColumn].getClue().equals(""))
@@ -334,19 +341,23 @@ public class SceneView extends View
                     //****LEAD TO ANOTHER VIEW TO ADD THE CLUE TO THE GAME ??????
                 }
                 break;
+            //Pick Up Key Item on Map Scene
             case "P":
                 // ****INTEGRATE A PICK UP MENU VIEW
                 System.out.println("There is nothing to pick up at this time");
                 break;
+            //Use Item in Inventory
             case "U":
                 // *****INTEGRATE A USE ITEM VIEW
                 System.out.println("Unfortunately you cannot use any items now");
                 break;
+            //Talk with an NPC
             case "C":
                 // *****INTEGRATE A COMMUNICATIONS VIEW
                 System.out.println("Sorry, looks like no one wants to talk "
                         + "with you now.");
                 break;
+            //Bring up the Game Menu
             case "G":
                 GameMenuView viewGameMenu = new GameMenuView();
                 viewGameMenu.display();

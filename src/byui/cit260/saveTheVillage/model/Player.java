@@ -16,7 +16,7 @@ import java.util.Objects;
 public class Player implements Serializable {
     private String name;
     private int age;
-    private String race;
+    private Races race;
     private Item items[];
     private int money;
     private Item weapon;
@@ -33,7 +33,7 @@ public class Player implements Serializable {
     public Player()
     {
         this.name = "No Name";
-        this.race = "No Race";
+        this.race = Races.HUMAN;
         this.age = 0;
         this.items = new Item[60];
         for (int i = 0; i < this.items.length; i++)
@@ -57,7 +57,7 @@ public class Player implements Serializable {
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
-    public Player(String name, String race, int age, Item[] items, int money,
+    public Player(String name, Races race, int age, Item[] items, int money,
         Item weapon, int currentHealth,int currentMana, Item[] depositedItems, 
         int depositedMoney,Stats playerStats, int playerWeight)
     {
@@ -129,11 +129,11 @@ public class Player implements Serializable {
         this.age = age;
     }
 
-    public String getRace() {
+    public Races getRace() {
         return race;
     }
 
-    public void setRace(String race) {
+    public void setRace(Races race) {
         this.race = race;
     }
 
@@ -293,7 +293,7 @@ public class Player implements Serializable {
    @Override
     public String toString() {
         String returnString =  "Player{" + "name=" + name + ", age=" + age + 
-                ", race=" + race + ", items=";
+                ", race=" + race.getRaceName() + ", items=";
         
         for (int i = 0; i < items.length; i++)
         {
