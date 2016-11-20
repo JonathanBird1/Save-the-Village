@@ -27,7 +27,7 @@ public class Actor implements Serializable{
     {
         this.name = "No Name";
         this.type = "No Type";
-        this.item = new Item();
+        this.item = Item.None;
         this.gold = 0;
         this.enemyStats = new Stats();
         this.currentHealth = 0;
@@ -84,20 +84,9 @@ public class Actor implements Serializable{
         return item;
     }
 
-    public void setItem(String name, String type, int buyPrice, 
-            boolean noBuy, boolean noSell, String association,
-            int weaponDamage, int healingAmount, int manaRestored,
-            int weight) {
-        this.item.setName(name);
-        this.item.setType(type);
-        this.item.setBuyPrice(buyPrice);
-        this.item.setNoBuy(noBuy);
-        this.item.setNoSell(noSell);
-        this.item.setAssociation(association);
-        this.item.setWeaponDamage(weaponDamage);
-        this.item.setHealingAmount(healingAmount);
-        this.item.setManaRestored(manaRestored);
-        this.item.setWeight(weight);
+    public void setItem(Item item)
+    {
+        this.item = item;
     }
 
     public int getGold() {
