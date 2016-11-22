@@ -21,20 +21,27 @@ public class MapView extends View{
     public boolean doAction(String choice) {
         choice = choice.toUpperCase();
         
-        switch(choice){
+        switch(choice)
+        {
             case "F":
                 this.forestMap();
                 break;
             case "D":
                 this.dungeonMap();
                 break;
-        } return false;
+            case "E":
+                return true;
+            default:
+                System.out.println("Sorry, what was that?");
+        }
+        
+        return false;
     }
 
-    private void forestMap() {
+    private void forestMap()
+    {
         
         MapControl newForestMap = new MapControl();
-        //MapControl newMap = newForestMap.initializeMap(forestMap, dungeonMap);
         
         System.out.println("\n"
         + "\n\t|---------------------------------|"

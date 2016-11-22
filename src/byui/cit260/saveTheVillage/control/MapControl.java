@@ -806,7 +806,7 @@ public class MapControl
         }
 
         //Create item rewards
-        Item defaultItem = new Item();
+        Item defaultItem = Item.None;
         Item healthReward = inventoryControl.randomizeItem(84);
         Item manaReward = inventoryControl.randomizeItem(86);
         Item scrollReward1 = inventoryControl.randomizeItem((int)

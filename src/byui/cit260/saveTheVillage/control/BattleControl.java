@@ -87,21 +87,19 @@ public class BattleControl {
                 }
                 break;
             case "Miniboss1":
-                enemyItem = new Item("Defensive Charm", "Key Item", 0, true,
-                    true, "Miniboss 1", 0, 0, 0, 1);
+                enemyItem = Item.DefensiveCharm;
                 enemyStats = new Stats(750, 0, 45, .35, 0, .15, 40, 40, 20, 0);
                 newEnemy = new Actor("Minotaur Captain", "Miniboss 1", enemyItem, 
                         500, enemyStats, 750);
                 break;
             case "Miniboss2":
-                enemyItem = new Item("Offensive Charm", "Key Item", 0, true,
-                    true, "Miniboss 1", 0, 0, 0, 1);
+                enemyItem = Item.OffensiveCharm;
                 enemyStats = new Stats(750, 0, 45, .35, 0, .15, 40, 40, 20, 0);
                 newEnemy = new Actor("Minotaur Captain", "Miniboss 2", enemyItem, 
                         500, enemyStats, 750);
                 break;
             case "Boss":
-                enemyItem = new Item();
+                enemyItem = Item.None;
                 enemyStats = new Stats(1000, 0, 80, .5, 0, .25, 60, 60, 15, 0);
                 newEnemy = new Actor("Minotaur Master", "Boss", enemyItem, 
                         0, enemyStats, 1000);

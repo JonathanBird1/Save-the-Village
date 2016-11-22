@@ -38,16 +38,16 @@ public class Player implements Serializable {
         this.items = new Item[60];
         for (int i = 0; i < this.items.length; i++)
         {
-            this.items[i] = new Item();
+            this.items[i] = Item.None;
         }
         this.money = 0;
-        this.weapon = new Item();
+        this.weapon = Item.WoodenSword;
         this.currentHealth = 0;
         this.currentMana = 0;
         this.depositedItems = new Item[60];
         for (int i = 0; i < this.depositedItems.length; i++)
         {
-            this.depositedItems[i] = new Item();
+            this.depositedItems[i] = Item.None;
         }
         this.depositedMoney = 0;
         this.playerStats = new Stats();

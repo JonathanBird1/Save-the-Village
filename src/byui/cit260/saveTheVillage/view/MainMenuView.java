@@ -11,6 +11,7 @@ import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Spell;
+import byui.cit260.saveTheVillage.model.Races;
 
 import java.util.Scanner;
 import static oracle.jrockit.jfr.events.Bits.intValue;
@@ -101,7 +102,7 @@ public class MainMenuView extends View{
         {
             //prompt for and get player's choice
             String playerName = this.getPlayerName();
-            String playerRace = this.getPlayerRace();
+            Races playerRace = this.getPlayerRace();
             int playerAge = this.getPlayerAge();
             
             //Create a new player
@@ -175,10 +176,11 @@ public class MainMenuView extends View{
     /* ********************************************************
     GET PLAYER RACE
     ********************************************************* */
-    private String getPlayerRace() {
+    private Races getPlayerRace() {
         
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String value = "";
+        Races race = Races.HUMAN;
         boolean valid = false;
         
         while(!valid)
@@ -201,14 +203,28 @@ public class MainMenuView extends View{
             if(value.length() > 1 || (!value.equals("H") && 
                     !value.equals("E") && !value.equals("D")))
             {
-            System.out.println("Sorry, looks like you are an alien - Please"
+                System.out.println("Sorry, looks like you are an alien - Please"
                     + " select a valid race");
                 continue;
             }
             valid = true;
+            switch (value)
+            {
+                case "H":
+                    race = Races.HUMAN;
+                    break;
+                case "E":
+                    race = Races.ELF;
+                    break;
+                case "D":
+                    race = Races.DWARF;
+                    break;
+                default:
+                    valid = false;
+            }
         }
         
-        return value; //return the value entered
+        return race; //return the value entered
     }
     
     /* ********************************************************
@@ -300,7 +316,7 @@ public class MainMenuView extends View{
     {
         //Create Player for Battle
         PlayerControl newPlayerControl = new PlayerControl();
-        Player testPlayer = newPlayerControl.initializeNewPlayer("Test", "H", 30);
+        Player testPlayer = newPlayerControl.initializeNewPlayer("Test", Races.HUMAN, 30);
 
         //Test Battle View
         BattleView battle = new BattleView();

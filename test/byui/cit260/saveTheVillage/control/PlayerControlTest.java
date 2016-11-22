@@ -8,6 +8,7 @@ package byui.cit260.saveTheVillage.control;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
 import byui.cit260.saveTheVillage.model.Item;
+import byui.cit260.saveTheVillage.model.Races;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -35,7 +36,7 @@ public class PlayerControlTest {
         
         //Variables
         String username = "Name";
-        String race = "H";
+        Races race = Races.HUMAN;
         int age = 35;
         
         //Create an instance
@@ -78,7 +79,7 @@ public class PlayerControlTest {
         
         //Variables
         username = "Name";
-        race = "Terran";
+        race = Races.HUMAN;
         age = 35;
         
         //Create an instance
@@ -110,7 +111,7 @@ public class PlayerControlTest {
         
         //Variables
         username = "None";
-        race = "H";
+        race = Races.HUMAN;
         age = 24;
         
         //Create an instance
@@ -133,7 +134,7 @@ public class PlayerControlTest {
         
         //Variables
         username = "None";
-        race = "H";
+        race = Races.HUMAN;
         age = 76;
         
         //Create an instance
@@ -157,7 +158,7 @@ public class PlayerControlTest {
         
         //Variables
         username = "None";
-        race = "H";
+        race = Races.HUMAN;
         age = 25;
         
         //Create an instance
@@ -200,7 +201,7 @@ public class PlayerControlTest {
         
         //Variables
         username = "None";
-        race = "H";
+        race = Races.HUMAN;
         age = 75;
         
         //Create an instance
