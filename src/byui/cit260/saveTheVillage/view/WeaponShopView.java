@@ -52,8 +52,20 @@ public class WeaponShopView extends View{
     
     private void buyItems() {
         
-        //list store inventory 0 to quit       
-        System.out.println("\nList of items to come, for now enter 0 to exit");
+        //list store inventory 0 to quit 
+        System.out.println("#  ITEM\t\tPRICE" );
+        System.out.println("\n1  " + Item.BambooSword.getItemName() +"\t" + 
+        Item.BambooSword.getBuyPrice());
+        System.out.println("\n2  " + Item.Sabre.getItemName() +"\t" + 
+        Item.Sabre.getBuyPrice());
+        System.out.println("\n2  " + Item.Scimitar.getItemName() +"\t" + 
+        Item.Scimitar.getBuyPrice());
+        System.out.println("\n2  " + Item.Broadsword.getItemName() +"\t" + 
+        Item.Broadsword.getBuyPrice());
+        System.out.println("\n2  " + Item.Katana.getItemName() +"\t" + 
+        Item.Katana.getBuyPrice());
+        
+        System.out.println("\nEnter 0 to exit");
         //Prompt for user input of which item to buy
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String keyboardValue;
