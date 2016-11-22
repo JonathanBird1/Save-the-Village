@@ -53,18 +53,21 @@ public class WeaponShopView extends View{
     private void buyItems() {
         
         //list store inventory 0 to quit 
-        System.out.println("#  ITEM\t\tPRICE" );
-        System.out.println("\n1  " + Item.BambooSword.getItemName() +"\t" + 
-        Item.BambooSword.getBuyPrice());
-        System.out.println("\n2  " + Item.Sabre.getItemName() +"\t" + 
-        Item.Sabre.getBuyPrice());
-        System.out.println("\n2  " + Item.Scimitar.getItemName() +"\t" + 
-        Item.Scimitar.getBuyPrice());
-        System.out.println("\n2  " + Item.Broadsword.getItemName() +"\t" + 
-        Item.Broadsword.getBuyPrice());
-        System.out.println("\n2  " + Item.Katana.getItemName() +"\t" + 
-        Item.Katana.getBuyPrice());
-        
+      System.out.println("#  ITEM\t\tPRICE" );
+  //    String itemArray[]=null;
+
+        int i = 0;
+        Item[] items = Item.values();
+        for (Item item : items){
+            if (item.getAssociation()== "Weapons Shop" && item.getBuyPrice() != 0) {
+              i++;  
+              System.out.println(i + "  " + item +"\t" + item.getBuyPrice());
+              
+   //           itemArray[i]=item.getItemName();
+            }
+            
+        }
+        System.out.println("\nWhich item would you like to buy?");
         System.out.println("\nEnter 0 to exit");
         //Prompt for user input of which item to buy
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
@@ -77,8 +80,8 @@ public class WeaponShopView extends View{
         {
             keyboardValue = keyboard.nextLine(); //get the next lined entered from keyboard
             keyboardValue = keyboardValue.trim();
-            int max = 99; //get number of items available
-            System.out.println("\nWhich item would you like to buy?");
+            int max = 99;//itemArray.length; //get number of items available
+            
 
             if(keyboardValue.matches("^\\d+$"))
             {
@@ -101,6 +104,8 @@ public class WeaponShopView extends View{
 
             valid = true;
         }
+        
+        
         //call the buy item function from SceneControl
         /*
         SceneControl newSceneControl = new SceneControl();
