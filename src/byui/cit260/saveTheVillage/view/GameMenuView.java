@@ -69,7 +69,7 @@ public class GameMenuView extends View{
     }
 
     private void goToInventory() {
-        System.out.println("Inventory chosen");
+        System.out.println("Inventory chosen.");
         /*StringBuilder line;
         
         Game game = SaveTheVillage.getCurrentGame();

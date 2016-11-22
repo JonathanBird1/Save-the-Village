@@ -8,10 +8,12 @@ package byui.cit260.saveTheVillage.view;
 import byui.cit260.saveTheVillage.control.PlayerControl;
 import byui.cit260.saveTheVillage.control.GameControl;
 import byui.cit260.saveTheVillage.model.Game;
+import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Spell;
 
 import java.util.Scanner;
+import static oracle.jrockit.jfr.events.Bits.intValue;
 
 /**
  *
@@ -33,7 +35,9 @@ public class MainMenuView extends View{
             + "\n\t| S - Spell List   |"  //View Spell[] class
             + "\n\t| B - Battle View  |"
             + "\n\t| W - Weapon View  |"  //Test call of WeaponsStoreView to be removed later  
-            + "\n\t| K - Bank         |"  //Test call of BankView to be removed later 
+            + "\n\t| K - Bank         |"
+            + "\n\t| I - Inventory    |"
+            + "\n\t|     Weight       |"  //Test call of BankView to be removed later 
             + "\n\t--------------------"
             + "\n\n"
             + "Please make a selection:");
@@ -64,7 +68,7 @@ public class MainMenuView extends View{
             // These are to be deleted prior to implementing final game
             
             case "S":
-                this.gotoMapView();
+                this.gotoSpellList();
                 break;
             case "B":
                 this.gotoBattleView();
@@ -74,6 +78,9 @@ public class MainMenuView extends View{
                 break;
             case "K":  //To be removed later
                 this.gotoBankView();
+                break;
+            case "I":
+                this.displayWeight();
                 break;
             //
             default:
@@ -277,12 +284,16 @@ public class MainMenuView extends View{
         gotoGameMenuView()
     */
     
-    private void gotoMapView() {Spell[] spellList = Spell.values();
+    private void gotoSpellList() {Spell[] spellList = Spell.values();
        for (Spell spell : spellList){
             System.out.println("\n" + spell.getSpellDescription() + "\n\tDamage Dealt: "
             + spell.getDamageDealt() + ", Amount Healed: " + spell.getAmountHealed() + ", Attribute Boosted: "
             + spell.getAttributeBoosted() + ", Amount Boosted: " + spell.getAttributeBoostAmount());
        }
+    }
+    
+    private void displayWeight(){
+        System.out.println("\nInventory Weighs: 0");
     }
     
     private void gotoBattleView()
