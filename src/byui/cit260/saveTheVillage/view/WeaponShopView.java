@@ -57,16 +57,17 @@ public class WeaponShopView extends View{
       String itemArray[]= new String[22];
    
         int i = 0;
+        int totalAll = 0;   //for assignment remove this later
         Item[] items = Item.values();
         for (Item item : items){
             if (item.getAssociation()== "Weapons Shop" && item.getBuyPrice() != 0) {
               i++;  
               System.out.println(i + "  " + item +"\t" + item.getBuyPrice());
-              
+              totalAll += item.getBuyPrice();  //for assignment remove this later
               itemArray[i]=item.getItemName();
             }
-            
         }
+        System.out.println("To purchase all items the cost would be: $" + totalAll);  //for assignment remove this later
         System.out.println("\nWhich item would you like to buy?");
         System.out.println("\nEnter 0 to exit");
         //Prompt for user input of which item to buy
@@ -112,7 +113,7 @@ public class WeaponShopView extends View{
         
 
         //call the buy item function from SceneControl
-        
+        System.out.println("You chose " + itemArray[keyboardValue]);
         SceneControl newSceneControl = new SceneControl();
      //   newSceneControl.buyItem(Player, keyboardValue);  //how do I reference the player
         
