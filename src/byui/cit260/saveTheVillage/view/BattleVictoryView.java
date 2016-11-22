@@ -119,8 +119,7 @@ public class BattleVictoryView
                 
                 while (itemSlot < 60 && space == false)
                 {
-                    if ((player.getItems()[itemSlot].getName()).equals("No "
-                        + "Name"))
+                    if (player.getItems()[itemSlot] == Item.None)
                     {
                         space = true;
                     }
@@ -135,7 +134,7 @@ public class BattleVictoryView
                     //Add the item
                     player.setItems(itemSlot, droppedItem);
                     System.out.println("You successfully added " + 
-                        droppedItem.getName() + " to your inventory.");
+                        droppedItem.getItemName() + " to your inventory.");
                 }
                 else
                 {

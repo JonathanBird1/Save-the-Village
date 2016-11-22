@@ -27,7 +27,7 @@ public class NPC implements Serializable
     {
         this.npcName = "None";
         this.clue = "No Clue";
-        this.reward = new Item();
+        this.reward = Item.None;
         this.captured = false;
         this.completedQuest = false;
     }

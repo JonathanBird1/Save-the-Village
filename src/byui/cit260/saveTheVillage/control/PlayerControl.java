@@ -8,6 +8,7 @@ package byui.cit260.saveTheVillage.control;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
+import byui.cit260.saveTheVillage.model.Races;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.util.Set;
 import static oracle.jrockit.jfr.events.Bits.intValue;
@@ -26,7 +27,7 @@ public class PlayerControl {
     /* ********************************************************
     INITIALIZE NEW PLAYER
     ********************************************************* */
-    public Player initializeNewPlayer(String username, String race, int age)
+    public Player initializeNewPlayer(String username, Races race, int age)
     {        
         //Error Trapping
         if (!race.equals("H") && !race.equals("E") && 
@@ -56,22 +57,20 @@ public class PlayerControl {
         }
         
         //Attributes
-        Item defaultItem = new Item();
+        Item defaultItem = Item.None;
         Item defaultItems[] = new Item[60];
-        for (int i = 0; i < defaultItems.length; i++)
+        for (Item listItem : defaultItems)
         {
-            defaultItems[i] = defaultItem;
+            listItem = defaultItem;
         }
         
         int defaultMoney = 100;
-
-        Item defaultWeapon = new Item("Wooden Sword", "Weapon", 0, true, 
-                false, "None", 1, 0, 0, 5);
+        Item defaultWeapon = Item.WoodenSword;
         
         Item defaultDepositedItems[] = new Item[60];
-        for (int i = 0; i < defaultDepositedItems.length; i++)
+        for (Item listItem : defaultDepositedItems)
         {
-            defaultDepositedItems[i] = defaultItem;
+            listItem = defaultItem;
         }
         int defaultDepositedMoney = 0;
         
@@ -100,7 +99,7 @@ public class PlayerControl {
     /* ********************************************************
     INITIALIZE NEW PLAYER STATS
     ********************************************************* */
-    private Stats initializeNewPlayerStats (String race, int age)
+    private Stats initializeNewPlayerStats (Races race, int age)
     {
         //Calculate Player Stats
         //HEALTH
