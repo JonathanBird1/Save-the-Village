@@ -24,7 +24,7 @@ public class GameStartView extends View
     GameStartView(Game game)
     {
         super("Welcome to 'Save The Village'.  Your goal is to locate and "
-            + "defeat the main boss before all the townspeople have been "
+            + "defeat the main boss before all \nthe townspeople have been "
             + "taken.  Good luck!");
         
         currentGame = game;
@@ -33,7 +33,7 @@ public class GameStartView extends View
     @Override
     public String getInput()
     {
-        //No input required for this view
+        System.out.println(super.displayMessage);
         return "";
     }
     
@@ -45,7 +45,7 @@ public class GameStartView extends View
         {
             //Display Scene Menu
             SceneView newSceneView = new SceneView(currentGame);
-            newSceneView.display();
+            newSceneView.display(currentGame);
             
         }while (!currentGame.getGameFinished());
         return true;
