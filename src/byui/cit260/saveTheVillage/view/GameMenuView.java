@@ -91,19 +91,26 @@ public class GameMenuView extends View{
             }*/
     }
 
-    private void displayQuestDetails() {
+    private void displayQuestDetails()
+    {
+        //To Complete *******************************************
         System.out.print("Quest details chosen");
     }
 
-    private void displayMap() {
-        System.out.print("Map chosen");
+    private void displayMap()
+    {
+        MapView newMapView = new MapView();
+        newMapView.display();
     }
 
-    private void goToSaveGame() {
+    private void goToSaveGame()
+    {
+        //To Complete *******************************************
         System.out.print("Save game chosen");
     }
 
     private void startLoadGame() {
+        //To Complete *******************************************
         System.out.print("Load game chosen");
     }
 
