@@ -77,6 +77,10 @@ public class SceneView extends View
                 case "Ring":
                 case "Necklace":
                 case "Toy":
+                case "Tracks1":
+                case "Tracks2":
+                case "Tracks3":
+                case "Forest":
                     super.displayMessage = (
                           "\n\t----BASIC--COMMANDS----"
                         + "\n\t| N – Move North      |"
@@ -85,20 +89,6 @@ public class SceneView extends View
                         + "\n\t| W – Move West       |"
                         + "\n\t| X – Search          |"
                         + "\n\t| P – Pick up an item |"
-                        + "\n\t| U – Use an item     |"
-                        + "\n\t| G – Game Menu       |"
-                        + "\n\t-----------------------");
-                    break;
-                case "Tracks1":
-                case "Tracks2":
-                case "Tracks3":
-                    super.displayMessage = (
-                          "\n\t----BASIC--COMMANDS----"
-                        + "\n\t| N – Move North      |"
-                        + "\n\t| S – Move South      |"
-                        + "\n\t| E – Move East       |"
-                        + "\n\t| W – Move West       |"
-                        + "\n\t| X – Search          |"
                         + "\n\t| U – Use an item     |"
                         + "\n\t| G – Game Menu       |"
                         + "\n\t-----------------------");
