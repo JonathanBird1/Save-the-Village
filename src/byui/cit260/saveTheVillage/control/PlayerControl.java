@@ -18,7 +18,7 @@ import static oracle.jrockit.jfr.events.Bits.intValue;
  * @author micha
  */
 public class PlayerControl {
-    
+
     public PlayerControl()
     {
         //No Functions or Attributes
@@ -208,7 +208,7 @@ public class PlayerControl {
     /* ********************************************************
     DETERMINE WEIGHT
     ********************************************************* */
-    public int determineWeight (Item[] currentItems, Item currentWeapon, int money)
+    public static int determineWeight (Item[] currentItems, Item currentWeapon, int money)
     {
         int weight = 0;
         

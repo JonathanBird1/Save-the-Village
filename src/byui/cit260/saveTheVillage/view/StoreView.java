@@ -52,7 +52,9 @@ public class StoreView extends View{
     
     private void buyItems() {
         
-        //list store inventory 0 to quit       
+        //list store inventory 0 to quit   
+        System.out.println(Item.SmallHealthPotion.getItemName() +" " + 
+                Item.SmallHealthPotion.getBuyPrice());
         System.out.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to buy
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
