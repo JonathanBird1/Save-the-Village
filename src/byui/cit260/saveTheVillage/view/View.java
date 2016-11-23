@@ -34,8 +34,6 @@ public abstract class View implements ViewInterface
         do
         {
             String value = this.getInput();
-            //if(value.toUpperCase().equals("E"))
-                //return; //return to previous menu
             done = this.doAction(value);
         }while(!done);
     }
