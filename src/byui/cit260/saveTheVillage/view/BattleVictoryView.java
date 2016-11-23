@@ -10,6 +10,7 @@ import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Stats;
 import byui.cit260.saveTheVillage.control.PlayerControl;
+import byui.cit260.saveTheVillage.exceptions.PlayerControlException;
 import java.util.Scanner;
 
 /**
@@ -151,10 +152,13 @@ public class BattleVictoryView
                 
                 //Calculate and Set New Speed Penalty
                 Stats newStats = new Stats(player.getPlayerStats());
-                newStats.setSpeedPenalty( newPlayerControl.
+                try {newStats.setSpeedPenalty( newPlayerControl.
                     determineSpeedPenalty(player.getPlayerStats().getSpeed(), 
                     player.getPlayerStats().getStrength(),
                     player.getPlayerWeight()));
+                } catch (PlayerControlException me){
+                    System.out.println("Your speed seems wrong...");
+                }
                 player.setPlayerStats(newStats);
                 System.out.println("Your new speed penalty is:  " +
                     player.getPlayerStats().getSpeedPenalty());

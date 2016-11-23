@@ -53,10 +53,9 @@ public class BankView extends View{
         
         int currentMoney = 0;
         //currentMoney = Player.getMoney()  //get players current amount
-        
 
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String keyboardValue;
+        int keyboardValue;
         int value = 0;
         boolean valid = false;
         
@@ -67,16 +66,11 @@ public class BankView extends View{
                 + "like to deposit?"
                 + "\nEnter 0 to exit");
             
-            keyboardValue = keyboard.nextLine(); //get the next lined entered from keyboard
-            keyboardValue = keyboardValue.trim();
-
-
-            if(keyboardValue.matches("^\\d+$"))
-            {
-                System.out.println("Invalid amount");
-                return;
+            try {keyboardValue = keyboard.nextInt(); //get the next lined entered from keyboard
+            } catch (Exception e){
+                System.out.println("Invalid amount.");
             }
-            else value = Integer.parseInt(keyboardValue);
+            
             if(value < 0)
             {
                 System.out.println("Invalid amount");
@@ -100,8 +94,7 @@ public class BankView extends View{
         //money = currentMoney - value;
         //Player.setMoney(money);
 
-        return; 
-        
+        return;
     }
         
      private void WithdrawMoney() {
@@ -111,7 +104,7 @@ public class BankView extends View{
         
 
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String keyboardValue;
+        int keyboardValue;
         int value = 0;
         boolean valid = false;
         
@@ -122,15 +115,11 @@ public class BankView extends View{
                 + "how much would you like to withdraw?"
                 + "\nEnter 0 to exit");
             
-            keyboardValue = keyboard.nextLine(); //get the next lined entered from keyboard
-            keyboardValue = keyboardValue.trim();
-
-            if(keyboardValue.matches("^\\d+$"))
-            {
-                System.out.println("Invalid amount");
-                break;
+            try {
+                keyboardValue = keyboard.nextInt(); //get the next lined entered from keyboard
+            } catch (Exception e){
+                System.out.println("Invalid amount.");
             }
-            else value = Integer.parseInt(keyboardValue);
             if(value < 0)
             {
                 System.out.println("Invalid amount");

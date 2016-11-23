@@ -58,24 +58,21 @@ public class StoreView extends View{
         System.out.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to buy
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String keyboardValue;
+        int keyboardValue;
         int value = 0;
         boolean valid = false;
         
         
         while(!valid)
         {
-            keyboardValue = keyboard.nextLine(); //get the next lined entered from keyboard
-            keyboardValue = keyboardValue.trim();
+            try{
+                keyboardValue = keyboard.nextInt(); //get the next lined entered from keyboard
+            } catch (Exception e){
+                System.out.println("Invalid item");
+            }
             int max = 99; //get number of items available
             System.out.println("\nWhich item would you like to buy?");
 
-            if(keyboardValue.matches("^\\d+$"))
-            {
-                System.out.println("Invalid item");
-                break;
-            }
-            else value = Integer.parseInt(keyboardValue);
             if(value < 0)
             {
                 System.out.println("Invalid item");

@@ -8,7 +8,10 @@ package byui.cit260.saveTheVillage.view;
 import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.control.BattleControl;
+import byui.cit260.saveTheVillage.exceptions.BattleControlException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +25,7 @@ public class BattleView {
     private String battleMenu;
     private boolean playerTurn;
     private boolean defeated;
+    private int damage;
     
     /* ********************************************************
     DEFAULT CONSTRUCTOR
@@ -111,8 +115,8 @@ public class BattleView {
                         //Defeated
                         done = true;
                         defeated = true;
-                        System.out.println("Doesn't look like it's your day"
-                                + " - You have been defeated.");
+                        System.out.println("Doesn't look like it's your day "
+                                + "- You have been defeated.");
                     }
                 }
                 
@@ -188,42 +192,52 @@ public class BattleView {
         
         if (playerTurn)  //Player Attack
         {
-            double successRate = thisControl.calcSuccessRate("A", 
-                player.getPlayerStats().getHitRate(), 
-                enemy.getEnemyStats().getDodgeRate());
-            int damage = thisControl.calcTotalDamage(
-                player.getWeapon().getWeaponDamage(), 
-                player.getPlayerStats().getStrength(), 
-                enemy.getEnemyStats().getDefense(), successRate);
-            if (damage > 0)
-            {
-                //Deal Damage
-                enemy.setCurrentHealth((enemy.getCurrentHealth() 
-                    - damage) < 0 ? 0 : enemy.getCurrentHealth() - 
-                    damage);
+            try {
+                double successRate = thisControl.calcSuccessRate("A",
+                        player.getPlayerStats().getHitRate(),
+                        enemy.getEnemyStats().getDodgeRate());
+                int damage = thisControl.calcTotalDamage(
+                        player.getWeapon().getWeaponDamage(),
+                        player.getPlayerStats().getStrength(),
+                        enemy.getEnemyStats().getDefense(), successRate);
+                if (damage > 0)
+                {
+                    //Deal Damage
+                    enemy.setCurrentHealth((enemy.getCurrentHealth()
+                            - damage) < 0 ? 0 : enemy.getCurrentHealth() -
+                                    damage);
+                }
+                
+                System.out.println("Attack Damage Dealt: " +
+                        damage);
+            } catch (BattleControlException ex) {
+                System.out.println(ex.getMessage());
             }
-            
-            System.out.println("Attack Damage Dealt: " + 
-                damage);
         }
-        else  //Enemy Attack
-        {
-            double successRate = thisControl.calcSuccessRate("A", 
-                enemy.getEnemyStats().getHitRate(), 
-                player.getPlayerStats().getDodgeRate());
-            int damage = thisControl.calcTotalDamage(0, 
-                enemy.getEnemyStats().getStrength(), 
-                player.getPlayerStats().getDefense(), successRate);
-            if (damage > 0)
+        else          {
+            try //Enemy Attack
             {
-                //Deal Damage
-                player.setCurrentHealth((player.getCurrentHealth() 
-                    - damage) < 0 ? 0 : player.getCurrentHealth() - 
-                    damage);
+                double successRate = thisControl.calcSuccessRate("A",
+                        enemy.getEnemyStats().getHitRate(),
+                        player.getPlayerStats().getDodgeRate());
+                
+                int damage = thisControl.calcTotalDamage(0,
+                        enemy.getEnemyStats().getStrength(),
+                        player.getPlayerStats().getDefense(), successRate);
+                
+                if (damage > 0)
+                {
+                    //Deal Damage
+                    player.setCurrentHealth((player.getCurrentHealth()
+                            - damage) < 0 ? 0 : player.getCurrentHealth() -
+                                    damage);
+                }
+                
+                System.out.println("Attack Damage Received: " +
+                        damage);
+            } catch (BattleControlException ex) {
+                System.out.println(ex.getMessage());
             }
-
-            System.out.println("Attack Damage Received: " + 
-                damage);
         }
     }
     
@@ -259,14 +273,14 @@ public class BattleView {
             enemy.getEnemyStats().getSpeed()) >= .5)
         {
             System.out.println("You have successfully escaped"
-                + "the enemy - You will live to see another"
+                + "the enemy - You will live to see another "
                 + "day.");
             return true;
         }
         else
         {
-            System.out.println("Sorry, you were not able to get"
-                + " away - try again if you survive this "
+            System.out.println("Sorry, you were not able to get "
+                + "away - try again if you survive this "
                 + "next round.");
         }
         

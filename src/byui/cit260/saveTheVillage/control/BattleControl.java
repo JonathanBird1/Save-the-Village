@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.saveTheVillage.control;
+import byui.cit260.saveTheVillage.exceptions.BattleControlException;
 import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Spell;
@@ -163,14 +164,15 @@ public class BattleControl {
     CALCULATE TOTAL DAMAGE
     ********************************************************* */
     public int calcTotalDamage(int baseDamage, int offensiveAttribute, 
-            int defensiveAttribute, double successRate)
+            int defensiveAttribute, double successRate) throws BattleControlException
     {
         //Error Handling
         if (baseDamage < 0 || offensiveAttribute < 0 || 
                 offensiveAttribute > 100 || defensiveAttribute < 0 ||
                 defensiveAttribute > 100 || successRate < 0 || 
                 successRate > 1)
-            return -1;
+            throw new BattleControlException("Your attempt to inflict harm was "
+                    + "utterly unsuccessful.");
         
         int calculatedDamage = (int)((baseDamage + offensiveAttribute) *
                 successRate - defensiveAttribute);
