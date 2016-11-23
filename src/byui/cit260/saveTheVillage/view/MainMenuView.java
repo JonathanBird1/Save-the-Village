@@ -180,9 +180,9 @@ public class MainMenuView extends View{
         {
             System.out.println("\nWhich race do you relate with?\n"
                     + "\n\t----RACES----"
-                    + "\n\t| D – Dwarf |"
-                    + "\n\t| E – Elf   |"
                     + "\n\t| H – Human |"
+                    + "\n\t| E – Elf   |"
+                    + "\n\t| D – Dwarf |"
                     + "\n\t-------------");
             value = keyboard.nextLine(); //get the next lined entered from keyboard
             value = value.toUpperCase();
