@@ -56,7 +56,7 @@ public class MapControl
                 + "spell scroll or two. Anything that a strong hero like you could "
                 + "possibly need.”", "", 
                 defaultNPCs, false, true);
-            Scene weaponShop = new Scene("Weapon Shop", "The din of steel striking "
+            Scene weaponShop = new Scene("Weapons", "The din of steel striking "
                 + "steel greets you as you press open the solidly built door. As "
                 + "you step in, a wave of barely manageable heat envelopes you. The "
                 + "clanging of metal stops and a massively built human man lowers an "
@@ -99,21 +99,21 @@ public class MapControl
                 + "find the half eaten carcass of a rather large fish sitting "
                 + "on a rock not too far from where you found the key."
                 , defaultNPCs, false, false);
-            Scene tracks1 = new Scene("Tracks", "There is a large jumble of rocks "
+            Scene tracks1 = new Scene("Tracks1", "There is a large jumble of rocks "
                 + "and boulders spread out around this section of the forest. "
                 + "A large oak tree stands in the middle of the rock strewn land.", 
                   "You look around, and as you near the oak tree you notice what looks "
                 + "like a wide, straight line of disturbed rocks heading to " 
                 + dungeonEntrance + ".", 
                 defaultNPCs, false, false);
-            Scene tracks2 = new Scene("Tracks", "This section of the woods is very "
+            Scene tracks2 = new Scene("Tracks2", "This section of the woods is very "
                 + "similar to everywhere else. Massive trees tower above you and "
                 + "the undergrowth is littered with fallen sticks and wildflowers.", 
                   "A thorough search of the area reveals a set of deep imprints in "
                 + "the ground next to a tree. A trail leads to and from " 
                 + dungeonEntrance + ".", 
                 defaultNPCs, false, false);
-            Scene tracks3 = new Scene("Tracks", "A picturesque farmhouse lays before "
+            Scene tracks3 = new Scene("Tracks3", "A picturesque farmhouse lays before "
                 + "you, a white picket fence surrounds a small patch of flowers "
                 + "beneath one of the windows. You hear birds chirping in the "
                 + "trees and see a small, white butterfly flitting between blossoms.", 
