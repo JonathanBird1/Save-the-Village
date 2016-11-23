@@ -30,8 +30,7 @@ public class PlayerControl {
     public Player initializeNewPlayer(String username, Races race, int age)
     {        
         //Error Trapping
-        if (!race.equals("H") && !race.equals("E") && 
-                !race.equals("D"))
+        if (!(race == Races.HUMAN || race == Races.ELF || race == Races.DWARF))
         {
             System.out.println("ERROR:  Invalid Race - Race must be Human, "
                     + "Elf, or Dwarf");
@@ -57,20 +56,19 @@ public class PlayerControl {
         }
         
         //Attributes
-        Item defaultItem = Item.None;
         Item defaultItems[] = new Item[60];
-        for (Item listItem : defaultItems)
+        for (int i = 0; i < defaultItems.length; i++)
         {
-            listItem = defaultItem;
+            defaultItems[i] = Item.None;
         }
         
         int defaultMoney = 100;
         Item defaultWeapon = Item.WoodenSword;
         
         Item defaultDepositedItems[] = new Item[60];
-        for (Item listItem : defaultDepositedItems)
+        for (int i = 0; i < defaultDepositedItems.length; i++)
         {
-            listItem = defaultItem;
+            defaultDepositedItems[i] = Item.None;
         }
         int defaultDepositedMoney = 0;
         
@@ -216,10 +214,10 @@ public class PlayerControl {
         
         for (Item items : currentItems)
         {
-            weight += intValue(currentItems);
+            weight += items.getWeight();
         }
         
-        weight += intValue(currentWeapon);
+        weight += currentWeapon.getWeight();
         
         weight += money / 100;  //Loss of precision from int is OK
         
