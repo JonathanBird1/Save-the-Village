@@ -5,6 +5,7 @@
  */
 package byui.cit260.saveTheVillage.control;
 
+import byui.cit260.saveTheVillage.exceptions.PlayerControlException;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
@@ -81,10 +82,13 @@ public class PlayerControl {
         //Apply Speed Penalty
         int currentWeight = determineWeight(defaultItems, defaultWeapon, 
                 defaultMoney);
-        playerStats.setSpeedPenalty(
+        try {playerStats.setSpeedPenalty(
         determineSpeedPenalty(playerStats.getSpeed(), playerStats.getStrength(),
                 currentWeight));
-        
+            } catch (PlayerControlException me){
+            System.out.println(me.getMessage());
+            username = "Invalid";
+        }
         //Initialize New Player & Return
         Player newPlayer = new Player(username, race, age, defaultItems,
             defaultMoney, defaultWeapon, currentHealth, currentMana, 
@@ -179,13 +183,13 @@ public class PlayerControl {
     /* ********************************************************
     DETERMINE SPEED PENALTY
     ********************************************************* */
-    public int determineSpeedPenalty(int speed, int strength, int weight)
+    public int determineSpeedPenalty(int speed, int strength, int weight) throws PlayerControlException
     {
         if(speed < 0)
-            return -1;
+            throw new PlayerControlException("You have to be faster than that.");
         
         if(strength < 1)
-            return -2;
+            throw new PlayerControlException("Invalid strength input.");
 
         int weightMinusStrength = weight - strength;
         //otherwise there is a penalty for any weight, this way speed is only 
