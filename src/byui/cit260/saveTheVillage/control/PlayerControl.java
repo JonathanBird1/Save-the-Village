@@ -183,7 +183,8 @@ public class PlayerControl {
     /* ********************************************************
     DETERMINE SPEED PENALTY
     ********************************************************* */
-    public int determineSpeedPenalty(int speed, int strength, int weight) throws PlayerControlException
+    public int determineSpeedPenalty(int speed, int strength, int weight)
+    throws PlayerControlException
     {
         if(speed < 0)
             throw new PlayerControlException("You have to be faster than that.");

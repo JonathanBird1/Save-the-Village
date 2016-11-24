@@ -9,6 +9,7 @@ import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.control.MapControl;
+import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 
 /**
  *
@@ -20,6 +21,7 @@ public class GameControl {
     INITIALIZE NEW GAME
     ********************************************************* */
     public Game initializeNewGame(Player player)
+        throws InventoryControlException
     {
         //Create an empty array of clues
         String clues[] = new String[10];
@@ -31,9 +33,16 @@ public class GameControl {
         //Create a new random forest and dungeon map
         MapControl mapControl = new MapControl();
         Map forestMap = new Map("Forest");
-        mapControl.initializeMap(forestMap);
         Map dungeonMap = new Map("Dungeon");
-        mapControl.initializeMap(dungeonMap);
+        try
+        {
+            mapControl.initializeMap(forestMap);
+            mapControl.initializeMap(dungeonMap);
+        }
+        catch (InventoryControlException ice)
+        {
+            throw new InventoryControlException(ice);
+        }
         
         //Create the new game
         Game newGame = new Game(0, (60*24*5), false, "testFile.stv", clues,

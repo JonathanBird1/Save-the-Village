@@ -9,6 +9,7 @@ import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Spell;
 import byui.cit260.saveTheVillage.model.Stats;
+import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 
 /**
  *
@@ -19,7 +20,7 @@ public class BattleControl {
     /* ********************************************************
     INITIALIZE ENEMY
     ********************************************************* */
-    public Actor initializeEnemy(String scene)
+    public Actor initializeEnemy(String scene) throws InventoryControlException
     {
         Actor newEnemy;
         Stats enemyStats;
@@ -34,7 +35,16 @@ public class BattleControl {
         switch (scene)
         {
             case "Forest":
-                enemyItem = inventoryControl.randomizeItem(randomItem);
+                //Generate a Random Item
+                try
+                {
+                    enemyItem = inventoryControl.randomizeItem(randomItem);
+                }
+                catch (InventoryControlException ice)
+                {
+                    throw new InventoryControlException(ice);
+                }
+                //Generate a Random Enemy
                 if (randomEnemy <= 25)
                 {
                     enemyStats = new Stats(10, 0, 1, .1, 0, .05, 1, 1, 5, 0);
@@ -61,7 +71,16 @@ public class BattleControl {
                 }
                 break;
             case "Dungeon":
-                enemyItem = inventoryControl.randomizeItem(randomItem);
+                //Generate a Random Item
+                try
+                {
+                    enemyItem = inventoryControl.randomizeItem(randomItem);
+                }
+                catch (InventoryControlException ice)
+                {
+                    throw new InventoryControlException(ice);
+                }
+                //Generate a Random Enemy
                 if (randomEnemy <= 25)
                 {
                     enemyStats = new Stats(100, 0, 15, .25, 0, .05, 30, 5, 5, 0);

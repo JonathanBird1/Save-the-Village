@@ -9,6 +9,7 @@ import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.model.NPC;
+import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 /**
  *
  * @author Master Brickbuilder
@@ -18,7 +19,7 @@ public class MapControl
     /* ********************************************************
     INITIALIZE MAP
     ********************************************************* */
-    public void initializeMap(Map map)
+    public void initializeMap(Map map) throws InventoryControlException
     {
         if (map.getMapName().equals("Forest"))
         {
@@ -243,7 +244,14 @@ public class MapControl
             tracks3.setClue("" + direction + "");
 
             //Create and Place NPC's
-            placeNPCs(map, sceneGroup);
+            try
+            {
+                placeNPCs(map, sceneGroup);
+            }
+            catch (InventoryControlException ice)
+            {
+                throw new InventoryControlException(ice);
+            }
         }
         else if (map.getMapName().equals("Dungeon"))
         {
@@ -795,7 +803,8 @@ public class MapControl
     /* ********************************************************
     PLACE NPC'S
     ********************************************************* */
-    public void placeNPCs (Map map, Scene[] sceneGroup)
+    public void placeNPCs (Map map, Scene[] sceneGroup) 
+    throws InventoryControlException
     {
         InventoryControl inventoryControl = new InventoryControl();
         NPC npcList[] = new NPC[10];
@@ -807,12 +816,23 @@ public class MapControl
 
         //Create item rewards
         Item defaultItem = Item.None;
-        Item healthReward = inventoryControl.randomizeItem(84);
-        Item manaReward = inventoryControl.randomizeItem(86);
-        Item scrollReward1 = inventoryControl.randomizeItem((int)
-            (Math.random() * 1200 % 12) + 88);
-        Item scrollReward2 = inventoryControl.randomizeItem((int)
-            (Math.random() * 1200 % 12) + 88);
+        Item healthReward = Item.None;
+        Item manaReward = Item.None;
+        Item scrollReward1 = Item.None;
+        Item scrollReward2 = Item.None;
+        try
+        {
+            healthReward = inventoryControl.randomizeItem(84);
+            manaReward = inventoryControl.randomizeItem(86);
+            scrollReward1 = inventoryControl.randomizeItem((int)
+                (Math.random() * 1200 % 12) + 88);
+            scrollReward2 = inventoryControl.randomizeItem((int)
+                (Math.random() * 1200 % 12) + 88);
+        }
+        catch (InventoryControlException ice)
+        {
+            throw new InventoryControlException(ice);
+        }
         
         //Construct new NPC's
         NPC bob = new NPC("Bob", "“My friend took his mule out that way " + getQuadrant(sceneGroup[2])

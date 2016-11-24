@@ -9,6 +9,7 @@ import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.control.BattleControl;
 import byui.cit260.saveTheVillage.exceptions.BattleControlException;
+import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,7 +69,15 @@ public class BattleView {
         
         //Create a new enemy
         newBattleControl = new BattleControl();
-        enemy = newBattleControl.initializeEnemy(scene);
+        try
+        {
+            enemy = newBattleControl.initializeEnemy(scene);
+        }
+        catch (InventoryControlException ice)
+        {
+            System.out.println(ice.getMessage());
+            return false;
+        }
         //This view will only display if the non-default constructor was used
 
         System.out.println("While traveling through this area, you have "
