@@ -12,6 +12,7 @@ import byui.cit260.saveTheVillage.model.NPC;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.view.BattleView;
+import byui.cit260.saveTheVillage.exceptions.MapControlException;
 
 /**
  *
@@ -1067,12 +1068,16 @@ public class MapControl
     MOVE PLAYER
     ********************************************************* */
     public void movePlayer(Game game, int newRow, int newColumn)
+    throws MapControlException
     {
-        //Error trapping is handled before the values are passed -- this assert
-        //just double checks that no invalid coordinates are passed
-        assert (newRow >= 0 && newColumn >= 0 && newRow <= 
+        //Error Trap Invalid Coordinates
+        if (!(newRow >= 0 && newColumn >= 0 && newRow <= 
             (game.getIsInDungeon() ? 8 : 5) && newColumn <= 
-            (game.getIsInDungeon() ? 8 : 5));
+            (game.getIsInDungeon() ? 8 : 5)))
+        {
+            throw new MapControlException("ERROR:  Invalid Coordinates - You "
+            + "are attempting to move your player to a non-existent location");
+        }
 
         //Random Enemy Encounter
         double randomNumber = Math.random();
