@@ -27,7 +27,7 @@ public class GameControl {
         String clues[] = new String[10];
         for (int i = 0; i < 10; i++)
         {
-            clues[i] = "Not Obtained";
+            clues[i] = "";
         }
         
         //Create a new random forest and dungeon map
@@ -43,6 +43,9 @@ public class GameControl {
         {
             throw new InventoryControlException(ice);
         }
+        
+        //Set the starting scene as visited
+        forestMap.getScene(2, 2).setVisited(true);
         
         //Create the new game
         Game newGame = new Game(0, (60*24*5), false, "testFile.stv", clues,

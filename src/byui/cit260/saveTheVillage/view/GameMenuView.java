@@ -15,9 +15,17 @@ import java.util.Scanner;
     /* ********************************************************
     GAME MENU
     ********************************************************* */
-public class GameMenuView extends View{
+public class GameMenuView extends View
+{
+    private Game currentGame;
     
     public GameMenuView()
+    {
+        System.out.println("ERROR:  Cannot use default constructor for "
+                + "Game Menu View");
+    }
+    
+    public GameMenuView(Game currentGame)
     {
         super("\n"
             + "\n\t------GAME---MENU------"
@@ -30,10 +38,19 @@ public class GameMenuView extends View{
             + "\n\t| E - Exit Menu       |"
             + "\n\t| Q - Quit Game       |"
             + "\n\t-----------------------");
+        
+        this.currentGame = currentGame;
     }
     
     @Override
-    public boolean doAction(String choice) {
+    public boolean doAction(String choice)
+    {
+        System.out.println("ERROR:  Required to pass Game as a parameter");
+        return false;
+    }
+       
+    @Override
+    public boolean doAction(String choice, Game game) {
         
         choice = choice.toUpperCase();
         
@@ -48,7 +65,7 @@ public class GameMenuView extends View{
                 this.displayQuestDetails();
                 break;
             case "M":
-                this.displayMap();
+                this.displayMap(game);
                 break;
             case "S":
                 this.goToSaveGame();
@@ -97,10 +114,10 @@ public class GameMenuView extends View{
         System.out.print("Quest details chosen");
     }
 
-    private void displayMap()
+    private void displayMap(Game game)
     {
         MapView newMapView = new MapView();
-        newMapView.display();
+        newMapView.display(game);
     }
 
     private void goToSaveGame()

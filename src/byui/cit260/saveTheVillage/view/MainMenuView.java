@@ -126,6 +126,7 @@ public class MainMenuView extends View{
         
         //Create New Game with Player
         boolean finished = false;
+        
         //Create New Game
         GameControl newGameControl = new GameControl();
         Game newGame = new Game();
@@ -141,8 +142,8 @@ public class MainMenuView extends View{
         }
             
         //Begin New Game
-        GameStartView startNewGame = new GameStartView(newGame);
-        startNewGame.display();
+        GameStartView startNewGame = new GameStartView();
+        startNewGame.display(newGame);
         
         finished = true;
     }
@@ -220,6 +221,7 @@ public class MainMenuView extends View{
                     + " select a valid race");
                 continue;
             }
+            
             valid = true;
             switch (value)
             {
@@ -243,11 +245,10 @@ public class MainMenuView extends View{
     /* ********************************************************
     GET PLAYER AGE
     ********************************************************* */
-    private int getPlayerAge() {
-        
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        int keyboardValue;
-        int value = 0;
+    private int getPlayerAge()
+    {
+        Scanner keyboard;
+        int keyboardValue = 0;
         boolean valid = false;
         
         while(!valid)
@@ -257,13 +258,14 @@ public class MainMenuView extends View{
             
             try
             {
+                keyboard = new Scanner(System.in);  //get infile for keyboard
                 keyboardValue = keyboard.nextInt();
-                if(value < 25)
+                if(keyboardValue < 25)
                 {
                     System.out.println("Unfortunately, you are too young to die.");
                     continue;
                 }
-                else if(value > 75)
+                else if(keyboardValue > 75)
                 {
                     System.out.println("Sorry, you might as well retire and enjoy"
                         + " your last bit of life.");
@@ -279,7 +281,7 @@ public class MainMenuView extends View{
             }
         }
         
-        return value; //return the value entered
+        return keyboardValue; //return the value entered
     }
     
     /* ********************************************************
@@ -302,7 +304,8 @@ public class MainMenuView extends View{
         helpMenu.display();
     }
 
-    private void quitGame() {
+    private void quitGame()
+    {
         System.exit(0);
     }
     

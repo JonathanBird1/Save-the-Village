@@ -154,8 +154,7 @@ public class SceneView extends View
     @Override
     public boolean doAction(String choice)
     {
-        System.out.println("ERROR:  doAction for this class requires two "
-                + "parameters - String and Game");
+        System.out.println("ERROR:  Required to pass Game as a parameter");
         return false;
     }
     
@@ -270,7 +269,7 @@ public class SceneView extends View
                     controlMap.movePlayer();  //STUB FUNCTION ********************
                 }
                 break;
-            //Enter/Exit Dungeon (If on Dungeon Entrance
+            //Enter/Exit Dungeon (If on Dungeon Entrance)
             case "D":
                 //Locate the player and determine if they are located at the
                 //Dungeon Entrance
@@ -349,25 +348,12 @@ public class SceneView extends View
                 break;
             //Bring up the Game Menu
             case "G":
-                GameMenuView viewGameMenu = new GameMenuView();
-                viewGameMenu.display();
+                GameMenuView viewGameMenu = new GameMenuView(game);
+                viewGameMenu.display(game);
                 break;
             default:
         }
         
-            /*  + "\n\t-----BASIC--COMMANDS-----"
-                + "\n\t| B - Enter (Building)  |"
-                + "\n\t| N – Move North        |"
-                + "\n\t| S – Move South        |"
-                + "\n\t| E – Move East         |"
-                + "\n\t| W – Move West         |"
-                + "\n\t| D - Enter/Exit Dungeon|"
-                + "\n\t| X – Search            |"
-                + "\n\t| P – Pick up an item   |"
-                + "\n\t| U – Use an item       |"
-                + "\n\t| C – Converse          |"
-                + "\n\t| G – Game Menu         |"*/
-
         return true;
     }
 }

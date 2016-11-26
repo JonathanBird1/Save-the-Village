@@ -210,7 +210,12 @@ public class MapControl
             {
                 for (int j = 0; j < map.getTotalColumns(); j++)
                 {
-                    map.setScene(emptyForest, i, j);
+                    //Create a new empty forest scene for each spot on the map
+                    //so that each spot has a unique location address when set
+                    Scene newEmptyForest = new Scene(emptyForest);
+                    newEmptyForest.setRow(i);
+                    newEmptyForest.setColumn(j);
+                    map.setScene(newEmptyForest, i, j);
                 }
             }
 
@@ -265,6 +270,10 @@ public class MapControl
             
             Scene noPath = new Scene("NoPath", "No Path", "", defaultNPCs, 
                 false, true);
+            Scene dungeonExit = new Scene("DungeonExit", "With the glow of the "
+                + "outside light radiating into the dungeon entrance, your torch "
+                + "begins to illuminate the cold, damp dungeon that awaits you.",
+                "No Clue Description", defaultNPCs, false, true);
             Scene dungeonPath = new Scene ("DungeonPath", "You hear the whistling "
                 + "of the wind as you venture deeper into the dungeon. Each of "
                 + "your steps echoes ominously through the vast, emptiness ahead "
@@ -311,25 +320,63 @@ public class MapControl
             {
                 for (int j = 0; j < map.getTotalColumns(); j++)
                 {
-                    map.setScene(noPath, i, j);
+                    //Create a new empty forest scene for each spot on the map
+                    //so that each spot has a unique location address when set
+                    Scene newNoPath = new Scene(noPath);
+                    map.setScene(newNoPath, i, j);
                 }
+            }
+            
+            //Create an Array of Dungeon Path Copies
+            Scene dungeonPathArray[] = new Scene[12];
+            for (int i = 0; i < dungeonPathArray.length; i++)
+            {
+                dungeonPathArray[i] = new Scene(dungeonPath);
             }
 
             //Place the dungeon path and branch
-            map.setScene(dungeonPath, 4, 0);
-            map.setScene(dungeonPath, 4, 1);
-            map.setScene(dungeonPath, 4, 2);
-            map.setScene(dungeonPath, 4, 3);
+            dungeonExit.setRow(4);
+            dungeonExit.setColumn(0);
+            map.setScene(dungeonExit, 4, 0);
+            dungeonPathArray[0].setRow(4);
+            dungeonPathArray[0].setColumn(1);
+            map.setScene(dungeonPathArray[0], 4, 1);
+            dungeonPathArray[1].setRow(4);
+            dungeonPathArray[1].setColumn(2);
+            map.setScene(dungeonPathArray[1], 4, 2);
+            dungeonPathArray[2].setRow(4);
+            dungeonPathArray[2].setColumn(3);
+            map.setScene(dungeonPathArray[2], 4, 3);
+            branch.setRow(4);
+            branch.setColumn(4);
             map.setScene(branch, 4, 4);
-            map.setScene(dungeonPath, 3, 4);
-            map.setScene(dungeonPath, 2, 4);
-            map.setScene(dungeonPath, 1, 4);
-            map.setScene(dungeonPath, 5, 4);
-            map.setScene(dungeonPath, 6, 4);
-            map.setScene(dungeonPath, 7, 4);
-            map.setScene(dungeonPath, 4, 5);
-            map.setScene(dungeonPath, 4, 6);
-            map.setScene(dungeonPath, 4, 7);
+            dungeonPathArray[3].setRow(3);
+            dungeonPathArray[3].setColumn(4);
+            map.setScene(dungeonPathArray[3], 3, 4);
+            dungeonPathArray[4].setRow(2);
+            dungeonPathArray[4].setColumn(4);
+            map.setScene(dungeonPathArray[4], 2, 4);
+            dungeonPathArray[5].setRow(1);
+            dungeonPathArray[5].setColumn(4);
+            map.setScene(dungeonPathArray[5], 1, 4);
+            dungeonPathArray[6].setRow(5);
+            dungeonPathArray[6].setColumn(4);
+            map.setScene(dungeonPathArray[6], 5, 4);
+            dungeonPathArray[7].setRow(6);
+            dungeonPathArray[7].setColumn(4);
+            map.setScene(dungeonPathArray[7], 6, 4);
+            dungeonPathArray[8].setRow(7);
+            dungeonPathArray[8].setColumn(4);
+            map.setScene(dungeonPathArray[8], 7, 4);
+            dungeonPathArray[9].setRow(4);
+            dungeonPathArray[9].setColumn(5);
+            map.setScene(dungeonPathArray[9], 4, 5);
+            dungeonPathArray[10].setRow(4);
+            dungeonPathArray[10].setColumn(6);
+            map.setScene(dungeonPathArray[10], 4, 6);
+            dungeonPathArray[11].setRow(4);
+            dungeonPathArray[11].setColumn(7);
+            map.setScene(dungeonPathArray[11], 4, 7);
             
             //Randomize Boss & Miniboss Locations
             Scene sceneGroup[] = new Scene[3];
@@ -625,7 +672,7 @@ public class MapControl
         for (int i = 0; i < sceneGroup.length; i++)
         {
             //Generate a random number for all corresponding scenes
-            int randomNumber = (int)(Math.random() * 100) % 3;
+            int randomNumber = ((int)(Math.random() * 100)) % 3;
             while (placed[randomNumber])  //If already taken
             {
                 if (randomNumber == 0)
@@ -645,20 +692,20 @@ public class MapControl
             //Place the appropriate scene
             switch (randomNumber)
             {
-                case 1:
+                case 0:
                     sceneGroup[i].setRow(0);
                     sceneGroup[i].setColumn(4);
-                    map.setScene(sceneGroup[randomNumber], 0, 4);
+                    map.setScene(sceneGroup[i], 0, 4);
                     break;
-                case 2:
+                case 1:
                     sceneGroup[i].setRow(8);
                     sceneGroup[i].setColumn(4);
-                    map.setScene(sceneGroup[randomNumber], 8, 4);
+                    map.setScene(sceneGroup[i], 8, 4);
                     break;
-                case 3:
+                case 2:
                     sceneGroup[i].setRow(4);
                     sceneGroup[i].setColumn(8);
-                    map.setScene(sceneGroup[randomNumber], 4, 8);
+                    map.setScene(sceneGroup[i], 4, 8);
                     break;
             }
         }
