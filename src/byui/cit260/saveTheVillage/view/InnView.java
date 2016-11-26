@@ -29,7 +29,12 @@ public class InnView{
         boolean valid = false;
         
         while(!valid){
-            value = keyboard.nextInt(); //get the next lined entered from keyboard
+            try {
+                value = keyboard.nextInt();  //get the next int entered from keyboard
+            } catch (Exception e) {
+                System.out.println("That's not an integer");
+                return 0;
+              }; 
             
             if(value < 0){
                 System.out.println("\nSorry? What was that?");
