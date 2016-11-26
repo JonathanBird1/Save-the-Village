@@ -8,6 +8,7 @@ package byui.cit260.saveTheVillage.view;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.control.MapControl;
+import byui.cit260.saveTheVillage.exceptions.MapControlException;
 
 /**
  *
@@ -230,62 +231,54 @@ public class SceneView extends View
                 break;
             //Head North
             case "N":
-                if (currentRow <= 0 || (isInDungeon && (currentColumn < 4 || 
-                    currentColumn > 4))) //Northern points on the maps
-                {
-                    System.out.println("Looks like you can't head any further "
-                            + "North");
-                }
-                else
+                try
                 {
                     MapControl controlMap = new MapControl();
                     controlMap.movePlayer(game, game.getCurrentRow() - 1,
                         game.getCurrentColumn());
                 }
+                catch (MapControlException mce)
+                {
+                    System.out.println(mce.getMessage());
+                }
                 break;
             //Head South
             case "S":
-                if (currentRow >= 7 || (isInDungeon && (currentColumn < 4 || 
-                    currentColumn > 4))) //Southern points on the maps
-                {
-                    System.out.println("Looks like you can't head any further "
-                            + "South");
-                }
-                else
+                try
                 {
                     MapControl controlMap = new MapControl();
                     controlMap.movePlayer(game, game.getCurrentRow() + 1,
                         game.getCurrentColumn());
                 }
+                catch (MapControlException mce)
+                {
+                    System.out.println(mce.getMessage());
+                }
                 break;
             //Head East
             case "E":
-                if (currentColumn >= 7 || (isInDungeon && (currentRow < 4 || 
-                    currentRow > 4))) //Eastern points on the maps
-                {
-                    System.out.println("Looks like you can't head any further "
-                            + "East");
-                }
-                else
+                try
                 {
                     MapControl controlMap = new MapControl();
                     controlMap.movePlayer(game, game.getCurrentRow(),
                         game.getCurrentColumn() + 1);
                 }
+                catch (MapControlException mce)
+                {
+                    System.out.println(mce.getMessage());
+                }
                 break;
             //Head West
             case "W":
-                if (currentColumn <= 0 || (isInDungeon && (currentRow < 4 || 
-                    currentRow > 4))) //Western points on the maps
-                {
-                    System.out.println("Looks like you can't head any further "
-                            + "West");
-                }
-                else
+                try
                 {
                     MapControl controlMap = new MapControl();
                     controlMap.movePlayer(game, game.getCurrentRow(),
                         game.getCurrentColumn() - 1);
+                }
+                catch (MapControlException mce)
+                {
+                    System.out.println(mce.getMessage());
                 }
                 break;
             //Enter/Exit Dungeon (If on Dungeon Entrance)
