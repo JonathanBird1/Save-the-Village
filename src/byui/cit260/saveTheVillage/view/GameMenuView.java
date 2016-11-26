@@ -8,6 +8,7 @@ package byui.cit260.saveTheVillage.view;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
+import byui.cit260.saveTheVillage.model.Item;
 import java.util.Scanner;
 
 /**
@@ -123,29 +124,78 @@ public class GameMenuView extends View
 
     private void goToInventory(Player player)
     {
+        int counter = 0;
+        
         //ITEMS ON HAND
-        System.out.println("INVENTORY ON HAND\n");
+        System.out.println("\tINVENTORY ON HAND\n");
+        System.out.print("\t");
+        System.out.printf("%-3s", "#");
+        System.out.printf("%-15s", "ITEM NAME");
+        System.out.printf("%-7s", "TYPE");
+        System.out.printf("%-11s", "SELL PRICE");
+        System.out.printf("%-5s", "DAM.");
+        System.out.printf("%-5s", "HEAL");
+        System.out.printf("%-5s", "MANA");
+        System.out.printf("%-6s", "WEIGHT");
+        System.out.println();
+        System.out.println("\t---------------------------------------------------------");
         
+        for (Item item : player.getItems())
+        {
+            counter++;
+            System.out.print("\t");
+            System.out.printf("%-3d", counter);
+            System.out.printf("%-15s", item.getItemName());
+            System.out.printf("%-7s", item.getType());
+            System.out.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
+            System.out.printf("%-5d", item.getWeaponDamage());
+            System.out.printf("%-5d", item.getHealingAmount());
+            System.out.printf("%-5d", item.getManaRestored());
+            System.out.printf("%-6d", item.getWeight());
+            System.out.println();
+        }
         
-/*    private final String itemName;
-    private final String type;
-    private final int buyPrice;
-    private final boolean noBuy;
-    private final boolean noSell;
-    private final String association;
-    private final int weaponDamage;
-    private final int healingAmount;
-    private final int manaRestored;
-    private final int weight;*/
+        counter = 0;
+        System.out.println();
         //ITEMS IN THE BANK
-        System.out.println("INVENTORY IN THE BANK\n");
+        System.out.println("\tINVENTORY IN THE BANK\n");
+        System.out.print("\t");
+        System.out.printf("%-3s", "#");
+        System.out.printf("%-15s", "ITEM NAME");
+        System.out.printf("%-7s", "TYPE");
+        System.out.printf("%-11s", "SELL PRICE");
+        System.out.printf("%-5s", "DAM.");
+        System.out.printf("%-5s", "HEAL");
+        System.out.printf("%-5s", "MANA");
+        System.out.printf("%-6s", "WEIGHT");
+        System.out.println();
+        System.out.println("\t---------------------------------------------------------");
         
+        for (Item item : player.getItems())
+        {
+            counter++;
+            System.out.print("\t");
+            System.out.printf("%-3d", counter);
+            System.out.printf("%-15s", item.getItemName());
+            System.out.printf("%-7s", item.getType());
+            System.out.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
+            System.out.printf("%-5d", item.getWeaponDamage());
+            System.out.printf("%-5d", item.getHealingAmount());
+            System.out.printf("%-5d", item.getManaRestored());
+            System.out.printf("%-6d", item.getWeight());
+            System.out.println();
+        }
     }
 
     private void displayQuestDetails()
     {
-        //To Complete *******************************************
-        System.out.print("Quest details chosen");
+        System.out.println("YOUR QUEST");
+        System.out.println();
+        System.out.println("You are a wandering hero that has come across a town facing a mysterious problem.  For \n" +
+"the past month, every night someone has been disappearing from the town without a trace. \n" +
+"Upon meeting you and learning of your abilities, the elders of the village have pleaded \n" +
+"with you to save the missing villagers and protect the village.  Armed with your sword, \n" +
+"your magic, and your intellect, you set out to save the village…");
     }
 
     private void displayMap(Game game)

@@ -16,7 +16,7 @@ public class GameStartView extends View
 {
     GameStartView()
     {
-        super("Welcome to 'Save The Village'.  Your goal is to locate and "
+        super("\nWelcome to 'Save The Village'.  Your goal is to locate and "
             + "defeat the main boss before all \nthe townspeople have been "
             + "taken.  Good luck!");
     }

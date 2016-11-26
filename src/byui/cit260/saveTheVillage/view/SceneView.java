@@ -224,7 +224,8 @@ public class SceneView extends View
                 else
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer();  //STUB FUNCTION ********************
+                    controlMap.movePlayer(game, game.getCurrentRow() - 1,
+                        game.getCurrentColumn());
                 }
                 break;
             //Head South
@@ -238,7 +239,8 @@ public class SceneView extends View
                 else
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer();  //STUB FUNCTION ********************
+                    controlMap.movePlayer(game, game.getCurrentRow() + 1,
+                        game.getCurrentColumn());
                 }
                 break;
             //Head East
@@ -252,7 +254,8 @@ public class SceneView extends View
                 else
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer();  //STUB FUNCTION ********************
+                    controlMap.movePlayer(game, game.getCurrentRow(),
+                        game.getCurrentColumn() + 1);
                 }
                 break;
             //Head West
@@ -266,7 +269,8 @@ public class SceneView extends View
                 else
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer();  //STUB FUNCTION ********************
+                    controlMap.movePlayer(game, game.getCurrentRow(),
+                        game.getCurrentColumn() - 1);
                 }
                 break;
             //Enter/Exit Dungeon (If on Dungeon Entrance)

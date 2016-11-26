@@ -10,6 +10,7 @@ import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.model.NPC;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
+import byui.cit260.saveTheVillage.model.Game;
 /**
  *
  * @author Master Brickbuilder
@@ -1060,9 +1061,13 @@ public class MapControl
         }
     }
     
-    public void movePlayer()
+    /* ********************************************************
+    MOVE PLAYER
+    ********************************************************* */
+    public void movePlayer(Game game, int newRow, int newColumn)
     {
         //****INCLUDE TESTING FOR PLAYER ENCOUNTERS
+        System.out.println("Moving Player...");
     }
     
     public boolean validateMove()
