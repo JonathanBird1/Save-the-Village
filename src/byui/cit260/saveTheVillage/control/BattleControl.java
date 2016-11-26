@@ -135,13 +135,13 @@ public class BattleControl
     CALCULATE SUCCESS RATE
     ********************************************************* */
     public double calcSuccessRate(String action, double offensiveAttribute,
-            double defensiveAttribute)
+            double defensiveAttribute) throws BattleControlException
     {
         //Error Trapping - All attributes are between 0 and 100
         if (action.equals("")  || offensiveAttribute > 100 || 
                 offensiveAttribute < 0 || defensiveAttribute > 100 || 
                 defensiveAttribute < 0)
-            return -1;
+            throw new BattleControlException("Error in passed values");
         
         double successRate;
         
@@ -153,7 +153,7 @@ public class BattleControl
             case "I":
                 //Error Trapping (Percentages no greater than 1)
                 if (offensiveAttribute > 1 || defensiveAttribute > 1)
-                    return -1;
+                    throw new BattleControlException("Invalid offensive or defensive");
                 else
                 {
                     successRate = offensiveAttribute - defensiveAttribute + 
@@ -175,7 +175,7 @@ public class BattleControl
                 else
                     return successRate;
             default:  //Invalid Action
-                return -1;
+                throw new BattleControlException("Unknown error");
         }
     }
     
