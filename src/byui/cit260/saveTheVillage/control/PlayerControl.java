@@ -132,7 +132,7 @@ public class PlayerControl {
         double hitRate = Math.random();
         if (hitRate < .1)
             hitRate = .1;
-        if (hitRate > 1);
+        if (hitRate > 1)
             hitRate = 1;
         
         //MAGIC
