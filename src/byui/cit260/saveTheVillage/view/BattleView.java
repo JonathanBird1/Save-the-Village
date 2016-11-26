@@ -277,23 +277,28 @@ public class BattleView {
     {
         //Determine if player successfully runs away
         BattleControl thisControl = new BattleControl();
-        if (thisControl.calcSuccessRate("R",
-            player.getPlayerStats().getSpeed(), 
-            enemy.getEnemyStats().getSpeed()) >= .5)
+        try
         {
-            System.out.println("You have successfully escaped"
-                + "the enemy - You will live to see another "
-                + "day.");
-            return true;
-        }
-        else
-        {
-            System.out.println("Sorry, you were not able to get "
-                + "away - try again if you survive this "
-                + "next round.");
-        }
+            if (thisControl.calcSuccessRate("R",
+                player.getPlayerStats().getSpeed(), 
+                enemy.getEnemyStats().getSpeed()) >= .5)
+            { 
+                System.out.println("You have successfully escaped"
+                    + "the enemy - You will live to see another "
+                    + "day.");
+                return true; 
+            }
+            else
+            {
+                System.out.println("Sorry, you were not able to get "
+                    + "away - try again if you survive this "
+                    + "next round.");
+            }
         
-        return false;
+        }
+        catch (BattleControlException ex) {
+                System.out.println(ex.getMessage());}
+    return false;
     }
     
     /* ********************************************************
