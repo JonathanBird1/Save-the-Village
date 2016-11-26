@@ -13,7 +13,8 @@ import java.util.Scanner;
  * @author Yoda
  */
 
-public class BankView extends View{
+public class BankView extends View
+{
     
     public BankView()
     {
@@ -28,8 +29,8 @@ public class BankView extends View{
     }
     
     @Override
-    public boolean doAction(String choice) {
-        
+    public boolean doAction(String choice)
+    {
         choice = choice.toUpperCase();
         
         switch(choice){
