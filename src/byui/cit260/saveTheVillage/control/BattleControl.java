@@ -15,8 +15,8 @@ import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
  *
  * @author Master Brickbuilder
  */
-public class BattleControl {
-    
+public class BattleControl
+{
     /* ********************************************************
     INITIALIZE ENEMY
     ********************************************************* */

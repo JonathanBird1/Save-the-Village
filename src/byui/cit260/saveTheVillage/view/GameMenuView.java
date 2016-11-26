@@ -53,21 +53,27 @@ public class GameMenuView extends View
     }
        
     @Override
-    public boolean doAction(String choice, Game game) {
+    public boolean doAction(String choice, Game game)
+    {
+        boolean exitMenu = false;
         
         choice = choice.toUpperCase();
         
         switch(choice){
-            case "X": // display statistics
+            case "X":
+                // Display statistics
                 this.displayStatistics(game.getPlayer());
                 break;
-            case "I": // display inventory
+            case "I":
+                // Display inventory
                 this.goToInventory(game.getPlayer());
                 break;
-            case "D": // display the clues received
+            case "D":
+                // Display the clues received
                 this.displayQuestDetails();
                 break;
             case "M":
+                //Display the Dungeon and Forest Maps
                 this.displayMap(game);
                 break;
             case "S":
@@ -76,11 +82,15 @@ public class GameMenuView extends View
             case "L":
                 this.startLoadGame();
                 break;
+            case "E":
+                //Exit the Menu
+                exitMenu = true;
+                break;
             case "Q":
                 this.quitGame();
                 break;
         }
-        return false;
+        return exitMenu;
     }
 
     private void displayStatistics(Player player)
@@ -216,9 +226,9 @@ public class GameMenuView extends View
     }
 
     private void quitGame() {
-        System.out.print("You have chosen to quit the game. "
-                + "Congratulations, the entire village has been "
-                + "devoured by the Beast. I hope you can sleep "
+        System.out.print("You have chosen to quit the game. \n"
+                + "Congratulations, the entire village has been \n"
+                + "devoured by the Beast. I hope you can sleep \n"
                 + "well tonight.");
         System.exit(0);
     }

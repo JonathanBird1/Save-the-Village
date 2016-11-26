@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  *
  * @author micha
  */
-public class BattleView {
-    
+public class BattleView
+{
     private boolean validView;
     private Actor enemy;
     private BattleControl newBattleControl;

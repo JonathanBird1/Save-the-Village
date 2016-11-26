@@ -11,6 +11,8 @@ import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.model.NPC;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import byui.cit260.saveTheVillage.model.Game;
+import byui.cit260.saveTheVillage.view.BattleView;
+
 /**
  *
  * @author Master Brickbuilder
@@ -1066,13 +1068,65 @@ public class MapControl
     ********************************************************* */
     public void movePlayer(Game game, int newRow, int newColumn)
     {
-        //****INCLUDE TESTING FOR PLAYER ENCOUNTERS
-        System.out.println("Moving Player...");
-    }
-    
-    public boolean validateMove()
-    {
-        return false;
+        //Error trapping is handled before the values are passed -- this assert
+        //just double checks that no invalid coordinates are passed
+        assert (newRow >= 0 && newColumn >= 0 && newRow <= 
+            (game.getIsInDungeon() ? 8 : 5) && newColumn <= 
+            (game.getIsInDungeon() ? 8 : 5));
+
+        //Random Enemy Encounter
+        double randomNumber = Math.random();
+        if (randomNumber > .5)
+        {
+            if (game.getIsInDungeon() == false)
+            {
+                switch (game.getForestMap().getSceneArray()
+                    [game.getCurrentRow()][game.getCurrentColumn()].getName())
+                {
+                    case "Inn":
+                    case "Bank":
+                    case "Weapons":
+                    case "Shop":
+                        //No Enemy Encounter
+                        break;
+                    default:
+                        //Enemy Encounter
+                        BattleView newBattleView = new BattleView();
+                        //Call the Display Function for Battle View *********************
+                        System.out.println("Insert Enemy Encounter...");
+                }
+            }
+            else
+            {
+                //Enemy Encounter
+                BattleView newBattleView = new BattleView();
+                //Call the Display Function for Battle View *********************
+                System.out.println("Insert Enemy Encounter...");
+            }
+        }
+        
+        //If not defeated or did not run away, move player to new spot
+        if (game.getPlayer().getCurrentHealth() > 0)
+        {
+            game.setCurrentRow(newRow);
+            game.setCurrentColumn(newColumn);
+            
+            //Set the new scene to visited
+            if (game.getIsInDungeon())
+            {
+                game.getDungeonMap().getSceneArray()[newRow][newColumn].setVisited(true);
+            }
+            else
+            {
+                game.getForestMap().getSceneArray()[newRow][newColumn].setVisited(true);
+            }
+        }
+        else  //Player Defeated
+        {
+            //Call Player Defeated View
+            
+            game.setGameFinished(false);
+        }
     }
     
     public boolean encounterEnemy()
