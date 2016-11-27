@@ -21,8 +21,8 @@ import static oracle.jrockit.jfr.events.Bits.intValue;
  *
  * @author Yoda
  */
-public class MainMenuView extends View{
- 
+public class MainMenuView extends View
+{
     /* ********************************************************
     DEFAULT CONSTRUCTOR
     ********************************************************* */
@@ -54,7 +54,8 @@ public class MainMenuView extends View{
         choice = choice.toUpperCase();
         boolean endGame = false;
         
-        switch(choice){
+        switch(choice)
+        {
             case "N": // create and start a new game
                 this.startNewGame();
                 break;
@@ -90,6 +91,7 @@ public class MainMenuView extends View{
             default:
                 System.out.println("\nYeah, that didn't work. Try again.");
         }
+        
         return endGame;
     }
     
@@ -151,8 +153,8 @@ public class MainMenuView extends View{
     /* ********************************************************
     GET PLAYER NAME
     ********************************************************* */
-    private String getPlayerName() {
-        
+    private String getPlayerName()
+    {
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String value = "";
         boolean valid = false;
@@ -190,8 +192,8 @@ public class MainMenuView extends View{
     /* ********************************************************
     GET PLAYER RACE
     ********************************************************* */
-    private Races getPlayerRace() {
-        
+    private Races getPlayerRace()
+    {
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String value = "";
         Races race = Races.HUMAN;

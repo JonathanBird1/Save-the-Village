@@ -296,8 +296,10 @@ public class BattleView
             }
         
         }
-        catch (BattleControlException ex) {
-                System.out.println(ex.getMessage());}
+        catch (BattleControlException ex)
+        {
+                System.out.println(ex.getMessage());
+        }
     return false;
     }
     

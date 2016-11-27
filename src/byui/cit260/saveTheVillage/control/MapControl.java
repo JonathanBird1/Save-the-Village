@@ -37,176 +37,177 @@ public class MapControl
 
             //Construct Forest Map Scenes
             //Town
-            Scene inn = new Scene("Inn", "“Welcome to the Dancing Cartman” reads "
-                + "the elaborate sign hanging above the village’s inn. Its walls "
-                + "painted bright orange have faded a bit from the sun and time, "
-                + "but the sound of voices and music indicate that the Dancing "
-                + "Cartman is well loved by the local populace. As you enter its "
+            Scene inn = new Scene("Inn", "“Welcome to the Dancing Cartman” reads \n"
+                + "the elaborate sign hanging above the village’s inn. Its walls \n"
+                + "painted bright orange have faded a bit from the sun and time, \n"
+                + "but the sound of voices and music indicate that the Dancing \n"
+                + "Cartman is well loved by the local populace. As you enter its \n"
                 + "front doors, the faces of several people greet you.", "", 
                 defaultNPCs, false, true);
-            Scene bank = new Scene("Bank", "The building you see is rather "
-                + "nondescript, simple rock walls and a solid oak door. You enter "
-                + "and a dwarf with a hawkish nose looks at you from over a counter. "
-                + "The interior is like the outside, spartan in looks but has a "
-                + "strong and serviceable atmosphere. The dwarf clears his throat "
+            Scene bank = new Scene("Bank", "The building you see is rather \n"
+                + "nondescript, simple rock walls and a solid oak door. You enter \n"
+                + "and a dwarf with a hawkish nose looks at you from over a counter. \n"
+                + "The interior is like the outside, spartan in looks but has a \n"
+                + "strong and serviceable atmosphere. The dwarf clears his throat \n"
                 + "and asks, “How might I, Thomas the Banker, help you today?”", "", 
                 defaultNPCs, false, true);
-            Scene store = new Scene("Store", "You step inside and your senses are "
-                + "immediately struck with a wide array or sights and smells. An "
-                + "elf woman smiles at you and motions with both her hands at the "
-                + "items that pack the shelves. She then steps towards you, curtsies "
-                + "slightly. Then with a mischievous wink asks, “Do you see anything "
+            Scene store = new Scene("Store", "You step inside and your senses are \n"
+                + "immediately struck with a wide array or sights and smells. An \n"
+                + "elf woman smiles at you and motions with both her hands at the \n"
+                + "items that pack the shelves. She then steps towards you, curtsies \n"
+                + "slightly. Then with a mischievous wink asks, “Do you see anything \n"
                 + "that you like?”"
-                + "\n“I have healing salves, a variety of potions, and even a "
-                + "spell scroll or two. Anything that a strong hero like you could "
+                + "\n“I have healing salves, a variety of potions, and even a \n"
+                + "spell scroll or two. Anything that a strong hero like you could \n"
                 + "possibly need.”", "", 
                 defaultNPCs, false, true);
-            Scene weaponShop = new Scene("Weapons", "The din of steel striking "
-                + "steel greets you as you press open the solidly built door. As "
-                + "you step in, a wave of barely manageable heat envelopes you. The "
-                + "clanging of metal stops and a massively built human man lowers an "
-                + "equally massive looking hammer. He glares at you for a moment puts "
-                + "down his hammer and reaches for one of the myriad weapons lying "
+            Scene weaponShop = new Scene("Weapons", "The din of steel striking \n"
+                + "steel greets you as you press open the solidly built door. As \n"
+                + "you step in, a wave of barely manageable heat envelopes you. The \n"
+                + "clanging of metal stops and a massively built human man lowers an \n"
+                + "equally massive looking hammer. He glares at you for a moment puts \n"
+                + "down his hammer and reaches for one of the myriad weapons lying \n"
                 + "about the interior. He then spits and growls, “What do you want?”",
                   "", defaultNPCs, false, true);
             
             //Forest Key Places
-            Scene dungeonEntrance = new Scene("Entrance", "This section of the "
-                + "forest is interspersed with several large, stone biers. You "
-                + "have the sense that you are being watched by some malevolent "
-                + "force. As you pass by one of the biers you hear maniacal laughter "
-                + "that is quickly cut short. You draw your weapon and cautiously "
-                + "approach the direction that the laughter originated. It starts up "
-                + "again and just before it stops you notice that laughing comes "
-                + "from a raven. It cocks its head at your approach, lets out another "
-                + "maniacal guffaw and flies away, leaving the area in a deathly "
+            Scene dungeonEntrance = new Scene("Entrance", "This section of the \n"
+                + "forest is interspersed with several large, stone biers. You \n"
+                + "have the sense that you are being watched by some malevolent \n"
+                + "force. As you pass by one of the biers you hear maniacal laughter \n"
+                + "that is quickly cut short. You draw your weapon and cautiously \n"
+                + "approach the direction that the laughter originated. It starts up \n"
+                + "again and just before it stops you notice that laughing comes \n"
+                + "from a raven. It cocks its head at your approach, lets out another \n"
+                + "maniacal guffaw and flies away, leaving the area in a deathly \n"
                 + "quiet.",
-                  "As you begin to search the area, you are drawn to the largest "
-                + "of the stone biers. You slowly circle from a distance and notice a "
-                + "dark opening in one of its sides. Moving closer to the darkness "
-                + "you once again feel as if you are being watched, but undaunted "
-                + "you press forward. Hidden in the shadows you see a massive stone "
-                + "door. You can see a large iron key hole set in the center of the "
-                + "door. As you try to open the door it becomes obvious that it is "
+                  "As you begin to search the area, you are drawn to the largest \n"
+                + "of the stone biers. You slowly circle from a distance and notice a \n"
+                + "dark opening in one of its sides. Moving closer to the darkness \n"
+                + "you once again feel as if you are being watched, but undaunted \n"
+                + "you press forward. Hidden in the shadows you see a massive stone \n"
+                + "door. You can see a large iron key hole set in the center of the \n"
+                + "door. As you try to open the door it becomes obvious that it is \n"
                 + "sealed and locked tight. A key is required to get in.",
                     defaultNPCs, false, true);
-            Scene dungeonKey = new Scene("Key", "A large pond nearly fills the "
-                + "entirety of this place, next to a trail you see a hand painted "
-                + "sign. The paint seems to be faded and a little weather worn, but "
-                + "you can still make out the words “Delmere’s Pond, best fishing "
-                + "hole you ever seen.” It seems like a nice place to spend a lazy "
-                + "summer afternoon of relaxing and fishing. Unfortunately, you do "
+            Scene dungeonKey = new Scene("Key", "A large pond nearly fills the \n"
+                + "entirety of this place, next to a trail you see a hand painted \n"
+                + "sign. The paint seems to be faded and a little weather worn, but \n"
+                + "you can still make out the words “Delmere’s Pond, best fishing \n"
+                + "hole you ever seen.” It seems like a nice place to spend a lazy \n"
+                + "summer afternoon of relaxing and fishing. Unfortunately, you do \n"
                 + "not have the time to waste on such frivolity.", 
-                  "You see a fish arc out of the water, a spray of drops reflecting "
-                + "the light from the sun. As it splashes back into the pond, "
-                + "you see the reflection of a metallic object in the water. "
-                + "You reach down and pull out the [Dungeon Key]. You also "
-                + "find the half eaten carcass of a rather large fish sitting "
+                  "You see a fish arc out of the water, a spray of drops reflecting \n"
+                + "the light from the sun. As it splashes back into the pond, \n"
+                + "you see the reflection of a metallic object in the water. \n"
+                + "You reach down and pull out the [Dungeon Key]. You also \n"
+                + "find the half eaten carcass of a rather large fish sitting \n"
                 + "on a rock not too far from where you found the key."
                 , defaultNPCs, false, false);
-            Scene tracks1 = new Scene("Tracks1", "There is a large jumble of rocks "
-                + "and boulders spread out around this section of the forest. "
+            Scene tracks1 = new Scene("Tracks1", "There is a large jumble of rocks \n"
+                + "and boulders spread out around this section of the forest. \n"
                 + "A large oak tree stands in the middle of the rock strewn land.", 
-                  "You look around, and as you near the oak tree you notice what looks "
+                  "You look around, and as you near the oak tree you notice what looks \n"
                 + "like a wide, straight line of disturbed rocks heading to " 
                 + dungeonEntrance + ".", 
                 defaultNPCs, false, false);
-            Scene tracks2 = new Scene("Tracks2", "This section of the woods is very "
-                + "similar to everywhere else. Massive trees tower above you and "
+            Scene tracks2 = new Scene("Tracks2", "This section of the woods is very \n"
+                + "similar to everywhere else. Massive trees tower above you and \n"
                 + "the undergrowth is littered with fallen sticks and wildflowers.", 
-                  "A thorough search of the area reveals a set of deep imprints in "
+                  "A thorough search of the area reveals a set of deep imprints in \n"
                 + "the ground next to a tree. A trail leads to and from " 
                 + dungeonEntrance + ".", 
                 defaultNPCs, false, false);
-            Scene tracks3 = new Scene("Tracks3", "A picturesque farmhouse lays before "
-                + "you, a white picket fence surrounds a small patch of flowers "
-                + "beneath one of the windows. You hear birds chirping in the "
+            Scene tracks3 = new Scene("Tracks3", "A picturesque farmhouse lays before \n"
+                + "you, a white picket fence surrounds a small patch of flowers \n"
+                + "beneath one of the windows. You hear birds chirping in the \n"
                 + "trees and see a small, white butterfly flitting between blossoms.", 
-                  "Upon closer inspection of the yard, you notice that one of the "
-                + "windows has been smashed in and glass lays all scattered across "
-                + "the floor. You also notice that the flower patch has several "
+                  "Upon closer inspection of the yard, you notice that one of the \n"
+                + "windows has been smashed in and glass lays all scattered across \n"
+                + "the floor. You also notice that the flower patch has several \n"
                 + "large footprints leading to " + dungeonEntrance + ".", 
                 defaultNPCs, false, false);
-            Scene defensiveCharm = new Scene("Defensive", "Defensive Charm "
-                + "The forest is quite dense in this section of the woods, with "
-                + "some of the trees growing up right next to the path. It is "
+            Scene defensiveCharm = new Scene("Defensive", "The forest is quite "
+                + "dense in this section of the woods, with \n"
+                + "some of the trees growing up right next to the path. It is \n"
                 + "eerily quiet, save for the occasional rustle of leaves.",
-                  "The darkness of the overgrowth makes searching this area "
-                + "difficult, but as you are about to give up and decide that "
-                + "there is nothing worth finding, you spy a bronze medallion "
-                + "caught in the branches several feet off the trail. You pick "
+                  "The darkness of the overgrowth makes searching this area \n"
+                + "difficult, but as you are about to give up and decide that \n"
+                + "there is nothing worth finding, you spy a bronze medallion \n"
+                + "caught in the branches several feet off the trail. You pick \n"
                 + "up the [Defensive Charm].", 
                 defaultNPCs, false, false);
-            Scene offensiveCharm = new Scene("Offensive", "Offensive Charm "
-                + "A small clearing is the main feature of this section of the "
-                + "forest. The clearing seems to be well visited, since most of "
-                + "the grass and flowers are trampled and barren dirt patches are "
+            Scene offensiveCharm = new Scene("Offensive", "Offensive Charm \n"
+                + "A small clearing is the main feature of this section of the \n"
+                + "forest. The clearing seems to be well visited, since most of \n"
+                + "the grass and flowers are trampled and barren dirt patches are \n"
                 + "all over.",
-                  "As you search the clearing you begin to feel dizzy and stumble "
-                + "over a hollowed out tree. Sitting down to rest, you see "
-                + "the glimmer of metal out of the corner of your eye. You "
-                + "look closer at the tree, seeing something you reach your "
+                  "As you search the clearing you begin to feel dizzy and stumble \n"
+                + "over a hollowed out tree. Sitting down to rest, you see \n"
+                + "the glimmer of metal out of the corner of your eye. You \n"
+                + "look closer at the tree, seeing something you reach your \n"
                 + "hand in and pull out the silver [Offensive Charm].", 
                 defaultNPCs, false, false);
-            Scene memento = new Scene("Memento", "As you approach this section of "
-                + "the forest you notice that the grass grows quite high and that "
-                + "the trees are spread out a bit more than other sections of the "
-                + "forest. You can hear the buzzing of bees and the warble of "
-                + "songbirds in the trees. You see a wave of grass as something "
-                + "approaches you. You draw your weapon and prepare yourself for "
-                + "battle and as the ripple nears you a white rabbit hops out. It "
-                + "wiggles its nose as it studies you and then hops off. You "
+            Scene memento = new Scene("Memento", "As you approach this section of \n"
+                + "the forest you notice that the grass grows quite high and that \n"
+                + "the trees are spread out a bit more than other sections of the \n"
+                + "forest. You can hear the buzzing of bees and the warble of \n"
+                + "songbirds in the trees. You see a wave of grass as something \n"
+                + "approaches you. You draw your weapon and prepare yourself for \n"
+                + "battle and as the ripple nears you a white rabbit hops out. It \n"
+                + "wiggles its nose as it studies you and then hops off. You \n"
                 + "courageously sheath your weapon, sensing no further danger.", 
-                  "Moving through the tall grass you stumble upon something soft. "
-                + "You look down at the object and see a stuffed animal of "
-                + "some sort. You pick up the [Child’s Memento] thinking that "
+                  "Moving through the tall grass you stumble upon something soft. \n"
+                + "You look down at the object and see a stuffed animal of \n"
+                + "some sort. You pick up the [Child’s Memento] thinking that \n"
                 + "this might be of use for something.", defaultNPCs, false, 
                 false);
-            Scene ring = new Scene("Ring", "Pines and firs are abundant in this "
-                + "section of the forest. So, too, is the wildlife. As you begin "
-                + "to move through the trees you see several red squirrels chittering "
-                + "at each other and a family of opossum cross leisurely in front of "
+            Scene ring = new Scene("Ring", "Pines and firs are abundant in this \n"
+                + "section of the forest. So, too, is the wildlife. As you begin \n"
+                + "to move through the trees you see several red squirrels chittering \n"
+                + "at each other and a family of opossum cross leisurely in front of \n"
                 + "you. The largest looks at you briefly before meandering on.", 
-                  "You begin to push pine boughs out of your way in a random manner. "
-                + "As you shift one branch, something falls and bounces off "
-                + "your head. You look around on the ground for a moment and "
-                + "come up with a [Diamond Ring]. You pocket it, thinking that "
+                  "You begin to push pine boughs out of your way in a random manner. \n"
+                + "As you shift one branch, something falls and bounces off \n"
+                + "your head. You look around on the ground for a moment and \n"
+                + "come up with a [Diamond Ring]. You pocket it, thinking that \n"
                 + "diamonds falling from the sky must be extremely valuable."
                 , defaultNPCs, false, 
                 false);
-            Scene necklace = new Scene("Necklace", "The ground is a bit swampy in "
-                + "this section of the forest, making travel a bit harder. You "
-                + "step on a particularly muddy section and as you lift your foot "
-                + "the smell of decay and offal assaults your nose. You gag and "
-                + "wonder if it is worth continuing on in this direction, but decide "
-                + "that if you were a monster, then a swamp would be the ideal "
+            Scene necklace = new Scene("Necklace", "The ground is a bit swampy in \n"
+                + "this section of the forest, making travel a bit harder. You \n"
+                + "step on a particularly muddy section and as you lift your foot \n"
+                + "the smell of decay and offal assaults your nose. You gag and \n"
+                + "wonder if it is worth continuing on in this direction, but decide \n"
+                + "that if you were a monster, then a swamp would be the ideal \n"
                 + "hiding place since everyone knows monsters like swamps.", 
-                  "As you search the area, you see a blurry pink shape move ahead "
-                + "of you. You approach cautiously and looking around a "
-                + "particularly mossy boulder, you see a large pink pig happily "
-                + "munching away at patch of mushrooms. Lying in the mud next "
-                + "to the mushrooms is a green object. You shoo the pig away and"
-                + " pick up the green object. Wiping away the mud and grime you "
-                + "reveal that the object is a [Jade Necklace]. You slip it "
+                  "As you search the area, you see a blurry pink shape move ahead \n"
+                + "of you. You approach cautiously and looking around a \n"
+                + "particularly mossy boulder, you see a large pink pig happily \n"
+                + "munching away at patch of mushrooms. Lying in the mud next \n"
+                + "to the mushrooms is a green object. You shoo the pig away and \n"
+                + "pick up the green object. Wiping away the mud and grime you \n"
+                + "reveal that the object is a [Jade Necklace]. You slip it \n"
                 + "around your neck and move on.", defaultNPCs, false, 
                 false);
-            Scene toy = new Scene("Toy", "You see a hill with a large split running "
-                + "through the middle of it. There are several trails running up "
-                + "and through the hill, indicating that this is a fairly well "
-                + "visited area. There are several fruit trees growing around the "
+            Scene toy = new Scene("Toy", "You see a hill with a large split running \n"
+                + "through the middle of it. There are several trails running up \n"
+                + "and through the hill, indicating that this is a fairly well \n"
+                + "visited area. There are several fruit trees growing around the \n"
                 + "base of the hill as well.",
-                  "After looking around the hill, you find an abandoned campsite. "
-                + "The tent is torn in several places and the few supplies you "
-                + "can see are scattered and crushed. As you move out of the "
-                + "campsite you brush up against one of the tent’s support ropes "
-                + "and notice a wooden [Child’s Toy]. You pick up the horse and "
-                + "pocket it, just in case someone might want it back.", defaultNPCs, false, false);
+                  "After looking around the hill, you find an abandoned campsite. \n"
+                + "The tent is torn in several places and the few supplies you \n"
+                + "can see are scattered and crushed. As you move out of the \n"
+                + "campsite you brush up against one of the tent’s support ropes \n"
+                + "and notice a wooden [Child’s Toy]. You pick up the horse and \n"
+                + "pocket it, just in case someone might want it back.", 
+                defaultNPCs, false, false);
             
             //Empty Forest - 21 spots on Forest map
-            Scene emptyForest = new Scene("Forest", "This section of the woods is very "
-                + "similar to everywhere else. Massive trees tower above you and "
+            Scene emptyForest = new Scene("Forest", "This section of the woods is very \n"
+                + "similar to everywhere else. Massive trees tower above you and \n"
                 + "the undergrowth is littered with fallen sticks and wildflowers.",
-                  "You search the area and find various flowers and a lot of dirt, "
+                  "You search the area and find various flowers and a lot of dirt, \n"
                 + "none of which seems to be very useful.", defaultNPCs, false, true);
             
             //Set each scene originally as Empty Forest
@@ -274,48 +275,48 @@ public class MapControl
             
             Scene noPath = new Scene("NoPath", "No Path", "", defaultNPCs, 
                 false, true);
-            Scene dungeonExit = new Scene("DungeonExit", "With the glow of the "
-                + "outside light radiating into the dungeon entrance, your torch "
+            Scene dungeonExit = new Scene("DungeonExit", "With the glow of the \n"
+                + "outside light radiating into the dungeon entrance, your torch \n"
                 + "begins to illuminate the cold, damp dungeon that awaits you.",
                 "No Clue Description", defaultNPCs, false, true);
-            Scene dungeonPath = new Scene ("DungeonPath", "You hear the whistling "
-                + "of the wind as you venture deeper into the dungeon. Each of "
-                + "your steps echoes ominously through the vast, emptiness ahead "
+            Scene dungeonPath = new Scene ("DungeonPath", "You hear the whistling \n"
+                + "of the wind as you venture deeper into the dungeon. Each of \n"
+                + "your steps echoes ominously through the vast, emptiness ahead \n"
                 + "and behind you.",
                   "No Clue Description", defaultNPCs,
                 false, true);
-            Scene branch = new Scene ("Branch", "You come upon the first deviation "
-                + "in this dungeon. There are now three directions for you to "
-                + "choose from. You can either continue going straight or you can "
+            Scene branch = new Scene ("Branch", "You come upon the first deviation \n"
+                + "in this dungeon. There are now three directions for you to \n"
+                + "choose from. You can either continue going straight or you can \n"
                 + "now go down a passage to the left or one to the right.",
                   "No Clue Description", defaultNPCs, 
                 false, true);
-            Scene miniboss1 = new Scene ("Miniboss1", "Ahead of you, you can hear "
-                + "a deep voice muttering. Since there is only the one voice to "
-                + "be heard you assume that the being is alone. You approach and "
-                + "see a small minotaur that can only be described as 'feminine.' "
-                + "The female minotaur notices you and snorts throught its bovine "
-                + "nose. She stands up and with a flick of her head asks, “So are "
+            Scene miniboss1 = new Scene ("Miniboss1", "Ahead of you, you can hear \n"
+                + "a deep voice muttering. Since there is only the one voice to \n"
+                + "be heard you assume that the being is alone. You approach and \n"
+                + "see a small minotaur that can only be described as 'feminine.' \n"
+                + "The female minotaur notices you and snorts throught its bovine \n"
+                + "nose. She stands up and with a flick of her head asks, “So are \n"
                 + "you here to fight me then?”",
                   "No Clue Description", defaultNPCs, false, true);
-            Scene miniboss2 = new Scene ("Miniboss2", "A massive black furred minotaur "
-                + "stomps toward you. He glares at you menacingly while one of his "
-                + "cloven feet paws the ground restlessly. “Ha, puny man-thing, "
+            Scene miniboss2 = new Scene ("Miniboss2", "A massive black furred minotaur \n"
+                + "stomps toward you. He glares at you menacingly while one of his \n"
+                + "cloven feet paws the ground restlessly. “Ha, puny man-thing, \n"
                 + "you have come to fight the mighty Reaver? Well come on then!”",
                   "No Clue Description", defaultNPCs, false, true);
-            Scene boss = new Scene ("Boss", "A minotaur in a shabby robe is sitting "
-                + "cross legged in front of a fire. He glances up at you as you "
-                + "walk in. “Welcome friend to my humble abode. I see that you have "
-                + "come through quite a bit. Please have a seat and some tea.” He "
+            Scene boss = new Scene ("Boss", "A minotaur in a shabby robe is sitting \n"
+                + "cross legged in front of a fire. He glances up at you as you \n"
+                + "walk in. “Welcome friend to my humble abode. I see that you have \n"
+                + "come through quite a bit. Please have a seat and some tea.” He \n"
                 + "motions toward the broken stump of a stalagmite.\n"
-                + "“Do not worry, I don’t bite.” He pauses for a moment, then shrugs, "
-                + "“Well, I suppose I actually do bite, but that is only those poor "
-                + "souls who annoy my hospitality.” He stands up to his full height "
-                + "and bellows, “SO SIT OR BECOME MY NEXT MEAL!” You decide that the "
-                + "fractured stalagmite would not be overly comfortable so you "
+                + "“Do not worry, I don’t bite.” He pauses for a moment, then shrugs, \n"
+                + "“Well, I suppose I actually do bite, but that is only those poor \n"
+                + "souls who annoy my hospitality.” He stands up to his full height \n"
+                + "and bellows, “SO SIT OR BECOME MY NEXT MEAL!” You decide that then \n"
+                + "fractured stalagmite would not be overly comfortable so you \n"
                 + "remain standing.\n"
-                + "He roars his displeasure and throws off his robe revealing "
-                + "ornate leather armour beneath. You have a moment to decide "
+                + "He roars his displeasure and throws off his robe revealing \n"
+                + "ornate leather armour beneath. You have a moment to decide \n"
                 + "on what you do.",
                   "No Clue Description", defaultNPCs, false, true);
             
@@ -1070,6 +1071,8 @@ public class MapControl
     public void movePlayer(Game game, int newRow, int newColumn)
     throws MapControlException
     {
+        boolean defeated = false;
+        
         //Error Trap Invalid Coordinates
         if (!(newRow >= 0 && newColumn >= 0 && newRow <= 
             (game.getIsInDungeon() ? 8 : 5) && newColumn <= 
@@ -1083,7 +1086,7 @@ public class MapControl
         double randomNumber = Math.random();
         if (randomNumber > .5)
         {
-            if (game.getIsInDungeon() == false)
+            if (game.getIsInDungeon() == false)  //Forest
             {
                 switch (game.getForestMap().getSceneArray()
                     [game.getCurrentRow()][game.getCurrentColumn()].getName())
@@ -1097,16 +1100,16 @@ public class MapControl
                     default:
                         //Enemy Encounter
                         BattleView newBattleView = new BattleView();
-                        //Call the Display Function for Battle View *********************
-                        System.out.println("Insert Enemy Encounter...");
+                        defeated = newBattleView.displayBattleView("Forest", 
+                            game.getPlayer());
                 }
             }
-            else
+            else  //Dungeon
             {
                 //Enemy Encounter
                 BattleView newBattleView = new BattleView();
-                //Call the Display Function for Battle View *********************
-                System.out.println("Insert Enemy Encounter...");
+                defeated = newBattleView.displayBattleView("Dungeon", 
+                    game.getPlayer());
             }
         }
         
