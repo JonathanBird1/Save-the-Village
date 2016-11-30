@@ -6,6 +6,7 @@
 package byui.cit260.saveTheVillage.control;
 
 import byui.cit260.saveTheVillage.model.Item;
+import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 
 /**
  *
@@ -16,9 +17,10 @@ public class InventoryControl
     /* ********************************************************
     RANDOMIZE ITEM
     ********************************************************* */
-    public Item randomizeItem(int random)
+    public Item randomizeItem(int random) throws InventoryControlException
     {
-        assert (random >= 0 && random <= 100);
+        if ((random < 0) || (random > 100))
+            throw new InventoryControlException("Invalid Random Number");
         
         if (random <= 35)
         {

@@ -14,20 +14,11 @@ import byui.cit260.saveTheVillage.model.Scene;
  */
 public class GameStartView extends View
 {
-    Game currentGame;
     GameStartView()
     {
-        System.out.println("ERROR:  Cannot use default constructor for "
-            + "GameStartView");
-    }
-    
-    GameStartView(Game game)
-    {
-        super("Welcome to 'Save The Village'.  Your goal is to locate and "
+        super("\nWelcome to 'Save The Village'.  Your goal is to locate and "
             + "defeat the main boss before all \nthe townspeople have been "
             + "taken.  Good luck!");
-        
-        currentGame = game;
     }
     
     @Override
@@ -40,14 +31,22 @@ public class GameStartView extends View
     @Override
     public boolean doAction(String choice)
     {
+        //This function is not used - requires the doAction with the game
+        System.out.println("ERROR:  Must pass the Game as a parameter");
+        return false;
+    }
+    
+    @Override
+    public boolean doAction(String choice, Game game)
+    {
         //Loop displaying scenes until the game has finished
         do
         {
             //Display Scene Menu
-            SceneView newSceneView = new SceneView(currentGame);
-            newSceneView.display(currentGame);
+            SceneView newSceneView = new SceneView(game);
+            newSceneView.display(game);
             
-        }while (!currentGame.getGameFinished());
+        }while (!game.getGameFinished());
         return true;
     }
 }

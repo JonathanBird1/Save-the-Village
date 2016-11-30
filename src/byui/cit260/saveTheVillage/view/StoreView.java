@@ -99,7 +99,8 @@ public class StoreView extends View{
         
     }
         
-    private void sellItems() {
+    private void sellItems()
+    {
         //list store inventory 0 to quit       
         System.out.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to buy
@@ -111,9 +112,13 @@ public class StoreView extends View{
         
         while(!valid)
         {
-            try{
+            try
+            {
                 keyboardValue = keyboard.nextInt();
-            } catch (Exception e){ //get the next lined entered from keyboard
+            }
+            catch (Exception e)
+            {
+                //get the next lined entered from keyboard
                 System.out.println("Invalid number");
                 return;
             }

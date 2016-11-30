@@ -13,8 +13,8 @@ import byui.cit260.saveTheVillage.control.SceneControl;
  *
  * @author Yoda
  */
-public class InnView{
-    
+public class InnView
+{
     private String innMessage;
             
     public InnView()  //Display message
@@ -22,14 +22,20 @@ public class InnView{
         this.innMessage = "\n How long would you like to rest?";
     }
     
-    private int getInput() {
+    private int getInput()
+    {
         
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         int value = 0;
         boolean valid = false;
         
         while(!valid){
-            value = keyboard.nextInt(); //get the next lined entered from keyboard
+            try {
+                value = keyboard.nextInt();  //get the next int entered from keyboard
+            } catch (Exception e) {
+                System.out.println("That's not an integer");
+                return 0;
+              }; 
             
             if(value < 0){
                 System.out.println("\nSorry? What was that?");
@@ -40,7 +46,8 @@ public class InnView{
         return value;
     }
     
-    private boolean doAction(int choice) {
+    private boolean doAction(int choice)
+    {
         
         if(choice > 0 || choice < 9 ){
             SceneControl newSceneControl = new SceneControl();

@@ -42,15 +42,18 @@ public class DungeonView extends View{
         return false;
     }
 
-    private void explore() {
+    private void explore()
+    {
         System.out.println("You search");
     }
 
-    private void move() {
+    private void move()
+    {
         System.out.println("You move");
     }
 
-    private void quit() {
+    private void quit()
+    {
         System.exit(0);
     }
 }

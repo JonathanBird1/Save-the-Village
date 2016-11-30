@@ -9,17 +9,18 @@ import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Spell;
 import byui.cit260.saveTheVillage.model.Stats;
+import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 
 /**
  *
  * @author Master Brickbuilder
  */
-public class BattleControl {
-    
+public class BattleControl
+{
     /* ********************************************************
     INITIALIZE ENEMY
     ********************************************************* */
-    public Actor initializeEnemy(String scene)
+    public Actor initializeEnemy(String scene) throws InventoryControlException
     {
         Actor newEnemy;
         Stats enemyStats;
@@ -34,7 +35,16 @@ public class BattleControl {
         switch (scene)
         {
             case "Forest":
-                enemyItem = inventoryControl.randomizeItem(randomItem);
+                //Generate a Random Item
+                try
+                {
+                    enemyItem = inventoryControl.randomizeItem(randomItem);
+                }
+                catch (InventoryControlException ice)
+                {
+                    throw new InventoryControlException(ice);
+                }
+                //Generate a Random Enemy
                 if (randomEnemy <= 25)
                 {
                     enemyStats = new Stats(10, 0, 1, .1, 0, .05, 1, 1, 5, 0);
@@ -61,7 +71,16 @@ public class BattleControl {
                 }
                 break;
             case "Dungeon":
-                enemyItem = inventoryControl.randomizeItem(randomItem);
+                //Generate a Random Item
+                try
+                {
+                    enemyItem = inventoryControl.randomizeItem(randomItem);
+                }
+                catch (InventoryControlException ice)
+                {
+                    throw new InventoryControlException(ice);
+                }
+                //Generate a Random Enemy
                 if (randomEnemy <= 25)
                 {
                     enemyStats = new Stats(100, 0, 15, .25, 0, .05, 30, 5, 5, 0);
@@ -116,13 +135,13 @@ public class BattleControl {
     CALCULATE SUCCESS RATE
     ********************************************************* */
     public double calcSuccessRate(String action, double offensiveAttribute,
-            double defensiveAttribute)
+            double defensiveAttribute) throws BattleControlException
     {
         //Error Trapping - All attributes are between 0 and 100
         if (action.equals("")  || offensiveAttribute > 100 || 
                 offensiveAttribute < 0 || defensiveAttribute > 100 || 
                 defensiveAttribute < 0)
-            return -1;
+            throw new BattleControlException("Error in passed values");
         
         double successRate;
         
@@ -134,7 +153,7 @@ public class BattleControl {
             case "I":
                 //Error Trapping (Percentages no greater than 1)
                 if (offensiveAttribute > 1 || defensiveAttribute > 1)
-                    return -1;
+                    throw new BattleControlException("Invalid offensive or defensive");
                 else
                 {
                     successRate = offensiveAttribute - defensiveAttribute + 
@@ -156,7 +175,7 @@ public class BattleControl {
                 else
                     return successRate;
             default:  //Invalid Action
-                return -1;
+                throw new BattleControlException("Unknown error");
         }
     }
     

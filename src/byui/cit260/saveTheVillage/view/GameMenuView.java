@@ -6,6 +6,9 @@
 package byui.cit260.saveTheVillage.view;
 
 import byui.cit260.saveTheVillage.model.Game;
+import byui.cit260.saveTheVillage.model.Player;
+import byui.cit260.saveTheVillage.model.Stats;
+import byui.cit260.saveTheVillage.model.Item;
 import java.util.Scanner;
 
 /**
@@ -15,9 +18,17 @@ import java.util.Scanner;
     /* ********************************************************
     GAME MENU
     ********************************************************* */
-public class GameMenuView extends View{
+public class GameMenuView extends View
+{
+    private Game currentGame;
     
     public GameMenuView()
+    {
+        System.out.println("ERROR:  Cannot use default constructor for "
+                + "Game Menu View");
+    }
+    
+    public GameMenuView(Game currentGame)
     {
         super("\n"
             + "\n\t------GAME---MENU------"
@@ -30,25 +41,40 @@ public class GameMenuView extends View{
             + "\n\t| E - Exit Menu       |"
             + "\n\t| Q - Quit Game       |"
             + "\n\t-----------------------");
+        
+        this.currentGame = currentGame;
     }
     
     @Override
-    public boolean doAction(String choice) {
+    public boolean doAction(String choice)
+    {
+        System.out.println("ERROR:  Required to pass Game as a parameter");
+        return false;
+    }
+       
+    @Override
+    public boolean doAction(String choice, Game game)
+    {
+        boolean exitMenu = false;
         
         choice = choice.toUpperCase();
         
         switch(choice){
-            case "X": // display statistics
-                this.displayStatistics();
+            case "X":
+                // Display statistics
+                this.displayStatistics(game.getPlayer());
                 break;
-            case "I": // display inventory
-                this.goToInventory();
+            case "I":
+                // Display inventory
+                this.goToInventory(game.getPlayer());
                 break;
-            case "D": // display the clues received
+            case "D":
+                // Display the clues received
                 this.displayQuestDetails();
                 break;
             case "M":
-                this.displayMap();
+                //Display the Dungeon and Forest Maps
+                this.displayMap(game);
                 break;
             case "S":
                 this.goToSaveGame();
@@ -56,51 +82,136 @@ public class GameMenuView extends View{
             case "L":
                 this.startLoadGame();
                 break;
+            case "E":
+                //Exit the Menu
+                exitMenu = true;
+                break;
             case "Q":
                 this.quitGame();
                 break;
         }
-        return false;
+        return exitMenu;
     }
 
-    private void displayStatistics() {
-        System.out.print("Statistics? What statistics? "
-                + "You haven't done anything yet.");
+    private void displayStatistics(Player player)
+    {
+        System.out.println("\tHEALTH & MANA\n");
+        System.out.printf("%-19s","\tHEALTH:");
+            System.out.printf("%-4d", player.getCurrentHealth());
+            System.out.print(" / ");
+            System.out.printf("%-4d", player.getPlayerStats().getHealth());
+            System.out.println();
+        System.out.printf("%-19s", "\tMANA:");
+            System.out.printf("%-4d", player.getCurrentMana());
+            System.out.print(" / ");
+            System.out.printf("%-4d", player.getPlayerStats().getMana());
+            System.out.println();
+
+        System.out.println("\n\tPLAYER STATS\n");
+        System.out.printf("%-19s", "\tSTRENGTH:");
+            System.out.printf("%-2d", player.getPlayerStats().getStrength());
+            System.out.println();
+        System.out.printf("%-19s", "\tHIT RATE:");
+            System.out.printf("%1.2f", player.getPlayerStats().getHitRate());
+            System.out.println();
+        System.out.printf("%-19s", "\tMAGIC:");
+            System.out.printf("%-2d", player.getPlayerStats().getMagic());
+            System.out.println();
+        System.out.printf("%-19s", "\tDODGE RATE:");
+            System.out.printf("%1.2f", player.getPlayerStats().getDodgeRate());
+            System.out.println();
+        System.out.printf("%-19s", "\tDEFENSE:");
+            System.out.printf("%-2d", player.getPlayerStats().getDefense());
+            System.out.println();
+        System.out.printf("%-19s", "\tMAGIC DEFENSE:");
+            System.out.printf("%-2d", player.getPlayerStats().getMagicDefense());
+            System.out.println();
+        System.out.printf("%-19s", "\tSPEED:");
+            System.out.printf("%-19s", (player.getPlayerStats().getSpeed() -
+            player.getPlayerStats().getSpeedPenalty()));
+            System.out.println();
     }
 
-    private void goToInventory() {
-        System.out.println("Inventory chosen.");
-        /*StringBuilder line;
+    private void goToInventory(Player player)
+    {
+        int counter = 0;
         
-        Game game = SaveTheVillage.getCurrentGame();
-        InventoryItem[] inventory = game.getInventory();
+        //ITEMS ON HAND
+        System.out.println("\tINVENTORY ON HAND\n");
+        System.out.print("\t");
+        System.out.printf("%-3s", "#");
+        System.out.printf("%-15s", "ITEM NAME");
+        System.out.printf("%-7s", "TYPE");
+        System.out.printf("%-11s", "SELL PRICE");
+        System.out.printf("%-5s", "DAM.");
+        System.out.printf("%-5s", "HEAL");
+        System.out.printf("%-5s", "MANA");
+        System.out.printf("%-6s", "WEIGHT");
+        System.out.println();
+        System.out.println("\t---------------------------------------------------------");
         
-        System.out.println("\n INVENTORY ITEMS");
-        line = new StringBuilder(
-            line.insert(0, "Description");
-            line.insert(20, "Required");
-            line.insert(30, "Number in Inventory");
-            System.out.println(line.toString());
-            
-            for (InventoryItem item : inventory){
-                line = new StringBuilder(
-                line.insert(0, item.getDescription());
-                line.insert(23, item.getRequiredAmount());
-                line.insert(33, item.getNumberInInventory());
-                System.out.println(line.toString());
-            }*/
+        for (Item item : player.getItems())
+        {
+            counter++;
+            System.out.print("\t");
+            System.out.printf("%-3d", counter);
+            System.out.printf("%-15s", item.getItemName());
+            System.out.printf("%-7s", item.getType());
+            System.out.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
+            System.out.printf("%-5d", item.getWeaponDamage());
+            System.out.printf("%-5d", item.getHealingAmount());
+            System.out.printf("%-5d", item.getManaRestored());
+            System.out.printf("%-6d", item.getWeight());
+            System.out.println();
+        }
+        
+        counter = 0;
+        System.out.println();
+        //ITEMS IN THE BANK
+        System.out.println("\tINVENTORY IN THE BANK\n");
+        System.out.print("\t");
+        System.out.printf("%-3s", "#");
+        System.out.printf("%-15s", "ITEM NAME");
+        System.out.printf("%-7s", "TYPE");
+        System.out.printf("%-11s", "SELL PRICE");
+        System.out.printf("%-5s", "DAM.");
+        System.out.printf("%-5s", "HEAL");
+        System.out.printf("%-5s", "MANA");
+        System.out.printf("%-6s", "WEIGHT");
+        System.out.println();
+        System.out.println("\t---------------------------------------------------------");
+        
+        for (Item item : player.getItems())
+        {
+            counter++;
+            System.out.print("\t");
+            System.out.printf("%-3d", counter);
+            System.out.printf("%-15s", item.getItemName());
+            System.out.printf("%-7s", item.getType());
+            System.out.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
+            System.out.printf("%-5d", item.getWeaponDamage());
+            System.out.printf("%-5d", item.getHealingAmount());
+            System.out.printf("%-5d", item.getManaRestored());
+            System.out.printf("%-6d", item.getWeight());
+            System.out.println();
+        }
     }
 
     private void displayQuestDetails()
     {
-        //To Complete *******************************************
-        System.out.print("Quest details chosen");
+        System.out.println("YOUR QUEST");
+        System.out.println();
+        System.out.println("You are a wandering hero that has come across a town facing a mysterious problem.  For \n" +
+"the past month, every night someone has been disappearing from the town without a trace. \n" +
+"Upon meeting you and learning of your abilities, the elders of the village have pleaded \n" +
+"with you to save the missing villagers and protect the village.  Armed with your sword, \n" +
+"your magic, and your intellect, you set out to save the village…");
     }
 
-    private void displayMap()
+    private void displayMap(Game game)
     {
         MapView newMapView = new MapView();
-        newMapView.display();
+        newMapView.display(game);
     }
 
     private void goToSaveGame()
@@ -115,9 +226,9 @@ public class GameMenuView extends View{
     }
 
     private void quitGame() {
-        System.out.print("You have chosen to quit the game. "
-                + "Congratulations, the entire village has been "
-                + "devoured by the Beast. I hope you can sleep "
+        System.out.print("You have chosen to quit the game. \n"
+                + "Congratulations, the entire village has been \n"
+                + "devoured by the Beast. I hope you can sleep \n"
                 + "well tonight.");
         System.exit(0);
     }

@@ -12,6 +12,7 @@ import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Spell;
 import byui.cit260.saveTheVillage.model.Races;
+import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 
 import java.util.Scanner;
 import static oracle.jrockit.jfr.events.Bits.intValue;
@@ -20,8 +21,8 @@ import static oracle.jrockit.jfr.events.Bits.intValue;
  *
  * @author Yoda
  */
-public class MainMenuView extends View{
- 
+public class MainMenuView extends View
+{
     /* ********************************************************
     DEFAULT CONSTRUCTOR
     ********************************************************* */
@@ -51,8 +52,10 @@ public class MainMenuView extends View{
     public boolean doAction(String choice)
     {
         choice = choice.toUpperCase();
+        boolean endGame = false;
         
-        switch(choice){
+        switch(choice)
+        {
             case "N": // create and start a new game
                 this.startNewGame();
                 break;
@@ -64,6 +67,7 @@ public class MainMenuView extends View{
                 break;
             case "Q": // quit the game
                 this.quitGame();
+                endGame = true;
                 break;
             
             // These are to be deleted prior to implementing final game
@@ -87,7 +91,8 @@ public class MainMenuView extends View{
             default:
                 System.out.println("\nYeah, that didn't work. Try again.");
         }
-        return false;
+        
+        return endGame;
     }
     
     /* ********************************************************
@@ -123,13 +128,24 @@ public class MainMenuView extends View{
         
         //Create New Game with Player
         boolean finished = false;
+        
         //Create New Game
         GameControl newGameControl = new GameControl();
-        Game newGame = newGameControl.initializeNewGame(newPlayer);
+        Game newGame = new Game();
+        try
+        {
+            newGame = newGameControl.initializeNewGame(newPlayer);
+        }
+        catch (InventoryControlException ice)
+        {
+            //If exception occurs, terminate the new game
+            System.out.println(ice.getMessage());
+            return;
+        }
             
         //Begin New Game
-        GameStartView startNewGame = new GameStartView(newGame);
-        startNewGame.display();
+        GameStartView startNewGame = new GameStartView();
+        startNewGame.display(newGame);
         
         finished = true;
     }
@@ -137,8 +153,8 @@ public class MainMenuView extends View{
     /* ********************************************************
     GET PLAYER NAME
     ********************************************************* */
-    private String getPlayerName() {
-        
+    private String getPlayerName()
+    {
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String value = "";
         boolean valid = false;
@@ -176,8 +192,8 @@ public class MainMenuView extends View{
     /* ********************************************************
     GET PLAYER RACE
     ********************************************************* */
-    private Races getPlayerRace() {
-        
+    private Races getPlayerRace()
+    {
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String value = "";
         Races race = Races.HUMAN;
@@ -207,6 +223,7 @@ public class MainMenuView extends View{
                     + " select a valid race");
                 continue;
             }
+            
             valid = true;
             switch (value)
             {
@@ -230,42 +247,43 @@ public class MainMenuView extends View{
     /* ********************************************************
     GET PLAYER AGE
     ********************************************************* */
-    private int getPlayerAge() {
-        
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String keyboardValue;
-        int value = 0;
+    private int getPlayerAge()
+    {
+        Scanner keyboard;
+        int keyboardValue = 0;
         boolean valid = false;
         
         while(!valid)
         {
             System.out.println("\nHow old is your character?"
-            + "\n(Hint - it must be between 25 and 75) ");
+            + "\n(Hint - Age must be between 25 and 75) ");
             
-            keyboardValue = keyboard.nextLine(); //get the next lined entered from keyboard
-            keyboardValue = keyboardValue.trim();
-
-
-            if (keyboardValue.matches("^\\d+$"))
+            try
             {
-                value = Integer.parseInt(keyboardValue);
-            }
-            else if(value < 25)
-            {
-                System.out.println("Unfortunately, you are too young to die.");
-                continue;
-            }
-            else if(value > 75)
-            {
-                System.out.println("Sorry, you might as well retire and enjoy"
+                keyboard = new Scanner(System.in);  //get infile for keyboard
+                keyboardValue = keyboard.nextInt();
+                if(keyboardValue < 25)
+                {
+                    System.out.println("Unfortunately, you are too young to die.");
+                    continue;
+                }
+                else if(keyboardValue > 75)
+                {
+                    System.out.println("Sorry, you might as well retire and enjoy"
                         + " your last bit of life.");
-                continue;
-            }
+                    continue;
+                }
 
-            valid = true;
+                valid = true;
+            }
+            catch (Exception e)
+            {
+                System.out.println("ERROR:  Input must be an integer between 25"
+                        + " and 75 inclusive");
+            }
         }
         
-        return value; //return the value entered
+        return keyboardValue; //return the value entered
     }
     
     /* ********************************************************
@@ -288,7 +306,8 @@ public class MainMenuView extends View{
         helpMenu.display();
     }
 
-    private void quitGame() {
+    private void quitGame()
+    {
         System.exit(0);
     }
     

@@ -13,7 +13,8 @@ import java.util.Scanner;
  * @author Yoda
  */
 
-public class BankView extends View{
+public class BankView extends View
+{
     
     public BankView()
     {
@@ -28,8 +29,8 @@ public class BankView extends View{
     }
     
     @Override
-    public boolean doAction(String choice) {
-        
+    public boolean doAction(String choice)
+    {
         choice = choice.toUpperCase();
         
         switch(choice){
@@ -49,10 +50,9 @@ public class BankView extends View{
         return false;
     }
     
-    private void DepositMoney() {
-        
+    private void DepositMoney()
+    {
         int currentMoney = 0;
-        //currentMoney = Player.getMoney()  //get players current amount
 
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         int keyboardValue;
@@ -62,12 +62,15 @@ public class BankView extends View{
         while(!valid)
         {
             int max = currentMoney; //get number of items available
-            System.out.println("\nYou have $" + currentMoney + ", how much would you "
-                + "like to deposit?"
+            System.out.println("\nYou have " + currentMoney + " gold pieces.  "
+                + "How much would you like to deposit?"
                 + "\nEnter 0 to exit");
             
-            try {keyboardValue = keyboard.nextInt(); //get the next lined entered from keyboard
-            } catch (Exception e){
+            try
+            {
+                keyboardValue = keyboard.nextInt();//get the next lined entered from keyboard
+            } catch (Exception e)
+            {
                 System.out.println("Invalid amount.");
             }
             
@@ -89,19 +92,11 @@ public class BankView extends View{
 
             valid = true;
         }
-        //int money = Player.getBankMoney() + value;
-        //Player.setBankMoney(money);
-        //money = currentMoney - value;
-        //Player.setMoney(money);
-
-        return;
     }
         
-     private void WithdrawMoney() {
-        
-        int currentMoney = 0;
-        //currentMoney = Player.getBankMoney()    //get bank's current amount
-        
+     private void WithdrawMoney()
+     {
+        int currentMoney = 0;        
 
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         int keyboardValue;
@@ -111,20 +106,25 @@ public class BankView extends View{
         while(!valid)
         {
             int max = currentMoney; //get number of items available
-            System.out.println("\nYou have $" + currentMoney + " in the bank, "
-                + "how much would you like to withdraw?"
+            System.out.println("\nYou have " + currentMoney + " gold pieces "
+                + "in the bank.  How much would you like to withdraw?"
                 + "\nEnter 0 to exit");
             
-            try {
+            try
+            {
                 keyboardValue = keyboard.nextInt(); //get the next lined entered from keyboard
-            } catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 System.out.println("Invalid amount.");
             }
+
             if(value < 0)
             {
                 System.out.println("Invalid amount");
                 continue;
             }
+
             if(value == 0)
             {
                 return;
@@ -139,13 +139,5 @@ public class BankView extends View{
 
             valid = true;
         }
-        
-        //int money = currentMoney + value;
-        //Player.setMoney(money);
-        //money = currentMoney - value;
-        //Player.setBankMoney(money)
-
-        return; 
-        
     }
 }

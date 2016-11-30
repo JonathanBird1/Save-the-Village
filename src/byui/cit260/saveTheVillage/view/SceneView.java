@@ -8,6 +8,7 @@ package byui.cit260.saveTheVillage.view;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.control.MapControl;
+import byui.cit260.saveTheVillage.exceptions.MapControlException;
 
 /**
  *
@@ -23,13 +24,26 @@ public class SceneView extends View
     
     SceneView(Game game)
     {
-        //Determine the scene at the player's current location
+        //Start with the scene description
+        String displayMessageConstruct = (game.getIsInDungeon() ? 
+            game.getDungeonMap().getScene(game.getCurrentRow(), 
+            game.getCurrentColumn()).getDescription() : game.getForestMap()
+            .getScene(game.getCurrentRow(), game.getCurrentColumn())
+            .getDescription()) + "\n\n";
+        
+        //Display the location
+        displayMessageConstruct += "You are currently on row " + 
+            game.getCurrentRow() + ", column " + game.getCurrentColumn() +
+            ", located in the " + (game.getIsInDungeon() ? "Dungeon" : "Forest")
+            + ".  What action would you like to complete?\n";
+        
+        //Determine the menu at the player's current location
         if (game.getIsInDungeon())
         {
             if (game.getCurrentRow() == 4 && game.getCurrentColumn() == 0)
             {
                 //Show option to exit dungeon at the entrance
-                super.displayMessage = (
+                displayMessageConstruct +=
                   "\n\t----BASIC--COMMANDS----"
                 + "\n\t| N – Move North      |"
                 + "\n\t| S – Move South      |"
@@ -38,11 +52,11 @@ public class SceneView extends View
                 + "\n\t| D – Exit Dungeon    |"
                 + "\n\t| U – Use an item     |"
                 + "\n\t| G – Game Menu       |"
-                + "\n\t-----------------------");
+                + "\n\t-----------------------";
             }
             else  //Standard Dungeon Menu
             {
-                super.displayMessage = (
+                displayMessageConstruct +=
                   "\n\t----BASIC--COMMANDS----"
                 + "\n\t| N – Move North      |"
                 + "\n\t| S – Move South      |"
@@ -50,7 +64,7 @@ public class SceneView extends View
                 + "\n\t| W – Move West       |"
                 + "\n\t| U – Use an item     |"
                 + "\n\t| G – Game Menu       |"
-                + "\n\t-----------------------");
+                + "\n\t-----------------------";
             }
         }
         else  //Forest Map
@@ -59,7 +73,7 @@ public class SceneView extends View
                     [game.getCurrentColumn()].getName())
             {
                 case "Entrance":
-                    super.displayMessage = (
+                    displayMessageConstruct +=
                           "\n\t----BASIC--COMMANDS----"
                         + "\n\t| N – Move North      |"
                         + "\n\t| S – Move South      |"
@@ -68,7 +82,7 @@ public class SceneView extends View
                         + "\n\t| D – Enter Dungeon   |"
                         + "\n\t| U – Use an item     |"
                         + "\n\t| G – Game Menu       |"
-                        + "\n\t-----------------------");
+                        + "\n\t-----------------------";
                     break;
                 case "Key":
                 case "Defensive":
@@ -81,7 +95,7 @@ public class SceneView extends View
                 case "Tracks2":
                 case "Tracks3":
                 case "Forest":
-                    super.displayMessage = (
+                    displayMessageConstruct +=
                           "\n\t----BASIC--COMMANDS----"
                         + "\n\t| N – Move North      |"
                         + "\n\t| S – Move South      |"
@@ -91,10 +105,10 @@ public class SceneView extends View
                         + "\n\t| P – Pick up an item |"
                         + "\n\t| U – Use an item     |"
                         + "\n\t| G – Game Menu       |"
-                        + "\n\t-----------------------");
+                        + "\n\t-----------------------";
                     break;
                 case "Inn":
-                    super.displayMessage = (
+                    displayMessageConstruct +=
                           "\n\t----BASIC--COMMANDS----"
                         + "\n\t| B – Enter Inn       |"
                         + "\n\t| N – Move North      |"
@@ -104,10 +118,10 @@ public class SceneView extends View
                         + "\n\t| U – Use an item     |"
                         + "\n\t| C – Converse        |"
                         + "\n\t| G – Game Menu       |"
-                        + "\n\t-----------------------");
+                        + "\n\t-----------------------";
                     break;
                 case "Bank":
-                    super.displayMessage = (
+                    displayMessageConstruct +=
                           "\n\t----BASIC--COMMANDS----"
                         + "\n\t| B – Enter Bank      |"
                         + "\n\t| N – Move North      |"
@@ -117,10 +131,10 @@ public class SceneView extends View
                         + "\n\t| U – Use an item     |"
                         + "\n\t| C – Converse        |"
                         + "\n\t| G – Game Menu       |"
-                        + "\n\t-----------------------");
+                        + "\n\t-----------------------";
                     break;
                 case "Store":
-                    super.displayMessage = (
+                    displayMessageConstruct +=
                           "\n\t----BASIC--COMMANDS----"
                         + "\n\t| B – Enter Store     |"
                         + "\n\t| N – Move North      |"
@@ -130,10 +144,10 @@ public class SceneView extends View
                         + "\n\t| U – Use an item     |"
                         + "\n\t| C – Converse        |"
                         + "\n\t| G – Game Menu       |"
-                        + "\n\t-----------------------");
+                        + "\n\t-----------------------";
                     break;
                 case "Weapons":
-                    super.displayMessage = (
+                    displayMessageConstruct +=
                           "\n\t----BASIC---COMMANDS----"
                         + "\n\t| B – Enter Weapon Shop|"
                         + "\n\t| N – Move North       |"
@@ -143,19 +157,20 @@ public class SceneView extends View
                         + "\n\t| U – Use an item      |"
                         + "\n\t| C – Converse         |"
                         + "\n\t| G – Game Menu        |"
-                        + "\n\t------------------------");
+                        + "\n\t------------------------";
                     break;
                 default:
-                    super.displayMessage = ("ERROR:  Invalid Scene");
+                    displayMessageConstruct += "ERROR:  Invalid Scene";
             }
         }
+        
+        super.displayMessage = (displayMessageConstruct);
     }
     
     @Override
     public boolean doAction(String choice)
     {
-        System.out.println("ERROR:  doAction for this class requires two "
-                + "parameters - String and Game");
+        System.out.println("ERROR:  Required to pass Game as a parameter");
         return false;
     }
     
@@ -216,61 +231,57 @@ public class SceneView extends View
                 break;
             //Head North
             case "N":
-                if (currentRow <= 0 || (isInDungeon && (currentColumn < 4 || 
-                    currentColumn > 4))) //Northern points on the maps
-                {
-                    System.out.println("Looks like you can't head any further"
-                            + "North");
-                }
-                else
+                try
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer();  //STUB FUNCTION ********************
+                    controlMap.movePlayer(game, game.getCurrentRow() - 1,
+                        game.getCurrentColumn());
+                }
+                catch (MapControlException mce)
+                {
+                    System.out.println(mce.getMessage());
                 }
                 break;
             //Head South
             case "S":
-                if (currentRow >= 7 || (isInDungeon && (currentColumn < 4 || 
-                    currentColumn > 4))) //Southern points on the maps
-                {
-                    System.out.println("Looks like you can't head any further"
-                            + "South");
-                }
-                else
+                try
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer();  //STUB FUNCTION ********************
+                    controlMap.movePlayer(game, game.getCurrentRow() + 1,
+                        game.getCurrentColumn());
+                }
+                catch (MapControlException mce)
+                {
+                    System.out.println(mce.getMessage());
                 }
                 break;
             //Head East
             case "E":
-                if (currentColumn <= 7 || (isInDungeon && (currentRow < 4 || 
-                    currentRow > 4))) //Eastern points on the maps
-                {
-                    System.out.println("Looks like you can't head any further"
-                            + "East");
-                }
-                else
+                try
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer();  //STUB FUNCTION ********************
+                    controlMap.movePlayer(game, game.getCurrentRow(),
+                        game.getCurrentColumn() + 1);
+                }
+                catch (MapControlException mce)
+                {
+                    System.out.println(mce.getMessage());
                 }
                 break;
             //Head West
             case "W":
-                if (currentColumn <= 0 || (isInDungeon && (currentRow < 4 || 
-                    currentRow > 4))) //Western points on the maps
-                {
-                    System.out.println("Looks like you can't head any further"
-                            + "West");
-                }
-                else
+                try
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer();  //STUB FUNCTION ********************
+                    controlMap.movePlayer(game, game.getCurrentRow(),
+                        game.getCurrentColumn() - 1);
+                }
+                catch (MapControlException mce)
+                {
+                    System.out.println(mce.getMessage());
                 }
                 break;
-            //Enter/Exit Dungeon (If on Dungeon Entrance
+            //Enter/Exit Dungeon (If on Dungeon Entrance)
             case "D":
                 //Locate the player and determine if they are located at the
                 //Dungeon Entrance
@@ -349,25 +360,12 @@ public class SceneView extends View
                 break;
             //Bring up the Game Menu
             case "G":
-                GameMenuView viewGameMenu = new GameMenuView();
-                viewGameMenu.display();
+                GameMenuView viewGameMenu = new GameMenuView(game);
+                viewGameMenu.display(game);
                 break;
             default:
         }
         
-            /*  + "\n\t-----BASIC--COMMANDS-----"
-                + "\n\t| B - Enter (Building)  |"
-                + "\n\t| N – Move North        |"
-                + "\n\t| S – Move South        |"
-                + "\n\t| E – Move East         |"
-                + "\n\t| W – Move West         |"
-                + "\n\t| D - Enter/Exit Dungeon|"
-                + "\n\t| X – Search            |"
-                + "\n\t| P – Pick up an item   |"
-                + "\n\t| U – Use an item       |"
-                + "\n\t| C – Converse          |"
-                + "\n\t| G – Game Menu         |"*/
-
         return true;
     }
 }

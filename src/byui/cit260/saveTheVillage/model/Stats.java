@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author Yoda
  */
-public class Stats implements Serializable{
+public class Stats implements Serializable
+{
     //class instance variables
     private int health;
     private int mana;
