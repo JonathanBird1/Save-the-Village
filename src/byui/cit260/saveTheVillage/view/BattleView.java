@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author micha
  */
-public class BattleView
+public class BattleView extends View
 {
     private boolean validView;
     private Actor enemy;
@@ -33,13 +33,13 @@ public class BattleView
     ********************************************************* */
     public BattleView()
     {
-        this.battleMenu = "\n"
+        super ("\n"
                 + "\n\t---BATTLE--COMMANDS---"
                 + "\n\t| A - Attack         |"
                 + "\n\t| M - Use Magic      |"
                 + "\n\t| I - Use Item       |"
                 + "\n\t| R - Run Away       |"
-                + "\n\t----------------------";
+                + "\n\t----------------------");
         double random = Math.random();
         if (random >= .5)
         {
@@ -75,12 +75,12 @@ public class BattleView
         }
         catch (InventoryControlException ice)
         {
-            System.out.println(ice.getMessage());
+            this.console.println(ice.getMessage());
             return false;
         }
         //This view will only display if the non-default constructor was used
 
-        System.out.println("While traveling through this area, you have "
+        this.console.println("While traveling through this area, you have "
                 + "encountered an enemy " + enemy.getName() +
                 ".  Prepare for battle...");
 
@@ -94,9 +94,9 @@ public class BattleView
             {
                 if (playerTurn)
                 {
-                    System.out.println("Current Health:  " + 
+                    this.console.println("Current Health:  " + 
                             player.getCurrentHealth());
-                    System.out.println("Current Mana:  " + 
+                    this.console.println("Current Mana:  " + 
                             player.getCurrentMana());
                     String menuOption = this.getPlayerAction();
                     if(menuOption.toUpperCase().equals("R"))
@@ -124,7 +124,7 @@ public class BattleView
                         //Defeated
                         done = true;
                         defeated = true;
-                        System.out.println("Doesn't look like it's your day "
+                        this.console.println("Doesn't look like it's your day "
                                 + "- You have been defeated.");
                     }
                 }
@@ -149,21 +149,24 @@ public class BattleView
     ********************************************************* */
     public String getPlayerAction()
     {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
+        String value = null;
         boolean valid = false;
         
+        try{
         while(!valid){
-            System.out.println("\n" + this.battleMenu);
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
+            this.console.println("\n" + this.battleMenu);
+            value = this.keyboard.readLine(); //get the next lined entered from keyboard
             value = value.trim();
             value = value.toUpperCase();
             
             if(value.length() < 1){
-                System.out.println("\nSorry? What was that?");
+                ErrorView.display(this.getClass().getName(), "\nSorry? What was that?");
                 continue;
             }
             break;
+        }} catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
         return value;
     }
@@ -171,10 +174,23 @@ public class BattleView
     /* ********************************************************
     DO ACTION
     ********************************************************* */
+        @Override
+    public boolean doAction(String choice)
+    {
+        try{
+        //This function is not used - requires the doAction with the game
+        ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the Game as a parameter");
+        }catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
+    } return false;
+    }
+
+    @Override
     public boolean doAction(String menuOption, Player player)
     {
         menuOption = menuOption.toUpperCase();
-        
+        try{
         switch(menuOption)
         {
             case "A":  //Attack
@@ -187,7 +203,11 @@ public class BattleView
                 doItem();
                 break;
             default:
-                System.out.println("\nYeah, that didn't work. Try again.");
+                ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
+        }}
+        catch(Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
         return false;
     }
@@ -217,10 +237,10 @@ public class BattleView
                                     damage);
                 }
                 
-                System.out.println("Attack Damage Dealt: " +
+                this.console.println("Attack Damage Dealt: " +
                         damage);
             } catch (BattleControlException ex) {
-                System.out.println(ex.getMessage());
+                this.console.println(ex.getMessage());
             }
         }
         else          {
@@ -242,10 +262,10 @@ public class BattleView
                                     damage);
                 }
                 
-                System.out.println("Attack Damage Received: " +
+                this.console.println("Attack Damage Received: " +
                         damage);
             } catch (BattleControlException ex) {
-                System.out.println(ex.getMessage());
+                this.console.println(ex.getMessage());
             }
         }
     }
@@ -256,7 +276,7 @@ public class BattleView
     public void doMagic()
     {
         //STUB FUNCTION - TO BE COMPLETED*******************************
-        System.out.println("Sorry - You do not currently have access" +
+        this.console.println("Sorry - You do not currently have access" +
                 " to magic");
     }
     
@@ -266,7 +286,7 @@ public class BattleView
     public void doItem()
     {
         //STUB FUNCTION - TO BE COMPLETED*******************************
-        System.out.println("Sorry - You do not currently have access" +
+        this.console.println("Sorry - You do not currently have access" +
                 " to items");
     }
     
@@ -283,14 +303,14 @@ public class BattleView
                 player.getPlayerStats().getSpeed(), 
                 enemy.getEnemyStats().getSpeed()) >= .5)
             { 
-                System.out.println("You have successfully escaped"
+                this.console.println("You have successfully escaped"
                     + "the enemy - You will live to see another "
                     + "day.");
                 return true; 
             }
             else
             {
-                System.out.println("Sorry, you were not able to get "
+                this.console.println("Sorry, you were not able to get "
                     + "away - try again if you survive this "
                     + "next round.");
             }
@@ -298,7 +318,7 @@ public class BattleView
         }
         catch (BattleControlException ex)
         {
-                System.out.println(ex.getMessage());
+                this.console.println(ex.getMessage());
         }
     return false;
     }

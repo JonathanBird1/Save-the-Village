@@ -24,7 +24,7 @@ public class GameMenuView extends View
     
     public GameMenuView()
     {
-        System.out.println("ERROR:  Cannot use default constructor for "
+        ErrorView.display(this.getClass().getName(), "ERROR:  Cannot use default constructor for "
                 + "Game Menu View");
     }
     
@@ -48,7 +48,7 @@ public class GameMenuView extends View
     @Override
     public boolean doAction(String choice)
     {
-        System.out.println("ERROR:  Required to pass Game as a parameter");
+        ErrorView.display(this.getClass().getName(), "ERROR:  Required to pass Game as a parameter");
         return false;
     }
        
@@ -95,41 +95,41 @@ public class GameMenuView extends View
 
     private void displayStatistics(Player player)
     {
-        System.out.println("\tHEALTH & MANA\n");
-        System.out.printf("%-19s","\tHEALTH:");
-            System.out.printf("%-4d", player.getCurrentHealth());
-            System.out.print(" / ");
-            System.out.printf("%-4d", player.getPlayerStats().getHealth());
-            System.out.println();
-        System.out.printf("%-19s", "\tMANA:");
-            System.out.printf("%-4d", player.getCurrentMana());
-            System.out.print(" / ");
-            System.out.printf("%-4d", player.getPlayerStats().getMana());
-            System.out.println();
+        this.console.println("\tHEALTH & MANA\n");
+        this.console.printf("%-19s","\tHEALTH:");
+            this.console.printf("%-4d", player.getCurrentHealth());
+            this.console.print(" / ");
+            this.console.printf("%-4d", player.getPlayerStats().getHealth());
+            this.console.println();
+        this.console.printf("%-19s", "\tMANA:");
+            this.console.printf("%-4d", player.getCurrentMana());
+            this.console.print(" / ");
+            this.console.printf("%-4d", player.getPlayerStats().getMana());
+            this.console.println();
 
-        System.out.println("\n\tPLAYER STATS\n");
-        System.out.printf("%-19s", "\tSTRENGTH:");
-            System.out.printf("%-2d", player.getPlayerStats().getStrength());
-            System.out.println();
-        System.out.printf("%-19s", "\tHIT RATE:");
-            System.out.printf("%1.2f", player.getPlayerStats().getHitRate());
-            System.out.println();
-        System.out.printf("%-19s", "\tMAGIC:");
-            System.out.printf("%-2d", player.getPlayerStats().getMagic());
-            System.out.println();
-        System.out.printf("%-19s", "\tDODGE RATE:");
-            System.out.printf("%1.2f", player.getPlayerStats().getDodgeRate());
-            System.out.println();
-        System.out.printf("%-19s", "\tDEFENSE:");
-            System.out.printf("%-2d", player.getPlayerStats().getDefense());
-            System.out.println();
-        System.out.printf("%-19s", "\tMAGIC DEFENSE:");
-            System.out.printf("%-2d", player.getPlayerStats().getMagicDefense());
-            System.out.println();
-        System.out.printf("%-19s", "\tSPEED:");
-            System.out.printf("%-19s", (player.getPlayerStats().getSpeed() -
+        this.console.println("\n\tPLAYER STATS\n");
+        this.console.printf("%-19s", "\tSTRENGTH:");
+            this.console.printf("%-2d", player.getPlayerStats().getStrength());
+            this.console.println();
+        this.console.printf("%-19s", "\tHIT RATE:");
+            this.console.printf("%1.2f", player.getPlayerStats().getHitRate());
+            this.console.println();
+        this.console.printf("%-19s", "\tMAGIC:");
+            this.console.printf("%-2d", player.getPlayerStats().getMagic());
+            this.console.println();
+        this.console.printf("%-19s", "\tDODGE RATE:");
+            this.console.printf("%1.2f", player.getPlayerStats().getDodgeRate());
+            this.console.println();
+        this.console.printf("%-19s", "\tDEFENSE:");
+            this.console.printf("%-2d", player.getPlayerStats().getDefense());
+            this.console.println();
+        this.console.printf("%-19s", "\tMAGIC DEFENSE:");
+            this.console.printf("%-2d", player.getPlayerStats().getMagicDefense());
+            this.console.println();
+        this.console.printf("%-19s", "\tSPEED:");
+            this.console.printf("%-19s", (player.getPlayerStats().getSpeed() -
             player.getPlayerStats().getSpeedPenalty()));
-            System.out.println();
+            this.console.println();
     }
 
     private void goToInventory(Player player)
@@ -137,71 +137,71 @@ public class GameMenuView extends View
         int counter = 0;
         
         //ITEMS ON HAND
-        System.out.println("\tINVENTORY ON HAND\n");
-        System.out.print("\t");
-        System.out.printf("%-3s", "#");
-        System.out.printf("%-15s", "ITEM NAME");
-        System.out.printf("%-7s", "TYPE");
-        System.out.printf("%-11s", "SELL PRICE");
-        System.out.printf("%-5s", "DAM.");
-        System.out.printf("%-5s", "HEAL");
-        System.out.printf("%-5s", "MANA");
-        System.out.printf("%-6s", "WEIGHT");
-        System.out.println();
-        System.out.println("\t---------------------------------------------------------");
+        this.console.println("\tINVENTORY ON HAND\n");
+        this.console.print("\t");
+        this.console.printf("%-3s", "#");
+        this.console.printf("%-15s", "ITEM NAME");
+        this.console.printf("%-7s", "TYPE");
+        this.console.printf("%-11s", "SELL PRICE");
+        this.console.printf("%-5s", "DAM.");
+        this.console.printf("%-5s", "HEAL");
+        this.console.printf("%-5s", "MANA");
+        this.console.printf("%-6s", "WEIGHT");
+        this.console.println();
+        this.console.println("\t---------------------------------------------------------");
         
         for (Item item : player.getItems())
         {
             counter++;
-            System.out.print("\t");
-            System.out.printf("%-3d", counter);
-            System.out.printf("%-15s", item.getItemName());
-            System.out.printf("%-7s", item.getType());
-            System.out.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
-            System.out.printf("%-5d", item.getWeaponDamage());
-            System.out.printf("%-5d", item.getHealingAmount());
-            System.out.printf("%-5d", item.getManaRestored());
-            System.out.printf("%-6d", item.getWeight());
-            System.out.println();
+            this.console.print("\t");
+            this.console.printf("%-3d", counter);
+            this.console.printf("%-15s", item.getItemName());
+            this.console.printf("%-7s", item.getType());
+            this.console.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
+            this.console.printf("%-5d", item.getWeaponDamage());
+            this.console.printf("%-5d", item.getHealingAmount());
+            this.console.printf("%-5d", item.getManaRestored());
+            this.console.printf("%-6d", item.getWeight());
+            this.console.println();
         }
         
         counter = 0;
-        System.out.println();
+        this.console.println();
         //ITEMS IN THE BANK
-        System.out.println("\tINVENTORY IN THE BANK\n");
-        System.out.print("\t");
-        System.out.printf("%-3s", "#");
-        System.out.printf("%-15s", "ITEM NAME");
-        System.out.printf("%-7s", "TYPE");
-        System.out.printf("%-11s", "SELL PRICE");
-        System.out.printf("%-5s", "DAM.");
-        System.out.printf("%-5s", "HEAL");
-        System.out.printf("%-5s", "MANA");
-        System.out.printf("%-6s", "WEIGHT");
-        System.out.println();
-        System.out.println("\t---------------------------------------------------------");
+        this.console.println("\tINVENTORY IN THE BANK\n");
+        this.console.print("\t");
+        this.console.printf("%-3s", "#");
+        this.console.printf("%-15s", "ITEM NAME");
+        this.console.printf("%-7s", "TYPE");
+        this.console.printf("%-11s", "SELL PRICE");
+        this.console.printf("%-5s", "DAM.");
+        this.console.printf("%-5s", "HEAL");
+        this.console.printf("%-5s", "MANA");
+        this.console.printf("%-6s", "WEIGHT");
+        this.console.println();
+        this.console.println("\t---------------------------------------------------------");
         
         for (Item item : player.getItems())
         {
             counter++;
-            System.out.print("\t");
-            System.out.printf("%-3d", counter);
-            System.out.printf("%-15s", item.getItemName());
-            System.out.printf("%-7s", item.getType());
-            System.out.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
-            System.out.printf("%-5d", item.getWeaponDamage());
-            System.out.printf("%-5d", item.getHealingAmount());
-            System.out.printf("%-5d", item.getManaRestored());
-            System.out.printf("%-6d", item.getWeight());
-            System.out.println();
+            this.console.print("\t");
+            this.console.printf("%-3d", counter);
+            this.console.printf("%-15s", item.getItemName());
+            this.console.printf("%-7s", item.getType());
+            this.console.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
+            this.console.printf("%-5d", item.getWeaponDamage());
+            this.console.printf("%-5d", item.getHealingAmount());
+            this.console.printf("%-5d", item.getManaRestored());
+            this.console.printf("%-6d", item.getWeight());
+            this.console.println();
         }
     }
 
     private void displayQuestDetails()
     {
-        System.out.println("YOUR QUEST");
-        System.out.println();
-        System.out.println("You are a wandering hero that has come across a town facing a mysterious problem.  For \n" +
+        this.console.println("YOUR QUEST");
+        this.console.println();
+        this.console.println("You are a wandering hero that has come across a town facing a mysterious problem.  For \n" +
 "the past month, every night someone has been disappearing from the town without a trace. \n" +
 "Upon meeting you and learning of your abilities, the elders of the village have pleaded \n" +
 "with you to save the missing villagers and protect the village.  Armed with your sword, \n" +
@@ -217,16 +217,16 @@ public class GameMenuView extends View
     private void goToSaveGame()
     {
         //To Complete *******************************************
-        System.out.print("Save game chosen");
+        this.console.print("Save game chosen");
     }
 
     private void startLoadGame() {
         //To Complete *******************************************
-        System.out.print("Load game chosen");
+        this.console.print("Load game chosen");
     }
 
     private void quitGame() {
-        System.out.print("You have chosen to quit the game. \n"
+        this.console.print("You have chosen to quit the game. \n"
                 + "Congratulations, the entire village has been \n"
                 + "devoured by the Beast. I hope you can sleep \n"
                 + "well tonight.");

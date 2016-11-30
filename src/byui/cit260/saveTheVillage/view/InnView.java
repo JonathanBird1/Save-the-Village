@@ -13,28 +13,26 @@ import byui.cit260.saveTheVillage.control.SceneControl;
  *
  * @author Yoda
  */
-public class InnView
+public class InnView extends View
 {
     private String innMessage;
             
     public InnView()  //Display message
     {
-        this.innMessage = "\n How long would you like to rest?";
+        super ("\n How long would you like to rest?"
+                + "\nPlease enter a value between 0 and 8.");
     }
     
-    private int getInput()
-    {
-        
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
+    /*public int getInput()
+    {        
         int value = 0;
         boolean valid = false;
         
         while(!valid){
             try {
-                value = keyboard.nextInt();  //get the next int entered from keyboard
+                value = this.keyboard.read();  //get the next int entered from keyboard
             } catch (Exception e) {
-                System.out.println("That's not an integer");
-                return 0;
+                System.out.println("That's not an number.");
               }; 
             
             if(value < 0){
@@ -44,11 +42,11 @@ public class InnView
             break;
         }
         return value;
-    }
+    }*/
     
-    private boolean doAction(int choice)
-    {
-        
+    @Override
+    public boolean doAction(int choice)
+    {        
         if(choice > 0 || choice < 9 ){
             SceneControl newSceneControl = new SceneControl();
         //    newSceneControl.restAtInn(Player, choice);
@@ -58,6 +56,11 @@ public class InnView
                 System.out.println("\nChoose between 0 and 8. Try again.");
         }
         return false;
+    }
+
+    @Override
+    public boolean doAction(String choice) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

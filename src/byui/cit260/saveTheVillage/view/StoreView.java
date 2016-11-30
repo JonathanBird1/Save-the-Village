@@ -57,16 +57,15 @@ public class StoreView extends View{
                 Item.SmallHealthPotion.getBuyPrice());
         System.out.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to buy
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        int keyboardValue;
+        
         int value = 0;
         boolean valid = false;
         
-        
+        try{
         while(!valid)
         {
             try{
-                keyboardValue = keyboard.nextInt(); //get the next lined entered from keyboard
+               value = this.keyboard.read();//get the next lined entered from keyboard
             } catch (Exception e){
                 System.out.println("Invalid item");
             }
@@ -90,13 +89,10 @@ public class StoreView extends View{
 
             valid = true;
         }
-        //call the buy item function from SceneControl
-        /*
-        SceneControl newSceneControl = new SceneControl();
-        newSceneControl.buyItem(Player, keyboardValue);
-        */
-        return; 
-        
+        } catch (Exception e){
+            System.out.println("Unable to determine your needs " + e.getMessage());
+        }
+        return;
     }
         
     private void sellItems()
@@ -104,17 +100,16 @@ public class StoreView extends View{
         //list store inventory 0 to quit       
         System.out.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to buy
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        int keyboardValue;
+        
         int value = 0;
         boolean valid = false;
         
-        
+        try {
         while(!valid)
         {
             try
             {
-                keyboardValue = keyboard.nextInt();
+                value = this.keyboard.read();
             }
             catch (Exception e)
             {
@@ -141,13 +136,9 @@ public class StoreView extends View{
             }
 
             valid = true;
+        }} catch (Exception e) {
+            System.out.println("Unable to determine your needs " + e.getMessage());
         }
-                
-        //call the sell item function from SceneControl
-        /*
-        SceneControl newSceneControl = new SceneControl();
-        newSceneControl.buyItem(Player, keyboardValue);
-        */
         
         return; 
     }

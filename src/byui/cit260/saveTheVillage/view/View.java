@@ -6,16 +6,22 @@
 package byui.cit260.saveTheVillage.view;
 
 import byui.cit260.saveTheVillage.model.Game;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 
 import java.util.Scanner;
+import savethevillage.SaveTheVillage;
 
 /**
  *
  * @author Master Brickbuilder
  */
-public abstract class View implements ViewInterface
-{    
+public abstract class View implements ViewInterface{    
+    
     protected String displayMessage;
+    
+    protected final BufferedReader keyboard = SaveTheVillage.getInFile();
+    protected final PrintWriter console = SaveTheVillage.getOutFile();
     
     public View()
     {
@@ -41,13 +47,13 @@ public abstract class View implements ViewInterface
     @Override
     public String getInput(){
         
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
+        String value = null;
         boolean valid = false;
         
+        try{
         while(!valid){
             System.out.println("\n" + this.displayMessage);
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
+            value = this.keyboard.readLine();
             value = value.trim();
             value = value.toUpperCase();
             
@@ -56,6 +62,9 @@ public abstract class View implements ViewInterface
                 continue;
             }
             break;
+        }
+        } catch (Exception e){
+            System.out.println("Unable to determine your needs " + e.getMessage());
         }
         return value;
     }

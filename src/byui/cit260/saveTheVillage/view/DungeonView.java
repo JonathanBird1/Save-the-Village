@@ -44,12 +44,12 @@ public class DungeonView extends View{
 
     private void explore()
     {
-        System.out.println("You search");
+        this.console.println("You search");
     }
 
     private void move()
     {
-        System.out.println("You move");
+        this.console.println("You move");
     }
 
     private void quit()

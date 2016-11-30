@@ -24,16 +24,20 @@ public class GameStartView extends View
     @Override
     public String getInput()
     {
-        System.out.println(super.displayMessage);
+        this.console.println(super.displayMessage);
         return "";
     }
     
     @Override
     public boolean doAction(String choice)
     {
+        try{
         //This function is not used - requires the doAction with the game
-        System.out.println("ERROR:  Must pass the Game as a parameter");
-        return false;
+        ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the Game as a parameter");
+        }catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
+    } return false;
     }
     
     @Override

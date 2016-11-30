@@ -155,14 +155,14 @@ public class MainMenuView extends View
     ********************************************************* */
     private String getPlayerName()
     {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
+        String value = null;
         boolean valid = false;
         
+        try{
         while(!valid)
         {
             System.out.println("\nOkay, so what is your name?");
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
+            value = this.keyboard.readLine(); //get the next lined entered from keyboard
             value = value.trim();
             
             if(value.length() < 1)
@@ -185,7 +185,9 @@ public class MainMenuView extends View
             }
             valid = true;
         }
-        
+        } catch (Exception e) {
+            System.out.println("Unable to determine your needs " + e.getMessage());
+        }
         return value; //return the value entered
     }
     
@@ -194,11 +196,11 @@ public class MainMenuView extends View
     ********************************************************* */
     private Races getPlayerRace()
     {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = "";
+        String value = null;
         Races race = Races.HUMAN;
         boolean valid = false;
         
+        try{
         while(!valid)
         {
             System.out.println("\nWhich race do you relate with?\n"
@@ -207,7 +209,7 @@ public class MainMenuView extends View
                     + "\n\t| E – Elf   |"
                     + "\n\t| D – Dwarf |"
                     + "\n\t-------------");
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
+            value = this.keyboard.readLine(); //get the next lined entered from keyboard
             value = value.toUpperCase();
             value = value.trim();
             
@@ -240,7 +242,9 @@ public class MainMenuView extends View
                     valid = false;
             }
         }
-        
+        } catch (Exception e){
+            System.out.println("Unable to determine your needs " + e.getMessage());
+        }
         return race; //return the value entered
     }
     
@@ -249,7 +253,6 @@ public class MainMenuView extends View
     ********************************************************* */
     private int getPlayerAge()
     {
-        Scanner keyboard;
         int keyboardValue = 0;
         boolean valid = false;
         
@@ -260,8 +263,7 @@ public class MainMenuView extends View
             
             try
             {
-                keyboard = new Scanner(System.in);  //get infile for keyboard
-                keyboardValue = keyboard.nextInt();
+                keyboardValue = this.keyboard.read();
                 if(keyboardValue < 25)
                 {
                     System.out.println("Unfortunately, you are too young to die.");

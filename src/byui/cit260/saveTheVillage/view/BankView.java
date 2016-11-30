@@ -33,6 +33,7 @@ public class BankView extends View
     {
         choice = choice.toUpperCase();
         
+        try{
         switch(choice){
 
             case "D":
@@ -45,7 +46,12 @@ public class BankView extends View
             case "L": // Leave 
                 return true;
             default:
-                System.out.println("\nYeah, that didn't work. Try again.");
+                ErrorView.display(this.getClass().getName(),
+                        "\nYeah, that didn't work. Try again.");
+        }
+        } catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
         return false;
     }
@@ -53,30 +59,27 @@ public class BankView extends View
     private void DepositMoney()
     {
         int currentMoney = 0;
-
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        int keyboardValue;
         int value = 0;
         boolean valid = false;
         
         while(!valid)
         {
             int max = currentMoney; //get number of items available
-            System.out.println("\nYou have " + currentMoney + " gold pieces.  "
+            this.console.println("\nYou have " + currentMoney + " gold pieces.  "
                 + "How much would you like to deposit?"
                 + "\nEnter 0 to exit");
             
             try
             {
-                keyboardValue = keyboard.nextInt();//get the next lined entered from keyboard
+                value = this.keyboard.read();
             } catch (Exception e)
             {
-                System.out.println("Invalid amount.");
+                ErrorView.display(this.getClass().getName(), "Invalid amount.");
             }
-            
+            try{
             if(value < 0)
             {
-                System.out.println("Invalid amount");
+                ErrorView.display(this.getClass().getName(),"Invalid amount");
                 continue;
             }
             if(value == 0)
@@ -85,9 +88,12 @@ public class BankView extends View
             }
             else if(value > max)  //need to get the highest item number
             {
-                System.out.println("Sorry friend, but it would seem that you have "
+                this.console.println ("Sorry friend, but it would seem that you have "
                 + "insufficient funds to comply with that request.");
                 continue;
+            }} catch (Exception f) {
+                ErrorView.display(this.getClass().getName(), "Error reading input: "
+                        + f.getMessage());
             }
 
             valid = true;
@@ -98,30 +104,29 @@ public class BankView extends View
      {
         int currentMoney = 0;        
 
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        int keyboardValue;
         int value = 0;
         boolean valid = false;
         
         while(!valid)
         {
             int max = currentMoney; //get number of items available
-            System.out.println("\nYou have " + currentMoney + " gold pieces "
+            this.console.println("\nYou have " + currentMoney + " gold pieces "
                 + "in the bank.  How much would you like to withdraw?"
                 + "\nEnter 0 to exit");
             
             try
             {
-                keyboardValue = keyboard.nextInt(); //get the next lined entered from keyboard
+                value = this.keyboard.read();
             }
             catch (Exception e)
             {
-                System.out.println("Invalid amount.");
+                ErrorView.display(this.getClass().getName(), "Invalid amount.");
             }
-
+            
+            try{
             if(value < 0)
             {
-                System.out.println("Invalid amount");
+                ErrorView.display(this.getClass().getName(), "Invalid amount");
                 continue;
             }
 
@@ -135,6 +140,9 @@ public class BankView extends View
                 + "been emptied, either that or you don't have that much in "
                 + "deposited in your savings.");
                 continue;
+            }} catch (Exception f){
+                ErrorView.display(this.getClass().getName(), "Error reading input: "
+                        + f.getMessage();
             }
 
             valid = true;

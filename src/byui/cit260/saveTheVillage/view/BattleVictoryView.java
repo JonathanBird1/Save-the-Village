@@ -17,7 +17,7 @@ import java.util.Scanner;
  *
  * @author micha
  */
-public class BattleVictoryView
+public class BattleVictoryView extends View
 {
     private String message;
     private int droppedGold;
@@ -71,17 +71,21 @@ public class BattleVictoryView
         String value = "";
         boolean valid = false;
         
+        try{
         while(!valid){
-            System.out.println("\n" + this.message);
-            value = keyboard.nextLine(); //get the next lined entered from keyboard
+            this.console.println("\n" + this.message);
+            value = this.keyboard.readLine(); //get the next lined entered from keyboard
             value = value.trim();
             value = value.toUpperCase();
             
             if(value.length() < 1){
-                System.out.println("\nSorry? What was that?");
+                ErrorView.display(this.getClass().getName(), "\nSorry? What was that?");
                 continue;
             }
             break;
+        }} catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
         return value;
     }
@@ -89,10 +93,12 @@ public class BattleVictoryView
     /* ********************************************************
     DO ACTION
     ********************************************************* */
-    private boolean doAction(String choice, Player player)
+    @Override
+    public boolean doAction(String choice, Player player)
     {        
         choice = choice.toUpperCase();
         
+        try{
         if (choice.equals("Y"))
         {
             PlayerControl newPlayerControl = new PlayerControl();
@@ -103,7 +109,7 @@ public class BattleVictoryView
             
             if (currentWeight + additionalWeight > weightLimit)
             {
-                System.out.println("Sorry for all of your hard work, but "
+                this.console.println("Sorry for all of your hard work, but "
                         + "it looks like your spoils of war are too heavy "
                         + "to carry back.");
             }
@@ -111,7 +117,7 @@ public class BattleVictoryView
             {
                 //Add Gold
                 player.setMoney(player.getMoney() + droppedGold);
-                System.out.println("Your current gold is:  " + 
+                this.console.println("Your current gold is:  " + 
                         player.getMoney());
                 
                 //Add Item if space in inventory
@@ -134,12 +140,12 @@ public class BattleVictoryView
                 {
                     //Add the item
                     player.setItems(itemSlot, droppedItem);
-                    System.out.println("You successfully added " + 
+                    this.console.println("You successfully added " + 
                         droppedItem.getItemName() + " to your inventory.");
                 }
                 else
                 {
-                    System.out.println("Sorry, seems like you didn't budget "
+                    this.console.println("Sorry, seems like you didn't budget "
                             + "your inventory well enough - you have no space "
                             + "to store this item.");
                 }
@@ -147,7 +153,7 @@ public class BattleVictoryView
                 //Calculate and Set New Weight
                 player.setPlayerWeight(currentWeight + droppedGold / 100 + 
                     (space ? droppedItem.getWeight() : 0));
-                System.out.println("Your new weight is:  " + 
+                this.console.println("Your new weight is:  " + 
                         player.getPlayerWeight());
                 
                 //Calculate and Set New Speed Penalty
@@ -157,20 +163,22 @@ public class BattleVictoryView
                     player.getPlayerStats().getStrength(),
                     player.getPlayerWeight()));
                 } catch (PlayerControlException me){
-                    System.out.println("Your speed seems wrong...");
+                    ErrorView.display(this.getClass().getName(), "Your speed seems wrong...");
                 }
                 player.setPlayerStats(newStats);
-                System.out.println("Your new speed penalty is:  " +
+                this.console.println("Your new speed penalty is:  " +
                     player.getPlayerStats().getSpeedPenalty());
                 
             }
         }
         else
         {
-            System.out.println("\nYeah, that didn't work. Try again.");
+            ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
             return false;
+        }}catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
-        
         return true;
     }
 }

@@ -71,15 +71,16 @@ public class WeaponShopView extends View{
         System.out.println("\nWhich item would you like to buy?");
         System.out.println("\nEnter 0 to exit");
         //Prompt for user input of which item to buy
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
+        
         int keyboardValue = 0;
         boolean valid = false;
 
+        try{
         while(!valid)
         {
             //get the next int entered from keyboard
             try {
-                keyboardValue = keyboard.nextInt();
+                keyboardValue = this.keyboard.read();
             } catch (Exception e) {
                 System.out.println("Invalid item - Leaving shop");
                 return;
@@ -110,7 +111,9 @@ public class WeaponShopView extends View{
             }
             valid = true;
         }
-        
+        } catch (Exception e) {
+            System.out.println("Unable to determine your needs " + e.getMessage());
+        }
 
         //call the buy item function from SceneControl
         System.out.println("You chose " + itemArray[keyboardValue]);
@@ -125,23 +128,17 @@ public class WeaponShopView extends View{
         //list store inventory 0 to quit       
         System.out.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to sell
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String keyboardValue;
+        
         int value = 0;
         boolean valid = false;
         
-        
+        try{
         while(!valid)
         {
-            keyboardValue = keyboard.nextLine(); //get the next lined entered from keyboard
-            keyboardValue = keyboardValue.trim();
+            value = this.keyboard.read(); //get the next lined entered from keyboard
             int max = 99; //get number of items available
             System.out.println("\nWhich item would you like to buy?");
-
-            if(keyboardValue.matches("^\\d+$"))
-            {
-                System.out.println("Invalid item");
-            }
+            
             if(value < 0)
             {
                 System.out.println("Invalid item");
@@ -158,14 +155,9 @@ public class WeaponShopView extends View{
             }
 
             valid = true;
+        }} catch (Exception e) {
+            System.out.println("Unable to determine your needs " + e.getMessage());
         }
-                
-        //call the sell item function from SceneControl
-        /*
-        SceneControl newSceneControl = new SceneControl();
-        newSceneControl.buyItem(Player, keyboardValue);
-        */
-        
         return; 
     }
 }
