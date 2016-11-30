@@ -23,28 +23,43 @@ public class InnView extends View
                 + "\nPlease enter a value between 0 and 8.");
     }
     
-    /*public int getInput()
+    public int getInput()
     {        
         int value = 0;
         boolean valid = false;
-        
+        try{
         while(!valid){
             try {
                 value = this.keyboard.read();  //get the next int entered from keyboard
             } catch (Exception e) {
-                System.out.println("That's not an number.");
+                ErrorView.display(this.getClass().getName(), "That's not an number.");
               }; 
             
             if(value < 0){
-                System.out.println("\nSorry? What was that?");
+                ErrorView.display(this.getClass().getName(), "\nSorry? What was that?");
                 continue;
             }
             break;
+        }}catch (Exception f){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                + f.getMessage());
         }
         return value;
-    }*/
+    }
     
     @Override
+    public boolean doAction(String choice)
+    {
+        try{
+        //This function is not used - requires the doAction with the game
+        ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the Game as a parameter");
+        }catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
+    } return false;
+    }
+    
+    //@Override
     public boolean doAction(int choice)
     {        
         if(choice > 0 || choice < 9 ){
@@ -53,14 +68,8 @@ public class InnView extends View
         //  Call restAtInn from SceneControl
         }
             else{
-                System.out.println("\nChoose between 0 and 8. Try again.");
+                this.console.println("\nChoose between 0 and 8. Try again.");
         }
         return false;
-    }
-
-    @Override
-    public boolean doAction(String choice) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }    
 }

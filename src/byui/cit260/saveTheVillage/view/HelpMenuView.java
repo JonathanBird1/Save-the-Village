@@ -31,7 +31,7 @@ public class HelpMenuView extends View{
     public boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
-        
+        try{
         switch(choice){
             case "C": // display 'basic commands menu'
                 this.displayBasicMenu();
@@ -43,14 +43,17 @@ public class HelpMenuView extends View{
                 this.displayBattleMenu();
                 break;
             default:
-                System.out.println("\nYeah, that didn't work. Try again.");
+                ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
+        }}catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
         return false;
     }
 
     private void displayBasicMenu() {
         
-        System.out.println("\n"
+        this.console.println("\n"
                 + "\n\t-----BASIC--COMMANDS-----"
                 + "\n\t| B - Enter (Building)  |"
                 + "\n\t| N – Move North        |"
@@ -67,7 +70,7 @@ public class HelpMenuView extends View{
         }
 
     private void displayBattleMenu() {
-        System.out.println("\n"
+        this.console.println("\n"
                 + "\n\t---BATTLE--COMMANDS---"
                 + "\n\t| A - Attack         |"
                 + "\n\t| M - Use Magic      |"

@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author Master Brickbuilder
  */
-public class StartProgramView {
+public class StartProgramView extends View {
     
     public StartProgramView(){
         /*
@@ -22,7 +22,7 @@ public class StartProgramView {
     }
 
     private void displayBanner() {
-        System.out.println(
+        this.console.println(
               "\n*****************************************************************************************"
             + "\n         ____"
             + "\n        (____)"
@@ -72,4 +72,11 @@ public class StartProgramView {
         //Display the main menu view
         mainMenuView.display();
     }   
+
+    @Override
+    public boolean doAction(String choice) {
+        ErrorView.display(this.getClass().getName(), "ERROR: Required to pass "
+                + "Game as parameter.");
+        return false;
+    }
 }

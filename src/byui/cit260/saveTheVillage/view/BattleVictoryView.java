@@ -30,7 +30,8 @@ public class BattleVictoryView extends View
     ********************************************************* */
     public BattleVictoryView()
     {
-        //No Preparation Needed
+        ErrorView.display(this.getClass().getName(), "ERROR:  Cannot use default constructor for "
+                + "Game Menu View");
     }
     
     /* ********************************************************
@@ -93,7 +94,18 @@ public class BattleVictoryView extends View
     /* ********************************************************
     DO ACTION
     ********************************************************* */
-    @Override
+        @Override
+    public boolean doAction(String choice)
+    {
+        try{
+        //This function is not used - requires the doAction with the game
+        ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the Game as a parameter");
+        }catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
+    } return false;
+    }
+    
     public boolean doAction(String choice, Player player)
     {        
         choice = choice.toUpperCase();

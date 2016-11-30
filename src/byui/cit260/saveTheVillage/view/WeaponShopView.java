@@ -35,6 +35,7 @@ public class WeaponShopView extends View{
         
         choice = choice.toUpperCase();
         
+        try{
         switch(choice){
             case "B": // List items to buy
                 this.buyItems();
@@ -45,7 +46,10 @@ public class WeaponShopView extends View{
             case "L": // Leave store
                 return true;
             default:
-                System.out.println("\nYeah, that didn't work. Try again.");
+                ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
+        }} catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
         return false;
     }
@@ -53,7 +57,7 @@ public class WeaponShopView extends View{
     private void buyItems() {
         
         //list store inventory 0 to quit 
-      System.out.println("#  ITEM\t\tPRICE" );
+      this.console.println("#  ITEM\t\tPRICE" );
       String itemArray[]= new String[22];
    
         int i = 0;
@@ -62,14 +66,14 @@ public class WeaponShopView extends View{
         for (Item item : items){
             if (item.getAssociation()== "Weapons Shop" && item.getBuyPrice() != 0) {
               i++;  
-              System.out.println(i + "  " + item +"\t" + item.getBuyPrice());
+              this.console.println(i + "  " + item +"\t" + item.getBuyPrice());
               totalAll += item.getBuyPrice();  //for assignment remove this later
               itemArray[i]=item.getItemName();
             }
         }
-        System.out.println("To purchase all items the cost would be: $" + totalAll);  //for assignment remove this later
-        System.out.println("\nWhich item would you like to buy?");
-        System.out.println("\nEnter 0 to exit");
+        this.console.println("To purchase all items the cost would be: $" + totalAll);  //for assignment remove this later
+        this.console.println("\nWhich item would you like to buy?");
+        this.console.println("\nEnter 0 to exit");
         //Prompt for user input of which item to buy
         
         int keyboardValue = 0;
@@ -82,7 +86,7 @@ public class WeaponShopView extends View{
             try {
                 keyboardValue = this.keyboard.read();
             } catch (Exception e) {
-                System.out.println("Invalid item - Leaving shop");
+                ErrorView.display(this.getClass().getName(), "Invalid item - Leaving shop");
                 return;
             };
 
@@ -90,7 +94,7 @@ public class WeaponShopView extends View{
 
             if(keyboardValue < 0)
             {
-                System.out.println("Invalid item - Try again");
+                ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
                 continue;
             }
 
@@ -101,22 +105,22 @@ public class WeaponShopView extends View{
 
             else if(keyboardValue > max)  //need to get the highest item number
             {
-                System.out.println("Invalid item - Try again");
+                ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
                 continue;
             }
             else if(itemArray[keyboardValue] == null )
             {
-                System.out.println("Invalid item - Try again");
+                ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
                 continue;
             }
             valid = true;
         }
         } catch (Exception e) {
-            System.out.println("Unable to determine your needs " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), "Unable to determine your needs " + e.getMessage());
         }
 
         //call the buy item function from SceneControl
-        System.out.println("You chose " + itemArray[keyboardValue]);
+        this.console.println("You chose " + itemArray[keyboardValue]);
         SceneControl newSceneControl = new SceneControl();
      //   newSceneControl.buyItem(Player, keyboardValue);  //how do I reference the player
         
@@ -126,7 +130,7 @@ public class WeaponShopView extends View{
         
     private void sellItems() {
         //list store inventory 0 to quit       
-        System.out.println("\nList of items to come, for now enter 0 to exit");
+        this.console.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to sell
         
         int value = 0;
@@ -137,11 +141,11 @@ public class WeaponShopView extends View{
         {
             value = this.keyboard.read(); //get the next lined entered from keyboard
             int max = 99; //get number of items available
-            System.out.println("\nWhich item would you like to buy?");
+            this.console.println("\nWhich item would you like to buy?");
             
             if(value < 0)
             {
-                System.out.println("Invalid item");
+                ErrorView.display(this.getClass().getName(), "Invalid item");
                 continue;
             }
             if(value == 0)
@@ -150,13 +154,13 @@ public class WeaponShopView extends View{
             }
             else if(value > max)  //need to get the highest item number
             {
-                System.out.println("Invalid item");
+                ErrorView.display(this.getClass().getName(), "Invalid item");
                 continue;
             }
 
             valid = true;
         }} catch (Exception e) {
-            System.out.println("Unable to determine your needs " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), "Unable to determine your needs " + e.getMessage());
         }
         return; 
     }

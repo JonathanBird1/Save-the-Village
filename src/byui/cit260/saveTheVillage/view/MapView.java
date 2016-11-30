@@ -23,7 +23,7 @@ public class MapView extends View
     @Override
     public boolean doAction(String choice)
     {
-        System.out.println("ERROR:  Required to pass Game as a parameter");
+        ErrorView.display(this.getClass().getName(),"ERROR:  Required to pass Game as a parameter");
         return false;
     }
     
@@ -31,6 +31,7 @@ public class MapView extends View
     public boolean doAction(String choice, Game game) {
         choice = choice.toUpperCase();
         
+        try{
         switch(choice)
         {
             case "F":
@@ -42,7 +43,10 @@ public class MapView extends View
             case "E":
                 return true;
             default:
-                System.out.println("Sorry, what was that?");
+                ErrorView.display(this.getClass().getName(),"Sorry, what was that?");
+        }} catch(Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
         
         return false;
@@ -244,6 +248,6 @@ public class MapView extends View
                     + "Dungeon";
         }
         
-        System.out.println(mapOutput);
+        this.console.println(mapOutput);
     }
 }

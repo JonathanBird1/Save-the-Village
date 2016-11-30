@@ -53,7 +53,7 @@ public class MainMenuView extends View
     {
         choice = choice.toUpperCase();
         boolean endGame = false;
-        
+        try{
         switch(choice)
         {
             case "N": // create and start a new game
@@ -89,7 +89,10 @@ public class MainMenuView extends View
                 break;
             //
             default:
-                System.out.println("\nYeah, that didn't work. Try again.");
+                ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
+        }} catch(Exception e) {
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
         
         return endGame;
@@ -103,6 +106,7 @@ public class MainMenuView extends View
         Player newPlayer;
         
         boolean playerCreated = false; //set flag to not done
+        try{
         do
         {
             //prompt for and get player's choice
@@ -116,11 +120,11 @@ public class MainMenuView extends View
                     playerRace, playerAge);   
             if (newPlayer.getName().equals("Invalid"))
             {
-                System.out.println("INVALID PLAYER");
+                ErrorView.display(this.getClass().getName(), "INVALID PLAYER");
             }
             else
             {
-                System.out.println("Welcome, " + playerName + ", you have been "
+                this.console.println("Welcome, " + playerName + ", you have been "
                         + "born!");
                 playerCreated = true;
             }
@@ -139,7 +143,7 @@ public class MainMenuView extends View
         catch (InventoryControlException ice)
         {
             //If exception occurs, terminate the new game
-            System.out.println(ice.getMessage());
+            this.console.println(ice.getMessage());
             return;
         }
             
@@ -148,6 +152,11 @@ public class MainMenuView extends View
         startNewGame.display(newGame);
         
         finished = true;
+        
+        }catch(Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
+        }
     }
         
     /* ********************************************************
@@ -161,32 +170,33 @@ public class MainMenuView extends View
         try{
         while(!valid)
         {
-            System.out.println("\nOkay, so what is your name?");
+            this.console.println("\nOkay, so what is your name?");
             value = this.keyboard.readLine(); //get the next lined entered from keyboard
             value = value.trim();
             
             if(value.length() < 1)
             {
-                System.out.println("Am I to call you nothing? I don't think so, "
-                        + "try again.");
+                ErrorView.display(this.getClass().getName(),
+                        "Am I to call you nothing? I don't think so, try again.");
                 continue;
             }
             else if(value.length() < 2)
             {
-                System.out.println("An intriguing name, but that isn't going "
+                ErrorView.display(this.getClass().getName(),
+                        "An intriguing name, but that isn't going "
                         + "to work too well here. Try something a little longer.");
                 continue;
             }
             else if(value.length() > 10)
             {
-            System.out.println("That is quite the long name. I don't think I can"
-                    + " handle that.");
+                ErrorView.display(this.getClass().getName(),
+                        "That is quite the long name. I don't think I can handle that.");
                 continue;
             }
             valid = true;
         }
         } catch (Exception e) {
-            System.out.println("Unable to determine your needs " + e.getMessage());
+            ErrorView.display(this.getClass().getName(),"Unable to determine your needs " + e.getMessage());
         }
         return value; //return the value entered
     }
@@ -203,7 +213,7 @@ public class MainMenuView extends View
         try{
         while(!valid)
         {
-            System.out.println("\nWhich race do you relate with?\n"
+            this.console.println("\nWhich race do you relate with?\n"
                     + "\n\t----RACES----"
                     + "\n\t| H – Human |"
                     + "\n\t| E – Elf   |"
@@ -215,13 +225,13 @@ public class MainMenuView extends View
             
             if(value.length() < 1)
             {
-                System.out.println("Sorry, you can't be a bodiless enitity.");
+                ErrorView.display(this.getClass().getName(), "Sorry, you can't be a bodiless enitity.");
                 continue;
             }
             if(value.length() > 1 || (!value.equals("H") && 
                     !value.equals("E") && !value.equals("D")))
             {
-                System.out.println("Sorry, looks like you are an alien - Please"
+                ErrorView.display(this.getClass().getName(), "Sorry, looks like you are an alien - Please"
                     + " select a valid race");
                 continue;
             }
@@ -243,7 +253,7 @@ public class MainMenuView extends View
             }
         }
         } catch (Exception e){
-            System.out.println("Unable to determine your needs " + e.getMessage());
+            ErrorView.display(this.getClass().getName(),"Unable to determine your needs " + e.getMessage());
         }
         return race; //return the value entered
     }
@@ -258,7 +268,7 @@ public class MainMenuView extends View
         
         while(!valid)
         {
-            System.out.println("\nHow old is your character?"
+            this.console.println("\nHow old is your character?"
             + "\n(Hint - Age must be between 25 and 75) ");
             
             try
@@ -266,12 +276,12 @@ public class MainMenuView extends View
                 keyboardValue = this.keyboard.read();
                 if(keyboardValue < 25)
                 {
-                    System.out.println("Unfortunately, you are too young to die.");
+                    ErrorView.display(this.getClass().getName(), "Unfortunately, you are too young to die.");
                     continue;
                 }
                 else if(keyboardValue > 75)
                 {
-                    System.out.println("Sorry, you might as well retire and enjoy"
+                    ErrorView.display(this.getClass().getName(), "Sorry, you might as well retire and enjoy"
                         + " your last bit of life.");
                     continue;
                 }
@@ -280,7 +290,7 @@ public class MainMenuView extends View
             }
             catch (Exception e)
             {
-                System.out.println("ERROR:  Input must be an integer between 25"
+                ErrorView.display(this.getClass().getName(), "ERROR:  Input must be an integer between 25"
                         + " and 75 inclusive");
             }
         }
@@ -293,7 +303,7 @@ public class MainMenuView extends View
     ********************************************************* */
     private void loadGame()
     {
-        System.out.println("Load game selected");
+        this.console.println("Load game selected");
     }
     
     /* ********************************************************
@@ -323,14 +333,14 @@ public class MainMenuView extends View
     
     private void gotoSpellList() {Spell[] spellList = Spell.values();
        for (Spell spell : spellList){
-            System.out.println("\n" + spell.getSpellDescription() + "\n\tDamage Dealt: "
+            this.console.println("\n" + spell.getSpellDescription() + "\n\tDamage Dealt: "
             + spell.getDamageDealt() + ", Amount Healed: " + spell.getAmountHealed() + ", Attribute Boosted: "
             + spell.getAttributeBoosted() + ", Amount Boosted: " + spell.getAttributeBoostAmount());
        }
     }
     
     private void displayWeight(){
-        System.out.println("\nInventory Weighs: 0");
+        this.console.println("\nInventory Weighs: 0");
     }
     
     private void gotoBattleView()

@@ -35,6 +35,7 @@ public class StoreView extends View{
         
         choice = choice.toUpperCase();
         
+        try{
         switch(choice){
             case "B": // List items to buy
                 this.buyItems();
@@ -45,7 +46,10 @@ public class StoreView extends View{
             case "L": // Leave store
                 return true;
             default:
-                System.out.println("\nYeah, that didn't work. Try again.");
+                ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
+        }} catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
         return false;
     }
@@ -53,9 +57,9 @@ public class StoreView extends View{
     private void buyItems() {
         
         //list store inventory 0 to quit   
-        System.out.println(Item.SmallHealthPotion.getItemName() +" " + 
+        this.console.println(Item.SmallHealthPotion.getItemName() +" " + 
                 Item.SmallHealthPotion.getBuyPrice());
-        System.out.println("\nList of items to come, for now enter 0 to exit");
+        this.console.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to buy
         
         int value = 0;
@@ -67,14 +71,14 @@ public class StoreView extends View{
             try{
                value = this.keyboard.read();//get the next lined entered from keyboard
             } catch (Exception e){
-                System.out.println("Invalid item");
+                ErrorView.display(this.getClass().getName(), "Invalid item");
             }
             int max = 99; //get number of items available
-            System.out.println("\nWhich item would you like to buy?");
+            this.console.println("\nWhich item would you like to buy?");
 
             if(value < 0)
             {
-                System.out.println("Invalid item");
+                ErrorView.display(this.getClass().getName(), "Invalid item");
                 continue;
             }
             if(value == 0)
@@ -83,14 +87,14 @@ public class StoreView extends View{
             }
             else if(value > max)  //need to get the highest item number
             {
-                System.out.println("Invalid item");
+                ErrorView.display(this.getClass().getName(), "Invalid item");
                 continue;
             }
 
             valid = true;
         }
         } catch (Exception e){
-            System.out.println("Unable to determine your needs " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), "Unable to determine your needs " + e.getMessage());
         }
         return;
     }
@@ -98,7 +102,7 @@ public class StoreView extends View{
     private void sellItems()
     {
         //list store inventory 0 to quit       
-        System.out.println("\nList of items to come, for now enter 0 to exit");
+        this.console.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to buy
         
         int value = 0;
@@ -114,15 +118,15 @@ public class StoreView extends View{
             catch (Exception e)
             {
                 //get the next lined entered from keyboard
-                System.out.println("Invalid number");
+                ErrorView.display(this.getClass().getName(), "Invalid number");
                 return;
             }
             int max = 99; //get number of items available
-            System.out.println("\nWhich item would you like to buy?");
+            this.console.println("\nWhich item would you like to buy?");
             
             if(value < 0)
             {
-                System.out.println("Invalid item");
+                ErrorView.display(this.getClass().getName(), "Invalid item");
                 continue;
             }
             if(value == 0)
@@ -131,13 +135,13 @@ public class StoreView extends View{
             }
             else if(value > max)  //need to get the highest item number
             {
-                System.out.println("Invalid item");
+                ErrorView.display(this.getClass().getName(), "Invalid item");
                 continue;
             }
 
             valid = true;
         }} catch (Exception e) {
-            System.out.println("Unable to determine your needs " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), "Unable to determine your needs " + e.getMessage());
         }
         
         return; 

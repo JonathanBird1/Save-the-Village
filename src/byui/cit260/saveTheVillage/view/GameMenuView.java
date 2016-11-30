@@ -48,8 +48,13 @@ public class GameMenuView extends View
     @Override
     public boolean doAction(String choice)
     {
-        ErrorView.display(this.getClass().getName(), "ERROR:  Required to pass Game as a parameter");
-        return false;
+        try{
+        //This function is not used - requires the doAction with the game
+        ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the Game as a parameter");
+        }catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
+    } return false;
     }
        
     @Override

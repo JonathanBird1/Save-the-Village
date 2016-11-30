@@ -136,13 +136,13 @@ public class BankView extends View
             }
             else if(value > max)  //need to get the highest item number
             {
-                System.out.println("It appears that your account has recently "
+                this.console.println("It appears that your account has recently "
                 + "been emptied, either that or you don't have that much in "
                 + "deposited in your savings.");
                 continue;
             }} catch (Exception f){
                 ErrorView.display(this.getClass().getName(), "Error reading input: "
-                        + f.getMessage();
+                        + f.getMessage());
             }
 
             valid = true;

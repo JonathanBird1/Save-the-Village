@@ -52,19 +52,19 @@ public abstract class View implements ViewInterface{
         
         try{
         while(!valid){
-            System.out.println("\n" + this.displayMessage);
+            this.console.println("\n" + this.displayMessage);
             value = this.keyboard.readLine();
             value = value.trim();
             value = value.toUpperCase();
             
             if(value.length() < 1){ //blank value entered
-                System.out.println("\nSorry? What was that?");
+                ErrorView.display(this.getClass().getName(), "\nSorry? What was that?");
                 continue;
             }
             break;
         }
         } catch (Exception e){
-            System.out.println("Unable to determine your needs " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), "Unable to determine your needs " + e.getMessage());
         }
         return value;
     }

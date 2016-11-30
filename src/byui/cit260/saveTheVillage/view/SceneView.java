@@ -18,7 +18,7 @@ public class SceneView extends View
 {
     SceneView()
     {
-        System.out.println("ERROR:  Cannot use default constructor for "
+        ErrorView.display(this.getClass().getName(), "ERROR:  Cannot use default constructor for "
             + "SceneView");
     }
     
@@ -170,7 +170,7 @@ public class SceneView extends View
     @Override
     public boolean doAction(String choice)
     {
-        System.out.println("ERROR:  Required to pass Game as a parameter");
+        ErrorView.display(this.getClass().getName(), "ERROR:  Required to pass Game as a parameter");
         return false;
     }
     
@@ -191,7 +191,7 @@ public class SceneView extends View
                     == 3 && currentRow == 3))) //If not in a town scene
                 {
                     //Cannot enter a building in a dungeon
-                    System.out.println("Sorry, there are no buildings around "
+                    this.console.println("Sorry, there are no buildings around "
                         + "you to enter - try going back to town.");
                 }
                 else
@@ -202,28 +202,28 @@ public class SceneView extends View
                         case "Inn":
                             InnView newInn = new InnView();
                             //To Integrate View  *********************************
-                            System.out.println("Pending - Integrating Requested"
+                            this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;
                         case "Bank":
                             BankView newBank = new BankView();
                             //To Integrate View  *********************************
                             newBank.display();
-                            System.out.println("Pending - Integrating Requested"
+                            this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;
                         case "Store":
                             StoreView newStore = new StoreView();
                             //To Integrate View  *********************************
                             newStore.display();
-                            System.out.println("Pending - Integrating Requested"
+                            this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;
                         case "Weapons":
                             WeaponShopView newWeaponShop = new WeaponShopView();
                             //To Integrate View  *********************************
                             newWeaponShop.display();
-                            System.out.println("Pending - Integrating Requested"
+                            this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;
                     }
@@ -239,7 +239,7 @@ public class SceneView extends View
                 }
                 catch (MapControlException mce)
                 {
-                    System.out.println(mce.getMessage());
+                    this.console.println(mce.getMessage());
                 }
                 break;
             //Head South
@@ -252,7 +252,7 @@ public class SceneView extends View
                 }
                 catch (MapControlException mce)
                 {
-                    System.out.println(mce.getMessage());
+                    this.console.println(mce.getMessage());
                 }
                 break;
             //Head East
@@ -265,7 +265,7 @@ public class SceneView extends View
                 }
                 catch (MapControlException mce)
                 {
-                    System.out.println(mce.getMessage());
+                    this.console.println(mce.getMessage());
                 }
                 break;
             //Head West
@@ -278,7 +278,7 @@ public class SceneView extends View
                 }
                 catch (MapControlException mce)
                 {
-                    System.out.println(mce.getMessage());
+                    this.console.println(mce.getMessage());
                 }
                 break;
             //Enter/Exit Dungeon (If on Dungeon Entrance)
@@ -331,13 +331,13 @@ public class SceneView extends View
                     [currentRow][currentColumn].getClue().equals(""))
                 {
                     //Nothing to be found
-                    System.out.println("You searched the area, but did not " +
+                    this.console.println("You searched the area, but did not " +
                     "find anything in particular worth noting.");
                 }
                 else
                 {
                     //Display the clue for the scene
-                    System.out.println(game.getForestMap().getSceneArray()
+                    this.console.println(game.getForestMap().getSceneArray()
                     [currentRow][currentColumn].getClue());
                     //****LEAD TO ANOTHER VIEW TO ADD THE CLUE TO THE GAME ??????
                 }
@@ -345,17 +345,17 @@ public class SceneView extends View
             //Pick Up Key Item on Map Scene
             case "P":
                 // ****INTEGRATE A PICK UP MENU VIEW
-                System.out.println("There is nothing to pick up at this time");
+                this.console.println("There is nothing to pick up at this time");
                 break;
             //Use Item in Inventory
             case "U":
                 // *****INTEGRATE A USE ITEM VIEW
-                System.out.println("Unfortunately you cannot use any items now");
+                this.console.println("Unfortunately you cannot use any items now");
                 break;
             //Talk with an NPC
             case "C":
                 // *****INTEGRATE A COMMUNICATIONS VIEW
-                System.out.println("Sorry, looks like no one wants to talk "
+                this.console.println("Sorry, looks like no one wants to talk "
                         + "with you now.");
                 break;
             //Bring up the Game Menu

@@ -5,6 +5,7 @@
  */
 package byui.cit260.saveTheVillage.control;
 
+import byui.cit260.saveTheVillage.exceptions.BattleControlException;
 import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Player;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class BattleControlTest
     /* ********************************************************
     TEST CALCULATE SUCCESS RATE
     ********************************************************* */
-    public void testCalcSuccessRate()
+    public void testCalcSuccessRate() throws BattleControlException
     {
         System.out.println("calcSuccessRate");
 
@@ -322,7 +323,7 @@ public class BattleControlTest
     /* ********************************************************
     TEST CALCULATE TOTAL DAMAGE
     ********************************************************* */
-    public void testCalcTotalDamage() {
+    public void testCalcTotalDamage() throws BattleControlException {
         System.out.println("calcTotalDamage");
 
         System.out.println("calcTotalDamage Test #1");

@@ -174,7 +174,7 @@ public class BattleView extends View
     /* ********************************************************
     DO ACTION
     ********************************************************* */
-        @Override
+    @Override
     public boolean doAction(String choice)
     {
         try{
@@ -186,7 +186,6 @@ public class BattleView extends View
     } return false;
     }
 
-    @Override
     public boolean doAction(String menuOption, Player player)
     {
         menuOption = menuOption.toUpperCase();
