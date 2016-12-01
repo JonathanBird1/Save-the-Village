@@ -22,8 +22,8 @@ public class InnView extends View
         super ("\n How long would you like to rest?"
                 + "\nPlease enter a value between 0 and 8.");
     }
-    
-    public int getInput()
+  
+ /*   public int getInput()
     {        
         int value = 0;
         boolean valid = false;
@@ -46,7 +46,7 @@ public class InnView extends View
         }
         return value;
     }
-    
+    */
     @Override
     public boolean doAction(String choice)
     {

@@ -5,11 +5,18 @@
  */
 package byui.cit260.saveTheVillage.view;
 
+import byui.cit260.saveTheVillage.control.GameControl;
+import byui.cit260.saveTheVillage.exceptions.GameControlException;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
 import byui.cit260.saveTheVillage.model.Item;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Scanner;
+import savethevillage.SaveTheVillage;
 
 /**
  *
@@ -36,8 +43,6 @@ public class GameMenuView extends View
             + "\n\t| I - Inventory       |"
             + "\n\t| D - Quest Details   |"
             + "\n\t| M - Map             |"
-            + "\n\t| S - Save Game       |"
-            + "\n\t| L - Load Game       |"
             + "\n\t| E - Exit Menu       |"
             + "\n\t| Q - Quit Game       |"
             + "\n\t-----------------------");
@@ -80,12 +85,6 @@ public class GameMenuView extends View
             case "M":
                 //Display the Dungeon and Forest Maps
                 this.displayMap(game);
-                break;
-            case "S":
-                this.goToSaveGame();
-                break;
-            case "L":
-                this.startLoadGame();
                 break;
             case "E":
                 //Exit the Menu
@@ -219,16 +218,7 @@ public class GameMenuView extends View
         newMapView.display(game);
     }
 
-    private void goToSaveGame()
-    {
-        //To Complete *******************************************
-        this.console.print("Save game chosen");
-    }
 
-    private void startLoadGame() {
-        //To Complete *******************************************
-        this.console.print("Load game chosen");
-    }
 
     private void quitGame() {
         this.console.print("You have chosen to quit the game. \n"

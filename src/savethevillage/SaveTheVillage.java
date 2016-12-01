@@ -94,4 +94,12 @@ public class SaveTheVillage {
     public static void setLogFile(PrintWriter logFile){
         SaveTheVillage.logFile = logFile;
     }
+
+    public static void setCurrentGame(Game game) {
+        SaveTheVillage.currentGame = currentGame;
+    }
+
+    public static Game getGetCurrentGame() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
