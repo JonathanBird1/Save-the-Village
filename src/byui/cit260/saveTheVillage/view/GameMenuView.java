@@ -82,10 +82,10 @@ public class GameMenuView extends View
                 this.displayMap(game);
                 break;
             case "S":
-                this.goToSaveGame();
+                this.saveGame();
                 break;
             case "L":
-                this.startLoadGame();
+                this.loadGame();
                 break;
             case "E":
                 //Exit the Menu
@@ -219,13 +219,13 @@ public class GameMenuView extends View
         newMapView.display(game);
     }
 
-    private void goToSaveGame()
+    private void saveGame()
     {
         //To Complete *******************************************
         this.console.print("Save game chosen");
     }
 
-    private void startLoadGame() {
+    private void loadGame() {
         //To Complete *******************************************
         this.console.print("Load game chosen");
     }

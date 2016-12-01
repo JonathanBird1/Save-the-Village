@@ -15,7 +15,7 @@ import byui.cit260.saveTheVillage.model.Races;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 
 import java.util.Scanner;
-import static oracle.jrockit.jfr.events.Bits.intValue;
+import savethevillage.SaveTheVillage;
 
 /**
  *
@@ -331,12 +331,10 @@ public class MainMenuView extends View
         gotoGameMenuView()
     */
     
-    private void gotoSpellList() {Spell[] spellList = Spell.values();
-       for (Spell spell : spellList){
-            this.console.println("\n" + spell.getSpellDescription() + "\n\tDamage Dealt: "
-            + spell.getDamageDealt() + ", Amount Healed: " + spell.getAmountHealed() + ", Attribute Boosted: "
-            + spell.getAttributeBoosted() + ", Amount Boosted: " + spell.getAttributeBoostAmount());
-       }
+    private void gotoSpellList() {
+        
+        
+        
     }
     
     private void displayWeight(){

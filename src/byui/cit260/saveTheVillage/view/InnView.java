@@ -23,30 +23,6 @@ public class InnView extends View
                 + "\nPlease enter a value between 0 and 8.");
     }
     
-    public int getInput()
-    {        
-        int value = 0;
-        boolean valid = false;
-        try{
-        while(!valid){
-            try {
-                value = this.keyboard.read();  //get the next int entered from keyboard
-            } catch (Exception e) {
-                ErrorView.display(this.getClass().getName(), "That's not an number.");
-              }; 
-            
-            if(value < 0){
-                ErrorView.display(this.getClass().getName(), "\nSorry? What was that?");
-                continue;
-            }
-            break;
-        }}catch (Exception f){
-            ErrorView.display(this.getClass().getName(), "Error reading input: "
-                + f.getMessage());
-        }
-        return value;
-    }
-    
     @Override
     public boolean doAction(String choice)
     {
@@ -71,5 +47,29 @@ public class InnView extends View
                 this.console.println("\nChoose between 0 and 8. Try again.");
         }
         return false;
-    }    
+    }
+    
+    public int getInput()
+    {        
+        int value = 0;
+        boolean valid = false;
+        try{
+        while(!valid){
+            try {
+                value = this.keyboard.read();  //get the next int entered from keyboard
+            } catch (Exception e) {
+                ErrorView.display(this.getClass().getName(), "That's not an number.");
+              }; 
+            
+            if(value < 0){
+                ErrorView.display(this.getClass().getName(), "\nSorry? What was that?");
+                continue;
+            }
+            break;
+        }}catch (Exception f){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                + f.getMessage());
+        }
+        return value;
+    }
 }
