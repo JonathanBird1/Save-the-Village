@@ -94,4 +94,27 @@ public enum Spell implements Serializable
     {
         return attributeBoostAmount;
     }
+/*    public void printSpellList(Spell[] spellList, String outputLocation) {
+    
+        try (PrintWriter out = new PrintWriter(outputLocation)){
+            
+            //Print title and column headings
+            out.println("\n\n   Spell List   ");
+            out.printf("%n%-20s%10s%10s%10s%10s", "Spell Description", "Damage Dealt", "Amount Healed", "Attribute Boosted", "Amount Boosted");
+            out.printf("%n%-20s%10s%10s%10s%10s", "-----------------", "------------", "-------------", "-----------------", "--------------");
+            
+            //print description of spells
+            for (Spell spell : spellList){
+                out.printf("%-20s%7d%7d%20s%7d"
+                                  , spell.getSpellDescription()
+                                  , spell.getDamageDealt()
+                                  , spell.getAmountHealed()
+                                  , spell.getAttributeBoosted()
+                                  , spell.getAttributeBoostAmount());
+            }}
+        catch (IOException ex){
+            System.out.println("I/O Error: " + ex.getMessage());
+        }
+
+    }*/
 }

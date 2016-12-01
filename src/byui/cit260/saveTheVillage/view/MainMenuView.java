@@ -369,12 +369,10 @@ public class MainMenuView extends View
         gotoGameMenuView()
     */
     
-    private void gotoSpellList() {Spell[] spellList = Spell.values();
-       for (Spell spell : spellList){
-            this.console.println("\n" + spell.getSpellDescription() + "\n\tDamage Dealt: "
-            + spell.getDamageDealt() + ", Amount Healed: " + spell.getAmountHealed() + ", Attribute Boosted: "
-            + spell.getAttributeBoosted() + ", Amount Boosted: " + spell.getAttributeBoostAmount());
-       }
+    private void gotoSpellList() {
+        
+        
+        
     }
     
     private void displayWeight(){
