@@ -33,25 +33,31 @@ public class SaveTheVillage {
     
     public static void main(String args[]){
     
-        try{
+        try
+        {
             SaveTheVillage.inFile = new BufferedReader(new InputStreamReader(System.in));
             SaveTheVillage.outFile = new PrintWriter(System.out, true);
+            
             // Open log file
             String filePath = "log.txt";
             SaveTheVillage.logFile = new PrintWriter(filePath);
         
-    //Create Start Program and display the program view
-        StartProgramView startProgramView = new StartProgramView();
-        startProgramView.displayStartProgramView();
-        return;
-        }catch (Throwable e){
+            //Create Start Program and display the program view
+            StartProgramView startProgramView = new StartProgramView();
+            startProgramView.displayStartProgramView();
+            return;
+        }
+        catch (Throwable e)
+        {
             System.out.println("Exception: " + e.toString()
                 + "\nCause: " + e.getCause()
                 + "\nMessage: " + e.getMessage());
             e.printStackTrace();;
         }
-        finally{
-            try {
+        finally
+        {
+            try
+            {
                 if (SaveTheVillage.inFile != null)
                     SaveTheVillage.inFile.close();
                     
@@ -60,46 +66,55 @@ public class SaveTheVillage {
                 
                 if (SaveTheVillage.logFile != null)
                     SaveTheVillage.logFile.close();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 System.out.println("Error closing files");
                 return;
             }
-
         }
     }
     
     /* ********************************************************
     GETTER / SETTER FUNCTIONS
     ********************************************************* */
-    public static PrintWriter getOutFile(){
+    public static PrintWriter getOutFile()
+    {
         return outFile;
     }
     
-    public static void setOutFile(PrintWriter outFile){
+    public static void setOutFile(PrintWriter outFile)
+    {
         SaveTheVillage.outFile = outFile;
     }
     
-    public static BufferedReader getInFile(){
+    public static BufferedReader getInFile()
+    {
         return inFile;
     }
     
-    public static void setInFile(BufferedReader inFile){
+    public static void setInFile(BufferedReader inFile)
+    {
         SaveTheVillage.inFile = inFile;
     }
     
-    public static PrintWriter getLogFile(){
+    public static PrintWriter getLogFile()
+    {
         return logFile;
     }
     
-    public static void setLogFile(PrintWriter logFile){
+    public static void setLogFile(PrintWriter logFile)
+    {
         SaveTheVillage.logFile = logFile;
     }
 
-    public static void setCurrentGame(Game game) {
+    public static void setCurrentGame(Game game)
+    {
         SaveTheVillage.currentGame = currentGame;
     }
 
-    public static Game getGetCurrentGame() {
+    public static Game getGetCurrentGame()
+    {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
