@@ -75,7 +75,7 @@ public class InnView extends View
         return false;
     }
     
-    public int getInput()
+    public String getInput()
     {        
         int value = 0;
         boolean valid = false;
@@ -96,6 +96,7 @@ public class InnView extends View
             ErrorView.display(this.getClass().getName(), "Error reading input: "
                 + f.getMessage());
         }
-        return value;
+        String svalue = Integer.toString(value);
+        return svalue;  // temp fix error returning int can the getInput be overloaded???
     }
 }
