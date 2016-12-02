@@ -16,8 +16,8 @@ import savethevillage.SaveTheVillage;
  *
  * @author Master Brickbuilder
  */
-public abstract class View implements ViewInterface{    
-    
+public abstract class View implements ViewInterface
+{
     protected String displayMessage;
     
     protected final BufferedReader keyboard = SaveTheVillage.getInFile();
@@ -45,8 +45,8 @@ public abstract class View implements ViewInterface{
     }
     
     @Override
-    public String getInput(){
-        
+    public String getInput()
+    {
         String value = null;
         boolean valid = false;
         

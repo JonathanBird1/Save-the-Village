@@ -60,11 +60,13 @@ public class StartProgramView extends View {
         );
     }
 
-    public void displayStartProgramView() {
+    public void displayStartProgramView()
+    {
         displayNextView();
     }
     
-    private void displayNextView(){
+    private void displayNextView()
+    {
         
         //Create MainMenuView object
         MainMenuView mainMenuView = new MainMenuView();
@@ -74,7 +76,8 @@ public class StartProgramView extends View {
     }   
 
     @Override
-    public boolean doAction(String choice) {
+    public boolean doAction(String choice)
+    {
         ErrorView.display(this.getClass().getName(), "ERROR: Required to pass "
                 + "Game as parameter.");
         return false;

@@ -12,8 +12,8 @@ import byui.cit260.saveTheVillage.model.Item;
  *
  * @author micha
  */
-public class SceneControl {
-    
+public class SceneControl
+{
     /* ********************************************************
     REST AT INN
     ********************************************************* */
@@ -23,13 +23,13 @@ public class SceneControl {
         if (hours <= 0 || hours > 8)
         {
             System.out.println("ERROR:  Hours rest at inn must be a number "
-                    + "between 1 and 8");
+                + "between 1 and 8");
             return;
         }
         
         //Restore a Percentage of Player Health
         int amountRestored = (int)(((double)hours / 8.0) * 
-                player.getPlayerStats().getHealth());
+            player.getPlayerStats().getHealth());
         player.setCurrentHealth(player.getCurrentHealth() + amountRestored);
         
         //Health is no greater than max
@@ -40,7 +40,8 @@ public class SceneControl {
     }
     
     // Buy item from store
-    private void buyItem(Player player, String itemNum){
+    private void buyItem(Player player, String itemNum)
+    {
     
     }
     
