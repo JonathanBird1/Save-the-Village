@@ -76,8 +76,5 @@ public class InnView extends View
                 this.console.println("\nSorry, what was that?");
         }
         return false;
-    }
-        //    newSceneControl.restAtInn(Player, choice);
-        //  Call restAtInn from SceneControl
-    
+    }    
 }

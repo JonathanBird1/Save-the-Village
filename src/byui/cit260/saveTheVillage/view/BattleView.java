@@ -329,6 +329,6 @@ public class BattleView extends View
     {
         BattleVictoryView newBattleVictory = new BattleVictoryView();
         
-        newBattleVictory.displayBattleVictoryView(player, enemy);
+        newBattleVictory.display(player, enemy);
     }
 }

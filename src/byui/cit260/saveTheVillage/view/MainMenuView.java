@@ -37,7 +37,6 @@ public class MainMenuView extends View
             + "\n\t-----MAIN--MENU-----"
             + "\n\t| N – New Game     |"
             + "\n\t| L – Load Game    |"
-            + "\n\t| V – Save Game    |"
             + "\n\t| H – Help Menu    |"
             + "\n\t| Q – Quit Game    |"
             + "\n\t|---Quick-Access---|"
@@ -67,10 +66,7 @@ public class MainMenuView extends View
                 this.startNewGame();
                 break;
             case "L": // load an existing game
-                this.loadSavedGame();
-                break;
-            case "V": // save game
-                this.saveGame();
+                this.loadGame();
                 break;
             case "H": // display help menu
                 this.gotoHelpMenuView();
@@ -309,39 +305,12 @@ public class MainMenuView extends View
     }
     
     /* ********************************************************
-    SAVE GAME
-    ********************************************************* */   
-    
-    private void saveGame()
-    {
-        this.console.println("\n\nEnter the file path to save the game: ");
-        String filePath = this.getInput();
-        
-        try{
-            GameControl.getSavedGame(SaveTheVillage.getGetCurrentGame(), filePath);
-        }
-        catch(Exception ex){ErrorView.display("MainMenuView", ex.getMessage());
-        }
-        
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
-    }
-    
-    /* ********************************************************
     LOAD GAME
     ********************************************************* */
-    private void loadSavedGame() {
-        System.out.println("\n\nEnter the file path for file where the game " + "was saved last.");
-        String filePath = this.getInput();
-        
-        try {
-            GameControl.getLoadSavedGame(filePath);
-        } catch (Exception ex){
-            ErrorView.display("MainMenuView", ex.getMessage());
-        }
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
-        
+    private void loadGame()
+    {
+        LoadGameView newLoadGameView = new LoadGameView();
+        newLoadGameView.display();
     } 
     
     /* ********************************************************

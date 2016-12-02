@@ -43,6 +43,7 @@ public class GameMenuView extends View
             + "\n\t| I - Inventory       |"
             + "\n\t| D - Quest Details   |"
             + "\n\t| M - Map             |"
+            + "\n\t| S - Save Game       |"
             + "\n\t| E - Exit Menu       |"
             + "\n\t| Q - Quit Game       |"
             + "\n\t-----------------------");
@@ -53,13 +54,19 @@ public class GameMenuView extends View
     @Override
     public boolean doAction(String choice)
     {
-        try{
-        //This function is not used - requires the doAction with the game
-        ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the Game as a parameter");
-        }catch (Exception e){
+        try
+        {
+            //This function is not used - requires the doAction with the game
+            ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the "
+                + "Game as a parameter");
+        }
+        catch (Exception e)
+        {
             ErrorView.display(this.getClass().getName(), "Error reading input: "
-                    + e.getMessage());
-    } return false;
+                + e.getMessage());
+        }
+        
+        return false;
     }
        
     @Override
@@ -76,7 +83,7 @@ public class GameMenuView extends View
                 break;
             case "I":
                 // Display inventory
-                this.goToInventory(game.getPlayer());
+                this.displayInventory(game.getPlayer());
                 break;
             case "D":
                 // Display the clues received
@@ -85,6 +92,10 @@ public class GameMenuView extends View
             case "M":
                 //Display the Dungeon and Forest Maps
                 this.displayMap(game);
+                break;
+            case "S":
+                //Save the Game
+                this.saveGame(game);
                 break;
             case "E":
                 //Exit the Menu
@@ -97,6 +108,9 @@ public class GameMenuView extends View
         return exitMenu;
     }
 
+    /* ********************************************************
+    DISPLAY STATISTICS
+    ********************************************************* */
     private void displayStatistics(Player player)
     {
         this.console.println("\tHEALTH & MANA\n");
@@ -136,7 +150,10 @@ public class GameMenuView extends View
             this.console.println();
     }
 
-    private void goToInventory(Player player)
+    /* ********************************************************
+    DISPLAY INVENTORY
+    ********************************************************* */
+    private void displayInventory(Player player)
     {
         int counter = 0;
         
@@ -171,6 +188,7 @@ public class GameMenuView extends View
         
         counter = 0;
         this.console.println();
+        
         //ITEMS IN THE BANK
         this.console.println("\tINVENTORY IN THE BANK\n");
         this.console.print("\t");
@@ -201,24 +219,39 @@ public class GameMenuView extends View
         }
     }
 
+    /* ********************************************************
+    DISPLAY QUEST DETAILS
+    ********************************************************* */
     private void displayQuestDetails()
     {
         this.console.println("YOUR QUEST");
         this.console.println();
-        this.console.println("You are a wandering hero that has come across a town facing a mysterious problem.  For \n" +
+        this.console.println(
+"You are a wandering hero that has come across a town facing a mysterious problem.  For \n" +
 "the past month, every night someone has been disappearing from the town without a trace. \n" +
 "Upon meeting you and learning of your abilities, the elders of the village have pleaded \n" +
 "with you to save the missing villagers and protect the village.  Armed with your sword, \n" +
 "your magic, and your intellect, you set out to save the village…");
     }
 
+    /* ********************************************************
+    DISPLAY MAP
+    ********************************************************* */
     private void displayMap(Game game)
     {
         MapView newMapView = new MapView();
         newMapView.display(game);
     }
-
-
+    
+    /* ********************************************************
+    SAVE GAME
+    ********************************************************* */
+    private void saveGame(Game game)
+    {
+        //Go to the Save Game View
+        SaveGameView newSaveGameView = new SaveGameView();
+        newSaveGameView.display(game);
+    }
 
     private void quitGame() {
         this.console.print("You have chosen to quit the game. \n"

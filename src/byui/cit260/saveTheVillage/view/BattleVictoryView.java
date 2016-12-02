@@ -30,14 +30,12 @@ public class BattleVictoryView extends View
     ********************************************************* */
     public BattleVictoryView()
     {
-        ErrorView.display(this.getClass().getName(), "ERROR:  Cannot use default constructor for "
-                + "Game Menu View");
     }
     
     /* ********************************************************
     DISPLAY BATTLE VICTORY VIEW
     ********************************************************* */
-    public void displayBattleVictoryView(Player player, Actor enemy)
+    public void display(Player player, Actor enemy)
     {
         droppedGold = enemy.getGold();
         droppedItem = enemy.getItem();
@@ -61,7 +59,7 @@ public class BattleVictoryView extends View
             if(menuOption.toUpperCase().equals("N"))
                 return; //No Items or Gold Picked Up
             done = this.doAction(menuOption, player);
-        }while(!done);
+        } while(!done);
     }
     
     /* ********************************************************

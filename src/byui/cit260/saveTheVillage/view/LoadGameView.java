@@ -5,43 +5,26 @@
  */
 package byui.cit260.saveTheVillage.view;
 
-import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.control.GameControl;
 import byui.cit260.saveTheVillage.exceptions.GameControlException;
-import java.io.IOException;
+import byui.cit260.saveTheVillage.model.Game;
 
 /**
  *
  * @author micha
  */
-public class SaveGameView extends View
+public class LoadGameView extends View
 {
-    SaveGameView()
+    LoadGameView()
     {
-        super("Do you wish to save the current game?  Enter Y or N");
+        super("Do you wish to load a new game?  Enter Y or N");
     }
     
     @Override
     public boolean doAction(String choice)
     {
-        try
-        {
-            //This function is not used - requires the doAction with the game
-            ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the "
-                + "Game as a parameter");
-        }
-        catch (Exception e)
-        {
-            ErrorView.display(this.getClass().getName(), "Error reading input: "
-                + e.getMessage());
-        }
+        Game loadedGame = null;
         
-        return true;
-    }
-    
-    @Override
-    public boolean doAction(String choice, Game game)
-    {
         if (choice.equals("Y"))
         {
             //Get the File Name
@@ -50,7 +33,7 @@ public class SaveGameView extends View
             try
             {
                 GameControl newGameControl = new GameControl();
-                newGameControl.saveGame(game, fileName);
+                loadedGame = newGameControl.loadGame(fileName);
             }
             catch (GameControlException e)
             {
@@ -58,14 +41,18 @@ public class SaveGameView extends View
             }
         }
         
-        return false;
+        //Load the Game into View
+        GameStartView newGameStartView = new GameStartView();
+        newGameStartView.display(loadedGame);
+
+        return true;
     }
     
     public String promptFileName()
     {
         String fileName = "";
         this.console.println("Please enter the file name you would like to "
-            + "save this game under:  ");
+            + "load:  ");
         
         try
         {

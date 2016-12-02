@@ -11,6 +11,7 @@ import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.control.MapControl;
 import byui.cit260.saveTheVillage.exceptions.GameControlException;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
+import byui.cit260.saveTheVillage.view.GameStartView;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -60,52 +61,43 @@ public class GameControl {
 
         return newGame;
     }
-
-    public static void getSavedGame(Game game, String filepath) throws GameControlException, IOException{
-        
-        try (FileOutputStream fops = new FileOutputStream(filepath)){
-            ObjectOutputStream output = new ObjectOutputStream(fops);
-            
+    
+    /* ********************************************************
+    SAVE GAME
+    ********************************************************* */
+    public void saveGame(Game game, String fileName)
+    throws GameControlException
+    {
+        try (FileOutputStream fout = new FileOutputStream(fileName))
+        {
+            ObjectOutputStream output = new ObjectOutputStream(fout);
             output.writeObject(game);
-        } catch (IOException e){
+        }
+        catch (Exception e)
+        {
             throw new GameControlException(e.getMessage());
         }
-    
     }
     
-    public static void getLoadSavedGame(String filepath)throws GameControlException {
-                Game game = null;
-        try(FileInputStream fips = new FileInputStream(filepath)){
-            ObjectInputStream input = new ObjectInputStream(fips);
-            game = (Game) input.readObject();
+    /* ********************************************************
+    LOAD GAME
+    ********************************************************* */
+    public Game loadGame(String fileName) throws GameControlException
+    {
+        //Empty Game
+        Game game = null;
+        
+        try (FileInputStream fin = new FileInputStream(fileName))
+        {
+            ObjectInputStream input = new ObjectInputStream(fin);
+            
+            game = (Game)input.readObject();
         }
-        catch(Exception e){throw new GameControlException(e.getMessage());
+        catch (Exception e)
+        {
+            throw new GameControlException(e.getMessage());
         }
         
-        SaveTheVillage.setCurrentGame(game);
-       
+        return game;
     }
-/*  public static void initializeNewGame(Player player){
-    
-        Game game = new Game();
-        SaveTheVillage.setCurrentGame(game);
-    
-        game.setPlayer(player);
-    
-        InventoryItem[] inventoryList = GameControl.createInventoryList();
-        game.setInventory(inventoryList    
-    }
-    
-    public static Item[] createInventoryList(){
-        
-        Item[] inventory = new Item[14];
-    
-        Item smallHealth = new Item();
-            smallHealth.setDescription("Small Health Potion");
-            smallHealth.amountHealed(0);
-            inventory[Item.smallHealth.oridnal()] = smallHealth;
-    
-        return inventory;
-    }
-*/
 }
