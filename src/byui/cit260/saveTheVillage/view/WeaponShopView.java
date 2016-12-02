@@ -6,10 +6,13 @@
 package byui.cit260.saveTheVillage.view;
 
 import byui.cit260.saveTheVillage.control.GameControl;
+import byui.cit260.saveTheVillage.control.InventoryControl;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.model.Game;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -25,6 +28,7 @@ public class WeaponShopView extends View{
             + "\n\t| B – Buy Items     |"
             + "\n\t| S – Sell Items    |"
             + "\n\t| L – Leave Store   |"
+            + "\n\t| R – Print Report  |"                
             + "\n\t---------------------"
             + "\n\n"
             + "Please make a selection:");
@@ -43,6 +47,9 @@ public class WeaponShopView extends View{
             case "S": // List items to sell
                 this.sellItems();
                 break;
+            case "R": // List items to sell
+                this.weaponReport();
+                break;                
             case "L": // Leave store
                 return true;
             default:
@@ -163,5 +170,13 @@ public class WeaponShopView extends View{
             ErrorView.display(this.getClass().getName(), "Unable to determine your needs " + e.getMessage());
         }
         return; 
+    }
+    
+
+    private void weaponReport()
+    {
+        System.out.println("\n\nEnter the file path to print the weapon report.");
+        String filePath = this.getInputNoMenu(); 
+        InventoryControl.printWeaponReport(filePath);
     }
 }

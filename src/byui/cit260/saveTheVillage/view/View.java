@@ -68,6 +68,30 @@ public abstract class View implements ViewInterface
         }
         return value;
     }
+
+    
+    public String getInputNoMenu(){
+        
+        String value = null;
+        boolean valid = false;
+        
+        try{
+        while(!valid){
+            value = this.keyboard.readLine();
+            value = value.trim();
+            value = value.toUpperCase();
+            
+            if(value.length() < 1){ //blank value entered
+                ErrorView.display(this.getClass().getName(), "\nSorry? What was that?");
+                continue;
+            }
+            break;
+        }
+        } catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Unable to determine your needs " + e.getMessage());
+        }
+        return value;
+    }    
     
     public void display(Game game)
     {

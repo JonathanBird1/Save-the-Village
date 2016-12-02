@@ -7,6 +7,8 @@ package byui.cit260.saveTheVillage.control;
 
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -85,6 +87,33 @@ public class InventoryControl
         else
         {
             return Item.DecimatingBlowScroll;
+        }
+    }
+    
+    public static void printWeaponReport (String outputLocation)
+    {
+         
+        try (PrintWriter outFile = new PrintWriter(outputLocation))
+        {
+            outFile.println("\n          Weapon List         ");
+            outFile.printf("%n%-20s%10s%10s", "Name", "Buy Price", "Damage");
+            outFile.printf("%n%-20s%10s%10s", "____", "________", "______");
+            int i = 0;   
+
+            Item[] items = Item.values();
+            for (Item item : items)
+            {
+                if (item.getAssociation()== "Weapons Shop") {
+                    i++;  
+                    outFile.printf("\n" + "%n%-20s%10s%10s", item.getItemName(),item.getBuyPrice(),item.getWeaponDamage());
+
+                }
+            }   
+            System.out.println("\n\nFile written");
+        }
+        catch (IOException ex)
+        {
+            System.out.println("I/O Error: " + ex.getMessage());
         }
     }
 }
