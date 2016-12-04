@@ -144,5 +144,4 @@ public class PrintPlayerStatisticsView extends View
         
         return fileName;
     }
-
 }
