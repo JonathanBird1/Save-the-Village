@@ -360,7 +360,7 @@ public class SceneView extends View
                 break;
             //Bring up the Game Menu
             case "G":
-                GameMenuView viewGameMenu = new GameMenuView(game);
+                GameMenuView viewGameMenu = new GameMenuView();
                 viewGameMenu.display(game);
                 break;
             default:

@@ -27,15 +27,7 @@ import savethevillage.SaveTheVillage;
     ********************************************************* */
 public class GameMenuView extends View
 {
-    private Game currentGame;
-    
     public GameMenuView()
-    {
-        ErrorView.display(this.getClass().getName(), "ERROR:  Cannot use default constructor for "
-                + "Game Menu View");
-    }
-    
-    public GameMenuView(Game currentGame)
     {
         super("\n"
             + "\n\t------GAME---MENU------"
@@ -47,8 +39,6 @@ public class GameMenuView extends View
             + "\n\t| E - Exit Menu       |"
             + "\n\t| Q - Quit Game       |"
             + "\n\t-----------------------");
-        
-        this.currentGame = currentGame;
     }
     
     @Override
@@ -148,6 +138,9 @@ public class GameMenuView extends View
             this.console.printf("%-19s", (player.getPlayerStats().getSpeed() -
             player.getPlayerStats().getSpeedPenalty()));
             this.console.println();
+            
+        PrintPlayerStatisticsView printPlayerStats = new PrintPlayerStatisticsView();
+        printPlayerStats.display(player);
     }
 
     /* ********************************************************
