@@ -222,7 +222,7 @@ public class SceneView extends View
                         case "Weapons":
                             WeaponShopView newWeaponShop = new WeaponShopView();
                             //To Integrate View  *********************************
-                            newWeaponShop.display();
+                            newWeaponShop.display(game);
                             this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;

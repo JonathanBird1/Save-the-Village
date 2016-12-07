@@ -140,6 +140,10 @@ public class Player implements Serializable {
     public Item[] getItems() {
         return items;
     }
+    
+    public int getItemMax() {
+        return items.length;
+    }
 
     public void setItems(int itemNumber, Item item)
     {
