@@ -33,25 +33,26 @@ public class BankView extends View
     {
         choice = choice.toUpperCase();
         
-        try{
-        switch(choice){
-
-            case "D":
-                this.DepositMoney();
-                break;
-            case "W": 
-                this.WithdrawMoney();
-                break;
-
-            case "L": // Leave 
-                return true;
-            default:
-                ErrorView.display(this.getClass().getName(),
+        try
+        {
+            switch(choice)
+            {
+                case "D":
+                    this.DepositMoney();
+                    break;
+                case "W": 
+                    this.WithdrawMoney();
+                    break;
+                case "L": // Leave 
+                    return true;
+                default:
+                    ErrorView.display(this.getClass().getName(),
                         "\nYeah, that didn't work. Try again.");
-        }
-        } catch (Exception e) {
+            }
+        } catch (Exception e)
+        {
             ErrorView.display(this.getClass().getName(), "Error reading input: "
-                    + e.getMessage());
+                + e.getMessage());
         }
         return false;
     }
