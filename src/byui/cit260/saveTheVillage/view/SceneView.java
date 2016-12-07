@@ -200,9 +200,8 @@ public class SceneView extends View
                         [currentColumn].getName())
                     {
                         case "Inn":
-                            InnView newInn = new InnView(game);
-                            //To Integrate View  *********************************
-                            newInn.display();
+                            InnView newInn = new InnView();
+                            newInn.display(game);
                             this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;
