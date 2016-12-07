@@ -44,6 +44,9 @@ public class HelpMenuView extends View{
                 case "B": // display 'battle menu'
                     this.displayBattleMenu();
                     break;
+                case "E":
+                    //Exit Menu
+                    return true;
                 default:
                     ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
             }
