@@ -1,0 +1,23 @@
+
+				Spell List
+
+Name                    Damage    Healed           Attribute    Amount
+----------              ------    ------           ---------    ------
+
+Healing Wind                 0        50                null         0
+
+Fireburst                   75         0                null         0
+
+Steel Blade                  0         0              damage        35
+
+Swift Wind                   0         0             agility        50
+
+Blinding Light               0         0      enemy accuracy       -25
+
+Ice Blade                   50         0         enemy speed      -100
+
+Earthquake                  75       -50            accuracy        90
+
+Iron Body                    0         0             defense        50
+
+Decimating Blow              0         0              damage        25

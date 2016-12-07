@@ -8,6 +8,7 @@ package byui.cit260.saveTheVillage.view;
 import java.util.Scanner;
 import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.model.Game;
+import byui.cit260.saveTheVillage.model.Player;
 
 
 /**
@@ -17,11 +18,20 @@ import byui.cit260.saveTheVillage.model.Game;
 public class InnView extends View
 {
     private String innMessage;
-            
-    public InnView()  //Display message
+    private Game currentGame;
+    
+    public InnView(){
+        
+    }
+    
+    public InnView(Game currentGame)  //Display message
     {
-        super ("Would you like to rest at the inn?  The cost is 5 gold per "
-            + "hour.  Y or N:");
+        super ("\n"
+            + "As you enter the front foor of the Cartman, the faces of several people greet you. A jovial man at the counter\n"
+            + "smiles and asks, “Would you like to take a break?  It’ll only cost you 5 gold per hour. The rooms are warm and\n"
+            + "comfortable.”\nY or N:");
+        
+        this.currentGame = currentGame;
     }
     
     @Override
@@ -41,43 +51,33 @@ public class InnView extends View
         return false;
     }
     
-    //@Override
+    @Override
     public boolean doAction(String choice, Game game)
     {
-        if (choice.equals("Y"))
-        {
-            int value = 0;
-            
-            //Get Time Duration
-            try
-            {
-                value = this.keyboard.read();
-            }
-            catch (Exception e)
-            {
-                ErrorView.display(this.getClass().getName(), "That's not an number.");
-            }
-            
-            //Test to make sure it is between 0 and 8 hours
-            if(value < 0 || value > 8)
-            {
-                ErrorView.display(this.getClass().getName(), "\nSorry, you can "
-                    + "only sleep between 0 and 8 hours - you have to get back "
-                    + "to work");
-                return false;
-            }
-            
-            //Run the restAtInn function
-            SceneControl newSceneControl = new SceneControl();
-            newSceneControl.restAtInn(game.getPlayer(), value);
+        boolean exitMenu = false;
+        choice = choice.toUpperCase();
+        try{
+        switch(choice){
+                case "Y":
+                    this.restAtInn(game);
+                    break;
+                case "N":
+                    exitMenu = true;
+                    break;
+                default:
+                    ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
+        }}catch (Exception e){
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
         }
-        else
-        {
-                this.console.println("\nSorry, what was that?");
-        }
-        return false;
+        return exitMenu;
     }
-        //    newSceneControl.restAtInn(Player, choice);
-        //  Call restAtInn from SceneControl
-    
+
+    private void restAtInn(Game game) {
+        
+        int value = 0;
+        //Run the restAtInn function
+        SceneControl newSceneControl = new SceneControl();
+        newSceneControl.restAtInn(game.getPlayer(), value);
+    }
 }

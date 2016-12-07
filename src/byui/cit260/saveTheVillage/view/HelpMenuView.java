@@ -90,16 +90,9 @@ public class HelpMenuView extends View{
 
     private void displayGameMenu()
     {
-        this.console.println(
-              "\n\t------GAME---MENU------"
-            + "\n\t| X - Statistics      |"
-            + "\n\t| I - Inventory       |"
-            + "\n\t| D - Quest Details   |"
-            + "\n\t| M - Map             |"
-            + "\n\t| S - Save Game       |"
-            + "\n\t| E - Exit Menu       |"
-            + "\n\t| Q - Quit Game       |"
-            + "\n\t-----------------------");
+        //Create new 'Game Menu'
+        GameMenuView gameMenu = new GameMenuView();        
+        //Display 'Game Menu'
+        gameMenu.display();
     }
-
 }

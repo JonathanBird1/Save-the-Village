@@ -247,9 +247,9 @@ public class GameMenuView extends View
 
     private void quitGame() {
         this.console.print("You have chosen to quit the game. \n"
-                + "Congratulations, the entire village has been \n"
-                + "devoured by the Beast. I hope you can sleep \n"
-                + "well tonight.");
+            + "Congratulations, the entire village has been \n"
+            + "devoured by the Beast. I hope you can sleep \n"
+            + "well tonight.");
         System.exit(0);
     }
 }
