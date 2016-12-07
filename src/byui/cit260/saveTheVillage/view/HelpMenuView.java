@@ -5,6 +5,7 @@
  */
 package byui.cit260.saveTheVillage.view;
 
+import byui.cit260.saveTheVillage.exceptions.GameControlException;
 import java.util.Scanner;
 
 /**
@@ -21,8 +22,8 @@ public class HelpMenuView extends View{
         super("\n"
             + "\n\t------HELP--MENU------"
             + "\n\t| C – Basic Commands |"
-            + "\n\t| G – Game Menu      |"
             + "\n\t| B – Battle         |"
+            + "\n\t| G - Game Menu      |"
             + "\n\t| E – Exit Menu      |"
             + "\n\t----------------------");
     }
@@ -81,10 +82,8 @@ public class HelpMenuView extends View{
 
     private void gotoGameMenuView() {
     {
-        //Create new 'Game Menu'
-        GameMenuView gameMenu = new GameMenuView();
-        
         //Display 'Game Menu'
+        GameMenuView gameMenu = new GameMenuView();
         gameMenu.display();
     }
     }
