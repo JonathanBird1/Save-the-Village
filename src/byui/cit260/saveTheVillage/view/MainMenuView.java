@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import static java.lang.Integer.parseInt;
 
 import java.util.Scanner;
 import static oracle.jrockit.jfr.events.Bits.intValue;
@@ -37,10 +38,10 @@ public class MainMenuView extends View
             + "\n\t-----MAIN--MENU-----"
             + "\n\t| N – New Game     |"
             + "\n\t| L – Load Game    |"
-            //+ "\n\t| H – Help Menu    |"
+            + "\n\t| H – Help Menu    |"
             + "\n\t| Q – Quit Game    |"
             + "\n\t|---Quick-Access---|"
-            + "\n\t| S - Inn View     |"
+            + "\n\t| S - Spell List   |"  //View Spell[] class
             + "\n\t| B - Battle View  |"
             + "\n\t| W - Weapon View  |"  //Test call of WeaponsStoreView to be removed later  
             + "\n\t| K - Bank         |"
@@ -68,9 +69,9 @@ public class MainMenuView extends View
             case "L": // load an existing game
                 this.loadGame();
                 break;
-            /*case "H": // display help menu
+            case "H": // display help menu
                 this.gotoHelpMenuView();
-                break;*/
+                break;
             case "Q": // quit the game
                 this.quitGame();
                 endGame = true;
@@ -279,7 +280,7 @@ public class MainMenuView extends View
             
             try
             {
-                keyboardValue = this.keyboard.read();
+                keyboardValue = parseInt(this.keyboard.readLine());
                 if(keyboardValue < 25)
                 {
                     ErrorView.display(this.getClass().getName(), "Unfortunately, you are too young to die.");
@@ -316,14 +317,14 @@ public class MainMenuView extends View
     /* ********************************************************
     GO TO HELP MENU
     ********************************************************* */
-/*    private void gotoHelpMenuView()
+    private void gotoHelpMenuView()
     {
         //Create New Help Menu
         HelpMenuView helpMenu = new HelpMenuView();
         
         //Display Help Menu
         helpMenu.display();
-    }*/
+    }
 
     private void quitGame()
     {
@@ -333,11 +334,15 @@ public class MainMenuView extends View
     /* ********************************************************
     *********** FUNCTIONS TO DELETE ***************************
     ********************************************************* */
+    /* *****************************************
+        MAKE SURE TO DELETE:
+        gotoGameMenuView()
+    */
     
     private void gotoSpellList() {
         
-        InnView newInn = new InnView();
-        newInn.display();
+        
+        
     }
     
     private void displayWeight(){
