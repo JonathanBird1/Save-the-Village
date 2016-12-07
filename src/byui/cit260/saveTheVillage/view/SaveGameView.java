@@ -42,23 +42,29 @@ public class SaveGameView extends View
     @Override
     public boolean doAction(String choice, Game game)
     {
-        if (choice.equals("Y"))
+        switch (choice)
         {
-            //Get the File Name
-            String fileName = promptFileName();
+                case "Y":
+                //Get the File Name
+                String fileName = promptFileName();
+                
+                try
+                {
+                    GameControl newGameControl = new GameControl();
+                    newGameControl.saveGame(game, fileName);
+                }
+                catch (GameControlException e)
+                {
+                    ErrorView.display(this.getClass().getName(), e.getMessage());
+                }
             
-            try
-            {
-                GameControl newGameControl = new GameControl();
-                newGameControl.saveGame(game, fileName);
-            }
-            catch (GameControlException e)
-            {
-                ErrorView.display(this.getClass().getName(), e.getMessage());
-            }
+                return true;
+            case "N":
+                //Exit the menu
+                return true;
+            default:
+                return false;
         }
-        
-        return false;
     }
     
     public String promptFileName()
