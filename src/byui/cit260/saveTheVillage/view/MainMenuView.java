@@ -37,10 +37,11 @@ public class MainMenuView extends View
             + "\n\t-----MAIN--MENU-----"
             + "\n\t| N – New Game     |"
             + "\n\t| L – Load Game    |"
-            + "\n\t| H – Help Menu    |"
+            //+ "\n\t| H – Help Menu    |"
             + "\n\t| Q – Quit Game    |"
             + "\n\t|---Quick-Access---|"
-            + "\n\t| S - Spell List   |"  //View Spell[] class
+            + "\n\t| S - Print Spell  |"
+            + "\n\t|     List         |"  //Print spell list
             + "\n\t| B - Battle View  |"
             + "\n\t| W - Weapon View  |"  //Test call of WeaponsStoreView to be removed later  
             + "\n\t| K - Bank         |"
@@ -68,9 +69,9 @@ public class MainMenuView extends View
             case "L": // load an existing game
                 this.loadGame();
                 break;
-            case "H": // display help menu
+            /*case "H": // display help menu
                 this.gotoHelpMenuView();
-                break;
+                break;*/
             case "Q": // quit the game
                 this.quitGame();
                 endGame = true;
@@ -316,14 +317,14 @@ public class MainMenuView extends View
     /* ********************************************************
     GO TO HELP MENU
     ********************************************************* */
-    private void gotoHelpMenuView()
+/*    private void gotoHelpMenuView()
     {
         //Create New Help Menu
         HelpMenuView helpMenu = new HelpMenuView();
         
         //Display Help Menu
         helpMenu.display();
-    }
+    }*/
 
     private void quitGame()
     {
@@ -340,7 +341,9 @@ public class MainMenuView extends View
     
     private void gotoSpellList() {
         
-        
+        this.console.println("\n\nEnter the file path to print the weapon report.");
+        String filePath = this.getInputNoMenu();
+        Spell.printSpellList(filePath);
         
     }
     
