@@ -39,7 +39,6 @@ public class GameMenuView extends View
     {
         super("\n"
             + "\n\t------GAME---MENU------"
-            + "\n\t| H – Help Menu       |"
             + "\n\t| X - Statistics      |"
             + "\n\t| I - Inventory       |"
             + "\n\t| D - Quest Details   |"
@@ -78,9 +77,6 @@ public class GameMenuView extends View
         choice = choice.toUpperCase();
         
         switch(choice){
-            case "H": // display help menu
-                this.gotoHelpMenuView();
-                break;
             case "X":
                 // Display statistics
                 this.displayStatistics(game.getPlayer());
@@ -110,18 +106,6 @@ public class GameMenuView extends View
                 break;
         }
         return exitMenu;
-    }
-    
-    /* ********************************************************
-    GO TO HELP MENU
-    ********************************************************* */
-    private void gotoHelpMenuView()
-    {
-        //Create New Help Menu
-        HelpMenuView helpMenu = new HelpMenuView();
-        
-        //Display Help Menu
-        helpMenu.display();
     }
 
     /* ********************************************************
@@ -271,9 +255,9 @@ public class GameMenuView extends View
 
     private void quitGame() {
         this.console.print("You have chosen to quit the game. \n"
-                + "Congratulations, the entire village has been \n"
-                + "devoured by the Beast. I hope you can sleep \n"
-                + "well tonight.");
+            + "Congratulations, the entire village has been \n"
+            + "devoured by the Beast. I hope you can sleep \n"
+            + "well tonight.");
         System.exit(0);
     }
 }
