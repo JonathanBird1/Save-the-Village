@@ -215,7 +215,7 @@ public class SceneView extends View
                         case "Store":
                             StoreView newStore = new StoreView();
                             //To Integrate View  *********************************
-                            newStore.display();
+                            newStore.display(game);
                             this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;

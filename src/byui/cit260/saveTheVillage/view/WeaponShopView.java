@@ -92,7 +92,6 @@ public class WeaponShopView extends View{
         //list store inventory 0 to quit 
       this.console.println("#  ITEM\t\tPRICE" );
       String itemName[]= new String[22];
-      int itemEnumOrdinal[] = new int[22];
    
         int i = 0;
         int totalAll = 0;   //for assignment remove this later
@@ -103,7 +102,6 @@ public class WeaponShopView extends View{
               this.console.println(i + "  " + item +"\t" + item.getBuyPrice());
               totalAll += item.getBuyPrice();  //for assignment remove this later
               itemName[i]=item.getItemName();
-              itemEnumOrdinal[i]=i;
             }
         }
         this.console.println("To purchase all items the cost would be: $" + totalAll);  //for assignment remove this later
@@ -156,9 +154,12 @@ public class WeaponShopView extends View{
 
         //call the buy item function from SceneControl
         this.console.println("You chose " + itemName[keyboardValue]);
-        int choice = itemEnumOrdinal[keyboardValue+1];
+        int choice = 0;
+        for (Item item : items){
+            if (item.getItemName().equals(itemName[keyboardValue])) choice = item.ordinal();
+        }
         SceneControl newSceneControl = new SceneControl();
-        newSceneControl.buyItem(game.getPlayer(), Item.values()[choice], choice);  
+        newSceneControl.buyItem(game.getPlayer(), Item.values()[choice]);  
         
         return; 
         
@@ -166,46 +167,80 @@ public class WeaponShopView extends View{
         
     private void sellItems(Game game) {
         //list store inventory 0 to quit       
-        this.console.println("\nList of items to come, for now enter 0 to exit");
+      //  this.console.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to sell
- //       game.player.getItems();
+        Player player = new Player();
+        player = game.getPlayer();
+        player.getItems();
         
         int value = 0;
-        boolean valid = false;
+        boolean valid = false; 
+ 
+      this.console.println("#  ITEM\t\tSELL PRICE" );
+      String itemName[]= new String[22];
+   
+        int i = 0;
+        Item[] items = player.getItems();
+        for (Item item : items){
+            if (item.getAssociation()== "Weapons Shop" && item.getSellPrice() != 0) {
+              i++;  
+              this.console.println(i + "  " + item +"\t" + item.getSellPrice());
+              itemName[i]=item.getItemName();
+            }
+        }
+
+        this.console.println("\nWhich item would you like to sell?");
+        this.console.println("\nEnter 0 to exit");
+        //Prompt for user input of which item to buy
         
+        int keyboardValue = 0;
+
+
         try{
         while(!valid)
         {
-            value = this.keyboard.read(); //get the next lined entered from keyboard
-            int max = 99; //get number of items available
-            this.console.println("\nWhich item would you like to buy?");
-            
-            if(value < 0)
-            {
-                ErrorView.display(this.getClass().getName(), "Invalid item");
-                continue;
-            }
-            if(value == 0)
-            {
+            //get the next int entered from keyboard
+            try {
+                keyboardValue = parseInt(this.keyboard.readLine());
+            } catch (Exception e) {
+                ErrorView.display(this.getClass().getName(), "Invalid item - Leaving shop");
                 return;
-            }
-            else if(value > max)  //need to get the highest item number
+            };
+
+            int max = 60; //get number of items available
+        //  while (player.getItems()[max] == null) max++;
+            if(keyboardValue < 0)
             {
-                ErrorView.display(this.getClass().getName(), "Invalid item");
+                ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
                 continue;
             }
 
+            else if(keyboardValue == 0)
+            {
+                return;
+            }
+
+            else if(keyboardValue > max)  
+            {
+                ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
+                continue;
+            }
+            else if(itemName[keyboardValue] == null )
+            {
+                ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
+                continue;
+            }
             valid = true;
-        }} catch (Exception e) {
+        }
+        } catch (Exception e) {
             ErrorView.display(this.getClass().getName(), "Unable to determine your needs " + e.getMessage());
         }
-        
-        //call the sell item function from SceneControl
-    //    this.console.println("You chose " + itemName[keyboardValue]);
-    //    int choice = itemEnumOrdinal[keyboardValue+1];
+
+        //call the buy item function from SceneControl
+        this.console.println("You chose " + itemName[keyboardValue]);
+        int choice = keyboardValue -1;
         SceneControl newSceneControl = new SceneControl();
-    //    newSceneControl.buyItem(game.getPlayer(), Item.values()[choice], choice); 
-        
+        newSceneControl.sellItem(game.getPlayer(), player.getItems()[choice], choice); 
         return; 
     }
     

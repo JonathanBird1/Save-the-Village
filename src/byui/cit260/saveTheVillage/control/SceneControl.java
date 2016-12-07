@@ -45,13 +45,10 @@ public class SceneControl
     }
     
     // Buy item from store
-    public void buyItem(Player player, Item item, int ordinal)
+    public void buyItem(Player player, Item item)
     {
-player.setMoney(100); //Temporary for testing
-System.out.println("player " + player.getMoney());
-System.out.println("cost " + item.getBuyPrice());
             int diff = player.getMoney() - item.getBuyPrice();
-System.out.println("diff " + diff);
+
             if (item.getBuyPrice() == 0) {
                 ErrorView.display(this.getClass().getName(), "\nError Item price is 0");
                 return;
@@ -62,8 +59,15 @@ System.out.println("diff " + diff);
               //  int max = player.getItemMax();
               //  System.out.println("\ntest max " + max);
               //  max++;
-            
-                player.setItems(ordinal-1, item);
+                int i = 0;
+                //loop through inventory looking for available slot
+              //  for (i=0; i<60; i++){
+               //     player.getItems()[i].get
+               // }
+                while(!player.getItems()[i].getItemName().equals("None")){
+                    i++;
+                }
+                player.setItems(i, item);
                 System.out.println(item.getItemName() + " added to inventory");
             }
             else System.out.println("\nYou don't have enough for that!" + 
@@ -71,26 +75,20 @@ System.out.println("diff " + diff);
         }
     
     // Buy item from store
-    public void sellItem(Player player, Item item, int ordinal)
+    public void sellItem(Player player, Item item, int choice)
     {
+        int sell = item.getBuyPrice();
+        sell = sell/2;
 
-System.out.println("player " + player.getMoney());
-System.out.println("sell price " + item.getSellPrice());
-            int diff = player.getMoney() + item.getSellPrice();
+            int diff = player.getMoney() + sell;
 //System.out.println("diff " + diff);
-            if (item.getSellPrice() == 0) {
+            if (sell == 0) {
                 ErrorView.display(this.getClass().getName(), "\nError Item price is 0");
                 return;
             }
-            if (item.getSellPrice() != 0) {
-                
-                
-              //  int max = player.getItemMax();
-              //  System.out.println("\ntest max " + max);
-              //  max++;
-            
-                player.setItems(ordinal-1, Item.None);
-                player.setMoney(diff);
+            if (sell != 0) {
+                player.setItems(choice, Item.None);  //set inventory as none
+                player.setMoney(diff);  //give user money from the sell
                 System.out.println(item.getItemName() + " removed from inventory");
                 System.out.println("\nYou now have $" + player.getMoney());
             }
