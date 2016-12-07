@@ -18,8 +18,8 @@ public class HelpMenuView extends View{
 
     public HelpMenuView()
     {
-        super("\n"
-            + "\n\t------HELP--MENU------"
+        super(
+              "\n\t------HELP--MENU------"
             + "\n\t| C – Basic Commands |"
             + "\n\t| G – Game Menu      |"
             + "\n\t| B – Battle         |"
@@ -31,30 +31,35 @@ public class HelpMenuView extends View{
     public boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
-        try{
-        switch(choice){
-            case "C": // display 'basic commands menu'
-                this.displayBasicMenu();
-                break;
-            case "G": // display 'game menu'
-                this.gotoGameMenuView();
-                break;
-            case "B": // display 'battle menu'
-                this.displayBattleMenu();
-                break;
-            default:
-                ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
-        }}catch (Exception e){
+        try
+        {
+            switch(choice)
+            {
+                case "C": // display 'basic commands menu'
+                    this.displayBasicMenu();
+                    break;
+                case "G": // display 'game menu'
+                    this.displayGameMenu();
+                    break;
+                case "B": // display 'battle menu'
+                    this.displayBattleMenu();
+                    break;
+                default:
+                    ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
+            }
+        }
+        catch (Exception e)
+        {
             ErrorView.display(this.getClass().getName(), "Error reading input: "
                     + e.getMessage());
         }
         return false;
     }
 
-    private void displayBasicMenu() {
-        
-        this.console.println("\n"
-                + "\n\t-----BASIC--COMMANDS-----"
+    private void displayBasicMenu()
+    {
+        this.console.println(
+                  "\n\t-----BASIC--COMMANDS-----"
                 + "\n\t| B - Enter (Building)  |"
                 + "\n\t| N – Move North        |"
                 + "\n\t| S – Move South        |"
@@ -69,9 +74,10 @@ public class HelpMenuView extends View{
                 + "\n\t-------------------------");
         }
 
-    private void displayBattleMenu() {
-        this.console.println("\n"
-                + "\n\t---BATTLE--COMMANDS---"
+    private void displayBattleMenu()
+    {
+        this.console.println(
+                  "\n\t---BATTLE--COMMANDS---"
                 + "\n\t| A - Attack         |"
                 + "\n\t| M - Use Magic      |"
                 + "\n\t| I - Use Item       |"
@@ -79,14 +85,18 @@ public class HelpMenuView extends View{
                 + "\n\t----------------------");
     }
 
-    private void gotoGameMenuView() {
+    private void displayGameMenu()
     {
-        //Create new 'Game Menu'
-        GameMenuView gameMenu = new GameMenuView();
-        
-        //Display 'Game Menu'
-        gameMenu.display();
-    }
+        this.console.println(
+              "\n\t------GAME---MENU------"
+            + "\n\t| X - Statistics      |"
+            + "\n\t| I - Inventory       |"
+            + "\n\t| D - Quest Details   |"
+            + "\n\t| M - Map             |"
+            + "\n\t| S - Save Game       |"
+            + "\n\t| E - Exit Menu       |"
+            + "\n\t| Q - Quit Game       |"
+            + "\n\t-----------------------");
     }
 
 }
