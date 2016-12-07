@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import static java.lang.Integer.parseInt;
 
 import java.util.Scanner;
 import static oracle.jrockit.jfr.events.Bits.intValue;
@@ -279,7 +280,7 @@ public class MainMenuView extends View
             
             try
             {
-                keyboardValue = this.keyboard.read();
+                keyboardValue = parseInt(this.keyboard.readLine());
                 if(keyboardValue < 25)
                 {
                     ErrorView.display(this.getClass().getName(), "Unfortunately, you are too young to die.");
