@@ -19,7 +19,10 @@ public class BankView extends View
     public BankView()
     {
         super("\n"
-            + "\n\t-----BANK---MENU-----"
+            + "You enter through the bank's solid doors and a dwarf with a hawkish nose peers at you from over a counter.\n"
+            + "The interior is like the outside, spartan in looks but has a strong and serviceable atmosphere. The dwarf\n"
+            + "clears his throat and asks, “How might I, Thomas the Banker, help you today?”"
+            + "\n\n\t-----BANK---MENU-----"
             + "\n\t| D – Make Deposit  |"
             + "\n\t| W – Make Withdraw |"
             + "\n\t| L – Leave Bank    |"
@@ -98,6 +101,7 @@ public class BankView extends View
 
             valid = true;
         }
+        return;
     }
         
      private void WithdrawMoney()
@@ -137,7 +141,7 @@ public class BankView extends View
             else if(value > max)  //need to get the highest item number
             {
                 this.console.println("It appears that your account has recently "
-                + "been emptied, either that or you don't have that much in "
+                + "been emptied, either that or you don't have that much "
                 + "deposited in your savings.");
                 continue;
             }} catch (Exception f){

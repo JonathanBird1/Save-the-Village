@@ -24,14 +24,18 @@ public class WeaponShopView extends View{
     public WeaponShopView()
     {
         super("\n"
-            + "\n\t----STORE---MENU-----"
+            + "The din of steel striking steel greets you as you press open the solidly built door. As you step in, a wave of\n"
+            + "barely manageable heat envelopes you. The clanging of metal stops and a massively built human man lowers an\n"
+            + "equally massive looking hammer. He glares at you for a moment before putting down his hammer and then casually\n"
+            + "reaches for one of the myriad weapons lying about the interior. He then spits and growls, “What do you want? \n"
+            + "I a'int got all day.”"
+            + "\n\n\t----STORE---MENU-----"
             + "\n\t| B – Buy Items     |"
             + "\n\t| S – Sell Items    |"
             + "\n\t| L – Leave Store   |"
-            + "\n\t| R – Print Report  |"                
+        //  + "\n\t| R – Print Report  |"                
             + "\n\t---------------------"
-            + "\n\n"
-            + "Please make a selection:");
+            + "\n\nPlease make a selection:");
     }
     
     @Override
@@ -175,8 +179,8 @@ public class WeaponShopView extends View{
 
     private void weaponReport()
     {
-        System.out.println("\n\nEnter the file path to print the weapon report.");
-        String filePath = this.getInputNoMenu(); 
+        this.console.println("\n\nEnter the file path to print the weapon report.");
+        String filePath = this.getInputNoMenu();
         InventoryControl.printWeaponReport(filePath);
     }
 }

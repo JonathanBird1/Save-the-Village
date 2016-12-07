@@ -40,8 +40,7 @@ public class MainMenuView extends View
             //+ "\n\t| H – Help Menu    |"
             + "\n\t| Q – Quit Game    |"
             + "\n\t|---Quick-Access---|"
-            + "\n\t| S - Print Spell  |"
-            + "\n\t|     List         |"  //Print spell list
+            + "\n\t| S - Inn View     |"
             + "\n\t| B - Battle View  |"
             + "\n\t| W - Weapon View  |"  //Test call of WeaponsStoreView to be removed later  
             + "\n\t| K - Bank         |"
@@ -334,17 +333,11 @@ public class MainMenuView extends View
     /* ********************************************************
     *********** FUNCTIONS TO DELETE ***************************
     ********************************************************* */
-    /* *****************************************
-        MAKE SURE TO DELETE:
-        gotoGameMenuView()
-    */
     
     private void gotoSpellList() {
         
-        this.console.println("\n\nEnter the file path to print the weapon report.");
-        String filePath = this.getInputNoMenu();
-        Spell.printSpellList(filePath);
-        
+        InnView newInn = new InnView();
+        newInn.display();
     }
     
     private void displayWeight(){

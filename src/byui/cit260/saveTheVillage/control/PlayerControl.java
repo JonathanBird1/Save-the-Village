@@ -10,6 +10,7 @@ import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
 import byui.cit260.saveTheVillage.model.Races;
+import byui.cit260.saveTheVillage.view.ErrorView;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.util.Set;
 import static oracle.jrockit.jfr.events.Bits.intValue;
@@ -33,7 +34,7 @@ public class PlayerControl {
         //Error Trapping
         if (!(race == Races.HUMAN || race == Races.ELF || race == Races.DWARF))
         {
-            System.out.println("ERROR:  Invalid Race - Race must be Human, "
+            ErrorView.display(this.getClass().getName(), "ERROR:  Invalid Race - Race must be Human, "
                     + "Elf, or Dwarf");
             Player newPlayer = new Player();
             newPlayer.setName("Invalid");
@@ -41,7 +42,7 @@ public class PlayerControl {
         }
         if (age < 25 || age > 75)
         {
-            System.out.println("ERROR:  Invalid Age - Age must be between "
+            ErrorView.display(this.getClass().getName(), "ERROR:  Invalid Age - Age must be between "
                     + "25 and 75");
             Player newPlayer = new Player();    
             newPlayer.setName("Invalid");
@@ -49,7 +50,7 @@ public class PlayerControl {
         }
         if (username.equals("Invalid"))
         {
-            System.out.println("ERROR:  Invalid Name = 'Invalid' is a reserved "
+            ErrorView.display(this.getClass().getName(), "ERROR:  Invalid Name = 'Invalid' is a reserved "
                     + "keyword");
             Player newPlayer = new Player();    
             newPlayer.setName("Invalid");
@@ -85,8 +86,9 @@ public class PlayerControl {
         try {playerStats.setSpeedPenalty(
         determineSpeedPenalty(playerStats.getSpeed(), playerStats.getStrength(),
                 currentWeight));
-            } catch (PlayerControlException me){
-            System.out.println(me.getMessage());
+            } catch (PlayerControlException e){
+                ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
             username = "Invalid";
         }
         //Initialize New Player & Return

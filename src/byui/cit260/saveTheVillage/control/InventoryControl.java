@@ -7,6 +7,7 @@ package byui.cit260.saveTheVillage.control;
 
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
+import byui.cit260.saveTheVillage.view.View;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -91,8 +92,7 @@ public class InventoryControl
     }
     
     public static void printWeaponReport (String outputLocation)
-    {
-         
+    {         
         try (PrintWriter outFile = new PrintWriter(outputLocation))
         {
             outFile.println("\n          Weapon List         ");

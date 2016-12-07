@@ -7,6 +7,7 @@ package byui.cit260.saveTheVillage.control;
 
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Item;
+import byui.cit260.saveTheVillage.view.ErrorView;
 
 /**
  *
@@ -22,7 +23,7 @@ public class SceneControl
         //Error Trapping
         if (hours <= 0 || hours > 8)
         {
-            System.out.println("ERROR:  Hours rest at inn must be a number "
+            ErrorView.display(this.getClass().getName(), "ERROR:  Hours rest at inn must be a number "
                 + "between 1 and 8");
             return;
         }
