@@ -29,8 +29,7 @@ public class GameMenuView extends View
 {
     public GameMenuView()
     {
-        super("\n"
-            + "\n\t------GAME---MENU------"
+        super("\n\t------GAME---MENU------"
             + "\n\t| X - Statistics      |"
             + "\n\t| I - Inventory       |"
             + "\n\t| D - Quest Details   |"
