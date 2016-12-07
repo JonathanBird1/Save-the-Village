@@ -21,7 +21,13 @@ public class StoreView extends View{
     public StoreView()
     {
         super("\n"
-            + "\n\t----STORE---MENU----"
+            + "You step inside and your senses are immediately struck with a wide array or sights and smells. An elf woman\n"
+            + "with a colorful turban smiles at you and motions with both her hands at the items that pack the shelves. She\n"
+            + "then steps towards you, curtsies slightly. Then with a mischievous wink asks, “Do you see anything that you\n"
+            + "like?”\n" 
+            + "“I have healing salves, a variety of potions, and even a spell scroll or two. Anything that a strong hero like\n"
+            + "you could possibly need.”"
+            + "\n\n\t----STORE---MENU----"
             + "\n\t| B – Buy Items    |"
             + "\n\t| S – Sell Items   |"
             + "\n\t| L – Leave Store  |"

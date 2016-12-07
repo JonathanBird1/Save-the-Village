@@ -8,8 +8,10 @@ package byui.cit260.saveTheVillage.control;
 import byui.cit260.saveTheVillage.exceptions.BattleControlException;
 import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Player;
+import java.io.PrintWriter;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import savethevillage.SaveTheVillage;
 
 /**
  *
@@ -17,7 +19,8 @@ import static org.junit.Assert.*;
  */
 public class BattleControlTest
 {
-
+    private static final PrintWriter logFile = SaveTheVillage.getLogFile();
+    
     /**
      * Test of calcSuccessRate method, of class BattleControl.
      */

@@ -118,16 +118,34 @@ public class MapView extends View
                                     mapOutput += "E";
                                     break;
                                 case "Tracks1":
-                                case "Tracks2":
-                                case "Tracks3":
-                                case "Defensive":
-                                case "Offensive":
-                                case "Memento":
-                                case "Ring":
-                                case "Necklace":
-                                case "Toy":
-                                case "Forest":
                                     mapOutput += "C";
+                                    break;
+                                case "Tracks2":
+                                    mapOutput += "C";
+                                    break;
+                                case "Tracks3":
+                                    mapOutput += "C";
+                                    break;
+                                case "Defensive":
+                                    mapOutput += "C";
+                                    break;
+                                case "Offensive":
+                                    mapOutput += "C";
+                                    break;
+                                case "Memento":
+                                    mapOutput += "C";
+                                    break;
+                                case "Ring":
+                                    mapOutput += "C";
+                                    break;
+                                case "Necklace":
+                                    mapOutput += "C";
+                                    break;
+                                case "Toy":
+                                    mapOutput += "C";
+                                    break;
+                                case "Forest":
+                                    mapOutput += "N";
                                     break;
                                 default:
                                     mapOutput += "N";

@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author Yoda
  */
-public class Scene extends Location
+public class Scene extends Location implements Serializable
 {
     //class instance variables
     private String sceneName;

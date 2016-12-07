@@ -201,7 +201,7 @@ public class SceneView extends View
                     {
                         case "Inn":
                             InnView newInn = new InnView();
-                            //To Integrate View  *********************************
+                            newInn.display(game);
                             this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;
@@ -365,7 +365,7 @@ public class SceneView extends View
                 break;
             default:
         }
-        
+
         return true;
     }
 }

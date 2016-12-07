@@ -27,7 +27,7 @@ public class SceneControl
         //Error Trapping
         if (hours <= 0 || hours > 8)
         {
-            System.out.println("ERROR:  Hours rest at inn must be a number "
+            ErrorView.display(this.getClass().getName(), "ERROR:  Hours rest at inn must be a number "
                 + "between 1 and 8");
             return;
         }
