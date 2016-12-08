@@ -355,8 +355,11 @@ public class SceneView extends View
             //Talk with an NPC
             case "C":
                 // *****INTEGRATE A COMMUNICATIONS VIEW
-                this.console.println("Sorry, looks like no one wants to talk "
-                        + "with you now.");
+                //This is currently pulling in all NPC's, even blanks
+                this.console.println("There are " + (game.getIsInDungeon() ? 
+                    0 : game.getForestMap().getSceneArray()
+                    [game.getCurrentRow()][game.getCurrentColumn()].getNPC()
+                    .length) + " NPC's available to converse with");
                 break;
             //Bring up the Game Menu
             case "G":
