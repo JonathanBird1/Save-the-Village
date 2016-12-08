@@ -17,21 +17,11 @@ import byui.cit260.saveTheVillage.model.Player;
  */
 public class InnView extends View
 {
-    private String innMessage;
-    private Game currentGame;
-    
-    public InnView(){
-        
-    }
-    
-    public InnView(Game currentGame)  //Display message
+    public InnView()
     {
-        super ("\n"
-            + "As you enter the front foor of the Cartman, the faces of several people greet you. A jovial man at the counter\n"
+        super ("As you enter the front foor of the Cartman, the faces of several people greet you. A jovial man at the counter\n"
             + "smiles and asks, “Would you like to take a break?  It’ll only cost you 5 gold per hour. The rooms are warm and\n"
             + "comfortable.”\nY or N:");
-        
-        this.currentGame = currentGame;
     }
     
     @Override
@@ -56,8 +46,10 @@ public class InnView extends View
     {
         boolean exitMenu = false;
         choice = choice.toUpperCase();
-        try{
-        switch(choice){
+        try
+        {
+            switch(choice)
+            {
                 case "Y":
                     this.restAtInn(game);
                     break;
@@ -66,15 +58,18 @@ public class InnView extends View
                     break;
                 default:
                     ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
-        }}catch (Exception e){
+            }
+        }
+        catch (Exception e)
+        {
             ErrorView.display(this.getClass().getName(), "Error reading input: "
-                    + e.getMessage());
+                + e.getMessage());
         }
         return exitMenu;
     }
 
-    private void restAtInn(Game game) {
-        
+    private void restAtInn(Game game)
+    {
         int value = 0;
         //Run the restAtInn function
         SceneControl newSceneControl = new SceneControl();
