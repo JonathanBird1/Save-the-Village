@@ -5,9 +5,13 @@
  */
 package byui.cit260.saveTheVillage.control;
 
+
+import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.view.ErrorView;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -41,9 +45,54 @@ public class SceneControl
     }
     
     // Buy item from store
-    private void buyItem(Player player, String itemNum)
+    public void buyItem(Player player, Item item)
     {
+            int diff = player.getMoney() - item.getBuyPrice();
+
+            if (item.getBuyPrice() == 0) {
+                ErrorView.display(this.getClass().getName(), "\nError Item price is 0");
+                return;
+            }
+            if (item.getBuyPrice() != 0 && !(diff < 0)) {
+                player.setMoney(diff);
+                System.out.println("\nYou now have $" + player.getMoney());
+              //  int max = player.getItemMax();
+              //  System.out.println("\ntest max " + max);
+              //  max++;
+                int i = 0;
+                //loop through inventory looking for available slot
+              //  for (i=0; i<60; i++){
+               //     player.getItems()[i].get
+               // }
+                while(!player.getItems()[i].getItemName().equals("None")){
+                    i++;
+                }
+                player.setItems(i, item);
+                System.out.println(item.getItemName() + " added to inventory");
+            }
+            else System.out.println("\nYou don't have enough for that!" + 
+                    "\nYou only have $" + player.getMoney());
+        }
     
-    }
+    // Buy item from store
+    public void sellItem(Player player, Item item, int choice)
+    {
+        int sell = item.getBuyPrice();
+        sell = sell/2;
+
+            int diff = player.getMoney() + sell;
+//System.out.println("diff " + diff);
+            if (sell == 0) {
+                ErrorView.display(this.getClass().getName(), "\nError Item price is 0");
+                return;
+            }
+            if (sell != 0) {
+                player.setItems(choice, Item.None);  //set inventory as none
+                player.setMoney(diff);  //give user money from the sell
+                System.out.println(item.getItemName() + " removed from inventory");
+                System.out.println("\nYou now have $" + player.getMoney());
+            }
+           
+        }    
     
 }

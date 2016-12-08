@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public enum Item implements Serializable
 {
-    None("None", "none", 0, true, false, "Starting Equipment", 1, 0, 0, 5),
+    None("None", "none", 0, true, false, "Starting Equipment", 0, 0, 0, 0),
     WoodenSword("Wooden Sword", "weapon", 0, true, false, "Starting Equipment", 1, 0, 0, 5),
     BambooSword("Bamboo Sword", "weapon", 100, false, false, "Weapons Shop", 2, 0, 0, 3),
     Sabre("Sabre", "weapon", 1000, false, false, "Weapons Shop", 5, 0, 0, 5),
@@ -22,28 +22,28 @@ public enum Item implements Serializable
     Broadsword("Broadsword", "weapon", 10000, false, false, "Weapons Shop", 20, 0, 0, 35),
     Katana("Katana", "weapon", 25000, false, false, "Weapons Shop", 35, 0, 0, 25),
     HeavensSword("Heavens Sword", "weapon", 0, true, false, "Dungeon", 100, 0, 0, 5),
-    SmallHealthPotion("Small Health Potion", "potion", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    MediumHealthPotion("Medium Health Potion", "potion", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    LargeHealthPotion("Large Health Potion", "potion", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    SmallManaPotion("Small Mana Potion", "potion", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    MediumManaPotion("Medium Mana Potion", "potion", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    LargeManaPotion("Large Mana Potion", "potion", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    HealingWindScroll("Healing Wind Scroll", "scroll", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    FireburstScroll("Fireburst Scroll", "scroll", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    SteelBladeScroll("Steel Blade Scroll", "scroll", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    IceBladeScroll("Ice Blade Scroll", "scroll", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    SwiftWindScroll("Swift Wind Scroll", "scroll", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    BlindingLightScroll("Blinding Light Scroll", "scroll", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    EarthquakeScroll("Earthquake Scroll", "scroll", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    IronBodyScroll("Iron Body Scroll", "scroll", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    DecimatingBlowScroll("Decimating Blow Scroll", "scroll", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    DungeonKey("Dungeon Key", "key", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    DefensiveCharm("Defensive Charm", "key", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    OffensiveCharm("Offensive Charm", "key", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    KidsMemento("Kids Memento", "key", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    DiamondRing("Diamond Ring", "key", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    Necklace("Necklace", "key", 0, true, false, "Item Shop", 1, 0, 0, 5),
-    ChildsToy("Childs Toy", "key", 0, true, false, "Item Shop", 1, 0, 0, 5);
+    SmallHealthPotion("Small Health Potion", "potion", 50, true, false, "Item Shop", 0, 5, 0, 1),
+    MediumHealthPotion("Medium Health Potion", "potion", 150, true, false, "Item Shop", 0, 20, 0, 1),
+    LargeHealthPotion("Large Health Potion", "potion", 300, true, false, "Item Shop", 0, 50, 0, 1),
+    SmallManaPotion("Small Mana Potion", "potion", 50, true, false, "Item Shop", 0, 0, 5, 1),
+    MediumManaPotion("Medium Mana Potion", "potion", 150, true, false, "Item Shop", 0, 0, 20, 1),
+    LargeManaPotion("Large Mana Potion", "potion", 300, true, false, "Item Shop", 0, 0, 50, 1),
+    HealingWindScroll("Healing Wind Scroll", "scroll", 400, true, false, "Item Shop", 1, 0, 0, 1),
+    FireburstScroll("Fireburst Scroll", "scroll", 400, true, false, "Item Shop", 1, 0, 0, 1),
+    SteelBladeScroll("Steel Blade Scroll", "scroll", 400, true, false, "Item Shop", 1, 0, 0, 1),
+    IceBladeScroll("Ice Blade Scroll", "scroll", 400, true, false, "Item Shop", 1, 0, 0, 1),
+    SwiftWindScroll("Swift Wind Scroll", "scroll", 400, true, false, "Item Shop", 1, 0, 0, 1),
+    BlindingLightScroll("Blinding Light Scroll", "scroll", 400, true, false, "Item Shop", 1, 0, 0, 1),
+    EarthquakeScroll("Earthquake Scroll", "scroll", 400, true, false, "Item Shop", 1, 0, 0, 1),
+    IronBodyScroll("Iron Body Scroll", "scroll", 400, true, false, "Item Shop", 1, 0, 0, 1),
+    DecimatingBlowScroll("Decimating Blow Scroll", "scroll", 400, true, false, "Item Shop", 1, 0, 0, 1),
+    DungeonKey("Dungeon Key", "key", 0, true, false, "Item Shop", 1, 0, 0, 0),
+    DefensiveCharm("Defensive Charm", "key", 0, true, false, "Item Shop", 1, 0, 0, 1),
+    OffensiveCharm("Offensive Charm", "key", 0, true, false, "Item Shop", 1, 0, 0, 1),
+    KidsMemento("Kids Memento", "key", 0, true, false, "Item Shop", 1, 0, 0, 0),
+    DiamondRing("Diamond Ring", "key", 0, true, false, "Item Shop", 1, 0, 0, 0),
+    Necklace("Necklace", "key", 0, true, false, "Item Shop", 1, 0, 0, 0),
+    ChildsToy("Childs Toy", "key", 0, true, false, "Item Shop", 1, 0, 0, 0);
 
     private final String itemName;
     private final String type;
@@ -95,7 +95,8 @@ public enum Item implements Serializable
     
     public int getSellPrice()
     {
-        return buyPrice;
+        int sell = buyPrice/2;
+        return sell;
     }
     
     public boolean getNoBuy()

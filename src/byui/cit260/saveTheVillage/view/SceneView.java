@@ -215,14 +215,14 @@ public class SceneView extends View
                         case "Store":
                             StoreView newStore = new StoreView();
                             //To Integrate View  *********************************
-                            newStore.display();
+                            newStore.display(game);
                             this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;
                         case "Weapons":
                             WeaponShopView newWeaponShop = new WeaponShopView();
                             //To Integrate View  *********************************
-                            newWeaponShop.display();
+                            newWeaponShop.display(game);
                             this.console.println("Pending - Integrating Requested"
                                     + " View");
                             break;

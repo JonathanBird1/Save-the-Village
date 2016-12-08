@@ -13,6 +13,7 @@ import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.model.Game;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.util.Scanner;
 
 /**
@@ -38,18 +39,39 @@ public class WeaponShopView extends View{
             + "\n\nPlease make a selection:");
     }
     
+    
+    
     @Override
-    public boolean doAction(String choice) {
+    public boolean doAction(String choice)
+    {
+        try
+        {
+            //This function is not used - requires the doAction with the game
+            ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the "
+                + "Game as a parameter");
+        }
+        catch (Exception e)
+        {
+            ErrorView.display(this.getClass().getName(), "Error reading input: "
+                + e.getMessage());
+        }
+        
+        return false;
+    }
+    
+    
+    @Override
+    public boolean doAction(String choice, Game game) {
         
         choice = choice.toUpperCase();
         
         try{
         switch(choice){
             case "B": // List items to buy
-                this.buyItems();
+                this.buyItems(game);
                 break;
             case "S": // List items to sell
-                this.sellItems();
+                this.sellItems(game);
                 break;
             case "R": // List items to sell
                 this.weaponReport();
@@ -65,11 +87,11 @@ public class WeaponShopView extends View{
         return false;
     }
     
-    private void buyItems() {
+    private void buyItems(Game game) {
         
         //list store inventory 0 to quit 
       this.console.println("#  ITEM\t\tPRICE" );
-      String itemArray[]= new String[22];
+      String itemName[]= new String[22];
    
         int i = 0;
         int totalAll = 0;   //for assignment remove this later
@@ -79,7 +101,7 @@ public class WeaponShopView extends View{
               i++;  
               this.console.println(i + "  " + item +"\t" + item.getBuyPrice());
               totalAll += item.getBuyPrice();  //for assignment remove this later
-              itemArray[i]=item.getItemName();
+              itemName[i]=item.getItemName();
             }
         }
         this.console.println("To purchase all items the cost would be: $" + totalAll);  //for assignment remove this later
@@ -95,7 +117,7 @@ public class WeaponShopView extends View{
         {
             //get the next int entered from keyboard
             try {
-                keyboardValue = this.keyboard.read();
+                keyboardValue = parseInt(this.keyboard.readLine());
             } catch (Exception e) {
                 ErrorView.display(this.getClass().getName(), "Invalid item - Leaving shop");
                 return;
@@ -119,7 +141,7 @@ public class WeaponShopView extends View{
                 ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
                 continue;
             }
-            else if(itemArray[keyboardValue] == null )
+            else if(itemName[keyboardValue] == null )
             {
                 ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
                 continue;
@@ -131,56 +153,103 @@ public class WeaponShopView extends View{
         }
 
         //call the buy item function from SceneControl
-        this.console.println("You chose " + itemArray[keyboardValue]);
+        this.console.println("You chose " + itemName[keyboardValue]);
+        int choice = 0;
+        for (Item item : items){
+            if (item.getItemName().equals(itemName[keyboardValue])) choice = item.ordinal();
+        }
         SceneControl newSceneControl = new SceneControl();
-     //   newSceneControl.buyItem(Player, keyboardValue);  //how do I reference the player
+        newSceneControl.buyItem(game.getPlayer(), Item.values()[choice]);  
         
         return; 
         
     }
         
-    private void sellItems() {
+    private void sellItems(Game game) {
         //list store inventory 0 to quit       
-        this.console.println("\nList of items to come, for now enter 0 to exit");
+      //  this.console.println("\nList of items to come, for now enter 0 to exit");
         //Prompt for user input of which item to sell
+        Player player = new Player();
+        player = game.getPlayer();
+        player.getItems();
         
         int value = 0;
-        boolean valid = false;
+        boolean valid = false; 
+ 
+      this.console.println("#  ITEM\t\tSELL PRICE" );
+      String itemName[]= new String[22];
+   
+        int i = 0;
+        Item[] items = player.getItems();
+        for (Item item : items){
+            if (item.getAssociation()== "Weapons Shop" && item.getSellPrice() != 0) {
+              i++;  
+              this.console.println(i + "  " + item +"\t" + item.getSellPrice());
+              itemName[i]=item.getItemName();
+            }
+        }
+
+        this.console.println("\nWhich item would you like to sell?");
+        this.console.println("\nEnter 0 to exit");
+        //Prompt for user input of which item to buy
         
+        int keyboardValue = 0;
+
+
         try{
         while(!valid)
         {
-            value = this.keyboard.read(); //get the next lined entered from keyboard
-            int max = 99; //get number of items available
-            this.console.println("\nWhich item would you like to buy?");
-            
-            if(value < 0)
-            {
-                ErrorView.display(this.getClass().getName(), "Invalid item");
-                continue;
-            }
-            if(value == 0)
-            {
+            //get the next int entered from keyboard
+            try {
+                keyboardValue = parseInt(this.keyboard.readLine());
+            } catch (Exception e) {
+                ErrorView.display(this.getClass().getName(), "Invalid item - Leaving shop");
                 return;
-            }
-            else if(value > max)  //need to get the highest item number
+            };
+
+            int max = 60; //get number of items available
+        //  while (player.getItems()[max] == null) max++;
+            if(keyboardValue < 0)
             {
-                ErrorView.display(this.getClass().getName(), "Invalid item");
+                ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
                 continue;
             }
 
+            else if(keyboardValue == 0)
+            {
+                return;
+            }
+
+            else if(keyboardValue > max)  
+            {
+                ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
+                continue;
+            }
+            else if(itemName[keyboardValue] == null )
+            {
+                ErrorView.display(this.getClass().getName(), "Invalid item - Try again");
+                continue;
+            }
             valid = true;
-        }} catch (Exception e) {
+        }
+        } catch (Exception e) {
             ErrorView.display(this.getClass().getName(), "Unable to determine your needs " + e.getMessage());
         }
+
+        //call the buy item function from SceneControl
+        this.console.println("You chose " + itemName[keyboardValue]);
+        int choice = keyboardValue -1;
+        SceneControl newSceneControl = new SceneControl();
+        newSceneControl.sellItem(game.getPlayer(), player.getItems()[choice], choice); 
         return; 
     }
     
 
     private void weaponReport()
     {
-        this.console.println("\n\nEnter the file path to print the weapon report.");
-        String filePath = this.getInputNoMenu();
+        System.out.println("\n\nEnter the file path to print the weapon report.");
+        String filePath = this.getInputNoMenu(); 
         InventoryControl.printWeaponReport(filePath);
     }
 }
+

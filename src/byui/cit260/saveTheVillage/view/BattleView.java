@@ -33,7 +33,7 @@ public class BattleView extends View
     ********************************************************* */
     public BattleView()
     {
-        super ("\n"
+        battleMenu = ("\n"
                 + "\n\t---BATTLE--COMMANDS---"
                 + "\n\t| A - Attack         |"
                 + "\n\t| M - Use Magic      |"
@@ -185,7 +185,7 @@ public class BattleView extends View
                     + e.getMessage());
     } return false;
     }
-
+    
     public boolean doAction(String menuOption, Player player)
     {
         menuOption = menuOption.toUpperCase();
