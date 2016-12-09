@@ -25,7 +25,7 @@ public abstract class View implements ViewInterface
     
     public View()
     {
-        
+        this.displayMessage = "";
     }
     
     public View(String message)
@@ -68,7 +68,6 @@ public abstract class View implements ViewInterface
         }
         return value;
     }
-
     
     public String getInputNoMenu(){
         
