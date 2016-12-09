@@ -18,10 +18,8 @@ public class Scene extends Location implements Serializable
     //class instance variables
     private String sceneName;
     private String sceneDescription;
-    private String clue;
-    private NPC npcs[];
+    private NPC[] npcs;
     private boolean closed;
-    private boolean clueFound;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
@@ -31,50 +29,43 @@ public class Scene extends Location implements Serializable
         super();  //Call superclass Location constructor
         this.sceneName = "No Name";
         this.sceneDescription = "No Description";
-        this.clue = "No Clue";
-        this.npcs = new NPC[1];
+       this.npcs = new NPC[1];
         for (int i = 0; i < this.npcs.length; i++)
         {
             this.npcs[i] = new NPC();
         }
         this.closed = false;
-        this.clueFound = true;  //True when clue is found or no clue exists
     }
 
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
     public Scene(int row, int column, boolean visited, String sceneName, 
-            String sceneDescription, String clue, NPC[] npcs, boolean closed, 
-            boolean clueFound)
+            String sceneDescription, Clue clue, NPC[] npcs, boolean closed)
     {
         super(row, column, visited);  //Call Location non-default constructor
         this.sceneName = sceneName;
         this.sceneDescription = sceneDescription;
-        this.clue = clue;
         this.npcs = new NPC[npcs.length];
         for (int i = 0; i < this.npcs.length; i++)
         {
             this.npcs[i] = npcs[i];
         }
         this.closed = closed;
-        this.clueFound = clueFound;  //True when clue is found or no clue exists
     }
 
-    public Scene(String sceneName, String sceneDescription, String clue, 
-            NPC[] npcs, boolean closed, boolean clueFound)
+    public Scene(String sceneName, String sceneDescription, NPC[] npcs, 
+    boolean closed)
     {
         super();  //Call Location non-default constructor
         this.sceneName = sceneName;
         this.sceneDescription = sceneDescription;
-        this.clue = clue;
         this.npcs = new NPC[npcs.length];
         for (int i = 0; i < this.npcs.length; i++)
         {
             this.npcs[i] = npcs[i];
         }
         this.closed = closed;
-        this.clueFound = clueFound;  //True when clue is found or no clue exists
     }
 
     /* ********************************************************
@@ -85,14 +76,12 @@ public class Scene extends Location implements Serializable
         super(otherScene);
         this.sceneName = otherScene.sceneName;
         this.sceneDescription = otherScene.sceneDescription;
-        this.clue = otherScene.clue;
         this.npcs = new NPC[otherScene.npcs.length];
         for (int i = 0; i < this.npcs.length; i++)
         {
             this.npcs[i] = otherScene.npcs[i];
         }
         this.closed = otherScene.closed;
-        this.clueFound = otherScene.clueFound;
     }
 
     /* ********************************************************
@@ -112,14 +101,6 @@ public class Scene extends Location implements Serializable
 
     public void setDescription(String sceneDescription) {
         this.sceneDescription = sceneDescription;
-    }
-
-    public String getClue() {
-        return clue;
-    }
-
-    public void setClue(String clue) {
-        this.clue = clue;
     }
 
     public NPC[] getNPC() {
@@ -146,10 +127,8 @@ public class Scene extends Location implements Serializable
         int hash = 5;
         hash = 31 * hash + Objects.hashCode(this.sceneName);
         hash = 31 * hash + Objects.hashCode(this.sceneDescription);
-        hash = 31 * hash + Objects.hashCode(this.clue);
         hash = 31 * hash + Arrays.deepHashCode(this.npcs);
         hash = 31 * hash + (this.closed ? 1 : 0);
-        hash = 31 * hash + (this.clueFound ? 1 : 0);
         return hash;
     }
 
@@ -174,26 +153,23 @@ public class Scene extends Location implements Serializable
         if (this.closed != other.closed) {
             return false;
         }
-        if (!Objects.equals(this.clue, other.clue)) {
-            return false;
-        }
         return true;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         String returnString = "Scene{" + "row=" + super.getRow() + " column=" +
                 super.getColumn() + " visited=" + super.getVisited() +
                 "sceneName=" + sceneName + ", sceneDescription=" +
-                sceneDescription + ", clue=" + clue + ", npcs=";
+                sceneDescription + ", npcs=";
         
         for (int i = 0; i < npcs.length; i++)
         {
             returnString += npcs[i].toString();
         }
         
-        returnString += ", closed=" + closed + ", clueFound=" + 
-                clueFound + '}';
+        returnString += ", closed=" + closed + '}';
         
         return returnString;
     }
