@@ -8,8 +8,11 @@ package byui.cit260.saveTheVillage.control;
 
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Player;
+import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.model.Item;
+import byui.cit260.saveTheVillage.model.NPC;
 import byui.cit260.saveTheVillage.view.ErrorView;
+import byui.cit260.saveTheVillage.exceptions.SceneControlException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -44,7 +47,9 @@ public class SceneControl
         }
     }
     
-    // Buy item from store
+    /* ********************************************************
+    BUY ITEM
+    ********************************************************* */
     public void buyItem(Player player, Item item)
     {
             int diff = player.getMoney() - item.getBuyPrice();
@@ -74,25 +79,68 @@ public class SceneControl
                     "\nYou only have $" + player.getMoney());
         }
     
-    // Buy item from store
+    /* ********************************************************
+    SELL ITEM
+    ********************************************************* */
     public void sellItem(Player player, Item item, int choice)
     {
         int sell = item.getBuyPrice();
         sell = sell/2;
 
-            int diff = player.getMoney() + sell;
+        int diff = player.getMoney() + sell;
 //System.out.println("diff " + diff);
-            if (sell == 0) {
-                ErrorView.display(this.getClass().getName(), "\nError Item price is 0");
-                return;
-            }
-            if (sell != 0) {
-                player.setItems(choice, Item.None);  //set inventory as none
-                player.setMoney(diff);  //give user money from the sell
-                System.out.println(item.getItemName() + " removed from inventory");
-                System.out.println("\nYou now have $" + player.getMoney());
-            }
-           
-        }    
+        if (sell == 0)
+        {
+            ErrorView.display(this.getClass().getName(), "\nError Item price is 0");
+            return;
+        }
+        if (sell != 0)
+        {
+            player.setItems(choice, Item.None);  //set inventory as none
+            player.setMoney(diff);  //give user money from the sell
+            System.out.println(item.getItemName() + " removed from inventory");
+            System.out.println("\nYou now have $" + player.getMoney());
+        }
+    }
     
+    /* ********************************************************
+    VALIDATE NPC
+    ********************************************************* */
+    public NPC validateNPC(String npcName, Scene scene) throws SceneControlException
+    {
+        //Find the NPC
+        for (NPC thisNPC : scene.getNPC())
+        {
+            if (npcName.equals(thisNPC.getNPCName()))
+                return thisNPC;
+        }
+        
+        throw new SceneControlException("ERROR:  Invalid NPC selected");
+    }
+    
+    /* ********************************************************
+    GET CURRENT SCENE
+    ********************************************************* */
+    public Scene getCurrentScene(Game game)
+    {
+        return (game.getIsInDungeon() ? game.getDungeonMap().getScene(
+            game.getCurrentRow(), game.getCurrentColumn()) : game.getForestMap().
+            getScene(game.getCurrentRow(), game.getCurrentColumn()));
+    }
+    
+    /* ********************************************************
+    GET SCENE CLUE
+    ********************************************************* */
+    public String getSceneClue(Game game)
+    {
+        return game.getClue(getCurrentScene(game).getName()).getSceneClue();
+    }
+
+    /* ********************************************************
+    GET NPC CLUE
+    ********************************************************* */
+    public String getNPCClue(Game game, String associatedScene)
+    {
+        return game.getClue(associatedScene).getNPCClue();
+    }
 }

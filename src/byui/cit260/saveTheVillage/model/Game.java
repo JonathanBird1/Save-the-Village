@@ -14,13 +14,13 @@ import java.util.Objects;
  *
  * @author micha
  */
-public class Game implements Serializable {
-    
+public class Game implements Serializable
+{
     private int elapsedTime;
     private int timeLimit;
     private boolean gameFinished;
     private String fileName;
-    private String cluesObtained[];
+    private Clue clues[];
     private Map forestMap;
     private Map dungeonMap;
     private Player player;
@@ -37,10 +37,10 @@ public class Game implements Serializable {
         this.timeLimit = 48*60;
         this.gameFinished = false;
         this.fileName = "noName.stv";
-        this.cluesObtained = new String[10];
-        for (int i = 0; i < this.cluesObtained.length; i++)
+        this.clues = new Clue [10];
+        for (int i = 0; i < this.clues.length; i++)
         {
-            this.cluesObtained[i] = "Clue " + i + " Not Obtained\n";
+            this.clues[i] = new Clue();
         }
         this.forestMap = new Map("Forest");
         this.dungeonMap = new Map("Dungeon");
@@ -54,14 +54,14 @@ public class Game implements Serializable {
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
     public Game(int elapsedTime, int timeLimit, boolean gameFinished,
-            String fileName, String clues[], Map forestMap, Map dungeonMap, 
+            String fileName, Clue clues[], Map forestMap, Map dungeonMap, 
             Player player)
     {
         this.elapsedTime = elapsedTime;
         this.timeLimit = timeLimit;
         this.gameFinished = gameFinished;
         this.fileName = fileName;
-        this.cluesObtained = clues;
+        this.clues = clues;
         this.forestMap = forestMap;
         this.dungeonMap = dungeonMap;
         this.player = player;
@@ -81,13 +81,7 @@ public class Game implements Serializable {
         this.timeLimit = otherGame.timeLimit;
         this.gameFinished = otherGame.gameFinished;
         this.fileName = otherGame.fileName;
-        
-        //No clues have been found yet in a new game
-        this.cluesObtained = new String[10];
-        for (int i = 0; i < this.cluesObtained.length; i++)
-        {
-            this.cluesObtained[i] = otherGame.cluesObtained[i];
-        }
+        this.clues = otherGame.clues;
         this.forestMap = otherGame.forestMap;
         this.dungeonMap = otherGame.dungeonMap;
         this.player = otherGame.player;
@@ -131,12 +125,33 @@ public class Game implements Serializable {
         this.fileName = fileName;
     }
 
-    public String[] getCluesObtained() {
-        return cluesObtained;
+    public Clue[] getClues() {
+        return clues;
+    }
+    
+    public Clue getClue(int clueNumber)
+    {
+        return this.clues[clueNumber];
+    }
+    
+    public Clue getClue(String clueName)
+    {
+        for (Clue clue : this.clues)
+        {
+            if (clue.getClueName().equals(clueName))
+                return clue;
+        }
+        
+        return this.clues[this.clues.length - 1];  // Default Clue
+    }
+    
+    public void setClues(Clue[] clues)
+    {
+        this.clues = clues;
     }
 
-    public void setCluesObtained(String clueObtained, int clueNumber) {
-        this.cluesObtained[clueNumber] = clueObtained;
+    public void setClue(Clue clue, int clueNumber) {
+        this.clues[clueNumber] = clue;
     }
     
     public void setForestMap(Map forestMap)
@@ -205,7 +220,7 @@ public class Game implements Serializable {
         hash = 89 * hash + this.timeLimit;
         hash = 89 * hash + (this.gameFinished ? 1 : 0);
         hash = 89 * hash + Objects.hashCode(this.fileName);
-        hash = 89 * hash + Arrays.deepHashCode(this.cluesObtained);
+        hash = 89 * hash + Arrays.deepHashCode(this.clues);
         hash = 89 * hash + Objects.hashCode(this.forestMap);
         hash = 89 * hash + Objects.hashCode(this.dungeonMap);
         hash = 89 * hash + Objects.hashCode(this.player);
@@ -261,7 +276,7 @@ public class Game implements Serializable {
         {
             return false;
         }
-        return Arrays.deepEquals(this.cluesObtained, other.cluesObtained);
+        return Arrays.deepEquals(this.clues, other.clues);
         
     }
 
@@ -271,9 +286,9 @@ public class Game implements Serializable {
                 ", timeLimit=" + timeLimit + ", gameFinished=" + 
                 gameFinished + ", fileName=" + fileName + ", cluesObtained=";
         
-        for (int i = 0; i < cluesObtained.length; i++)
+        for (int i = 0; i < clues.length; i++)
         {
-            returnString += cluesObtained[i];
+            returnString += clues[i].toString();
         }
         
         returnString += "forestMap= " + forestMap.toString() + "dungeonMap= " +

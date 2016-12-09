@@ -8,7 +8,9 @@ package byui.cit260.saveTheVillage.view;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.control.MapControl;
+import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.exceptions.MapControlException;
+import byui.cit260.saveTheVillage.model.NPC;
 
 /**
  *
@@ -327,20 +329,9 @@ public class SceneView extends View
                 break;
             //Search Scene
             case "X":
-                if (isInDungeon || game.getForestMap().getSceneArray()
-                    [currentRow][currentColumn].getClue().equals(""))
-                {
-                    //Nothing to be found
-                    this.console.println("You searched the area, but did not " +
-                    "find anything in particular worth noting.");
-                }
-                else
-                {
-                    //Display the clue for the scene
-                    this.console.println(game.getForestMap().getSceneArray()
-                    [currentRow][currentColumn].getClue());
-                    //****LEAD TO ANOTHER VIEW TO ADD THE CLUE TO THE GAME ??????
-                }
+                //Display the Scene Clue
+                SceneControl newSceneControl = new SceneControl();
+                this.console.println(newSceneControl.getSceneClue(game));
                 break;
             //Pick Up Key Item on Map Scene
             case "P":
@@ -354,12 +345,8 @@ public class SceneView extends View
                 break;
             //Talk with an NPC
             case "C":
-                // *****INTEGRATE A COMMUNICATIONS VIEW
-                //This is currently pulling in all NPC's, even blanks
-                this.console.println("There are " + (game.getIsInDungeon() ? 
-                    0 : game.getForestMap().getSceneArray()
-                    [game.getCurrentRow()][game.getCurrentColumn()].getNPC()
-                    .length) + " NPC's available to converse with");
+                CommunicationsView newCommunicationsView = new CommunicationsView(game);
+                newCommunicationsView.display(game);
                 break;
             //Bring up the Game Menu
             case "G":

@@ -12,7 +12,8 @@ import java.util.Objects;
  *
  * @author Yoda
  */
-public class Actor implements Serializable{
+public class Actor implements Serializable
+{
     private String name;
     private String type;  //Regular, Miniboss, or Boss
     private Item item;

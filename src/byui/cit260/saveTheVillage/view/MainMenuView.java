@@ -150,7 +150,7 @@ public class MainMenuView extends View
         catch (InventoryControlException ice)
         {
             //If exception occurs, terminate the new game
-            this.console.println(ice.getMessage());
+            ErrorView.display(this.getClass().getName(),ice.getMessage());
             return;
         }
             

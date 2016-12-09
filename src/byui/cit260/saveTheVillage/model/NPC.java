@@ -15,10 +15,8 @@ import java.util.Objects;
 public class NPC implements Serializable
 {
     private String npcName;
-    private String clue;
-    private Item reward;
+    private String associatedScene;
     private boolean captured;
-    private boolean completedQuest;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
@@ -26,23 +24,18 @@ public class NPC implements Serializable
     public NPC()
     {
         this.npcName = "None";
-        this.clue = "No Clue";
-        this.reward = Item.None;
+        this.associatedScene = "None";
         this.captured = false;
-        this.completedQuest = false;
     }
 
     /* ********************************************************
     NON-DEFAULT CONSTRUCTOR
     ********************************************************* */
-    public NPC(String npcName, String clue, Item reward, boolean captured,
-            boolean completedQuest)
+    public NPC(String npcName, String associatedScene, boolean captured)
     {
         this.npcName = npcName;
-        this.clue = clue;
-        this.reward = reward;
+        this.associatedScene = associatedScene;
         this.captured = captured;
-        this.completedQuest = completedQuest;
     }
 
     /* ********************************************************
@@ -51,10 +44,8 @@ public class NPC implements Serializable
     public NPC(NPC otherNPC)
     {
         this.npcName = otherNPC.npcName;
-        this.clue = otherNPC.clue;
-        this.reward = otherNPC.reward;
+        this.associatedScene = otherNPC.associatedScene;
         this.captured = otherNPC.captured;
-        this.completedQuest = otherNPC.completedQuest;
     }
 
     /* ********************************************************
@@ -70,20 +61,14 @@ public class NPC implements Serializable
         this.npcName = npcName;
     }
     
-    public String getClue() {
-        return this.clue;
+    public String getAssociatedScene()
+    {
+        return this.associatedScene;
     }
-
-    public void setClue(String clue) {
-        this.clue = clue;
-    }
-
-    public Item getReward() {
-        return reward;
-    }
-
-    public void setReward(Item reward) {
-        this.reward = reward;
+    
+    public void setAssociatedScene(String associatedScene)
+    {
+        this.associatedScene = associatedScene;
     }
 
     public boolean getCaptured() {
@@ -94,26 +79,13 @@ public class NPC implements Serializable
         this.captured = captured;
     }
     
-    public boolean getCompletedQuest()
-    {
-        return completedQuest;
-    }
-
-    public void setCompletedQuest(boolean reward)
-    {
-        this.completedQuest = reward;
-    }
-    
     /* ********************************************************
     OTHER
     ********************************************************* */
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 83 * hash + Objects.hashCode(this.clue);
-        hash = 83 * hash + Objects.hashCode(this.reward);
         hash = 83 * hash + (this.captured ? 1 : 0);
-        hash = 83 * hash + (this.completedQuest ? 1 : 0);
         return hash;
     }
 
@@ -132,22 +104,13 @@ public class NPC implements Serializable
         if (this.captured != other.captured) {
             return false;
         }
-        if (!Objects.equals(this.clue, other.clue)) {
-            return false;
-        }
-        if (!Objects.equals(this.reward, other.reward)) {
-            return false;
-        }
-        if (this.completedQuest != other.completedQuest) {
-            return false;
-        }
         return true;
     }
 
     @Override
-    public String toString() {
-        return "NPC{" + "clue=" + clue + ", reward=" + reward.toString() + 
-                ", captured=" + captured + ", completedQuest=" +
-                completedQuest + '}';
+    public String toString()
+    {
+        return "NPC{npcName=" + npcName + ", associatedScene=" + 
+            associatedScene +", captured=" + captured + '}';
     }
 }
