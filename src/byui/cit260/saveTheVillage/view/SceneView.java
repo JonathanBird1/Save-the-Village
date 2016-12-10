@@ -9,7 +9,9 @@ import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.control.MapControl;
 import byui.cit260.saveTheVillage.control.SceneControl;
+import byui.cit260.saveTheVillage.control.InventoryControl;
 import byui.cit260.saveTheVillage.exceptions.MapControlException;
+import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import byui.cit260.saveTheVillage.model.NPC;
 
 /**
@@ -241,7 +243,7 @@ public class SceneView extends View
                 }
                 catch (MapControlException mce)
                 {
-                    this.console.println(mce.getMessage());
+                    ErrorView.display(this.getClass().getName(), mce.getMessage());
                 }
                 break;
             //Head South
@@ -254,7 +256,7 @@ public class SceneView extends View
                 }
                 catch (MapControlException mce)
                 {
-                    this.console.println(mce.getMessage());
+                    ErrorView.display(this.getClass().getName(), mce.getMessage());
                 }
                 break;
             //Head East
@@ -267,7 +269,7 @@ public class SceneView extends View
                 }
                 catch (MapControlException mce)
                 {
-                    this.console.println(mce.getMessage());
+                    ErrorView.display(this.getClass().getName(), mce.getMessage());
                 }
                 break;
             //Head West
@@ -280,7 +282,7 @@ public class SceneView extends View
                 }
                 catch (MapControlException mce)
                 {
-                    this.console.println(mce.getMessage());
+                    ErrorView.display(this.getClass().getName(), mce.getMessage());
                 }
                 break;
             //Enter/Exit Dungeon (If on Dungeon Entrance)
@@ -327,16 +329,51 @@ public class SceneView extends View
                     game.setIsInDungeon(true);
                 }
                 break;
-            //Search Scene
+            //Search Scene and Pick Up Any Key Items
             case "X":
-                //Display the Scene Clue
+                //Display the Scene Clue If Key Scene Not Already Searched
+                boolean alreadyDisplayed = false;
                 SceneControl newSceneControl = new SceneControl();
-                this.console.println(newSceneControl.getSceneClue(game));
-                break;
-            //Pick Up Key Item on Map Scene
-            case "P":
-                // ****INTEGRATE A PICK UP MENU VIEW
-                this.console.println("There is nothing to pick up at this time");
+                switch (newSceneControl.getCurrentScene(game).getName())
+                {
+                    case "Key":
+                    case "Tracks1":
+                    case "Tracks2":
+                    case "Tracks3":
+                    case "Defensive":
+                    case "Offensive":
+                    case "Memento":
+                    case "Ring":
+                    case "Necklace":
+                    case "Toy":
+                        if (game.getClue(newSceneControl.getCurrentScene(game).
+                        getName()).getRetrieved())
+                            this.console.println(game.getClues()[11].getSceneClue());
+                        else
+                        {
+                            //Display the Clue
+                            this.console.println(newSceneControl.getSceneClue(game));
+                            
+                            //Add the scene item to inventory and set the
+                            //retrieved indicator as True if successful
+                            InventoryControl newInventoryControl = new InventoryControl();
+                            try
+                            {
+                                newSceneControl.retrieveClue(game).setRetrieved(
+                                    newInventoryControl.addItemToInventory(
+                                    newSceneControl.retrieveClue(game).getSceneItem(),
+                                    game.getPlayer()));
+                            }
+                            catch (InventoryControlException ice)
+                            {
+                                ErrorView.display(this.getClass().getName(),
+                                    ice.getMessage());
+                            }
+                        }
+                        break;
+                    default:
+                        this.console.println(game.getClues()[11].getSceneClue());
+                }
                 break;
             //Use Item in Inventory
             case "U":
