@@ -7,9 +7,13 @@ package byui.cit260.saveTheVillage.control;
 
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
-import byui.cit260.saveTheVillage.view.View;
+import byui.cit260.saveTheVillage.exceptions.PlayerControlException;
+import byui.cit260.saveTheVillage.model.Player;
+import byui.cit260.saveTheVillage.model.Stats;
+import byui.cit260.saveTheVillage.view.ErrorView;
 import java.io.IOException;
 import java.io.PrintWriter;
+import savethevillage.SaveTheVillage;
 
 /**
  *
@@ -91,13 +95,92 @@ public class InventoryControl
         }
     }
     
+    /* ********************************************************
+    ADD ITEM TO INVENTORY
+    ********************************************************* */
+    public static boolean addItemToInventory(Item item, Player player)
+    throws InventoryControlException
+    {
+        //Determine if weight limit would be exceeded
+        PlayerControl newPlayerControl = new PlayerControl();
+        boolean exceededWeight = false;
+        int currentWeight = newPlayerControl.determinePlayerCurrentWeight(player);
+        int weightLimit = newPlayerControl.determinePlayerWeightLimit(player);
+        
+        if ((currentWeight + item.getWeight()) > weightLimit)
+        {
+            throw new InventoryControlException("You are unable to add this "
+                + "item to your inventory as it would exceed your weight limit.");
+        }
+        
+        //Browse inventory to find the first open slot available
+        boolean space = false;
+        if (!(item == Item.None))
+        {
+            int itemSlot = 0;
+            while (itemSlot < 60 && space == false)
+            {
+                if (player.getItems()[itemSlot] == Item.None)
+                {
+                    space = true;
+                }
+                else
+                {
+                    itemSlot++;
+                }
+            }
+            
+            if (space)
+            {
+                //Add the item
+                player.setItems(itemSlot, item);
+                System.out.println("You successfully added " + 
+                    item.getItemName() + " to your inventory.");
+            }
+            else
+            {
+                throw new InventoryControlException("Sorry, seems like you "
+                    + "didn't budget your inventory well enough - you have no "
+                    + "space to store this item.");
+            }
+        }
+        
+        //Calculate and Set New Weight
+        player.setPlayerWeight(currentWeight + item.getWeight());
+        System.out.println("Your new weight is:  " + (currentWeight + item.getWeight()));
+        
+        //Calculate and Set New Speed Penalty
+        Stats newStats = new Stats(player.getPlayerStats());
+        try
+        {
+            newStats.setSpeedPenalty(newPlayerControl.determineSpeedPenalty
+                (player.getPlayerStats().getSpeed(), 
+                player.getPlayerStats().getStrength(),
+                player.getPlayerWeight()));
+        }
+        catch (PlayerControlException me)
+        {
+            throw new InventoryControlException("Your speed seems wrong...");
+        }
+
+        player.setPlayerStats(newStats);
+        System.out.println("Your new speed penalty is:  " +
+            player.getPlayerStats().getSpeedPenalty());
+        
+        return true;
+    }
+    
+    /* ********************************************************
+    PRINT WEAPON REPORT
+    ********************************************************* */
+
     public static void printWeaponReport (String outputLocation)
     {         
         try (PrintWriter outFile = new PrintWriter(outputLocation))
         {
             outFile.println("\n          Weapon List         ");
-            outFile.printf("%n%-20s%10s%10s", "Name", "Buy Price", "Damage");
-            outFile.printf("%n%-20s%10s%10s", "____", "________", "______");
+            outFile.printf("%n%-30s%10s%10s", "Name", "Buy Price", "Damage");
+            outFile.printf("%n%-30s%10s%10s", "____", "________", "______");
             int i = 0;   
 
             Item[] items = Item.values();
@@ -105,7 +188,8 @@ public class InventoryControl
             {
                 if (item.getAssociation()== "Weapons Shop") {
                     i++;  
-                    outFile.printf("\n" + "%n%-20s%10s%10s", item.getItemName(),item.getBuyPrice(),item.getWeaponDamage());
+                    outFile.printf("\n" + "%n%-30s%10s%10s", item.getItemName(),
+                    item.getBuyPrice(),item.getWeaponDamage());
 
                 }
             }   

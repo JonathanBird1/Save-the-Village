@@ -240,4 +240,21 @@ public class PlayerControl {
         //more money
         return strength * 3;
     }
+    
+    /* ********************************************************
+    DETERMINE PLAYER WEIGHT
+    ********************************************************* */
+    public int determinePlayerCurrentWeight(Player player)
+    {
+        return determineWeight(player.getItems(), player.getWeapon(), 
+                player.getMoney());
+    }
+    
+    /* ********************************************************
+    DETERMINE PLAYER WEIGHT LIMIT
+    ********************************************************* */
+    public int determinePlayerWeightLimit(Player player)
+    {
+        return determineWeightLimit(player.getPlayerStats().getStrength());
+    }
 }

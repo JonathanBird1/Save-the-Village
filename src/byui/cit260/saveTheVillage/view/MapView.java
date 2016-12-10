@@ -76,8 +76,8 @@ public class MapView extends View
                     for (Scene thisScene : sceneRow)
                     {
                         //Coordinates
-                        mapOutput += " " + thisScene.getRow() + "," + 
-                            thisScene.getColumn() + " |";
+                        mapOutput += " " + (thisScene.getRow() + 1) + "," + 
+                            (thisScene.getColumn() + 1) + " |";
                     }
                     mapOutput += " |";
                     mapOutput += "\n\t| |";
@@ -171,8 +171,8 @@ public class MapView extends View
                     + "\n\t|---------------------------------------|"
                     + "\n\t  X - Dungeon Entrance  I = Inn"
                     + "\n\t  C - Clue              B = Bank"
-                    + "\n\t                        S = Item Shop"
-                    + "\n\t                        W = Weapon Shop"
+                    + "\n\t  N - Normal Scene      S = Item Shop"
+                    + "\n\t  ? - Not Yet Visited   W = Weapon Shop"
                     + "\n\t| ------------------------------------- |";
                 break;
             //***************DUNGEON MAP**********************
@@ -198,8 +198,8 @@ public class MapView extends View
                             case "Miniboss1":
                             case "Miniboss2":
                             case "Boss":
-                                mapOutput += "| " + thisScene.getRow() + "," +
-                                    thisScene.getColumn() + " |";
+                                mapOutput += "| " + (thisScene.getRow() + 1) + "," +
+                                    (thisScene.getColumn() + 1) + " |";
                                 break;
                             default:  //NoPath
                                 mapOutput += "       ";
@@ -256,7 +256,7 @@ public class MapView extends View
                 }
                 mapOutput +=
                       "\n\t|-----------------------------------------------------------------|"
-                    + "\n\t  E - Dungeon Exit  P = Dungeon Path"
+                    + "\n\t  E - Dungeon Exit  P = Dungeon Path   ? - Not Yet Visited"
                     + "\n\t  B - Branch        1 = Miniboss 1"
                     + "\n\t  M - Dungeon Boss  2 = Miniboss 2"
                     + "\n\t|-----------------------------------------------------------------|";

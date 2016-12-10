@@ -47,10 +47,10 @@ public class BattleVictoryView extends View
                 + "following:\n"
                 + "\t" + droppedGold + " Gold Pieces\n"
                 + "\tItem:  " + droppedItem + "\n\n"
-                + "Your current Weight is " + currentWeight + " and your"
+                + "Your current Weight is " + currentWeight + " and your "
                 + "current Speed Penalty is " + speedPenalty + "\n\n"
-                + "Would you like to keep the gold and item?  "
-                + "Enter (Y) for Yes or (N) for No:";
+                + "Would you like to keep your spoils?  "
+                + "Enter (Y) for Yes or (N) for No:\n";
 
         boolean done = false;
         do
@@ -139,62 +139,64 @@ public class BattleVictoryView extends View
                 {
                     //Add Gold
                     player.setMoney(player.getMoney() + droppedGold);
-                    this.console.println("Your current gold is:  " + 
+                    this.console.println("\nYour current gold is:  " + 
                         player.getMoney());
                     
                     //Add Item if space in inventory
-                    int itemSlot = 0;
                     boolean space = false;
-                    
-                    while (itemSlot < 60 && space == false)
+                    if (!(droppedItem == Item.None))
                     {
-                        if (player.getItems()[itemSlot] == Item.None)
+                        int itemSlot = 0;
+                        while (itemSlot < 60 && space == false)
                         {
-                            space = true;
+                            if (player.getItems()[itemSlot] == Item.None)
+                            {
+                                space = true;
+                            }
+                            else
+                            {
+                                itemSlot++;
+                            }
+                        }
+                        
+                        if (space)
+                        {
+                            //Add the item
+                            player.setItems(itemSlot, droppedItem);
+                            this.console.println("You successfully added " + 
+                                droppedItem.getItemName() + " to your inventory.");
                         }
                         else
                         {
-                            itemSlot++;
+                            this.console.println("Sorry, seems like you didn't budget "
+                                + "your inventory well enough - you have no space "
+                                + "to store this item.");
                         }
                     }
                     
-                    if (space)
-                    {
-                        //Add the item
-                        player.setItems(itemSlot, droppedItem);
-                        this.console.println("You successfully added " + 
-                            droppedItem.getItemName() + " to your inventory.");
-                    }
-                    else
-                    {
-                        this.console.println("Sorry, seems like you didn't budget "
-                            + "your inventory well enough - you have no space "
-                            + "to store this item.");
-                }
-                
-                //Calculate and Set New Weight
-                player.setPlayerWeight(currentWeight + droppedGold / 100 + 
-                    (space ? droppedItem.getWeight() : 0));
-                this.console.println("Your new weight is:  " + 
+                    //Calculate and Set New Weight
+                    player.setPlayerWeight(currentWeight + droppedGold / 100 + 
+                        (space ? droppedItem.getWeight() : 0));
+                    this.console.println("Your new weight is:  " + 
                         player.getPlayerWeight());
-                
-                //Calculate and Set New Speed Penalty
-                Stats newStats = new Stats(player.getPlayerStats());
-                try
-                {
-                    newStats.setSpeedPenalty( newPlayerControl.
-                    determineSpeedPenalty(player.getPlayerStats().getSpeed(), 
-                    player.getPlayerStats().getStrength(),
-                    player.getPlayerWeight()));
-                }
-                catch (PlayerControlException me)
-                {
-                    ErrorView.display(this.getClass().getName(), "Your speed seems wrong...");
-                }
-                
-                player.setPlayerStats(newStats);
-                this.console.println("Your new speed penalty is:  " +
-                    player.getPlayerStats().getSpeedPenalty());
+                    
+                    //Calculate and Set New Speed Penalty
+                    Stats newStats = new Stats(player.getPlayerStats());
+                    try
+                    {
+                        newStats.setSpeedPenalty( newPlayerControl.
+                        determineSpeedPenalty(player.getPlayerStats().getSpeed(), 
+                        player.getPlayerStats().getStrength(),
+                        player.getPlayerWeight()));
+                    }
+                    catch (PlayerControlException me)
+                    {
+                        ErrorView.display(this.getClass().getName(), "Your speed seems wrong...");
+                    }
+                    
+                    player.setPlayerStats(newStats);
+                    this.console.println("Your new speed penalty is:  " +
+                        player.getPlayerStats().getSpeedPenalty());
                 }
             }
             else

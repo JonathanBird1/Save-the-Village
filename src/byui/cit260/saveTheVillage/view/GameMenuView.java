@@ -11,6 +11,7 @@ import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
 import byui.cit260.saveTheVillage.model.Item;
+import byui.cit260.saveTheVillage.model.Clue;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -76,7 +77,7 @@ public class GameMenuView extends View
                 break;
             case "D":
                 // Display the clues received
-                this.displayQuestDetails();
+                this.displayQuestDetails(game);
                 break;
             case "M":
                 //Display the Dungeon and Forest Maps
@@ -153,23 +154,23 @@ public class GameMenuView extends View
         this.console.println("\tINVENTORY ON HAND\n");
         this.console.print("\t");
         this.console.printf("%-3s", "#");
-        this.console.printf("%-15s", "ITEM NAME");
-        this.console.printf("%-7s", "TYPE");
+        this.console.printf("%-25s", "ITEM NAME");
+        this.console.printf("%-10s", "TYPE");
         this.console.printf("%-11s", "SELL PRICE");
         this.console.printf("%-5s", "DAM.");
         this.console.printf("%-5s", "HEAL");
         this.console.printf("%-5s", "MANA");
         this.console.printf("%-6s", "WEIGHT");
         this.console.println();
-        this.console.println("\t---------------------------------------------------------");
+        this.console.println("\t----------------------------------------------------------------------");
         
         for (Item item : player.getItems())
         {
             counter++;
             this.console.print("\t");
             this.console.printf("%-3d", counter);
-            this.console.printf("%-15s", item.getItemName());
-            this.console.printf("%-7s", item.getType());
+            this.console.printf("%-25s", item.getItemName());
+            this.console.printf("%-10s", item.getType());
             this.console.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
             this.console.printf("%-5d", item.getWeaponDamage());
             this.console.printf("%-5d", item.getHealingAmount());
@@ -185,23 +186,23 @@ public class GameMenuView extends View
         this.console.println("\tINVENTORY IN THE BANK\n");
         this.console.print("\t");
         this.console.printf("%-3s", "#");
-        this.console.printf("%-15s", "ITEM NAME");
-        this.console.printf("%-7s", "TYPE");
+        this.console.printf("%-25s", "ITEM NAME");
+        this.console.printf("%-10s", "TYPE");
         this.console.printf("%-11s", "SELL PRICE");
         this.console.printf("%-5s", "DAM.");
         this.console.printf("%-5s", "HEAL");
         this.console.printf("%-5s", "MANA");
         this.console.printf("%-6s", "WEIGHT");
         this.console.println();
-        this.console.println("\t---------------------------------------------------------");
+        this.console.println("\t----------------------------------------------------------------------");
         
-        for (Item item : player.getItems())
+        for (Item item : player.getDepositedItems())
         {
             counter++;
             this.console.print("\t");
             this.console.printf("%-3d", counter);
-            this.console.printf("%-15s", item.getItemName());
-            this.console.printf("%-7s", item.getType());
+            this.console.printf("%-25s", item.getItemName());
+            this.console.printf("%-10s", item.getType());
             this.console.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
             this.console.printf("%-5d", item.getWeaponDamage());
             this.console.printf("%-5d", item.getHealingAmount());
@@ -214,7 +215,7 @@ public class GameMenuView extends View
     /* ********************************************************
     DISPLAY QUEST DETAILS
     ********************************************************* */
-    private void displayQuestDetails()
+    private void displayQuestDetails(Game game)
     {
         this.console.println("YOUR QUEST");
         this.console.println();
@@ -224,6 +225,18 @@ public class GameMenuView extends View
 "Upon meeting you and learning of your abilities, the elders of the village have pleaded \n" +
 "with you to save the missing villagers and protect the village.  Armed with your sword, \n" +
 "your magic, and your intellect, you set out to save the village…");
+        
+        int i = 1;
+        for (Clue clue : game.getClues())
+        {
+            if (clue.getClueObtained())
+            {
+                this.console.println("\nClue #" + i + ":");
+                this.console.println(clue.getNPCClue());
+                this.console.println("Clue Completed:  " + (clue.getCompleted() ? 
+                    "Yes" : "No"));
+            }
+        }
     }
 
     /* ********************************************************

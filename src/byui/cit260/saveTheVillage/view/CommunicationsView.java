@@ -7,6 +7,7 @@ package byui.cit260.saveTheVillage.view;
 
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.NPC;
+import byui.cit260.saveTheVillage.model.Clue;
 import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.exceptions.SceneControlException;
 
@@ -90,20 +91,31 @@ public class CommunicationsView extends View
         try
         {
             thisNPC = newSceneControl.validateNPC(choice, game.getForestMap().getScene(
-            game.getCurrentColumn(), game.getCurrentRow()));
+            game.getCurrentRow(), game.getCurrentColumn()));
         }
         catch (SceneControlException sce)
         {
             ErrorView.display(this.getClass().getName(), sce.getMessage());
-            return false;
+            return true;
         }
         
-        //Display the NPC's clue
-        this.console.println(newSceneControl.getNPCClue(game, 
-            thisNPC.getAssociatedScene()));
+        //Choice between NPC's Clue and Completed Quest Dialogue
+        Clue currentClue = game.getClue(thisNPC.getAssociatedScene());
+        if (currentClue.getClueObtained() && currentClue.getRetrieved())
+        {
+            //If original clue was obtained and item received indicator set,
+            //display the completed quest dialogue
+            this.console.println(currentClue.getCompletedQuest());
+            game.getClue(thisNPC.getAssociatedScene()).setCompleted(true);
+        }
+        else
+        {
+            //Display the NPC's clue
+            this.console.println(currentClue.getNPCClue());
             
-        //Set the clue to having been viewed if not already done so in game
-        game.getClue(thisNPC.getAssociatedScene()).setClueObtained(true);
+            //Set the clue to having been viewed if not already done so in game
+            game.getClue(thisNPC.getAssociatedScene()).setClueObtained(true);
+        }
         
         return true;
     }

@@ -32,6 +32,24 @@ public class BattleControl
         int randomEnemy = (int)(Math.random() * 100);
         assert (randomEnemy >= 0 && randomEnemy <= 100);
         
+/*    private String name;
+    private String type;  //Regular, Miniboss, or Boss
+    private Item item;
+    private int gold;
+    private Stats enemyStats;
+    private int currentHealth;*/
+
+/*    private int health;
+    private int mana;
+    private int strength;
+    private double hitRate;
+    private int magic;
+    private double dodgeRate;
+    private int defense;
+    private int magicDefense;
+    private int speed;
+    private int speedPenalty; */
+
         switch (scene)
         {
             case "Forest":
@@ -53,19 +71,19 @@ public class BattleControl
                 }
                 else if (randomEnemy <= 50)
                 {
-                    enemyStats = new Stats(20, 0, 5, .25, 0, .15, 5, 15, 15, 0);
+                    enemyStats = new Stats(20, 0, 10, .25, 0, .15, 5, 15, 15, 0);
                     newEnemy = new Actor("Wolf", "Monster", enemyItem,
                     20, enemyStats, 20);
                 }
                 else if (randomEnemy <= 75)
                 {
-                    enemyStats = new Stats(30, 0, 10, .25, 0, .05, 10, 10, 10, 0);
+                    enemyStats = new Stats(30, 0, 15, .25, 0, .05, 10, 10, 10, 0);
                     newEnemy = new Actor("Giant Spider", "Monster", enemyItem,
                     15, enemyStats, 30);
                 }
                 else
                 {
-                    enemyStats = new Stats(40, 0, 5, .35, 0, .3, 5, 5, 20, 0);
+                    enemyStats = new Stats(40, 0, 10, .35, 0, .3, 5, 5, 20, 0);
                     newEnemy = new Actor("Vulture", "Monster", enemyItem,
                     15, enemyStats, 40);
                 }
@@ -206,7 +224,9 @@ public class BattleControl
             calculatedDamage = (int)(calculatedDamage * Math.PI);
         }
         
-        if (calculatedDamage < 0)
+        if (calculatedDamage <= 0 && successRate > 0)
+            return 1;
+        else if (calculatedDamage < 0)
             return 0;
         
         return calculatedDamage;

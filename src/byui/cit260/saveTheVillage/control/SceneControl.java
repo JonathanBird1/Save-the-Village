@@ -11,6 +11,7 @@ import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.NPC;
+import byui.cit260.saveTheVillage.model.Clue;
 import byui.cit260.saveTheVillage.view.ErrorView;
 import byui.cit260.saveTheVillage.exceptions.SceneControlException;
 import java.io.IOException;
@@ -129,11 +130,19 @@ public class SceneControl
     }
     
     /* ********************************************************
+    RETRIEVE CLUE
+    ********************************************************* */
+    public Clue retrieveClue(Game game)
+    {
+        return game.getClue(getCurrentScene(game).getName());
+    }
+    
+    /* ********************************************************
     GET SCENE CLUE
     ********************************************************* */
     public String getSceneClue(Game game)
     {
-        return game.getClue(getCurrentScene(game).getName()).getSceneClue();
+        return retrieveClue(game).getSceneClue();
     }
 
     /* ********************************************************
@@ -141,6 +150,6 @@ public class SceneControl
     ********************************************************* */
     public String getNPCClue(Game game, String associatedScene)
     {
-        return game.getClue(associatedScene).getNPCClue();
+        return retrieveClue(game).getNPCClue();
     }
 }
