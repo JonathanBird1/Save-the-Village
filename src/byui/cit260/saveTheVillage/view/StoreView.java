@@ -91,7 +91,7 @@ public class StoreView extends View{
         for (Item item : items){
             if (item.getAssociation().equals("Item Shop") && item.getBuyPrice() != 0) {
               i++;  
-              this.console.println(i + "  " + item +"\t" + item.getBuyPrice());
+              this.console.println(i + "  " + item.getItemName() +"\t" + item.getBuyPrice());
               itemName[i]=item.getItemName();
             }
         }

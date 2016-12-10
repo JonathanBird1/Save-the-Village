@@ -6,6 +6,7 @@
 package byui.cit260.saveTheVillage.view;
 
 import byui.cit260.saveTheVillage.control.SceneControl;
+import static java.lang.Integer.parseInt;
 import java.util.Scanner;
 
 /**
@@ -63,7 +64,7 @@ public class BankView extends View
     private void DepositMoney()
     {
         int currentMoney = 0;
-        int value = 0;
+        int keyboardValue = 0;
         boolean valid = false;
         
         while(!valid)
@@ -75,22 +76,22 @@ public class BankView extends View
             
             try
             {
-                value = this.keyboard.read();
+                keyboardValue = parseInt(this.keyboard.readLine());
             } catch (Exception e)
             {
                 ErrorView.display(this.getClass().getName(), "Invalid amount.");
             }
             try{
-            if(value < 0)
+            if(keyboardValue < 0)
             {
                 ErrorView.display(this.getClass().getName(),"Invalid amount");
                 continue;
             }
-            if(value == 0)
+            if(keyboardValue == 0)
             {
                 return;
             }
-            else if(value > max)  //need to get the highest item number
+            else if(keyboardValue > max)  //need to get the highest item number
             {
                 this.console.println ("Sorry friend, but it would seem that you have "
                 + "insufficient funds to comply with that request.");

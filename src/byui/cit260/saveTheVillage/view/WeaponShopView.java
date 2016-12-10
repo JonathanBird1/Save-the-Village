@@ -99,12 +99,12 @@ public class WeaponShopView extends View{
         for (Item item : items){
             if (item.getAssociation()== "Weapons Shop" && item.getBuyPrice() != 0) {
               i++;  
-              this.console.println(i + "  " + item +"\t" + item.getBuyPrice());
+              this.console.println(i + "  " + item.getItemName() +"\t" + item.getBuyPrice());
               totalAll += item.getBuyPrice();  //for assignment remove this later
               itemName[i]=item.getItemName();
             }
         }
-        this.console.println("To purchase all items the cost would be: $" + totalAll);  //for assignment remove this later
+        //this.console.println("To purchase all items the cost would be: $" + totalAll);  //for assignment remove this later
         this.console.println("\nWhich item would you like to buy?");
         this.console.println("\nEnter 0 to exit");
         //Prompt for user input of which item to buy

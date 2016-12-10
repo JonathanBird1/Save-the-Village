@@ -61,7 +61,7 @@ public class SceneControl
             }
             if (item.getBuyPrice() != 0 && !(diff < 0)) {
                 player.setMoney(diff);
-                System.out.println("\nYou now have $" + player.getMoney());
+                System.out.println("\nYou now have " + player.getMoney() + "gold.");
               //  int max = player.getItemMax();
               //  System.out.println("\ntest max " + max);
               //  max++;
@@ -77,7 +77,7 @@ public class SceneControl
                 System.out.println(item.getItemName() + " added to inventory");
             }
             else System.out.println("\nYou don't have enough for that!" + 
-                    "\nYou only have $" + player.getMoney());
+                    "\nYou only have " + player.getMoney() + " gold.");
         }
     
     /* ********************************************************

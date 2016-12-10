@@ -9,6 +9,7 @@ import java.util.Scanner;
 import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.Player;
+import static java.lang.Integer.parseInt;
 
 
 /**
@@ -68,9 +69,33 @@ public class InnView extends View
         return exitMenu;
     }
 
+    /* ********************************************************
+    REST AT INN
+    ********************************************************* */
     private void restAtInn(Game game)
     {
         int value = 0;
+        try
+        {
+            value = parseInt(this.keyboard.readLine());
+        }
+        catch (Exception e)
+        {
+            ErrorView.display(this.getClass().getName(), e.getMessage());
+        }
+        
+        //No need to do anything if not sleeping
+        if (value == 0)
+            return;
+        
+        if (value < 0 || value > 8)
+        {
+            ErrorView.display(this.getClass().getName(), "ERROR:  You must "
+            + "choose to sleep between 0 and 8 hours");
+            
+            return;
+        }
+        
         //Run the restAtInn function
         SceneControl newSceneControl = new SceneControl();
         newSceneControl.restAtInn(game.getPlayer(), value);
