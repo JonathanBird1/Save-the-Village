@@ -14,46 +14,45 @@ import java.util.Objects;
  *
  * @author Master Brickbuilder
  */
-public enum Spell implements Serializable {
-
+public enum Spell implements Serializable
+{
     //Human racial spells are Healing Wind, Fireburst, and Steel Blade
-    HealingWind("Healing Wind", "Heals the player for a meduim amount \nof health.", 
-            0, 50, "null", 0),
-    Fireburst("Fireburst", "Creates a burst of fire dealing high fire \ndamage to "
-            + "the enemey.", 75, 0, "null", 0),
-    SteelBlade("Steel Blade", "Increases the base damage of weapon for \nthe next 5 "
-            + "turns.", 0, 0, "damage", 35), //increase base damage
+    HealingWind("Healing Wind", "Heals the player for a meduim amount of health.", 
+            0, 50, "None", 0),
+    Fireburst("Fireburst", "Creates a burst of fire dealing high fire damage to "
+            + "the enemey.", 75, 0, "None", 0),
+    SteelBlade("Steel Blade", "Increases the base damage of your weapon.", 0, 0,
+            "Damage", 35),
     //Elf racial spells are Swift Wind, Blinding Light, and Ice Blade
-    SwiftWind("Swift Wind", "Increases the player's agility for the \nnext 2 turns",
-            0, 0, "agility", 50), //increase agility
-    BlindingLight("Blinding Light", "Produces a flash of light, reducing \nenemy "
-            + "accuracy by 50% for the next turn and 25% for the turn \nafter that.",
-            0, 0, "enemy accuracy", -25),
-    IceBlade("Ice Blade", "Deals medium amount of ice damage to enemy \nwith a 25% "
-            + "chance of freezing the enemy for the next turn.\n", 50, 0, "enemy speed",
-            -100),
+    SwiftWind("Swift Wind", "Increases your accuracy for the duration of the fight",
+            0, 0, "Hit Rate", .15),
+    BlindingLight("Blinding Light", "Produces a flash of light, increasing your "
+            + "chance of dodging.",
+            0, 0, "Dodge Rate", .15),
+    IceBlade("Ice Blade", "Deals some ice damage to enemy while slowing the "
+            + "enemy.", 30, 0, "Speed", -.5),
     //Dwarf racial spells are Earthquake, Iron Body, and Decimating Blow
-    Earthquake("Earthquake", "Sacrifice 50 health points to deal  high\n levels of "
-            + "earth damage with a 90% chance of hitting.", 75, -50, "accuracy",
-            90), //negative 50 health
-    IronBody("Iron Body", "Increases the player's defense by 50% \nfor the next 2 "
-            + "turns.", 0, 0, "defense", 50), //defense increase 50%
-    DecimatingBlow("Decimating Blow", "Decrease player defense by 25%\n in order to "
-            + "increase attack damage 25 %for the next 5 turns.", 0, 0, "damage",
-            25);//defense by 25%, attack damage 25%
+    Earthquake("Earthquake", "Sacrifice 25 health points to deal  high levels of "
+            + "earth damage.", 100, -25, "None", 0),
+    IronBody("Iron Body", "Increases the player's defense for the duration"
+            + " of the battle.", 0, 0, "Defense", 15),
+    DecimatingBlow("Decimating Blow", "Inflicts minor damage to the enemy and "
+            + "increase attack damage.", 10, 0, "Damage",
+            25),
+    NoSpell("None", "", 0, 0, "None", 0);
     
     private final String spellName;
     private final String spellDescription;
     private final int damageDealt;
     private final int amountHealed;
     private final String attributeBoosted;
-    private final int attributeBoostAmount;
+    private final double attributeBoostAmount;
 
     /* ********************************************************
     DEFAULT CONSTRUCTOR
     ********************************************************* */
     Spell(String spellName, String description, int damageDealt, int healed, 
-        String attBoost, int attBoostAmnt)
+        String attBoost, double attBoostAmnt)
     {
         this.spellName = spellName;
         this.spellDescription = description;
@@ -91,7 +90,7 @@ public enum Spell implements Serializable {
         return attributeBoosted;
     }
 
-    public int getAttributeBoostAmount()
+    public double getAttributeBoostAmount()
     {
         return attributeBoostAmount;
     }

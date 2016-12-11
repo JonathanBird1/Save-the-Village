@@ -89,6 +89,10 @@ public class CommunicationsView extends View
         if (npcCount < 1 || game.getIsInDungeon())
             return false;
         
+        //If player said None, then no need to continue here
+        if (choice.equals("None"))
+            return false;
+        
         //Test to see if the NPC actually exists
         NPC thisNPC = new NPC();
         SceneControl newSceneControl = new SceneControl();

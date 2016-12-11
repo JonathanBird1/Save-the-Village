@@ -28,13 +28,18 @@ public class BattleView extends View
     private boolean defeated;
     private int damage;
     
+    private int damageBonus;
+    private double hitRateBonus;
+    private double dodgeRateBonus;
+    private int speedBonus;
+    private int defenseBonus;
+    
     /* ********************************************************
     DEFAULT CONSTRUCTOR
     ********************************************************* */
     public BattleView()
     {
-        battleMenu = ("\n"
-                + "\n\t---BATTLE--COMMANDS---"
+        battleMenu = ("\n\t---BATTLE--COMMANDS---"
                 + "\n\t| A - Attack         |"
                 + "\n\t| M - Use Magic      |"
                 + "\n\t| I - Use Item       |"
@@ -50,6 +55,13 @@ public class BattleView extends View
             playerTurn = false;
         }
         defeated = false;
+    
+        damageBonus = 0;
+        hitRateBonus = 0;
+        dodgeRateBonus = 0;
+        speedBonus = 0;
+        defenseBonus = 0;
+    
     }
     
     /* ********************************************************
@@ -177,36 +189,44 @@ public class BattleView extends View
     @Override
     public boolean doAction(String choice)
     {
-        try{
-        //This function is not used - requires the doAction with the game
-        ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the Game as a parameter");
-        }catch (Exception e){
+        try
+        {
+            //This function is not used - requires the doAction with the game
+            ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the Game as a parameter");
+        }
+        catch (Exception e)
+        {
             ErrorView.display(this.getClass().getName(), "Error reading input: "
-                    + e.getMessage());
-    } return false;
+                + e.getMessage());
+        }
+        
+        return false;
     }
     
     public boolean doAction(String menuOption, Player player)
     {
         menuOption = menuOption.toUpperCase();
-        try{
-        switch(menuOption)
+        try
         {
-            case "A":  //Attack
-                doAttack(true, player);
-                break;
-            case "M":  //Use Magic
-                doMagic();
-                break;
-            case "I":  //Use Item
-                doItem();
-                break;
-            default:
-                ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
-        }}
-        catch(Exception e){
+            switch(menuOption)
+            {
+                case "A":  //Attack
+                    doAttack(true, player);
+                    break;
+                case "M":  //Use Magic
+                    doMagic();
+                    break;
+                case "I":  //Use Item
+                    doItem();
+                    break;
+                default:
+                    ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
+            }
+        }
+        catch(Exception e)
+        {
             ErrorView.display(this.getClass().getName(), "Error reading input: "
-                    + e.getMessage());
+                + e.getMessage());
         }
         return false;
     }
@@ -277,6 +297,7 @@ public class BattleView extends View
     ********************************************************* */
     public void doMagic()
     {
+        
         //STUB FUNCTION - TO BE COMPLETED*******************************
         this.console.println("Sorry - You do not currently have access" +
                 " to magic");

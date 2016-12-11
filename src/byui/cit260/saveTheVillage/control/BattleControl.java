@@ -32,24 +32,6 @@ public class BattleControl
         int randomEnemy = (int)(Math.random() * 100);
         assert (randomEnemy >= 0 && randomEnemy <= 100);
         
-/*    private String name;
-    private String type;  //Regular, Miniboss, or Boss
-    private Item item;
-    private int gold;
-    private Stats enemyStats;
-    private int currentHealth;*/
-
-/*    private int health;
-    private int mana;
-    private int strength;
-    private double hitRate;
-    private int magic;
-    private double dodgeRate;
-    private int defense;
-    private int magicDefense;
-    private int speed;
-    private int speedPenalty; */
-
         switch (scene)
         {
             case "Forest":
@@ -231,4 +213,9 @@ public class BattleControl
         
         return calculatedDamage;
     }
+
+    /* ********************************************************
+    RETURN RACE SPELLS
+    ********************************************************* */
+    
 }

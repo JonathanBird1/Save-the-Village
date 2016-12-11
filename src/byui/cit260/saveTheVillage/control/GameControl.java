@@ -391,7 +391,7 @@ public class GameControl
             }
         }
         
-        //The last Clue, 11, is a default clue when there is nothing special in the scene
+        //The last Clue, is a default clue when there is nothing special in the scene
         clues[clueCounter] = new Clue("None", "", 
         "You search the area and only find a lot of useless dirt.",
         "", Item.None, Item.None, 
