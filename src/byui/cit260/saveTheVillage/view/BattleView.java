@@ -220,6 +220,7 @@ public class BattleView extends View
         
         if (playerTurn)  //Player Attack
         {
+            this.console.println("You attack the enemy " + enemy.getName() + ".");
             try {
                 double successRate = thisControl.calcSuccessRate("A",
                         player.getPlayerStats().getHitRate(),
@@ -242,7 +243,9 @@ public class BattleView extends View
                 this.console.println(ex.getMessage());
             }
         }
-        else          {
+        else          
+        {
+            this.console.println("The enemy " + enemy.getName() + " attacks you.");
             try //Enemy Attack
             {
                 double successRate = thisControl.calcSuccessRate("A",

@@ -5,10 +5,13 @@
  */
 package byui.cit260.saveTheVillage.view;
 
+import byui.cit260.saveTheVillage.control.InventoryControl;
 import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.model.NPC;
 import byui.cit260.saveTheVillage.model.Clue;
+import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.control.SceneControl;
+import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import byui.cit260.saveTheVillage.exceptions.SceneControlException;
 
 /**
@@ -42,8 +45,9 @@ public class CommunicationsView extends View
 
         this.console.println((npcCount > 0 ? "The following NPC" + (npcCount == 
             1 ? " is " : "'s are ") + "available for conversation:\n" + npcList 
-            + "\nWhich " + "NPC would you like to converse with?  (Note:  Names are case-sensitive)" : "There are "
-                + "no NPC's with whom you can converse right now"));
+            + "\nWhich " + "NPC would you like to converse with?  Enter "
+            + "\"None\" to Quit\n (Note:  Names are case-sensitive)" : "There are "
+            + "no NPC's with whom you can converse right now"));
     }
     
     @Override
@@ -106,7 +110,28 @@ public class CommunicationsView extends View
             //If original clue was obtained and item received indicator set,
             //display the completed quest dialogue
             this.console.println(currentClue.getCompletedQuest());
-            game.getClue(thisNPC.getAssociatedScene()).setCompleted(true);
+            
+            //If not previously completed, set completed to true and receive item
+            if (!currentClue.getCompleted())
+            {
+                game.getClue(thisNPC.getAssociatedScene()).setCompleted(true);
+            
+                //If there is an item reward associated with the clue, load it
+                //into inventory
+                InventoryControl newInventoryControl = new InventoryControl();
+                try
+                {
+                    Item npcReward = newSceneControl.retrieveClue(game).getNPCReward();
+                    
+                    //Add the Item to Inventory
+                    newSceneControl.retrieveClue(game).setRetrieved(
+                    newInventoryControl.addItemToInventory(npcReward,game.getPlayer()));
+                }
+                catch (InventoryControlException ice)
+                {
+                    ErrorView.display(this.getClass().getName(),ice.getMessage());
+                }
+            }
         }
         else
         {

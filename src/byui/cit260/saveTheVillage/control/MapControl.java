@@ -88,8 +88,8 @@ public class MapControl
                 + "tree stands in the middle of the rock strewn land.", 
                   defaultNPCs, false);
             Scene tracks2 = new Scene("Tracks2",
-                  "This section of the woods is very similar to everywhere else. Massive trees tower above you and the \n"
-                + "undergrowth is littered with fallen sticks and wildflowers.", 
+                  "The forest area here is slightly thin, and you can see wild bushes with flowers\n"
+                + "growing about peacefully.", 
                   defaultNPCs, false);
             Scene tracks3 = new Scene("Tracks3",
                   "A picturesque farmhouse lays before you, a white picket fence surrounds a small patch of flowers beneath\n"

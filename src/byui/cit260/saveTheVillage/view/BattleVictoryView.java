@@ -46,7 +46,7 @@ public class BattleVictoryView extends View
                 + "efforts, " + enemy.getName() + " has dropped the "
                 + "following:\n"
                 + "\t" + droppedGold + " Gold Pieces\n"
-                + "\tItem:  " + droppedItem + "\n\n"
+                + "\tItem:  " + droppedItem.getItemName() + "\n\n"
                 + "Your current Weight is " + currentWeight + " and your "
                 + "current Speed Penalty is " + speedPenalty + "\n\n"
                 + "Would you like to keep your spoils?  "

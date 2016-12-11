@@ -12,6 +12,7 @@ import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.control.InventoryControl;
 import byui.cit260.saveTheVillage.exceptions.MapControlException;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
+import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.NPC;
 
 /**
@@ -106,7 +107,6 @@ public class SceneView extends View
                         + "\n\t| E – Move East       |"
                         + "\n\t| W – Move West       |"
                         + "\n\t| X – Search          |"
-                        + "\n\t| P – Pick up an item |"
                         + "\n\t| U – Use an item     |"
                         + "\n\t| G – Game Menu       |"
                         + "\n\t-----------------------";
@@ -317,16 +317,35 @@ public class SceneView extends View
                     }
                     
                     //Move the player out of the dungeon
+                    this.console.println("You are now leaving the dungeon.");
                     game.setCurrentRow(dungeonEntranceRow);
                     game.setCurrentColumn(dungeonEntranceColumn);
                     game.setIsInDungeon(false);
                 }
                 else
                 {
-                    //Move the player into the dungeon
-                    game.setCurrentRow(4);
-                    game.setCurrentColumn(0);
-                    game.setIsInDungeon(true);
+                    //Move the player into the dungeon if they have the key
+                    boolean hasKey = false;
+                    for (Item item : game.getPlayer().getItems())
+                    {
+                        if (item.equals(Item.DungeonKey))
+                        {
+                            hasKey = true;
+                            break;
+                        }
+                    }
+                    
+                    if (hasKey)
+                    {
+                        this.console.println("You are now entering the dungeon.");
+                        game.setCurrentRow(4);
+                        game.setCurrentColumn(0);
+                        game.setIsInDungeon(true);
+                    }
+                    else
+                    {
+                        this.console.println("You cannot enter the dungeon without the key.");
+                    }
                 }
                 break;
             //Search Scene and Pick Up Any Key Items
@@ -348,7 +367,7 @@ public class SceneView extends View
                     case "Toy":
                         if (game.getClue(newSceneControl.getCurrentScene(game).
                         getName()).getRetrieved())
-                            this.console.println(game.getClues()[11].getSceneClue());
+                            this.console.println(game.getClues()[10].getSceneClue());
                         else
                         {
                             //Display the Clue
@@ -359,10 +378,46 @@ public class SceneView extends View
                             InventoryControl newInventoryControl = new InventoryControl();
                             try
                             {
+                                Item sceneItem = newSceneControl.
+                                    retrieveClue(game).getSceneItem();
+                                
+                                //Add the Item to Inventory
                                 newSceneControl.retrieveClue(game).setRetrieved(
                                     newInventoryControl.addItemToInventory(
-                                    newSceneControl.retrieveClue(game).getSceneItem(),
-                                    game.getPlayer()));
+                                    sceneItem,game.getPlayer()));
+                                
+                                //If the item is a Defensive or Offensive Charm,
+                                //increase the player stats accordingly
+                                if (sceneItem.getItemName().equals("Defensive"))
+                                {
+                                    int newDefense = game.getPlayer().
+                                        getPlayerStats().getDefense() + 10;
+                                    if (newDefense > 100)
+                                        newDefense = 100;
+                                    int newMagicDefense = game.getPlayer().
+                                        getPlayerStats().getMagicDefense() + 10;
+                                    if (newMagicDefense > 100)
+                                        newMagicDefense = 100;
+                                    game.getPlayer().getPlayerStats().
+                                        setDefense(newDefense);
+                                    game.getPlayer().getPlayerStats().
+                                        setMagicDefense(newMagicDefense);
+                                }
+                                else if (sceneItem.getItemName().equals("Offensive"))
+                                {
+                                    int newStrength = game.getPlayer().
+                                        getPlayerStats().getStrength() + 10;
+                                    if (newStrength > 100)
+                                        newStrength = 100;
+                                    double newHitRate = game.getPlayer().
+                                        getPlayerStats().getHitRate() + .1;
+                                    if (newHitRate > 1)
+                                        newHitRate = 1;
+                                    game.getPlayer().getPlayerStats().
+                                        setStrength(newStrength);
+                                    game.getPlayer().getPlayerStats().
+                                        setHitRate(newHitRate);
+                                }
                             }
                             catch (InventoryControlException ice)
                             {
@@ -372,7 +427,7 @@ public class SceneView extends View
                         }
                         break;
                     default:
-                        this.console.println(game.getClues()[11].getSceneClue());
+                        this.console.println(game.getClues()[10].getSceneClue());
                 }
                 break;
             //Use Item in Inventory

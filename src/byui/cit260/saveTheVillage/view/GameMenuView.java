@@ -235,6 +235,8 @@ public class GameMenuView extends View
                 this.console.println(clue.getNPCClue());
                 this.console.println("Clue Completed:  " + (clue.getCompleted() ? 
                     "Yes" : "No"));
+                
+                i++;
             }
         }
     }
