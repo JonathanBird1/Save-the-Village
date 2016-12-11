@@ -13,7 +13,6 @@ import byui.cit260.saveTheVillage.control.InventoryControl;
 import byui.cit260.saveTheVillage.exceptions.MapControlException;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import byui.cit260.saveTheVillage.model.Item;
-import byui.cit260.saveTheVillage.model.NPC;
 
 /**
  *
@@ -206,8 +205,6 @@ public class SceneView extends View
                         case "Inn":
                             InnView newInn = new InnView();
                             newInn.display(game);
-                            this.console.println("Pending - Integrating Requested"
-                                    + " View");
                             break;
                         case "Bank":
                             BankView newBank = new BankView();

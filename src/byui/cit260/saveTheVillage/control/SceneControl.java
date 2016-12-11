@@ -44,6 +44,9 @@ public class SceneControl
         {
             player.setCurrentHealth(player.getPlayerStats().getHealth());
         }
+        
+        //Reduce Player Money Appropriately
+        player.setMoney(player.getMoney() - (hours * 5));
     }
     
     /* ********************************************************

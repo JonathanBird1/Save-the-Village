@@ -5,10 +5,8 @@
  */
 package byui.cit260.saveTheVillage.view;
 
-import java.util.Scanner;
 import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.model.Game;
-import byui.cit260.saveTheVillage.model.Player;
 import static java.lang.Integer.parseInt;
 
 
@@ -77,6 +75,7 @@ public class InnView extends View
         int value = 0;
         try
         {
+            this.console.println("How many hours would you like to stay at our inn today?");
             value = parseInt(this.keyboard.readLine());
         }
         catch (Exception e)
@@ -96,8 +95,19 @@ public class InnView extends View
             return;
         }
         
-        //Run the restAtInn function
-        SceneControl newSceneControl = new SceneControl();
-        newSceneControl.restAtInn(game.getPlayer(), value);
+        //Run the restAtInn function if player has enough money (5g per hour)
+        if ((5 * value) <= game.getPlayer().getMoney())
+        {
+            SceneControl newSceneControl = new SceneControl();
+            newSceneControl.restAtInn(game.getPlayer(), value);
+        
+            this.console.println("After resting at the inn, your health has "
+            + "recovered to " + game.getPlayer().getCurrentHealth() + " points.");
+        }
+        else
+        {
+            ErrorView.display(this.getClass().getName(), "Error:  Insufficient "
+                + "money to complete transaction.");
+        }
     }
 }
