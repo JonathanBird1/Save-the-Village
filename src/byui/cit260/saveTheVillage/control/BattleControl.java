@@ -102,7 +102,7 @@ public class BattleControl
                 else
                 {
                     enemyStats = new Stats(400, 0, 30, .35, 0, .2, 35, 20, 15, 0);
-                    newEnemy = new Actor("Vulture", "Monster", enemyItem,
+                    newEnemy = new Actor("Werewolf", "Monster", enemyItem,
                     150, enemyStats, 400);
                 }
                 break;

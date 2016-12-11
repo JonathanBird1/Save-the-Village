@@ -91,7 +91,7 @@ public class CommunicationsView extends View
         
         //If player said None, then no need to continue here
         if (choice.equals("None"))
-            return false;
+            return true;
         
         //Test to see if the NPC actually exists
         NPC thisNPC = new NPC();

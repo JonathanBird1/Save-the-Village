@@ -38,7 +38,7 @@ public class SceneView extends View
         
         //Display the location
         displayMessageConstruct += "You are currently on row " + 
-            game.getCurrentRow() + ", column " + game.getCurrentColumn() +
+            (game.getCurrentRow() + 1) + ", column " + (game.getCurrentColumn() + 1) +
             ", located in the " + (game.getIsInDungeon() ? "Dungeon" : "Forest")
             + ".  What action would you like to complete?\n";
         

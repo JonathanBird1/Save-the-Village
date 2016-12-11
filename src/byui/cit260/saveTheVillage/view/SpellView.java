@@ -53,6 +53,7 @@ public class SpellView extends View
             int value = parseInt(this.getInput());
             //Determine the spell to be used
             Spell spell = Spell.HealingWind;  //Base Initialization
+            boolean valid = false;
             switch (value)
             {
                 case 0:
@@ -60,18 +61,21 @@ public class SpellView extends View
                     break;
                 case 1:
                     spell = player.getRace().getSpell1();
+                    valid = true;
                     break;
                 case 2:
                     spell = player.getRace().getSpell2();
+                    valid = true;
                     break;
                 case 3:
                     spell = player.getRace().getSpell3();
+                    valid = true;
                     break;
                 default:
                     ErrorView.display(this.getClass().getName(), "Invalid Spell Selection Choice");
             }
             
-            if (!done)
+            if (!valid)
             {
                 done = this.doAction(spell, player, enemy, damageBonus, 
                     hitRateBonus, dodgeRateBonus, speedBonus, defenseBonus);

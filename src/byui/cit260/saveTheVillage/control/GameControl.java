@@ -130,7 +130,7 @@ public class GameControl
                     case "Key":
                         clues[clueCounter] = new Clue("Key",
                         //NPC Comment
-                        "“My friend took his mule out that way " + newMapControl.getQuadrant(scene)
+                        "“My friend took his mule out that way <<" + newMapControl.getQuadrant(scene) + ">>"
                         + "\nto go and gather some wood from the ol’ oak.” Bob leans in and \n"
                         + "whispers, “‘Round here it is well known that any wood gathered \n"
                         + "from the ol’ oak will burn brighter and ‘otter than any other wood \n"
@@ -145,7 +145,7 @@ public class GameControl
                         "You see a fish arc out of the water, a spray of drops reflecting the \n"
                         + "light from the sun. As it splashes back into the pond, you see the \n"
                         + "reflection of a metallic object in the water. You reach down and pull out\n" 
-                        + "the [Dungeon Key]. You also find the half eaten carcass of a rather large\n"
+                        + "the <<Dungeon Key>>. You also find the half eaten carcass of a rather large\n"
                         + "fish sitting on a rock not too far from where you found the key.\n",
                         //Completed Quest Dialogue
                         "CompletedQuest", 
@@ -159,14 +159,14 @@ public class GameControl
                         //NPC Comment
                         "“As I was out hanging up my wash the other week, I noticed a strange \n"
                         + "looking shadow staring toward town. It was over there,” Vixen \n"
-                        + "points toward " + newMapControl.getQuadrant(scene) + "and then continues, “It was a \n"
+                        + "points toward <<" + newMapControl.getQuadrant(scene) + ">> and then continues, “It was a \n"
                         + "big shape and had, now don’t think that I’m telling tales now, but \n"
                         + "it looked like it had some huge horns. Do you think it may have been\n"
                         + "a demon sent to punish me for spreading tales?” She then sits down on \n"
                         + "a nearby basket and begins to brood. There is no more that she will say.",
                         //Scene Description
                         "You look around, and as you near the oak tree you notice what looks like a \n"
-                        + "wide, straight line of disturbed rocks heading to the " + direction + ".", 
+                        + "wide, straight line of disturbed rocks heading to the <<" + direction + ">>.", 
                         //Completed Quest Dialogue
                         "CompletedQuest", 
                         Item.None, Item.None,
@@ -186,11 +186,11 @@ public class GameControl
                         + "he just said that the crops need to be taken care of else no one \n"
                         + "was going to have anything to eat this winter. He is such a kind \n"
                         + "man, my husband, always thinking of others. Anyway, the farm is \n"
-                        + "over there " + newMapControl.getQuadrant(scene) + ". Please, please find \n"
+                        + "over there <<" + newMapControl.getQuadrant(scene) + ">>. Please, please find \n"
                         + "and save my husband.” She falls down on her knees, sobbing.",
                         //Scene Description
                         "A thorough search of the area reveals a set of deep imprints in the \n"
-                        + "ground next to a tree. A trail leads to and from " + direction + ".", 
+                        + "ground next to a tree. A trail leads to and from <<" + direction + ">>.", 
                         //Completed Quest Dialogue
                         "CompletedQuest",
                         Item.None, Item.None,
@@ -214,12 +214,12 @@ public class GameControl
                         + "there just in case the Beast got hungry, I didn’t want it coming \n"
                         + "after me.” He looks at you for a moment, then speaks again, “Oh, \n"
                         + "nearly forgot, you ain’t from around here. Delmere’s Pond is just \n"
-                        + "over that way.” He points to " + newMapControl.getQuadrant(scene) + ".",
+                        + "over that way.” He points <<" + newMapControl.getQuadrant(scene) + ">>.",
                         //Scene Description
                         "Upon closer inspection of the yard, you notice that one of the windows \n"
                         + "has been smashed in and glass lays all scattered across the floor. You \n"
                         + "also notice that the flower patch has several large footprints leading\n"
-                        + "to the " + direction + ".",
+                        + "to the <<" + direction + ">>.",
                         //Completed Quest Dialogue
                         "CompletedQuest",
                         Item.None, Item.None,
@@ -238,13 +238,13 @@ public class GameControl
                         + "as well, but luckily I had the medallion that my da’ gave me before \n"
                         + "he headed off to the War. Too bad, that I lost it as I was running \n"
                         + "home. If you do go out in the forest, DO NOT go to \n"
-                        + newMapControl.getQuadrant(scene) + " since that is where the Beast abducted \n"
+                        + "<<" + newMapControl.getQuadrant(scene) + ">> since that is where the Beast abducted \n"
                         + "my friends, Simon and Theodore.”" ,
                         //Scene Description
                         "The darkness of the overgrowth makes searching this area difficult, but \n"
                         + "as you are about to give up and decide that there is nothing worth \n"
                         + "finding, you spy a bronze medallion caught in the branches several feet\n"
-                        + "off the trail. You pick up the [Defensive Charm].",
+                        + "off the trail. You pick up the <<Defensive Charm>>.",
                         //Completed Quest Dialogue
                         "CompletedQuest",
                         Item.DefensiveCharm, Item.None,
@@ -268,13 +268,13 @@ public class GameControl
                         + "I quickly hid inside a hollowed out tree. Obviously my cunning was too \n"
                         + "great for the Beast, since it quickly went off about an hour later. \n"
                         + "If you wish to see the place of this great battle, it was right over \n"
-                        + "there " + newMapControl.getQuadrant(scene) + ". Maybe when you come back \n"
+                        + "there <<" + newMapControl.getQuadrant(scene) + ">>. Maybe when you come back \n"
                         + "we can have a drink or two to celebrate my awesomeness?”" ,
                         //Scene Description
                         "As you search the clearing you begin to feel dizzy and stumble over a \n"
                         + "hollowed out tree. Sitting down to rest, you see the glimmer of metal \n"
                         + "out of the corner of your eye. You look closer at the tree, seeing\n"
-                        + "something you reach your hand in and pull out the silver [Offensive Charm].",
+                        + "something you reach your hand in and pull out the silver <<Offensive Charm>>.",
                         //Completed Quest Dialogue
                         "CompletedQuest",
                         Item.OffensiveCharm, Item.None,
@@ -290,7 +290,7 @@ public class GameControl
                         + "playing, Bart and me, out in the forest ‘bout two weeks ago. Bart’s \n"
                         + "my brother, he’s big and strong and will be turning ten next summer. \n"
                         + "We were playing hide ‘n’ seek ya see, well he went out that way \n" 
-                        + newMapControl.getQuadrant(scene) + " to hide but when I went out to find him, \n"
+                        + "<<" + newMapControl.getQuadrant(scene) + ">> to hide but when I went out to find him, \n"
                         + "well, no one has been able to find him since.” He turns away from you \n"
                         + "and begins to kick a rock around the ground. He glances back over \n"
                         + "his shoulder and says, “If you happen to find him there, tell ‘im that \n"
@@ -299,7 +299,7 @@ public class GameControl
                         //Scene Description
                         "Moving through the tall grass you stumble upon something soft. You look down\n"
                         + "at the object and see a stuffed animal of some sort. You pick up the \n"
-                        + "[Child’s Memento] thinking that this might be of use for something.", 
+                        + "<<Child’s Memento>> thinking that this might be of use for something.", 
                         //Completed Quest Dialogue
                         "CompletedQuest",
                         Item.KidsMemento, healthReward,
@@ -324,11 +324,11 @@ public class GameControl
                         + "diamond ring. If you happen to find it, would you be ever-so-kind as \n"
                         + "to bring it back to me? I’m sure I could find something to give you \n"
                         + "that might interest you. My friends told me that we were at this \n"
-                        + "place " + newMapControl.getQuadrant(scene) + ".”" ,
+                        + "place <<" + newMapControl.getQuadrant(scene) + ">>.”" ,
                         //Scene Description
                         "You begin to push pine boughs out of your way in a random manner. As you\n"
                         + "shift one branch, something falls and bounces off your head. You look \n"
-                        + "around on the ground for a moment and come up with a [Diamond Ring].\n"
+                        + "around on the ground for a moment and come up with a <<Diamond Ring>>.\n"
                         + "You pocket it, thinking diamonds falling from the sky must be extremely valuable.",
                         //Completed Quest Dialogue
                         "CompletedQuest",
@@ -348,15 +348,15 @@ public class GameControl
                         + "once again looks you up and down, “you look like the one that might be \n"
                         + "able to find her out in forest. She took me out there once, but I’m not \n"
                         + "too sure exactly where her ‘shroom cache is.” He thinks for a moment, \n"
-                        + "nods and then says, “it is over in this " + newMapControl.getQuadrant(scene)
-                        + "\narea. You’ll know her from the jade necklace she is always wearing.”",
+                        + "nods and then says, “it is over in this <<" + newMapControl.getQuadrant(scene)
+                        + ">>\narea. You’ll know her from the jade necklace she is always wearing.”",
                         //Scene Description
                         "As you search the area, you see a blurry pink shape move ahead of you. You\n"
                         + "approach cautiously and looking around a particularly mossy boulder, you\n"
                         + "see a large pink pig happily munching away at patch of mushrooms.  Lying\n"
                         + "in the mud next to the mushrooms is a green object. You shoo the pig away\n"
                         + "and pick up the green object.  Wiping away the mud and grime you reveal\n"
-                        + "that the object is a [Jade Necklace]. You slip it around your neck and move on.",
+                        + "that the object is a <<Jade Necklace>>. You slip it around your neck and move on.",
                         //Completed Quest Dialogue
                         "CompletedQuest",
                         Item.Necklace, scrollReward1,
@@ -370,15 +370,15 @@ public class GameControl
                         "As you approach lucy, you see Lucy’s worried face peering at you through\n"
                         + "her long red hair as she speaks. “My husband, Ricky, and son, Ricky \n"
                         + "Jr., went out on a camping trip a few weeks ago. They often go out \n"
-                        + "for long camping excursions by Splittop Hill, here "+ newMapControl.getQuadrant(scene) 
-                        + "\n, but they are usually back after a week. And what with that creature \n"
+                        + "for long camping excursions by Splittop Hill, here <<"+ newMapControl.getQuadrant(scene) 
+                        + ">>\n, but they are usually back after a week. And what with that creature \n"
                         + "running around out there I am just sick with worry. Please would you find\n"
                         + "them? Ricky Jr. has a small wooden toy horse that he always carries around with him.”",
                         //Scene Description
                         "After looking around the hill, you find an abandoned campsite. The tent is\n"
                         + "torn in several places and the few supplies you can see are scattered and\n"
                         + "crushed. As you move out of the campsite you brush up against one of the \n"
-                        + "tent’s support ropes and notice a wooden [Child’s Toy]. You pick up the\n"
+                        + "tent’s support ropes and notice a wooden <<Child’s Toy>>. You pick up the\n"
                         + "horse and pocket it, just in case someone might want it back.",
                         //Completed Quest Dialogue
                         "CompletedQuest",

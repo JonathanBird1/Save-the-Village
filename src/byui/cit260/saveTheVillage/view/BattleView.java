@@ -214,7 +214,7 @@ public class BattleView extends View
                     doAttack(true, player);
                     break;
                 case "M":  //Use Magic
-                    doMagic();
+                    doMagic(player);
                     break;
                 case "I":  //Use Item
                     doItem();
@@ -241,12 +241,18 @@ public class BattleView extends View
         if (playerTurn)  //Player Attack
         {
             this.console.println("You attack the enemy " + enemy.getName() + ".");
-            try {
-                double successRate = thisControl.calcSuccessRate("A",
-                        player.getPlayerStats().getHitRate(),
+            try
+            {
+                //Set Bonus Caps
+                double hitRate = player.getPlayerStats().getHitRate() + hitRateBonus;
+                if (hitRate > 1)
+                    hitRate = 1;
+                
+                //Determine Success Rate & Damage
+                double successRate = thisControl.calcSuccessRate("A", hitRate,
                         enemy.getEnemyStats().getDodgeRate());
                 int damage = thisControl.calcTotalDamage(
-                        player.getWeapon().getWeaponDamage(),
+                        player.getWeapon().getWeaponDamage() + damageBonus,
                         player.getPlayerStats().getStrength(),
                         enemy.getEnemyStats().getDefense(), successRate);
                 if (damage > 0)
@@ -259,7 +265,9 @@ public class BattleView extends View
                 
                 this.console.println("Attack Damage Dealt: " +
                         damage);
-            } catch (BattleControlException ex) {
+            }
+            catch (BattleControlException ex)
+            {
                 this.console.println(ex.getMessage());
             }
         }
@@ -268,13 +276,21 @@ public class BattleView extends View
             this.console.println("The enemy " + enemy.getName() + " attacks you.");
             try //Enemy Attack
             {
+                //Set Bonus Caps
+                double dodgeRate = player.getPlayerStats().getDodgeRate() + dodgeRateBonus;
+                if (dodgeRate > 1)
+                    dodgeRate = 1;
+                int defense = player.getPlayerStats().getDefense() + defenseBonus;
+                if (defenseBonus > 100)
+                    defense = 100;
+                
+                //Determine Success Rate & Damage
                 double successRate = thisControl.calcSuccessRate("A",
-                        enemy.getEnemyStats().getHitRate(),
-                        player.getPlayerStats().getDodgeRate());
+                        enemy.getEnemyStats().getHitRate(), dodgeRate);
                 
                 int damage = thisControl.calcTotalDamage(0,
-                        enemy.getEnemyStats().getStrength(),
-                        player.getPlayerStats().getDefense(), successRate);
+                        enemy.getEnemyStats().getStrength(), defense,
+                        enemy.getEnemyStats().getHitRate());
                 
                 if (damage > 0)
                 {
@@ -284,9 +300,10 @@ public class BattleView extends View
                                     damage);
                 }
                 
-                this.console.println("Attack Damage Received: " +
-                        damage);
-            } catch (BattleControlException ex) {
+                this.console.println("Attack Damage Received: " + damage);
+            }
+            catch (BattleControlException ex)
+            {
                 this.console.println(ex.getMessage());
             }
         }
@@ -295,12 +312,12 @@ public class BattleView extends View
     /* ********************************************************
     DO MAGIC
     ********************************************************* */
-    public void doMagic()
+    public void doMagic(Player player)
     {
-        
-        //STUB FUNCTION - TO BE COMPLETED*******************************
-        this.console.println("Sorry - You do not currently have access" +
-                " to magic");
+        //Call Spell View
+        SpellView newSpellView = new SpellView(player.getRace());
+        newSpellView.display(player, enemy, damageBonus, hitRateBonus, 
+            dodgeRateBonus, speedBonus, defenseBonus);
     }
     
     /* ********************************************************
