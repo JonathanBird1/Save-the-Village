@@ -5,13 +5,11 @@
  */
 package byui.cit260.saveTheVillage.view;
 
-import byui.cit260.saveTheVillage.control.PlayerControl;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.model.Game;
 import static java.lang.Integer.parseInt;
-import java.util.Scanner;
 
 /**
  *
@@ -28,7 +26,7 @@ public class StoreView extends View{
             + "like?”\n" 
             + "“I have healing salves, a variety of potions, and even a spell scroll or two. Anything that a strong hero like\n"
             + "you could possibly need.”"
-            + "\n\n\t----STORE---MENU----"
+            + "\n\t----STORE---MENU----"
             + "\n\t| B – Buy Items    |"
             + "\n\t| S – Sell Items   |"
             + "\n\t| L – Leave Store  |"
