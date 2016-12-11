@@ -10,10 +10,8 @@ import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import byui.cit260.saveTheVillage.exceptions.PlayerControlException;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
-import byui.cit260.saveTheVillage.view.ErrorView;
 import java.io.IOException;
 import java.io.PrintWriter;
-import savethevillage.SaveTheVillage;
 
 /**
  *

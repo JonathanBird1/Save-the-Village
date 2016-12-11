@@ -148,9 +148,14 @@ public class GameMenuView extends View
     ********************************************************* */
     private void displayInventory(Player player)
     {
-        int counter = 0;
+        //WEAPON
+        this.console.println("\tCURRENT WEAPON");
+        this.console.println("\t--------------");
+        this.console.println(player.getWeapon().getItemName());
+        this.console.println();
         
         //ITEMS ON HAND
+        int counter = 0;        
         this.console.println("\tINVENTORY ON HAND\n");
         this.console.print("\t");
         this.console.printf("%-3s", "#");
@@ -166,17 +171,20 @@ public class GameMenuView extends View
         
         for (Item item : player.getItems())
         {
-            counter++;
-            this.console.print("\t");
-            this.console.printf("%-3d", counter);
-            this.console.printf("%-25s", item.getItemName());
-            this.console.printf("%-10s", item.getType());
-            this.console.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
-            this.console.printf("%-5d", item.getWeaponDamage());
-            this.console.printf("%-5d", item.getHealingAmount());
-            this.console.printf("%-5d", item.getManaRestored());
-            this.console.printf("%-6d", item.getWeight());
-            this.console.println();
+            if (!(item.equals(Item.None)))
+            {
+                counter++;
+                this.console.print("\t");
+                this.console.printf("%-3d", counter);
+                this.console.printf("%-25s", item.getItemName());
+                this.console.printf("%-10s", item.getType());
+                this.console.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
+                this.console.printf("%-5d", item.getWeaponDamage());
+                this.console.printf("%-5d", item.getHealingAmount());
+                this.console.printf("%-5d", item.getManaRestored());
+                this.console.printf("%-6d", item.getWeight());
+                this.console.println();
+            }
         }
         
         counter = 0;
@@ -198,17 +206,20 @@ public class GameMenuView extends View
         
         for (Item item : player.getDepositedItems())
         {
-            counter++;
-            this.console.print("\t");
-            this.console.printf("%-3d", counter);
-            this.console.printf("%-25s", item.getItemName());
-            this.console.printf("%-10s", item.getType());
-            this.console.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
-            this.console.printf("%-5d", item.getWeaponDamage());
-            this.console.printf("%-5d", item.getHealingAmount());
-            this.console.printf("%-5d", item.getManaRestored());
-            this.console.printf("%-6d", item.getWeight());
-            this.console.println();
+            if (!(item.equals(Item.None)))
+            {
+                counter++;
+                this.console.print("\t");
+                this.console.printf("%-3d", counter);
+                this.console.printf("%-25s", item.getItemName());
+                this.console.printf("%-10s", item.getType());
+                this.console.printf("%-11d", (item.getNoSell() ? 0 : (item.getBuyPrice() / 2)));
+                this.console.printf("%-5d", item.getWeaponDamage());
+                this.console.printf("%-5d", item.getHealingAmount());
+                this.console.printf("%-5d", item.getManaRestored());
+                this.console.printf("%-6d", item.getWeight());
+                this.console.println();
+            }
         }
     }
 

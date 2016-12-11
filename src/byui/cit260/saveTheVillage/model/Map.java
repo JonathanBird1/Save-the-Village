@@ -181,9 +181,12 @@ public class Map implements Serializable {
         String returnString = "Map{" + "mapName=" + mapName +
         ", totalRows=" + totalRows + ", totalColumns=" + totalColumns + "(";
         
-        for (int i = 0; i < sceneArray.length; i++)
+        for (Scene[] sceneRow : sceneArray)
         {
-            returnString += sceneArray[i].toString();
+            for (Scene scene : sceneRow)
+            {
+                returnString += scene.toString();
+            }
         }
       
         returnString += ")}";

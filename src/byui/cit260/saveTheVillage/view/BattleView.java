@@ -10,9 +10,6 @@ import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.control.BattleControl;
 import byui.cit260.saveTheVillage.exceptions.BattleControlException;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -217,7 +214,7 @@ public class BattleView extends View
                     doMagic(player);
                     break;
                 case "I":  //Use Item
-                    doItem();
+                    doItem(player);
                     break;
                 default:
                     ErrorView.display(this.getClass().getName(), "\nYeah, that didn't work. Try again.");
@@ -323,11 +320,11 @@ public class BattleView extends View
     /* ********************************************************
     DO ITEM
     ********************************************************* */
-    public void doItem()
+    public void doItem(Player player)
     {
-        //STUB FUNCTION - TO BE COMPLETED*******************************
-        this.console.println("Sorry - You do not currently have access" +
-                " to items");
+        UseItemView newUseItemView = new UseItemView();
+        newUseItemView.display(player, enemy, damageBonus, hitRateBonus, 
+            dodgeRateBonus, speedBonus, defenseBonus);
     }
     
     /* ********************************************************
@@ -339,6 +336,11 @@ public class BattleView extends View
         BattleControl thisControl = new BattleControl();
         try
         {
+            //Bonus Caps
+            int speed = player.getPlayerStats().getSpeed() + speedBonus;
+            if (speed > 100)
+                speed = 100;
+            
             if (thisControl.calcSuccessRate("R",
                 player.getPlayerStats().getSpeed(), 
                 enemy.getEnemyStats().getSpeed()) >= .5)
@@ -369,7 +371,6 @@ public class BattleView extends View
     public void gotoBattleVictoryView(Player player)
     {
         BattleVictoryView newBattleVictory = new BattleVictoryView();
-        
         newBattleVictory.display(player, enemy);
     }
 }

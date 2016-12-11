@@ -8,7 +8,6 @@ package byui.cit260.saveTheVillage.model;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *

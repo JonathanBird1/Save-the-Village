@@ -5,7 +5,6 @@
  */
 package byui.cit260.saveTheVillage.control;
 
-import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.model.NPC;
@@ -14,7 +13,6 @@ import byui.cit260.saveTheVillage.model.Game;
 import byui.cit260.saveTheVillage.view.BattleView;
 import byui.cit260.saveTheVillage.exceptions.MapControlException;
 import byui.cit260.saveTheVillage.view.ErrorView;
-import java.io.BufferedReader;
 import java.io.PrintWriter;
 import savethevillage.SaveTheVillage;
 
@@ -909,10 +907,10 @@ public class MapControl
     }
 
     /* ********************************************************
-     RANDOMIZE TOWN  *******************DO WE USE THIS *********************************************
+     *******************DO WE USE THIS *********************************************
     ********************************************************* */
     
-    public void dungeonEncounter()
+/*    public void dungeonEncounter()
     {
         double rand = (Math.random() * 100);
         try{
@@ -950,5 +948,5 @@ public class MapControl
             ErrorView.display(this.getClass().getName(), "Error reading input: "
                     + e.getMessage());
         }
-    }
+    }*/
 }

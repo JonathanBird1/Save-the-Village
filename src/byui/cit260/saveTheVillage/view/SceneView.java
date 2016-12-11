@@ -432,8 +432,8 @@ public class SceneView extends View
                 break;
             //Use Item in Inventory
             case "U":
-                // *****INTEGRATE A USE ITEM VIEW
-                this.console.println("Unfortunately you cannot use any items now");
+                UseItemView newUseItemView = new UseItemView();
+                newUseItemView.display(game.getPlayer());
                 break;
             //Talk with an NPC
             case "C":

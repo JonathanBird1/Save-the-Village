@@ -47,6 +47,11 @@ public class SpellView extends View
         double hitRateBonus, double dodgeRateBonus, int speedBonus,
         int defenseBonus)
     {
+        //Unable to use a spell if the player doesn't have enough mana
+        if (player.getCurrentMana() < 10)
+        {
+            ErrorView.display(this.getClass().getName(), "Insufficient Mana to Cast Spells");
+        }
         boolean done = false;
         do
         {
@@ -75,7 +80,7 @@ public class SpellView extends View
                     ErrorView.display(this.getClass().getName(), "Invalid Spell Selection Choice");
             }
             
-            if (!valid)
+            if (valid)
             {
                 done = this.doAction(spell, player, enemy, damageBonus, 
                     hitRateBonus, dodgeRateBonus, speedBonus, defenseBonus);
@@ -173,6 +178,9 @@ public class SpellView extends View
                 ErrorView.display(this.getClass().getName(), "Invalid Spell");
                 return false;
         }
+        
+        //Reduce Mana
+        player.setCurrentMana(player.getCurrentMana() - 10);
         return true;
     }
 }

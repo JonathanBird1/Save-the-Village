@@ -5,7 +5,6 @@
  */
 package byui.cit260.saveTheVillage.model;
 
-import byui.cit260.saveTheVillage.control.GameControl;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;

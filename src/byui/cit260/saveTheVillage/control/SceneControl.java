@@ -14,8 +14,6 @@ import byui.cit260.saveTheVillage.model.NPC;
 import byui.cit260.saveTheVillage.model.Clue;
 import byui.cit260.saveTheVillage.view.ErrorView;
 import byui.cit260.saveTheVillage.exceptions.SceneControlException;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  *

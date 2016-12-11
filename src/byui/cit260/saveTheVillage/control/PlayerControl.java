@@ -11,9 +11,6 @@ import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Stats;
 import byui.cit260.saveTheVillage.model.Races;
 import byui.cit260.saveTheVillage.view.ErrorView;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
-import java.util.Set;
-import static oracle.jrockit.jfr.events.Bits.intValue;
 
 /**
  *
@@ -110,7 +107,7 @@ public class PlayerControl {
         int health = (int)(Math.random() * 300);
         if (health < 100)
             health = 100;
-        health += (race.equals("Human") ? 50 : 0);
+        health += (race.getRaceName().equals("Human") ? 50 : 0);
         if (health > 300)
             health = 300;
         
@@ -118,7 +115,7 @@ public class PlayerControl {
         int mana = (int) (Math.random() * 200);
         if (mana < 50)
             mana = 50;
-        mana += (race.equals("Elf") ? 50 : 0);
+        mana += (race.getRaceName().equals("Elf") ? 50 : 0);
         if (mana > 200)
             mana = 200;
         
@@ -126,7 +123,7 @@ public class PlayerControl {
         int strength = (int) (Math.random() * 100);
         if (strength < 10)
             strength = 10;
-        strength += (race.equals("Dwarf") ? 10 : 0);
+        strength += (race.getRaceName().equals("Dwarf") ? 10 : 0);
         if (strength > 100)
             strength = 100;
 
@@ -155,7 +152,7 @@ public class PlayerControl {
         int defense = (int) (Math.random() * 100);
         if (defense < 10)
             defense = 10;
-        defense += (race.equals("Dwarf") ? 10 : 0);
+        defense += (race.getRaceName().equals("Dwarf") ? 10 : 0);
         if (defense > 100)
             defense = 100;
 

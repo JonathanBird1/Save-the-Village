@@ -13,10 +13,8 @@ import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.exceptions.GameControlException;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import byui.cit260.saveTheVillage.model.Item;
-import byui.cit260.saveTheVillage.model.NPC;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 

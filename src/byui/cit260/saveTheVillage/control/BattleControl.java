@@ -7,7 +7,6 @@ package byui.cit260.saveTheVillage.control;
 import byui.cit260.saveTheVillage.exceptions.BattleControlException;
 import byui.cit260.saveTheVillage.model.Actor;
 import byui.cit260.saveTheVillage.model.Item;
-import byui.cit260.saveTheVillage.model.Spell;
 import byui.cit260.saveTheVillage.model.Stats;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 
@@ -213,9 +212,4 @@ public class BattleControl
         
         return calculatedDamage;
     }
-
-    /* ********************************************************
-    RETURN RACE SPELLS
-    ********************************************************* */
-    
 }
