@@ -60,26 +60,51 @@ public class SceneControl
                 ErrorView.display(this.getClass().getName(), "\nError Item price is 0");
                 return;
             }
-            if (item.getBuyPrice() != 0 && !(diff < 0)) {
-                player.setMoney(diff);
-                System.out.println("\nYou now have " + player.getMoney() + " gold.");
-              //  int max = player.getItemMax();
-              //  System.out.println("\ntest max " + max);
-              //  max++;
+            if (item.getBuyPrice() != 0 && !(diff < 0))
+            {
                 int i = 0;
-                //loop through inventory looking for available slot
-              //  for (i=0; i<60; i++){
-               //     player.getItems()[i].get
-               // }
-                while(!player.getItems()[i].getItemName().equals("None")){
+                while(!player.getItems()[i].getItemName().equals("None") && i < 60){
                     i++;
                 }
-                player.setItems(i, item);
-                System.out.println(item.getItemName() + " added to inventory");
+                
+                if (i >= 60)
+                {
+                    System.out.println("Unable to add " + item.getItemName() +
+                        " to your inventory as you do not have any additional space.");
+                }
+                else
+                {
+                    player.setMoney(diff);
+                    System.out.println("\nYou now have " + player.getMoney() + " gold.");
+                    player.setItems(i, item);
+                    System.out.println(item.getItemName() + " added to inventory");
+                }
             }
             else System.out.println("\nYou don't have enough for that!" + 
                     "\nYou only have " + player.getMoney() + " gold.");
+    }
+    
+    /* ********************************************************
+    ADD ITEM REWARD
+    ********************************************************* */
+    public void addItemReward(Player player, Item item)
+    {
+        int i = 0;
+        while(!player.getItems()[i].getItemName().equals("None") && i < 60){
+            i++;
         }
+        
+        if (i >= 60)
+        {
+            System.out.println("Unable to add " + item.getItemName() +
+                " to your inventory as you do not have any additional space.");
+        }
+        else
+        {
+            player.setItems(i, item);
+            System.out.println(item.getItemName() + " added to inventory");
+        }
+    }
     
     /* ********************************************************
     SELL ITEM

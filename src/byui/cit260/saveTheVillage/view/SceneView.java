@@ -60,6 +60,22 @@ public class SceneView extends View
                 + "\n\t| G – Game Menu       |"
                 + "\n\t-----------------------";
             }
+            else if ((game.getCurrentRow() == 4 && game.getCurrentColumn() == 8) 
+                || (game.getCurrentRow() == 0 && game.getCurrentColumn() == 4)
+                || (game.getCurrentRow() == 8 && game.getCurrentColumn() == 4))
+            {
+                //Option to fight boss or miniboss
+                displayMessageConstruct +=
+                  "\n\t----BASIC--COMMANDS----"
+                + "\n\t| N – Move North      |"
+                + "\n\t| S – Move South      |"
+                + "\n\t| E – Move East       |"
+                + "\n\t| W – Move West       |"
+                + "\n\t| F - Fight Monster   |"
+                + "\n\t| U – Use an item     |"
+                + "\n\t| G – Game Menu       |"
+                + "\n\t-----------------------";
+            }
             else  //Standard Dungeon Menu
             {
                 displayMessageConstruct +=
@@ -421,6 +437,64 @@ public class SceneView extends View
                         break;
                     default:
                         this.console.println(game.getClues()[10].getSceneClue());
+                }
+                break;
+            //Fight Boss/Miniboss
+            case "F":
+                String sceneName = (game.getIsInDungeon() ? game.getDungeonMap().
+                    getScene(currentRow, currentColumn).getName() : 
+                    game.getForestMap().getScene(currentRow, currentColumn).getName());
+                BattleView newBattleView = new BattleView();
+                switch (sceneName)
+                {
+                    case "Boss":
+                        this.console.println("You have chosen to engage the "
+                            + "Minotaur Boss at this time.");
+                        defeated = newBattleView.displayBattleView(sceneName, game.getPlayer());
+                        if (!defeated)
+                        {
+                            //Game has been won
+                            GameVictoryView newGameVictory = new GameVictoryView();
+                            newGameVictory.display();
+                            //If this point is reached, the player wants to return
+                            //to the main menu
+                            defeated = true;
+                        }
+                    case "Miniboss1":
+                    case "Miniboss2":
+                        this.console.println("You have chosen to engage the "
+                            + "Minotaur Captain at this time.");
+                        defeated = newBattleView.displayBattleView(sceneName, game.getPlayer());
+                        if (!defeated)
+                        {
+                            //Rewards based on which mini-boss defeated
+                            switch (sceneName)
+                            {
+                                case "Miniboss1":
+                                    this.console.println("Congratulations on "
+                                        + "defeating the miniboss!  As a reward,"
+                                        + " you receive <<Heaven's Sword>>.");
+                                    game.getPlayer().setWeapon(Item.HeavensSword);
+                                    break;
+                                case "Miniboss2":
+                                    this.console.println("Congratulations on "
+                                        + "defeating the miniboss!  As a reward,"
+                                        + " you receive <<5 Large Health Potions "
+                                        + "and 5 Large Mana Potions>>.");
+                                    SceneControl thisControl = new SceneControl();
+                                    for (int i = 0; i < 5; i++)
+                                    {
+                                        thisControl.addItemReward(game.getPlayer(), Item.LargeHealthPotion);
+                                        thisControl.addItemReward(game.getPlayer(), Item.LargeManaPotion);
+                                    }
+                                    break;
+                                default:
+                                    ErrorView.display(this.getClass().getName(), "Error:  Invalid Scene");
+                            }
+                        }
+                    default:
+                        ErrorView.display(this.getClass().getName(), "Error:  "
+                            + "You are not in a location of a boss or miniboss.");
                 }
                 break;
             //Use Item in Inventory

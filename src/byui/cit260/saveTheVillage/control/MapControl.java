@@ -858,7 +858,7 @@ public class MapControl
             if (game.getIsInDungeon() == false)  //Forest
             {
                 switch (game.getForestMap().getSceneArray()
-                    [game.getCurrentRow()][game.getCurrentColumn()].getName())
+                    [newRow][newColumn].getName())
                 {
                     case "Inn":
                     case "Bank":

@@ -24,8 +24,10 @@ public class BankView extends View
             + "The interior is like the outside, spartan in looks but has a strong and serviceable atmosphere. The dwarf\n"
             + "clears his throat and asks, “How might I, Thomas the Banker, help you today?”"
             + "\n\n\t-----BANK---MENU-----"
-            + "\n\t| D – Make Deposit  |"
-            + "\n\t| W – Make Withdraw |"
+            + "\n\t| D – Deposit Money |"
+            + "\n\t| W – Withdraw Money|"
+            + "\n\t| E – Deposit Item  |"
+            + "\n\t| I – Withdraw Item |"
             + "\n\t| L – Leave Bank    |"
             + "\n\t---------------------"
             + "\n\n"
@@ -46,6 +48,14 @@ public class BankView extends View
                     break;
                 case "W": 
                     this.WithdrawMoney();
+                    break;
+                case "E":
+                    //Deposit Item
+                    this.console.println("The bank is not currently accepting items at this time.");
+                    break;
+                case "I":
+                    //Withdraw Item
+                    this.console.println("The bank is not currently holding items at this time.");
                     break;
                 case "L": // Leave 
                     return true;
