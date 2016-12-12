@@ -5,16 +5,12 @@
  */
 package byui.cit260.saveTheVillage.view;
 
-import byui.cit260.saveTheVillage.control.GameControl;
 import byui.cit260.saveTheVillage.control.InventoryControl;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.model.Game;
-import java.io.IOException;
-import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
-import java.util.Scanner;
 
 /**
  *
@@ -30,12 +26,12 @@ public class WeaponShopView extends View{
             + "equally massive looking hammer. He glares at you for a moment before putting down his hammer and then casually\n"
             + "reaches for one of the myriad weapons lying about the interior. He then spits and growls, “What do you want? \n"
             + "I a'int got all day.”"
-            + "\n\n\t----STORE---MENU-----"
-            + "\n\t| B – Buy Items     |"
-            + "\n\t| S – Sell Items    |"
-            + "\n\t| L – Leave Store   |"
-        //  + "\n\t| R – Print Report  |"                
-            + "\n\t---------------------"
+            + "\n\n\t-----STORE----MENU-----"
+            + "\n\t| B – Buy New Weapon     |"
+        //  + "\n\t| S – Sell Items         |"
+            + "\n\t| L – Leave Store        |"
+        //  + "\n\t| R – Print Report       |"                
+            + "\n\t--------------------------"
             + "\n\nPlease make a selection:");
     }
     
@@ -68,10 +64,7 @@ public class WeaponShopView extends View{
         try{
         switch(choice){
             case "B": // List items to buy
-                this.buyItems(game);
-                break;
-            case "S": // List items to sell
-                this.sellItems(game);
+                this.buyWeapon(game);
                 break;
             case "R": // List items to sell
                 this.weaponReport();
@@ -87,7 +80,7 @@ public class WeaponShopView extends View{
         return false;
     }
     
-    private void buyItems(Game game) {
+    private void buyWeapon(Game game) {
         
         //list store inventory 0 to quit 
       this.console.println("#  ITEM\t\tPRICE" );
@@ -159,12 +152,12 @@ public class WeaponShopView extends View{
             if (item.getItemName().equals(itemName[keyboardValue])) choice = item.ordinal();
         }
         SceneControl newSceneControl = new SceneControl();
-        newSceneControl.buyItem(game.getPlayer(), Item.values()[choice]);  
+        newSceneControl.buyWeapon(game.getPlayer(), Item.values()[choice]);  
         
         return; 
         
     }
-        
+    
     private void sellItems(Game game) {
         //list store inventory 0 to quit       
       //  this.console.println("\nList of items to come, for now enter 0 to exit");

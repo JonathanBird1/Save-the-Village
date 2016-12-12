@@ -20,6 +20,8 @@ import byui.cit260.saveTheVillage.model.Item;
  */
 public class SceneView extends View
 {
+    boolean defeated = false;
+    
     SceneView()
     {
         ErrorView.display(this.getClass().getName(), "ERROR:  Cannot use default constructor for "
@@ -215,17 +217,11 @@ public class SceneView extends View
                             break;
                         case "Store":
                             StoreView newStore = new StoreView();
-                            //To Integrate View  *********************************
                             newStore.display(game);
-                            this.console.println("Pending - Integrating Requested"
-                                    + " View");
                             break;
                         case "Weapons":
                             WeaponShopView newWeaponShop = new WeaponShopView();
-                            //To Integrate View  *********************************
                             newWeaponShop.display(game);
-                            this.console.println("Pending - Integrating Requested"
-                                    + " View");
                             break;
                     }
                 }
@@ -235,7 +231,7 @@ public class SceneView extends View
                 try
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer(game, game.getCurrentRow() - 1,
+                    defeated = controlMap.movePlayer(game, game.getCurrentRow() - 1,
                         game.getCurrentColumn());
                 }
                 catch (MapControlException mce)
@@ -248,7 +244,7 @@ public class SceneView extends View
                 try
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer(game, game.getCurrentRow() + 1,
+                    defeated = controlMap.movePlayer(game, game.getCurrentRow() + 1,
                         game.getCurrentColumn());
                 }
                 catch (MapControlException mce)
@@ -261,7 +257,7 @@ public class SceneView extends View
                 try
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer(game, game.getCurrentRow(),
+                    defeated = controlMap.movePlayer(game, game.getCurrentRow(),
                         game.getCurrentColumn() + 1);
                 }
                 catch (MapControlException mce)
@@ -274,7 +270,7 @@ public class SceneView extends View
                 try
                 {
                     MapControl controlMap = new MapControl();
-                    controlMap.movePlayer(game, game.getCurrentRow(),
+                    defeated = controlMap.movePlayer(game, game.getCurrentRow(),
                         game.getCurrentColumn() - 1);
                 }
                 catch (MapControlException mce)
@@ -445,6 +441,6 @@ public class SceneView extends View
             default:
         }
 
-        return true;
+        return (!defeated);
     }
 }

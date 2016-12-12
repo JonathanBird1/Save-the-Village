@@ -133,6 +133,7 @@ public class BattleView extends View
                         //Defeated
                         done = true;
                         defeated = true;
+                        gotoBattleDefeatView();
                         this.console.println("Doesn't look like it's your day "
                                 + "- You have been defeated.");
                     }
@@ -372,5 +373,14 @@ public class BattleView extends View
     {
         BattleVictoryView newBattleVictory = new BattleVictoryView();
         newBattleVictory.display(player, enemy);
+    }
+
+    /* ********************************************************
+    GO TO BATTLE VICTORY VIEW
+    ********************************************************* */
+    public void gotoBattleDefeatView()
+    {
+        BattleDefeatView newBattleDefeat = new BattleDefeatView();
+        newBattleDefeat.display();
     }
 }

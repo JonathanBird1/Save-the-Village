@@ -837,7 +837,7 @@ public class MapControl
     /* ********************************************************
     MOVE PLAYER
     ********************************************************* */
-    public void movePlayer(Game game, int newRow, int newColumn)
+    public boolean movePlayer(Game game, int newRow, int newColumn)
     throws MapControlException
     {
         boolean defeated = false;
@@ -900,10 +900,11 @@ public class MapControl
         }
         else  //Player Defeated
         {
-            //Call Player Defeated View
-            
-            game.setGameFinished(false);
+            //Player has already chosen to return to main menu
+            game.setGameFinished(true);
         }
+            
+        return defeated;
     }
 
     /* ********************************************************

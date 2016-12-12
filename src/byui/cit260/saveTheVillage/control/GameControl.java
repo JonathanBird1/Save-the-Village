@@ -146,7 +146,7 @@ public class GameControl
                         + "the <<Dungeon Key>>. You also find the half eaten carcass of a rather large\n"
                         + "fish sitting on a rock not too far from where you found the key.\n",
                         //Completed Quest Dialogue
-                        "CompletedQuest", 
+                        "Quest Completed", 
                         Item.DungeonKey, Item.None,
                         false, false, false);
                         
@@ -166,7 +166,7 @@ public class GameControl
                         "You look around, and as you near the oak tree you notice what looks like a \n"
                         + "wide, straight line of disturbed rocks heading to the <<" + direction + ">>.", 
                         //Completed Quest Dialogue
-                        "CompletedQuest", 
+                        "Quest Completed", 
                         Item.None, Item.None,
                         false, false, false);
                         
@@ -190,7 +190,7 @@ public class GameControl
                         "A thorough search of the area reveals a set of deep imprints in the \n"
                         + "ground next to a tree. A trail leads to and from <<" + direction + ">>.", 
                         //Completed Quest Dialogue
-                        "CompletedQuest",
+                        "Quest Completed",
                         Item.None, Item.None,
                         false, false, false);
                         
@@ -219,7 +219,7 @@ public class GameControl
                         + "also notice that the flower patch has several large footprints leading\n"
                         + "to the <<" + direction + ">>.",
                         //Completed Quest Dialogue
-                        "CompletedQuest",
+                        "Quest Completed",
                         Item.None, Item.None,
                         false, false, false);
                         
@@ -244,7 +244,7 @@ public class GameControl
                         + "finding, you spy a bronze medallion caught in the branches several feet\n"
                         + "off the trail. You pick up the <<Defensive Charm>>.",
                         //Completed Quest Dialogue
-                        "CompletedQuest",
+                        "Quest Completed",
                         Item.DefensiveCharm, Item.None,
                         false, false, false);
                         
@@ -274,7 +274,7 @@ public class GameControl
                         + "out of the corner of your eye. You look closer at the tree, seeing\n"
                         + "something you reach your hand in and pull out the silver <<Offensive Charm>>.",
                         //Completed Quest Dialogue
-                        "CompletedQuest",
+                        "Quest Completed",
                         Item.OffensiveCharm, Item.None,
                         false, false, false);
                         
@@ -299,7 +299,7 @@ public class GameControl
                         + "at the object and see a stuffed animal of some sort. You pick up the \n"
                         + "<<Child’s Memento>> thinking that this might be of use for something.", 
                         //Completed Quest Dialogue
-                        "CompletedQuest",
+                        "Quest Completed",
                         Item.KidsMemento, healthReward,
                         false, false, false);
                         
@@ -329,7 +329,7 @@ public class GameControl
                         + "around on the ground for a moment and come up with a <<Diamond Ring>>.\n"
                         + "You pocket it, thinking diamonds falling from the sky must be extremely valuable.",
                         //Completed Quest Dialogue
-                        "CompletedQuest",
+                        "Quest Completed",
                         Item.DiamondRing, manaReward,
                         false, false, false);
                         
@@ -356,7 +356,7 @@ public class GameControl
                         + "and pick up the green object.  Wiping away the mud and grime you reveal\n"
                         + "that the object is a <<Jade Necklace>>. You slip it around your neck and move on.",
                         //Completed Quest Dialogue
-                        "CompletedQuest",
+                        "Quest Completed",
                         Item.Necklace, scrollReward1,
                         false, false, false);
                         
@@ -379,7 +379,7 @@ public class GameControl
                         + "tent’s support ropes and notice a wooden <<Child’s Toy>>. You pick up the\n"
                         + "horse and pocket it, just in case someone might want it back.",
                         //Completed Quest Dialogue
-                        "CompletedQuest",
+                        "Quest Completed",
                         Item.ChildsToy, scrollReward2,
                         false, false, false);
                         

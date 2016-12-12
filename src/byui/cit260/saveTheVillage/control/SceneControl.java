@@ -62,7 +62,7 @@ public class SceneControl
             }
             if (item.getBuyPrice() != 0 && !(diff < 0)) {
                 player.setMoney(diff);
-                System.out.println("\nYou now have " + player.getMoney() + "gold.");
+                System.out.println("\nYou now have " + player.getMoney() + " gold.");
               //  int max = player.getItemMax();
               //  System.out.println("\ntest max " + max);
               //  max++;
@@ -101,9 +101,36 @@ public class SceneControl
             player.setItems(choice, Item.None);  //set inventory as none
             player.setMoney(diff);  //give user money from the sell
             System.out.println(item.getItemName() + " removed from inventory");
-            System.out.println("\nYou now have $" + player.getMoney());
+            System.out.println("\nYou now have " + player.getMoney() + " gold.");
         }
     }
+    
+    /* ********************************************************
+    BUY WEAPON
+    ********************************************************* */
+    public void buyWeapon(Player player, Item item)
+    {
+            int diff = player.getMoney() - item.getBuyPrice();
+
+            if (item.getBuyPrice() == 0) {
+                ErrorView.display(this.getClass().getName(), "\nError Item price is 0");
+                return;
+            }
+            if (item.getBuyPrice() != 0 && !(diff < 0))
+            {
+                //Replace the current weapon and sell current weapon for half price
+                player.setMoney(player.getMoney() + 
+                    (player.getWeapon().getBuyPrice() / 2));
+                System.out.println("\nYou now have " + player.getMoney() + " gold.");
+                
+                player.setWeapon(item);
+
+                System.out.println(item.getItemName() + " is now your current"
+                    + " weapon.");
+            }
+            else System.out.println("\nYou don't have enough for that!" + 
+                    "\nYou only have " + player.getMoney() + " gold.");
+        }
     
     /* ********************************************************
     VALIDATE NPC

@@ -7,22 +7,11 @@ package byui.cit260.saveTheVillage.view;
 
 import byui.cit260.saveTheVillage.control.PlayerControl;
 import byui.cit260.saveTheVillage.control.GameControl;
-import byui.cit260.saveTheVillage.exceptions.GameControlException;
 import byui.cit260.saveTheVillage.model.Game;
-import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.model.Player;
-import byui.cit260.saveTheVillage.model.Spell;
 import byui.cit260.saveTheVillage.model.Races;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import static java.lang.Integer.parseInt;
-
-import java.util.Scanner;
-import static oracle.jrockit.jfr.events.Bits.intValue;
-import savethevillage.SaveTheVillage;
 
 /**
  *
@@ -369,6 +358,4 @@ public class MainMenuView extends View
         BankView bank = new BankView();
         bank.display();
     }
-
-   
 }
