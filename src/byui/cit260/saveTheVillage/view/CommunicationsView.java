@@ -107,6 +107,15 @@ public class CommunicationsView extends View
             return true;
         }
         
+        //If the NPC has been captured, you cannot converse with them
+        if (thisNPC.getCaptured())
+        {
+            ErrorView.display(this.getClass().getName(), "ERROR:  This person has "
+                + "been captured.  You must free this person to ever have a chance "
+                + "to speak to them again.");
+            return true;
+        }
+        
         //Choice between NPC's Clue and Completed Quest Dialogue
         Clue currentClue = game.getClue(thisNPC.getAssociatedScene());
         if (currentClue.getClueObtained() && currentClue.getRetrieved())

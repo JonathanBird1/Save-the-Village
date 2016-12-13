@@ -115,7 +115,6 @@ public class SceneControl
         sell = sell/2;
 
         int diff = player.getMoney() + sell;
-//System.out.println("diff " + diff);
         if (sell == 0)
         {
             ErrorView.display(this.getClass().getName(), "\nError Item price is 0");

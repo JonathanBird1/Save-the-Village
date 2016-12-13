@@ -5,6 +5,7 @@
  */
 package byui.cit260.saveTheVillage.view;
 
+import byui.cit260.saveTheVillage.control.GameControl;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Item;
 import byui.cit260.saveTheVillage.control.SceneControl;
@@ -147,7 +148,11 @@ public class StoreView extends View{
             if (item.getItemName().equals(itemName[keyboardValue])) choice = item.ordinal();
         }
         SceneControl newSceneControl = new SceneControl();
-        newSceneControl.buyItem(game.getPlayer(), Item.values()[choice]);  
+        newSceneControl.buyItem(game.getPlayer(), Item.values()[choice]);
+        
+        //Increment Time
+        GameControl timeControl = new GameControl();
+        timeControl.addTime(game, 1);
         
         return; 
         
@@ -228,7 +233,12 @@ public class StoreView extends View{
         this.console.println("You chose " + itemName[keyboardValue]);
         int choice = keyboardValue-1;
         SceneControl newSceneControl = new SceneControl();
-        newSceneControl.sellItem(game.getPlayer(), player.getItems()[choice], choice); 
+        newSceneControl.sellItem(game.getPlayer(), player.getItems()[choice], choice);
+
+        //Increment Time
+        GameControl timeControl = new GameControl();
+        timeControl.addTime(game, 1);
+
         return; 
     }        
 

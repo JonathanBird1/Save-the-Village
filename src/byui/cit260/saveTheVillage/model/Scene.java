@@ -111,7 +111,7 @@ public class Scene extends Location implements Serializable
         this.npcs[position] = npcs;
     }
 
-    public boolean isClosed() {
+    public boolean getClosed() {
         return closed;
     }
 

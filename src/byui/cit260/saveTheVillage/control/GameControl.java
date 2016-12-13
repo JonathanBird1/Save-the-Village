@@ -10,9 +10,12 @@ import byui.cit260.saveTheVillage.model.Map;
 import byui.cit260.saveTheVillage.model.Player;
 import byui.cit260.saveTheVillage.model.Clue;
 import byui.cit260.saveTheVillage.model.Scene;
+import byui.cit260.saveTheVillage.model.NPC;
 import byui.cit260.saveTheVillage.exceptions.GameControlException;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import byui.cit260.saveTheVillage.model.Item;
+import byui.cit260.saveTheVillage.view.ErrorView;
+import byui.cit260.saveTheVillage.view.TimeDefeatView;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -59,8 +62,7 @@ public class GameControl
         forestMap.getScene(2, 2).setVisited(true);
         
         //Create the new game
-        Game newGame = new Game(0, (60*24*5), false, "testFile.stv", clues,
-        forestMap, dungeonMap, player);
+        Game newGame = new Game(0, (60*60), false, clues, forestMap, dungeonMap, player);
 
         return newGame;
     }
@@ -433,5 +435,139 @@ public class GameControl
         }
         
         return game;
+    }
+    
+    /* ********************************************************
+    ADD TIME
+    ********************************************************* */
+    public boolean addTime(Game game, int minutes)
+    {
+        int currentTime = game.getElapsedTime();
+        int newTime = currentTime + minutes;
+        
+        //Set the new time
+        game.setElapsedTime(newTime);
+        
+        //Test to see if the game time limit has been passed
+        if (newTime > game.getTimeLimit())
+        {
+            //Lost Game - Timed Out
+            TimeDefeatView newTimeDefeat = new TimeDefeatView();
+            newTimeDefeat.display();
+            
+            //If reached this point, then the player wants to return to main menu
+            return true;  //Defeated
+        }
+        
+        //Test to see if a 4th hour was passed
+        if ((currentTime % 240) > (newTime % 240))
+        {
+            //Load the current status of all NPC's and town scenes into an array
+            int counter = -1;
+            boolean[] status = new boolean[14];
+            Scene currentScene;
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    //Test the current scene to see if it is closed
+                    currentScene = game.getForestMap().getScene(i + 2, j + 2);
+                    counter++;
+                    
+                    //Test each NPC in the scene to see if they have been captured
+                    status[counter] = currentScene.getClosed();
+                    for (NPC npc : currentScene.getNPC())
+                    {
+                        if (!(npc.getNPCName().equals("None")))
+                        {
+                            status[counter] = npc.getCaptured();
+                            counter++;
+                        }
+                    }
+                }
+            }
+            
+            //Choose a random number between 0 and 13
+            //There are only 10 NPC's and 4 Town Scenes
+            boolean looped = false;
+            int random = (int)(Math.random() * 1400);
+            if (status[random])
+            {
+                random++;
+                if (random >= 14)
+                {
+                    //Test if Already Looped
+                    if (looped)
+                    {
+                        //Should not loop more than once
+                        ErrorView.display(this.getClass().getName(), "Error:  "
+                           + "This function has looped more than once and is an "
+                           + "infinite loop.");
+                        return false;
+                    }
+                    random = 0;
+                    looped = true;
+                }
+            }
+            
+            //Close the building or capture the NPC
+            counter = -1;
+            boolean completed = false;
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    //Test the current scene to see if it is closed
+                    currentScene = game.getForestMap().getScene(i + 2, j + 2);
+                    counter++;
+                    
+                    //Test to see if the counter matches the random number
+                    if (counter == random)
+                    {
+                        //Close the building
+                        game.getForestMap().getScene(i + 2, j + 2).setClosed(true);
+                        
+                        System.out.println("Your innate intuition tells you that "
+                        + "something has happened to one of the building owners "
+                        + "in the village.");
+                        
+                        //End of Function - Exit
+                        return false;
+                    }
+                    
+                    //Test each NPC in the scene to see if they have been captured
+                    status[counter] = currentScene.getClosed();
+                    for (NPC npc : game.getForestMap().getScene(i + 2, j + 2).getNPC())
+                    {
+                        if (!(npc.getNPCName().equals("None")))
+                        {
+                            status[counter] = npc.getCaptured();
+                            counter++;
+                            
+                            //Test to see if the counter matches the random number
+                            if (counter == random)
+                            {
+                                //Capture the NPC
+                                npc.setCaptured(true);
+                                System.out.println("Your innate intuition tells you that "
+                                + "something has happened to one of the people "
+                                + "in the village.");
+                        
+                                
+                                //End of Function - Exit
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    public boolean timeDefeat(Game game)
+    {
+        return game.getElapsedTime() > game.getTimeLimit();
     }
 }

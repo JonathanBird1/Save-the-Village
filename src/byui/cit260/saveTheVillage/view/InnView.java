@@ -5,6 +5,7 @@
  */
 package byui.cit260.saveTheVillage.view;
 
+import byui.cit260.saveTheVillage.control.GameControl;
 import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.model.Game;
 import static java.lang.Integer.parseInt;
@@ -100,7 +101,12 @@ public class InnView extends View
         {
             SceneControl newSceneControl = new SceneControl();
             newSceneControl.restAtInn(game.getPlayer(), value);
-        
+            
+            //Increment Time
+            GameControl timeControl = new GameControl();
+            timeControl.addTime(game, value * 60);
+
+            
             this.console.println("After resting at the inn, your health has "
             + "recovered to " + game.getPlayer().getCurrentHealth() + " points.");
         }

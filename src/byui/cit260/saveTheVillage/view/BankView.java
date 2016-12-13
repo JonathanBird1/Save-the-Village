@@ -5,9 +5,9 @@
  */
 package byui.cit260.saveTheVillage.view;
 
-import byui.cit260.saveTheVillage.control.SceneControl;
+import byui.cit260.saveTheVillage.model.Game;
+import byui.cit260.saveTheVillage.control.GameControl;
 import static java.lang.Integer.parseInt;
-import java.util.Scanner;
 
 /**
  *
@@ -33,9 +33,18 @@ public class BankView extends View
             + "\n\n"
             + "Please make a selection:");
     }
-    
+        
     @Override
     public boolean doAction(String choice)
+    {
+        //This function is not used - requires the doAction with the game
+        ErrorView.display(this.getClass().getName(),"ERROR:  Must pass the "
+            + "Game as a parameter");
+        return false;
+    }
+    
+    @Override
+    public boolean doAction(String choice, Game game)
     {
         choice = choice.toUpperCase();
         
@@ -44,18 +53,18 @@ public class BankView extends View
             switch(choice)
             {
                 case "D":
-                    this.DepositMoney();
+                    this.depositMoney(game);
                     break;
                 case "W": 
-                    this.WithdrawMoney();
+                    this.withdrawMoney(game);
                     break;
                 case "E":
                     //Deposit Item
-                    this.console.println("The bank is not currently accepting items at this time.");
+                    this.depositItem(game);
                     break;
                 case "I":
                     //Withdraw Item
-                    this.console.println("The bank is not currently holding items at this time.");
+                    this.withdrawItem(game);
                     break;
                 case "L": // Leave 
                     return true;
@@ -68,12 +77,17 @@ public class BankView extends View
             ErrorView.display(this.getClass().getName(), "Error reading input: "
                 + e.getMessage());
         }
+        
+        //Increment Time
+        GameControl timeControl = new GameControl();
+        timeControl.addTime(game, 15);
+
         return false;
     }
     
-    private void DepositMoney()
+    private void depositMoney(Game game)
     {
-        int currentMoney = 0;
+        int currentMoney = game.getPlayer().getMoney();
         int keyboardValue = 0;
         boolean valid = false;
         
@@ -87,26 +101,39 @@ public class BankView extends View
             try
             {
                 keyboardValue = parseInt(this.keyboard.readLine());
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 ErrorView.display(this.getClass().getName(), "Invalid amount.");
             }
-            try{
-            if(keyboardValue < 0)
+            try
             {
-                ErrorView.display(this.getClass().getName(),"Invalid amount");
-                continue;
+                if(keyboardValue < 0)
+                {
+                    ErrorView.display(this.getClass().getName(),"Invalid amount");
+                    continue;
+                }
+                
+                if(keyboardValue == 0)
+                {
+                    return;
+                }
+                else if(keyboardValue > max)  //need to get the highest item number
+                {
+                    this.console.println ("Sorry friend, but it would seem that you have "
+                    + "insufficient funds to comply with that request.");
+                    continue;
+                }
+                else
+                {
+                    //Deposit the money
+                    game.getPlayer().setDepositedMoney(game.getPlayer()
+                        .getDepositedMoney() + keyboardValue);
+                    game.getPlayer().setMoney(currentMoney - keyboardValue);
+                }
             }
-            if(keyboardValue == 0)
+            catch (Exception f)
             {
-                return;
-            }
-            else if(keyboardValue > max)  //need to get the highest item number
-            {
-                this.console.println ("Sorry friend, but it would seem that you have "
-                + "insufficient funds to comply with that request.");
-                continue;
-            }} catch (Exception f) {
                 ErrorView.display(this.getClass().getName(), "Error reading input: "
                         + f.getMessage());
             }
@@ -116,9 +143,9 @@ public class BankView extends View
         return;
     }
         
-     private void WithdrawMoney()
-     {
-        int currentMoney = 0;        
+    private void withdrawMoney(Game game)
+    {
+        int currentMoney = game.getPlayer().getDepositedMoney();        
 
         int value = 0;
         boolean valid = false;
@@ -139,29 +166,51 @@ public class BankView extends View
                 ErrorView.display(this.getClass().getName(), "Invalid amount.");
             }
             
-            try{
-            if(value < 0)
+            try
             {
-                ErrorView.display(this.getClass().getName(), "Invalid amount");
-                continue;
+                if(value < 0)
+                {
+                    ErrorView.display(this.getClass().getName(), "Invalid amount");
+                    continue;
+                }
+                
+                if(value == 0)
+                {
+                    return;
+                }
+                else if(value > max)  //need to get the highest item number
+                {
+                    this.console.println("It appears that your account has recently "
+                    + "been emptied, either that or you don't have that much "
+                    + "deposited in your savings.");
+                    continue;
+                }
+                else
+                {
+                    //Withdraw the money
+                    game.getPlayer().setDepositedMoney(currentMoney - value);
+                    game.getPlayer().setMoney(game.getPlayer().getMoney() + value);
+                }
             }
-
-            if(value == 0)
+            catch (Exception f)
             {
-                return;
-            }
-            else if(value > max)  //need to get the highest item number
-            {
-                this.console.println("It appears that your account has recently "
-                + "been emptied, either that or you don't have that much "
-                + "deposited in your savings.");
-                continue;
-            }} catch (Exception f){
                 ErrorView.display(this.getClass().getName(), "Error reading input: "
-                        + f.getMessage());
+                    + f.getMessage());
             }
 
             valid = true;
         }
+    }
+     
+    public void depositItem(Game game)
+    {
+        DepositItemView newDepositItem = new DepositItemView();
+        newDepositItem.display(game);
+    }
+    
+    public void withdrawItem(Game game)
+    {
+        WithdrawItemView newWithdrawItem = new WithdrawItemView();
+        newWithdrawItem.display(game);
     }
 }

@@ -10,6 +10,7 @@ import byui.cit260.saveTheVillage.model.Scene;
 import byui.cit260.saveTheVillage.control.MapControl;
 import byui.cit260.saveTheVillage.control.SceneControl;
 import byui.cit260.saveTheVillage.control.InventoryControl;
+import byui.cit260.saveTheVillage.control.GameControl;
 import byui.cit260.saveTheVillage.exceptions.MapControlException;
 import byui.cit260.saveTheVillage.exceptions.InventoryControlException;
 import byui.cit260.saveTheVillage.model.Item;
@@ -201,6 +202,7 @@ public class SceneView extends View
         int currentRow = game.getCurrentRow();
         int currentColumn = game.getCurrentColumn();
         boolean isInDungeon = game.getIsInDungeon();
+        GameControl timeControl = new GameControl();
         
         switch(choice)
         {
@@ -217,6 +219,16 @@ public class SceneView extends View
                 }
                 else
                 {
+                    if (game.getForestMap().getSceneArray()[currentRow]
+                        [currentColumn].getClosed())
+                    {
+                        ErrorView.display(this.getClass().getName(), "ERROR:  This "
+                            + "building has been closed as its owner has been "
+                            + "captured by the monster.\nYou can no longer use "
+                            + "this building's functions.");
+                    }
+                    else
+                    {
                     switch (game.getForestMap().getSceneArray()[currentRow]
                         [currentColumn].getName())
                     {
@@ -226,10 +238,7 @@ public class SceneView extends View
                             break;
                         case "Bank":
                             BankView newBank = new BankView();
-                            //To Integrate View  *********************************
-                            newBank.display();
-                            this.console.println("Pending - Integrating Requested"
-                                    + " View");
+                            newBank.display(game);
                             break;
                         case "Store":
                             StoreView newStore = new StoreView();
@@ -240,6 +249,8 @@ public class SceneView extends View
                             newWeaponShop.display(game);
                             break;
                     }
+                    defeated = timeControl.timeDefeat(game);
+                    }
                 }
                 break;
             //Head North
@@ -249,6 +260,8 @@ public class SceneView extends View
                     MapControl controlMap = new MapControl();
                     defeated = controlMap.movePlayer(game, game.getCurrentRow() - 1,
                         game.getCurrentColumn());
+                    //Increment Time
+                    defeated = timeControl.addTime(game, 15);
                 }
                 catch (MapControlException mce)
                 {
@@ -262,6 +275,8 @@ public class SceneView extends View
                     MapControl controlMap = new MapControl();
                     defeated = controlMap.movePlayer(game, game.getCurrentRow() + 1,
                         game.getCurrentColumn());
+                    //Increment Time
+                    defeated = timeControl.addTime(game, 15);
                 }
                 catch (MapControlException mce)
                 {
@@ -275,6 +290,8 @@ public class SceneView extends View
                     MapControl controlMap = new MapControl();
                     defeated = controlMap.movePlayer(game, game.getCurrentRow(),
                         game.getCurrentColumn() + 1);
+                    //Increment Time
+                    defeated = timeControl.addTime(game, 15);
                 }
                 catch (MapControlException mce)
                 {
@@ -288,6 +305,8 @@ public class SceneView extends View
                     MapControl controlMap = new MapControl();
                     defeated = controlMap.movePlayer(game, game.getCurrentRow(),
                         game.getCurrentColumn() - 1);
+                    //Increment Time
+                    defeated = timeControl.addTime(game, 15);
                 }
                 catch (MapControlException mce)
                 {
@@ -330,6 +349,8 @@ public class SceneView extends View
                     game.setCurrentRow(dungeonEntranceRow);
                     game.setCurrentColumn(dungeonEntranceColumn);
                     game.setIsInDungeon(false);
+                    //Increment Time
+                    defeated = timeControl.addTime(game, 15);
                 }
                 else
                 {
@@ -350,6 +371,8 @@ public class SceneView extends View
                         game.setCurrentRow(4);
                         game.setCurrentColumn(0);
                         game.setIsInDungeon(true);
+                        //Increment Time
+                        defeated = timeControl.addTime(game, 15);
                     }
                     else
                     {
@@ -434,6 +457,8 @@ public class SceneView extends View
                                     ice.getMessage());
                             }
                         }
+                        //Increment Time
+                        defeated = timeControl.addTime(game, 15);
                         break;
                     default:
                         this.console.println(game.getClues()[10].getSceneClue());
@@ -501,11 +526,15 @@ public class SceneView extends View
             case "U":
                 UseItemView newUseItemView = new UseItemView();
                 newUseItemView.display(game.getPlayer());
+                //Increment Time
+                game.setElapsedTime(game.getElapsedTime() + 1);
                 break;
             //Talk with an NPC
             case "C":
                 CommunicationsView newCommunicationsView = new CommunicationsView(game);
                 newCommunicationsView.display(game);
+                //Increment Time
+                defeated = timeControl.addTime(game, 5);
                 break;
             //Bring up the Game Menu
             case "G":
